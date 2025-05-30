@@ -1,8 +1,4 @@
 export default async function Home() {
-  const sam="";
-
-
-
   return <div>Hello</div>;
 
   // return (
