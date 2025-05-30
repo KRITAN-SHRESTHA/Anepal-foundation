@@ -1,13 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Header } from './header';
 import Image from 'next/image';
 
 export default function HeroSection() {
   return (
     <>
-      <Header />
       <main className="bg-muted/50 overflow-hidden">
         <section>
           <div className="relative py-24">
