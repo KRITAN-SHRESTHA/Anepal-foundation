@@ -19,18 +19,18 @@ export const NavMenu = (props: NavigationMenuProps) => (
   <NavigationMenu viewport={false} {...props}>
     <NavigationMenuList className="gap-0 space-x-0 text-sm">
       {navLinks.map(link => (
-        <NavigationMenuItem key={link.name}>
+        <NavigationMenuItem key={link.title}>
           {link.subMenu ? (
             <>
               <NavigationMenuTrigger className="text-[15px] font-normal capitalize">
-                {link.name}
+                {link.title}
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[200px] gap-1">
                   {link.subMenu.map(menu => (
                     <ListItem
-                      key={menu.name}
-                      title={menu.name}
+                      key={menu.title}
+                      title={menu.title}
                       href={menu.href}
                     />
                   ))}
@@ -43,7 +43,7 @@ export const NavMenu = (props: NavigationMenuProps) => (
               className="text-[15px] font-normal capitalize"
               asChild
             >
-              <Link href={link.href}>{link.name}</Link>
+              <Link href={link.href}>{link.title}</Link>
             </Button>
           )}
         </NavigationMenuItem>

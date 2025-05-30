@@ -3,7 +3,7 @@ import { Geist, Geist_Mono, Quicksand } from 'next/font/google';
 import './globals.css';
 import { TRPCProvider } from '@/trpc/client';
 import { Toaster } from '@/components/ui/sonner';
-import Navbar03Page from '@/components/navbar-03/navbar-03';
+import Header from '@/components/header';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -36,8 +36,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${quickSand.variable} antialiased`}
       >
         <TRPCProvider>
-          {/* <Header /> */}
-          <Navbar03Page />
+          <Header />
           {children}
           <Toaster />
         </TRPCProvider>
