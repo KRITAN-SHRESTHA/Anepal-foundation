@@ -1,18 +1,19 @@
 import { eq } from 'drizzle-orm';
-import { headers } from 'next/headers';
 import { cache } from 'react';
 import superjson from 'superjson';
 
 import { db } from '@/db';
-import { user } from '@/db/schema/auth-schema';
-import { auth } from '@/lib/auth';
 import { initTRPC, TRPCError } from '@trpc/server';
+import { userTable } from '@/db/schema/auth-schema';
+import { checkAuth } from '@/lib/auth';
 
 export const createTRPCContext = cache(async () => {
-  const session = await auth.api.getSession({
-    headers: await headers() // you need to pass the headers object.
-  });
-  return { userId: session?.user.id };
+  const user = await checkAuth();
+
+  if (!user) {
+    return { userId: null };
+  }
+  return { userId: user.id };
 });
 
 export type Context = Awaited<ReturnType<typeof createTRPCContext>>;
@@ -53,8 +54,8 @@ export const protectedProcedure = t.procedure.use(
 
     const [user_data] = await db
       .select()
-      .from(user)
-      .where(eq(user.id, ctx.userId))
+      .from(userTable)
+      .where(eq(userTable.id, ctx.userId))
       .limit(1);
     // console.log('🚀 ~ user_data:', user_data);
 
