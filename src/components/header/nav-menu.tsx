@@ -25,7 +25,7 @@ export const NavMenu = (props: NavigationMenuProps) => (
               <NavigationMenuTrigger className="text-[15px] font-normal capitalize">
                 {link.title}
               </NavigationMenuTrigger>
-              <NavigationMenuContent>
+              <NavigationMenuContent className="z-50">
                 <ul className="grid w-[200px] gap-1">
                   {link.subMenu.map(menu => (
                     <ListItem
