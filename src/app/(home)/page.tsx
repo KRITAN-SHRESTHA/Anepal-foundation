@@ -1,9 +1,9 @@
-import Hero from '@/components/hero';
+import BannerSection from '@/modules/home/ui/sections/banner-section';
 
 export default async function Home() {
   return (
     <div>
-      <Hero />
+      <BannerSection />
     </div>
   );
 

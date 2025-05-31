@@ -16,16 +16,40 @@ export const NavigationSheet = () => {
       <SheetContent className="p-6">
         {/* <Logo /> */}
         <Link href={'/'}>
-          <div className="shrink-0">
+          <div className="h-[56px] w-[100px] shrink-0">
             <Image
               src={'/assets/logo.png'}
               alt="Anepal-foundation-logo"
               width={200}
               height={100}
-              className="h-auto w-auto"
+              className="h-full w-full"
             />
           </div>
         </Link>
+
+        <div className="bg-accent space-y-1.5 rounded-md px-4 py-3">
+          {/* phone number */}
+          <div className="">
+            <span className="text-xs">Phone number:</span>
+            <p className="text-[13px] leading-[100%] font-medium">
+              +34 676 452 011
+            </p>
+          </div>
+          {/* address */}
+          <div className="">
+            <span className="text-xs">Address:</span>
+            <p className="text-[13px] leading-[100%] font-medium">
+              Carrer Pau Casals, 4 Entresuelo, 2ª, 08860 Casteldefels, Barcelona
+            </p>
+          </div>
+          {/* email */}
+          <div className="">
+            <span className="text-xs">Email:</span>
+            <p className="text-[13px] leading-[100%] font-medium">
+              cristinamartianepal@gmail.com
+            </p>
+          </div>
+        </div>
 
         <div className="mt-5 space-y-3 text-base">
           {navLinks.map(nav => (
