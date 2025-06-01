@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 const teamMembers = [
   {
-    name: 'CRISTINA MARTI ROCA',
+    name: 'Cristina Marti Roca',
     title: 'Founder',
     imageUrl: '/assets/team/founder.jpg'
   },
@@ -15,7 +15,7 @@ const teamMembers = [
     imageUrl: '/assets/team/member1.jpg'
   },
   {
-    name: 'MERCEDES BERTOMEU FERRATE',
+    name: 'Mercedes Bertomeu Ferrate',
     title: 'Member',
     imageUrl: '/assets/team/member.jpg'
   },
@@ -33,15 +33,19 @@ const teamMembers = [
 
 export default function TeamSection() {
   return (
-    <div className="flex flex-col items-center justify-center px-4 py-14 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-xl text-center">
+    <div className="flex flex-col items-center justify-center px-4 py-8 sm:px-6 md:py-12 lg:px-8">
+      <div className="mx-auto max-w-[1000px] text-center">
         {/* Meet Our Team */}
         <h2 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
           NUESTRO EQUIPO
         </h2>
         <p className="mt-4 text-base sm:text-lg">
-          Our philosophy is simple — hire a team of diverse, passionate people
-          and foster a culture that empowers you to do you best work.
+          Nuestro equipo está formado por personas que alternan su labor
+          profesional con el trabajo para la Fundación. Nuestro objetivo es
+          hacer de este mundo un lugar mejor y por eso trabajamos con ilusión,
+          constancia y compromiso. Formamos un buen equipo, dinámico y
+          organizado en el que a cada miembro se le asigna una competencia para
+          que este trabajo sea lo más fructífero posible.
         </p>
         <Button
           asChild

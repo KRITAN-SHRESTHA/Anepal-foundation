@@ -33,8 +33,8 @@ export default function HeroSection() {
         <div className="tablet:mt-12 mt-6 flex items-center gap-4">
           <Button
             variant="outline"
-            size="lg"
-            className="rounded-full !px-7 text-base shadow-none"
+            // size="lg"
+            className="rounded-full !px-5 text-base shadow-none [&_svg]:!size-4"
             border={'purple'}
           >
             <BookOpen className="!h-5 !w-5" /> Read Story
