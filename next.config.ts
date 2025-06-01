@@ -9,6 +9,9 @@ const nextConfig: NextConfig = {
     // dirs:["src"]
   },
   transpilePackages: ['@t3-oss/env-nextjs', '@t3-oss/env-core'],
+  images:{
+    domains:['images.pexels.com']
+  }
 
 };
 
