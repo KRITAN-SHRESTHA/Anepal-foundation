@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function HeroSection() {
   return (
-    <div className="tablet:grid-cols-2 mx-auto mt-5 grid w-full max-w-screen-xl items-center gap-x-12 gap-y-8 px-4 py-12 sm:px-6 md:mt-14 lg:px-8">
+    <div className="tablet:grid-cols-2 mx-auto mt-5 grid w-full max-w-screen-xl items-center gap-x-12 gap-y-8 px-4 py-8 sm:px-6 md:mt-14 md:py-12 lg:px-8">
       <div>
         {/* Anepal Foundation: */}
         <h1 className="tablet:max-w-[17ch] mt-6 text-4xl !leading-[1.2] font-bold md:text-5xl lg:text-[2.75rem] xl:text-5xl">
