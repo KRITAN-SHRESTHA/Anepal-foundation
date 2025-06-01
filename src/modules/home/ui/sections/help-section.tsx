@@ -36,7 +36,7 @@ const features = [
 
 export default function HelpSection() {
   return (
-    <div className="flex items-center justify-center py-8 md:py-12">
+    <div className="bg-accent mt-10 flex items-center justify-center py-12">
       <div>
         {/* Our help consists of... */}
         <h2 className="text-center text-4xl font-bold tracking-tight sm:text-5xl">
