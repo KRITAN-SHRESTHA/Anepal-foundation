@@ -1,10 +1,10 @@
-import BannerSection from '@/modules/home/ui/sections/banner-section';
+import HomeView from '@/modules/home/ui/views/home-view';
 
 export default async function Home() {
   return (
-    <div>
-      <BannerSection />
-    </div>
+    <>
+      <HomeView />
+    </>
   );
 
   // return (
