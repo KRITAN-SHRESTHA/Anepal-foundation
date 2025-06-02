@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 
 export default function MemoriesCollectionSection() {
   return (
-    <div className="py-16">
+    <div className="py-8 md:py-16">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <h2 className="text-center text-4xl font-semibold md:text-5xl">
           Qué nos hace únicos?
