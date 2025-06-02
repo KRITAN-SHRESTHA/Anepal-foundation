@@ -3,12 +3,10 @@ import Image from 'next/image';
 
 export default function MemoriesCollection() {
   return (
-    <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-      <div className="">
-        <h2 className="text-center text-4xl font-semibold md:text-5xl">
-          Nuestra Historia
-        </h2>
-      </div>
+    <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 md:py-16 lg:px-8">
+      <h2 className="text-center text-4xl font-semibold md:text-5xl">
+        Nuestra Historia
+      </h2>
 
       <div className="mt-14 grid items-center gap-12">
         {items.map((item, idx) => {
@@ -79,7 +77,7 @@ const items = [
     name: 'Tek Bahadur Lama'
   },
   {
-    title: 'Ingeniero Informático',
+    title: 'Ingenieroo Informático',
     description:
       'Gracias por darme un regalo que cambia la vida. No sé por dónde empezar o terminar para expresar lo agradecido que estoy con esta organización. Llegué aquí como un niño confundido que había perdido a sus padres que significaban el mundo para mí y mi sentido de esperanza. Estaba ansioso y emocionado de mudarme aquí porque me prometían una vida mejor, llena de posibilidades. Al principio de ese tiempo, sé que es realmente difícil entender lo que esto significaba, sin embargo, sabía que no tendría que irme a la cama con hambre o pensar de dónde vendría mi próxima comida, como en el tiempo en que mis padres solían proveernos había pasado, la vida en el hogar se había vuelto miserable. Estoy tan agradecido por brindarme un refugio seguro y eliminar todos mis miedos e inquietudes que tenía en la vida antes de la fundación Anepal. Mis pesadillas se transformaron en sueños reales que hasta ahora he podido realizar y que seguiré haciendo. No puedo decir que no haya tenido desafíos, pero puedo decir con confianza que lo que representas y el entornos familiar que me has brindado siempre me alientan a superar estos obstáculos. En cada paso de mi vida, se han utilizado distintas maneras para moldear u fortalecer mi carácter y rejuvenecer mi esperanza en momentos en que me sentía desesperado. En esto, me presento como evidencia del trabajo que hace la fundacion para brindar estas oportunidades que cambian la vida de todos los que vivimos aquí. Me gustaría agradecer desde el fondo de mi corazón por dejarnos soñar de nuevo nuestros sueños y hacerlos realidad. Quisiera hacer una mención especial a mi Mamá [Fundación Anepal], Cristina Marti Roca. He visto tanto amor y sigo viendo tanto amor de ella y estoy muy agradecida de tener a alguien como ella en mi vida. gracias, mamá Hay tanto que puedo decir sobre lo agradecido que estoy, como dije, no sé por dónde empezar o terminar, pero al aventurarme en esta nueva etapa de mi vida, estoy agradecido. Estoy agradecido porque me han brindado tantas oportunidades para realizar mis sueños. Estoy agradecido porque hoy me enorgullezco de pertenecer a una familia amorosa gracias a ti. Estoy agradecido porque siempre seré parte de la fundación Anepal y tendré una familia. Puedo decir con orgullo que la fundación Anepal es el hogar amoroso de todo niño. Aprecio que me hayas dado el conocimiento y la confianza que necesito para enfrentarme al mundo de frente. Estoy agradecido de que ya no tengo miedo de cómo es la vida fuera de la fundación. Rezo para que sigas mostrando tanto amor y generosidad a quienes me precedieron y me siguieron, y que aprovechen cada oportunidad que les brindes y logren sus objetivos. Gracias. Con amor, Kritan Shrestha',
     image: '/assets/our_story/kritan_shrestha.jpg',
