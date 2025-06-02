@@ -9,6 +9,10 @@ import WorkHistorySection from '../sections/work-history-section';
 import MemoriesCollectionSection from '../sections/memories-collection-section';
 import GallerySection from '../sections/gallery-section';
 import PartnersSection from '../sections/partners-sections';
+import EventsSection from '../sections/events-section';
+import TestimonialsSection from '../sections/testimonials-section';
+import BlogSection from '../sections/blog-section';
+import VolunteerSection from '../sections/volunteer-section';
 
 export default function HomeView() {
   return (
@@ -20,6 +24,10 @@ export default function HomeView() {
       <WhoDoWeHelpSection />
       <MemoriesCollectionSection />
       <WorkHistorySection />
+      <EventsSection />
+      <TestimonialsSection />
+      <BlogSection />
+      <VolunteerSection />
       <PartnersSection />
       <GallerySection />
     </div>

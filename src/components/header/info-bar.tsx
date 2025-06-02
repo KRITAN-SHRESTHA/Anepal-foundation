@@ -7,9 +7,12 @@ export default function InfoBar() {
         {/* phone number */}
         <div className="flex items-center">
           <span className="text-xs">Phone number:</span>
-          <p className="ml-1 text-sm leading-[100%] font-medium">
+          <a
+            href="tel:+34 676 452 011"
+            className="ml-1 text-sm leading-[100%] font-medium"
+          >
             +34 676 452 011
-          </p>
+          </a>
         </div>
         {/* address */}
         <div className="flex items-center">
@@ -21,9 +24,12 @@ export default function InfoBar() {
         {/* email */}
         <div className="flex items-center">
           <span className="text-xs">Email:</span>
-          <p className="ml-1 text-sm leading-[100%] font-medium">
+          <a
+            href="mailto:cristinamartianepal@gmail.com"
+            className="ml-1 text-sm leading-[100%] font-medium"
+          >
             cristinamartianepal@gmail.com
-          </p>
+          </a>
         </div>
       </div>
     </div>
