@@ -9,6 +9,7 @@ import WorkHistorySection from '../sections/work-history-section';
 import MemoriesCollectionSection from '../sections/memories-collection-section';
 import GallerySection from '../sections/gallery-section';
 import PartnersSection from '../sections/partners-sections';
+import EventsSection from '../sections/events-section';
 
 export default function HomeView() {
   return (
@@ -20,6 +21,7 @@ export default function HomeView() {
       <WhoDoWeHelpSection />
       <MemoriesCollectionSection />
       <WorkHistorySection />
+      <EventsSection />
       <PartnersSection />
       <GallerySection />
     </div>
