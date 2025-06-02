@@ -9,20 +9,17 @@ import {
 } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Badge } from '@/components/ui/badge';
 
-export default function EventsSection() {
+export default function BlogSection() {
   return (
     <section className="bg-accent py-14">
       <div className="mx-auto flex max-w-screen-xl flex-col items-center gap-16 px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="mb-3 text-3xl font-semibold text-pretty md:mb-4 md:text-4xl lg:mb-6 lg:text-5xl">
-            Upcoming Events
+            News & Updates
           </h2>
-          <p className="text-muted-foreground mb-8 md:text-base lg:max-w-2xl lg:text-lg">
-            Sharksucker sea toad candiru rocket danio tilefish stingray
-            deepwater stingray Sacramento splittail, Canthigaster rostrata.
-            Midshipman dartfish
-          </p>
+
           <Button
             variant="outline"
             border={'purple'}
@@ -30,7 +27,7 @@ export default function EventsSection() {
             asChild
           >
             <Link href={'/'} target="_blank">
-              View all events
+              View all news
               <ArrowRight className="ml-2 size-4" />
             </Link>
           </Button>
@@ -55,10 +52,9 @@ export default function EventsSection() {
                   />
                 </Link>
               </div>
-              <CardHeader>
-                <p className="text-muted-foreground text-sm">
-                  Jan 30, 2020 - 10:00 am
-                </p>
+              <CardHeader className="gap-2.5">
+                <Badge variant={'secondary'}>Water</Badge>
+
                 <h3 className="text-lg font-semibold hover:underline md:text-xl">
                   <a href={post.url} target="_blank">
                     {post.title}
@@ -68,7 +64,8 @@ export default function EventsSection() {
               <CardContent>
                 <p className="text-muted-foreground">{post.summary}</p>
               </CardContent>
-              <CardFooter>
+              <CardFooter className="justify-between">
+                <p className="text-muted-foreground text-sm">Jan 30, 2020</p>
                 <Link
                   href={post.url}
                   target="_blank"
