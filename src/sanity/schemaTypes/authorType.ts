@@ -18,13 +18,13 @@ export const authorType = defineType({
         source: 'name'
       }
     }),
-    defineField({
-      name: 'image',
-      type: 'image',
-      options: {
-        hotspot: true
-      }
-    }),
+    // defineField({
+    //   name: 'image',
+    //   type: 'image',
+    //   options: {
+    //     hotspot: true
+    //   }
+    // }),
     defineField({
       name: 'bio',
       type: 'array',
