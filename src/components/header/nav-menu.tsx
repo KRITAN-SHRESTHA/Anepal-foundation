@@ -9,48 +9,63 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger
 } from '@/components/ui/navigation-menu';
-import { cn } from '@/lib/utils';
+import { cn, getLocalizedString } from '@/lib/utils';
 import { NavigationMenuProps } from '@radix-ui/react-navigation-menu';
 import Link from 'next/link';
 import React from 'react';
-import { navLinks } from './config';
+import { trpc } from '@/trpc/client';
 
-export const NavMenu = (props: NavigationMenuProps) => (
-  <NavigationMenu viewport={false} {...props}>
-    <NavigationMenuList className="gap-0 space-x-0 text-sm">
-      {navLinks.map(link => (
-        <NavigationMenuItem key={link.title}>
-          {link.subMenu ? (
-            <>
-              <NavigationMenuTrigger className="text-[15px] font-normal capitalize">
-                {link.title}
-              </NavigationMenuTrigger>
-              <NavigationMenuContent className="z-50">
-                <ul className="grid w-[200px] gap-1">
-                  {link.subMenu.map(menu => (
-                    <ListItem
-                      key={menu.title}
-                      title={menu.title}
-                      href={menu.href}
-                    />
-                  ))}
-                </ul>
-              </NavigationMenuContent>
-            </>
-          ) : (
-            <Button
-              variant="ghost"
-              className="text-[15px] font-normal capitalize"
-              asChild
-            >
-              <Link href={link.href}>{link.title}</Link>
-            </Button>
-          )}
-        </NavigationMenuItem>
-      ))}
-    </NavigationMenuList>
-  </NavigationMenu>
-);
+export const NavMenu = (props: NavigationMenuProps) => {
+  const [navData] = trpc.header.getHeader.useSuspenseQuery();
+
+  return (
+    <NavigationMenu viewport={false} {...props}>
+      <NavigationMenuList className="gap-0 space-x-0 text-sm">
+        {navData.map(link => (
+          <NavigationMenuItem key={link._id}>
+            {link.subLinks && link.subLinks?.length > 0 ? (
+              <>
+                <NavigationMenuTrigger className="text-[15px] font-normal capitalize">
+                  {getLocalizedString(link.name ?? [])}
+                </NavigationMenuTrigger>
+                <NavigationMenuContent className="z-50">
+                  <ul className="grid w-[200px] gap-1">
+                    {link.subLinks.map(menu => {
+                      if (!menu.link) return null;
+                      return (
+                        <ListItem
+                          key={menu._key}
+                          title={
+                            getLocalizedString(menu.name ?? []) ?? undefined
+                          }
+                          href={menu.link}
+                        />
+                      );
+                    })}
+                  </ul>
+                </NavigationMenuContent>
+              </>
+            ) : (
+              <Button
+                variant="ghost"
+                className="text-[15px] font-normal capitalize"
+                asChild
+              >
+                {link.link ? (
+                  <Link href={link.link}>
+                    {getLocalizedString(link.name ?? [])}
+                  </Link>
+                ) : (
+                  getLocalizedString(link.name ?? [])
+                )}
+              </Button>
+            )}
+          </NavigationMenuItem>
+        ))}
+      </NavigationMenuList>
+    </NavigationMenu>
+  );
+};
 
 const ListItem = React.forwardRef<
   React.ElementRef<typeof Link>,

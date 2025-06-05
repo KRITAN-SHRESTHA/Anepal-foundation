@@ -34,9 +34,9 @@ export default function Footer() {
             <div className="grid h-fit gap-2">
               <Link href="/" className="-ml-4 h-[80px] w-[150px]">
                 <Image
-                  src="/assets/logo-transparent.png"
+                  src="/assets/logo.png"
                   alt="logo-footer"
-                  className="h-full w-full"
+                  className="h-full w-full mix-blend-multiply"
                   width={200}
                   height={100}
                 />

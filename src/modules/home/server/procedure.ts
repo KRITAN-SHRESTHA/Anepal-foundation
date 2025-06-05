@@ -8,6 +8,7 @@ const POSTS_QUERY = `*[
   _type == "home-banner"
 ]|order(publishedAt desc)[0...12]`;
 
+// will revalidate after every 30 seconds
 const options = { next: { revalidate: 30 } };
 
 export const homeRouter = createTRPCRouter({

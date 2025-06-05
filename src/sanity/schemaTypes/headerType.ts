@@ -2,6 +2,7 @@ import { MenuIcon } from '@sanity/icons';
 import { defineField, defineType } from 'sanity';
 
 import { validationLang } from '../lib/validation-lang';
+import { client } from '../lib/client';
 
 export const headerType = defineType({
   name: 'header',
@@ -29,7 +30,41 @@ export const headerType = defineType({
           return validationLang(value, 'Please add name in all languages');
         })
     }),
+    defineField({
+      name: 'order',
+      title: 'Order',
+      type: 'number',
+      description: 'Order in which this item should appear (must be unique)',
+      validation: rule =>
+        rule
+          .required()
+          .integer()
+          .positive()
+          .custom(async (order, context) => {
+            const { document } = context;
 
+            // console.log('document', document);
+            // console.log('order', order);
+
+            // Skip check if order hasn't changed
+            if (document?.order === order) return true;
+
+            // const client = getClient({ apiVersion: '2023-05-03' });
+            const query = `count(*[_type == "header" && order == $order && !(_id in [$docId])])`;
+            const params = {
+              order: order,
+              docId: document?._id || 'drafts.' + document?._id
+            };
+
+            const count = await client.fetch(query, params);
+
+            if (count > 0) {
+              return 'This order number is already in use. Please choose a unique number.';
+            }
+            return true;
+          })
+          .error('Please provide a unique positive number for ordering')
+    }),
     defineField({
       name: 'link',
       title: 'Link',

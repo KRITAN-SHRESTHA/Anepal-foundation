@@ -1,30 +1,31 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { checkAuth } from './lib/auth';
-import { env } from './env';
+import { NextResponse } from 'next/server';
+// import { checkAuth } from './lib/auth';
+// import { env } from './env';
 
-export async function middleware(request: NextRequest) {
-  const user = await checkAuth();
+// export async function middleware(request: NextRequest) {
+export async function middleware() {
+  // const user = await checkAuth();
 
-  const redirectUrl = request.url.split(`${env.NEXT_PUBLIC_APP_URL}`)[1];
+  // const redirectUrl = request.url.split(`${env.NEXT_PUBLIC_APP_URL}`)[1];
 
-  if (request.nextUrl.pathname.startsWith('/dealer')) {
-    if (user?.role === 'dealer') {
-      return NextResponse.next();
-    } else {
-      return NextResponse.redirect(
-        new URL(`/login?redirect=${redirectUrl}`, request.url)
-      );
-    }
-  }
-  if (request.nextUrl.pathname.startsWith('/admin')) {
-    if (user?.role === 'admin') {
-      return NextResponse.next();
-    } else {
-      return NextResponse.redirect(
-        new URL(`/login?redirect=${redirectUrl}`, request.url)
-      );
-    }
-  }
+  // if (request.nextUrl.pathname.startsWith('/dealer')) {
+  //   if (user?.role === 'dealer') {
+  //     return NextResponse.next();
+  //   } else {
+  //     return NextResponse.redirect(
+  //       new URL(`/login?redirect=${redirectUrl}`, request.url)
+  //     );
+  //   }
+  // }
+  // if (request.nextUrl.pathname.startsWith('/admin')) {
+  //   if (user?.role === 'admin') {
+  //     return NextResponse.next();
+  //   } else {
+  //     return NextResponse.redirect(
+  //       new URL(`/login?redirect=${redirectUrl}`, request.url)
+  //     );
+  //   }
+  // }
 
   return NextResponse.next();
 }

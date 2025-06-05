@@ -13,15 +13,106 @@
  */
 
 // Source: schema.json
-export type HomeBanner = {
+export type Settings = {
   _id: string;
-  _type: 'home banner';
+  _type: 'settings';
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: string;
-  slug?: Slug;
-  description?: string;
+  logo?: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+  contact?: {
+    address?: string;
+    phone?: string;
+    email?: string;
+  };
+  socialMedia?: {
+    facebook?: string;
+    instagram?: string;
+    twitter?: string;
+  };
+};
+
+export type Presenter = {
+  _id: string;
+  _type: 'presenter';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  greeting?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+};
+
+export type Header = {
+  _id: string;
+  _type: 'header';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  Identifier?: string;
+  name?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  order?: number;
+  link?: string;
+  subLinks?: Array<{
+    Identifier?: string;
+    name?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    link?: string;
+    _key: string;
+  }>;
+};
+
+export type HomeBanner = {
+  _id: string;
+  _type: 'home-banner';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  Identifier?: string;
+  title?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+  description?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  link?: string;
 };
 
 export type Post = {
@@ -169,6 +260,17 @@ export type BlockContent = Array<
     }
 >;
 
+export type InternationalizedArrayStringValue = {
+  _type: 'internationalizedArrayStringValue';
+  value?: string;
+};
+
+export type InternationalizedArrayString = Array<
+  {
+    _key: string;
+  } & InternationalizedArrayStringValue
+>;
+
 export type SanityImagePaletteSwatch = {
   _type: 'sanity.imagePaletteSwatch';
   background?: string;
@@ -288,11 +390,16 @@ export type SanityAssetSourceData = {
 };
 
 export type AllSanitySchemaTypes =
+  | Settings
+  | Presenter
+  | Header
   | HomeBanner
   | Post
   | Author
   | Category
   | BlockContent
+  | InternationalizedArrayStringValue
+  | InternationalizedArrayString
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions

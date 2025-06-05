@@ -22,9 +22,11 @@ export const bannerType = defineType({
       title: 'Title',
       type: 'internationalizedArrayString',
       validation: rule =>
-        rule.custom<{ value: string; _type: string; _key: string }[]>(value => {
-          return validationLang(value, 'Please add title in all languages');
-        })
+        rule
+          .required()
+          .custom<{ value: string; _type: string; _key: string }[]>(value => {
+            return validationLang(value, 'Please add title in all languages');
+          })
     }),
     defineField({
       name: 'image',
@@ -38,9 +40,16 @@ export const bannerType = defineType({
     }),
     defineField({
       name: 'description',
-      type: 'text',
+      type: 'internationalizedArrayString',
       validation: rule =>
-        rule.max(100).warning('Long descriptions may be truncated')
+        rule
+          .required()
+          .custom<{ value: string; _type: string; _key: string }[]>(value => {
+            return validationLang(
+              value,
+              'Please add description in all languages'
+            );
+          })
     }),
     defineField({
       name: 'link',

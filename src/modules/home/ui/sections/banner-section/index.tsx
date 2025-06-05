@@ -2,8 +2,9 @@
 
 import Autoplay from 'embla-carousel-autoplay';
 import Fade from 'embla-carousel-fade';
-import Image from 'next/image';
 import Link from 'next/link';
+import { Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -13,22 +14,21 @@ import {
   CarouselNext,
   CarouselPrevious
 } from '@/components/ui/carousel';
-
-import { bannerList } from './config';
+import { getLocalizedString } from '@/lib/utils';
 import { trpc } from '@/trpc/client';
-import { Suspense } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
+
+import BannerSkeletion from './banner-skeletion';
+import dynamic from 'next/dynamic';
+
+const BannerImg = dynamic(() => import('./banner-img'), {
+  ssr: false,
+  loading: () => <BannerSkeletion />
+});
 
 export default function BannerSection() {
   return (
     <ErrorBoundary fallback={<div>Something went wrong</div>}>
-      <Suspense
-        fallback={
-          <div className="h-[65vh] w-full bg-red-300 lg:h-[85vh]">
-            Loading...
-          </div>
-        }
-      >
+      <Suspense fallback={<BannerSkeletion />}>
         <BannerSectionSuspense />
       </Suspense>
     </ErrorBoundary>
@@ -36,8 +36,7 @@ export default function BannerSection() {
 }
 
 function BannerSectionSuspense() {
-  const [data] = trpc.home.getBanner.useSuspenseQuery();
-  console.log('data', data);
+  const [bannerData] = trpc.home.getBanner.useSuspenseQuery();
 
   return (
     <div className="w-full pb-4">
@@ -50,37 +49,27 @@ function BannerSectionSuspense() {
           Fade()
         ]}
         opts={{
-          // align: 'start',
           loop: true
         }}
       >
         <CarouselContent>
-          {bannerList.map(data => (
-            <CarouselItem key={data.title}>
-              <div className="h-[65vh] w-full lg:h-[85vh]">
-                <Image
-                  src={data.image}
-                  alt={data.title}
-                  fill
-                  priority
-                  className="object-cover"
-                  sizes="100vw"
-                  quality={100}
-                />
+          {bannerData.map(data => (
+            <CarouselItem key={data._id}>
+              <div className="relative h-[65vh] w-full lg:h-[85vh]">
+                <BannerImg image={data.image} title={data.title} />
 
                 <section className="mx-auto flex h-full max-w-[1200px] items-center px-4 sm:px-6 lg:px-8">
                   <div className="relative">
                     <div className="max-w-2xl">
-                      <h1 className="text-[40px] leading-[130%] font-bold text-balance text-white md:text-5xl lg:text-6xl">
-                        {data.title}
+                      <h1 className="text-[40px] leading-[130%] font-bold text-balance text-white first-letter:capitalize md:text-5xl lg:text-6xl">
+                        {getLocalizedString(data?.title ?? [])}
                       </h1>
-                      <p className="my-6 line-clamp-2 text-base leading-[100%] text-balance text-white md:text-xl lg:text-2xl">
-                        {data.decription}
+                      <p className="my-6 line-clamp-2 text-base leading-[100%] text-balance text-white first-letter:capitalize md:text-xl lg:text-2xl">
+                        {getLocalizedString(data?.description ?? [])}
                       </p>
                     </div>
-                    {data.type === 'blog' && data.link && (
+                    {data.link && (
                       <Button
-                        key={2}
                         asChild
                         size="lg"
                         variant="outline"
@@ -97,8 +86,12 @@ function BannerSectionSuspense() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="top-[calc(100%-4.5rem)] right-18 left-auto size-10 translate-y-0" />
-        <CarouselNext className="top-[calc(100%-4.5rem)] right-15 size-10 translate-x-full translate-y-0" />
+        {bannerData.length === 1 ? null : (
+          <>
+            <CarouselPrevious className="top-[calc(100%-4.5rem)] right-18 left-auto size-10 translate-y-0" />
+            <CarouselNext className="top-[calc(100%-4.5rem)] right-15 size-10 translate-x-full translate-y-0" />
+          </>
+        )}
       </Carousel>
     </div>
   );
