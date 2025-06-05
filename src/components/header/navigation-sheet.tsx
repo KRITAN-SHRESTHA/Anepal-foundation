@@ -1,11 +1,23 @@
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
-import { navLinks } from './config';
+import dynamic from 'next/dynamic';
+import { trpc } from '@/trpc/client';
+import { getLocalizedString } from '@/lib/utils';
+import { Skeleton } from '../ui/skeleton';
+
+const Logo = dynamic(() => import('./logo'), {
+  ssr: false,
+  loading: () => <Skeleton className="h-[56px] w-[100px]" />
+});
 
 export const NavigationSheet = () => {
+  const [settings] = trpc.settings.getSettings.useSuspenseQuery();
+  const [navData] = trpc.header.getHeader.useSuspenseQuery();
+
+  const settingsData = settings[0];
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -13,66 +25,69 @@ export const NavigationSheet = () => {
           <Menu />
         </Button>
       </SheetTrigger>
-      <SheetContent className="p-6">
-        {/* <Logo /> */}
+      <SheetContent className="overflow-y-auto p-6">
         <Link href={'/'}>
-          <div className="h-[56px] w-[100px] shrink-0">
-            <Image
-              src={'/assets/logo.png'}
-              alt="Anepal-foundation-logo"
-              width={200}
-              height={100}
-              className="h-full w-full"
-            />
-          </div>
+          <Logo />
         </Link>
 
         <div className="bg-accent space-y-1.5 rounded-md px-4 py-3">
           {/* phone number */}
-          <div className="">
+          <div className="flex flex-col">
             <span className="text-xs">Phone number:</span>
-            <p className="text-[13px] leading-[100%] font-medium">
-              +34 676 452 011
-            </p>
+            <a
+              href={`tel:${settingsData.contact?.phone}`}
+              className="text-[13px] leading-[100%] font-medium"
+            >
+              {settingsData.contact?.phone}
+            </a>
           </div>
           {/* address */}
-          <div className="">
+          <div className="flex flex-col">
             <span className="text-xs">Address:</span>
-            <p className="text-[13px] leading-[100%] font-medium">
-              Carrer Pau Casals, 4 Entresuelo, 2ª, 08860 Casteldefels, Barcelona
+            <p className="text-[13px] leading-[115%] font-medium">
+              {settingsData.contact?.address}
             </p>
           </div>
           {/* email */}
-          <div className="">
+          <div className="flex flex-col">
             <span className="text-xs">Email:</span>
-            <p className="text-[13px] leading-[100%] font-medium">
-              cristinamartianepal@gmail.com
-            </p>
+            <a
+              href={`mailto:${settingsData.contact?.email}`}
+              className="text-[13px] leading-[100%] font-medium"
+            >
+              {settingsData.contact?.email}
+            </a>
           </div>
         </div>
 
         <div className="mt-5 space-y-3 text-base">
-          {navLinks.map(nav => (
-            <div key={nav.title}>
-              {nav.href ? (
-                <Link href={nav.href}>
+          {navData.map(nav => (
+            <div key={nav._id}>
+              {nav.link ? (
+                <Link href={nav.link}>
                   <div className="font-bold underline-offset-2 hover:underline">
-                    {nav.title}
+                    {getLocalizedString(nav.name ?? [])}
                   </div>
                 </Link>
               ) : (
-                <div className="font-bold">{nav.title}</div>
+                <div className="font-bold">
+                  {getLocalizedString(nav.name ?? [])}
+                </div>
               )}
-              {nav.subMenu && (
+              {nav.subLinks && (
                 <ul className="mt-2 ml-1 space-y-2 border-l pl-4">
-                  {nav.subMenu.map(sub => (
-                    <li key={sub.title}>
-                      <Link
-                        href={sub.href}
-                        className="underline-offset-2 hover:underline"
-                      >
-                        {sub.title}
-                      </Link>
+                  {nav.subLinks.map(sub => (
+                    <li key={sub._key}>
+                      {sub.link ? (
+                        <Link
+                          href={sub.link}
+                          className="underline-offset-2 hover:underline"
+                        >
+                          {getLocalizedString(nav.name ?? [])}
+                        </Link>
+                      ) : (
+                        <p>{getLocalizedString(nav.name ?? [])}</p>
+                      )}
                     </li>
                   ))}
                 </ul>

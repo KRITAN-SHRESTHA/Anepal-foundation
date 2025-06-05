@@ -1,19 +1,14 @@
 import HomeView from '@/modules/home/ui/views/home-view';
+import { HydrateClient, trpc } from '@/trpc/server';
+
+// export const dynamic = 'force-dynamic';
 
 export default async function Home() {
-  return (
-    <>
-      <HomeView />
-    </>
-  );
+  void trpc.home.getBanner.prefetch();
 
-  // return (
-  //   <HydrateClient>
-  //     <ErrorBoundary fallback={<div>Something went wrong</div>}>
-  //       <Suspense fallback={<div>Loading...</div>}>
-  //         <ClientGreeting />
-  //       </Suspense>
-  //     </ErrorBoundary>
-  //   </HydrateClient>
-  // );
+  return (
+    <HydrateClient>
+      <HomeView />
+    </HydrateClient>
+  );
 }

@@ -5,15 +5,16 @@ import superjson from 'superjson';
 import { db } from '@/db';
 import { initTRPC, TRPCError } from '@trpc/server';
 import { userTable } from '@/db/schema/auth-schema';
-import { checkAuth } from '@/lib/auth';
+// import { checkAuth } from '@/lib/auth';
 
 export const createTRPCContext = cache(async () => {
-  const user = await checkAuth();
+  // const user = await checkAuth();
 
-  if (!user) {
-    return { userId: null };
-  }
-  return { userId: user.id };
+  // if (!user) {
+  //   return { userId: null };
+  // }
+  // return { userId: user.id };
+  return { userId: null };
 });
 
 export type Context = Awaited<ReturnType<typeof createTRPCContext>>;

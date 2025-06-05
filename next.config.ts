@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
   },
   transpilePackages: ['@t3-oss/env-nextjs', '@t3-oss/env-core'],
   images:{
-    domains:['images.pexels.com']
+    domains:['images.pexels.com', 'cdn.sanity.io']
   }
 
 };
