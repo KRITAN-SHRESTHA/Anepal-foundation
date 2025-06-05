@@ -6,6 +6,7 @@ import { postType } from './postType';
 import { authorType } from './authorType';
 import { bannerType } from './bannerType';
 import { headerType } from './headerType';
+import { presenterType } from './presenterType';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -14,6 +15,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     postType,
     authorType,
     bannerType,
-    headerType
+    headerType,
+    presenterType
   ]
 };
