@@ -7,8 +7,15 @@ import { ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
 import InfoBar from './info-bar';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const Header = () => {
+  const pathname = usePathname();
+
+  if (pathname.includes('/studio')) {
+    return null;
+  }
+
   return (
     <>
       <InfoBar />

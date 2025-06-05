@@ -1,7 +1,10 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from './ui/button';
 import { ArrowUpRight, Facebook, Instagram, Twitter } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 const linksList = [
   { text: 'Home', url: '#' },
@@ -18,6 +21,11 @@ const bottomLinks = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  if (pathname.includes('/studio')) {
+    return null;
+  }
   return (
     <section className="bg-accent mt-25 pt-10 pb-10 md:pt-20">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
