@@ -1,6 +1,8 @@
 import { ImageIcon } from '@sanity/icons';
 import { defineField, defineType } from 'sanity';
 
+import { validationLang } from '../lib/validation-lang';
+
 export const bannerType = defineType({
   name: 'home-banner',
   title: 'Home Banner',
@@ -8,31 +10,49 @@ export const bannerType = defineType({
   icon: ImageIcon,
   fields: [
     defineField({
-      name: 'title_en',
-      title: 'Title (English)',
-      type: 'string'
+      name: 'Identifier',
+      title: 'Identifier',
+      type: 'string',
+      description: 'Internal name to identify this header item in the Studio',
+      validation: rule =>
+        rule.required().error('Please provide an identifier for this banner')
     }),
     defineField({
-      name: 'title_es',
-      title: 'Title (Spanish)',
-      type: 'string'
+      name: 'title',
+      title: 'Title',
+      type: 'internationalizedArrayString',
+      validation: rule =>
+        rule.custom<{ value: string; _type: string; _key: string }[]>(value => {
+          return validationLang(value, 'Please add title in all languages');
+        })
     }),
     defineField({
-      name: 'mainImage',
-      title: 'Main image',
+      name: 'image',
+      title: 'Image',
       type: 'image',
+      description: 'Recommended size: 1920x1080px',
       options: {
         hotspot: true
-      }
+      },
+      validation: rule => rule.required().error('Banner image is required')
     }),
     defineField({
       name: 'description',
-      type: 'text'
+      type: 'text',
+      validation: rule =>
+        rule.max(100).warning('Long descriptions may be truncated')
     }),
     defineField({
       name: 'link',
       title: 'Link',
-      type: 'string'
+      type: 'url',
+      // description: 'Add the URL where this banner should redirect to',
+      description: "Will accept: '/about', 'https://example.com/about'",
+      validation: rule =>
+        rule
+          .required()
+          .uri({ allowRelative: true })
+          .error('Please add a valid URL')
     })
   ]
 });
