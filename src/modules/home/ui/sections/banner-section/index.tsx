@@ -15,8 +15,30 @@ import {
 } from '@/components/ui/carousel';
 
 import { bannerList } from './config';
+import { trpc } from '@/trpc/client';
+import { Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 
 export default function BannerSection() {
+  return (
+    <ErrorBoundary fallback={<div>Something went wrong</div>}>
+      <Suspense
+        fallback={
+          <div className="h-[65vh] w-full bg-red-300 lg:h-[85vh]">
+            Loading...
+          </div>
+        }
+      >
+        <BannerSectionSuspense />
+      </Suspense>
+    </ErrorBoundary>
+  );
+}
+
+function BannerSectionSuspense() {
+  const [data] = trpc.home.getBanner.useSuspenseQuery();
+  console.log('data', data);
+
   return (
     <div className="w-full pb-4">
       <Carousel
@@ -28,7 +50,7 @@ export default function BannerSection() {
           Fade()
         ]}
         opts={{
-          align: 'start',
+          // align: 'start',
           loop: true
         }}
       >
