@@ -13,6 +13,17 @@
  */
 
 // Source: schema.json
+export type HomeBanner = {
+  _id: string;
+  _type: 'home banner';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  description?: string;
+};
+
 export type Post = {
   _id: string;
   _type: 'post';
@@ -277,6 +288,7 @@ export type SanityAssetSourceData = {
 };
 
 export type AllSanitySchemaTypes =
+  | HomeBanner
   | Post
   | Author
   | Category
