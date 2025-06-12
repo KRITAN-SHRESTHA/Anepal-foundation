@@ -1,15 +1,14 @@
 'use client';
 
-import { trpc } from '@/trpc/client';
 import { usePathname } from 'next/navigation';
 import { ErrorBoundary } from 'react-error-boundary';
+
+import { trpc } from '@/trpc/client';
 
 export default function InfoBar() {
   return (
     <ErrorBoundary fallback={<div>Something went wrong</div>}>
-      {/* <Suspense fallback={<h1>Loading....</h1>}> */}
       <InfoBarSuspense />
-      {/* </Suspense> */}
     </ErrorBoundary>
   );
 }
@@ -32,6 +31,7 @@ function InfoBarSuspense() {
           <a
             href={`tel:${settingsData.contact?.phone}`}
             className="ml-1 text-sm leading-[100%] font-medium"
+            aria-label={`Call us at ${settingsData.contact?.phone}`}
           >
             {settingsData.contact?.phone}
           </a>

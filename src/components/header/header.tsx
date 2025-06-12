@@ -1,21 +1,18 @@
 'use client';
 
 import { ArrowUpRight } from 'lucide-react';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ErrorBoundary } from 'react-error-boundary';
-import dynamic from 'next/dynamic';
 
 import { Button } from '@/components/ui/button';
 
+// import Logo from './logo';
 import { NavigationSheet } from './navigation-sheet';
-import { Skeleton } from '../ui/skeleton';
 
 const Logo = dynamic(() => import('./logo'), {
-  ssr: false,
-  loading: () => (
-    <Skeleton className="h-[56px] w-[100px]" aria-label="Loading logo" />
-  )
+  ssr: false
 });
 const NavMenu = dynamic(() => import('./nav-menu').then(mod => mod.NavMenu), {
   ssr: false

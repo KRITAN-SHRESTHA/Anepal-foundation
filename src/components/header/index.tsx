@@ -1,4 +1,5 @@
 import { HydrateClient, trpc } from '@/trpc/server';
+
 import HeaderClient from './header';
 import InfoBar from './info-bar';
 

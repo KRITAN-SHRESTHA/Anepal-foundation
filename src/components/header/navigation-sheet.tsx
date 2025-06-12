@@ -1,16 +1,12 @@
-import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
-import { trpc } from '@/trpc/client';
-import { getLocalizedString } from '@/lib/utils';
-import { Skeleton } from '../ui/skeleton';
 
-const Logo = dynamic(() => import('./logo'), {
-  ssr: false,
-  loading: () => <Skeleton className="h-[56px] w-[100px]" />
-});
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { getLocalizedString } from '@/lib/utils';
+import { trpc } from '@/trpc/client';
+
+import Logo from './logo';
 
 export const NavigationSheet = () => {
   const [settings] = trpc.settings.getSettings.useSuspenseQuery();
