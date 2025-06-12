@@ -1,14 +1,15 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { getLocalizedString } from '@/lib/utils';
-import { urlFor } from '@/sanity/lib/image';
-import { trpc } from '@/trpc/client';
 import { BookOpen } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { urlFor } from '@/sanity/lib/image';
 
-export default function HeroSection() {
+import { Button } from '@/components/ui/button';
+import { getLocalizedString } from '@/lib/utils';
+import { trpc } from '@/trpc/client';
+
+export default function AboutUsSection() {
   const [data] = trpc.home.getAboutUs.useSuspenseQuery();
 
   return (

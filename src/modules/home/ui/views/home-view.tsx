@@ -1,9 +1,9 @@
+import AboutUsSection from '../sections/about-us-section';
 import BannerSection from '../sections/banner-section';
 import BlogSection from '../sections/blog-section';
 import EventsSection from '../sections/events-section';
 import GallerySection from '../sections/gallery-section';
 import HelpSection from '../sections/help-section';
-import HeroSection from '../sections/hero-section';
 import MemoriesCollectionSection from '../sections/memories-collection-section';
 import PartnersSection from '../sections/partners-sections';
 import TeamSection from '../sections/team-section';
@@ -16,7 +16,7 @@ export default function HomeView() {
   return (
     <>
       <BannerSection />
-      <HeroSection />
+      <AboutUsSection />
       <HelpSection />
       <TeamSection />
       <WhoDoWeHelpSection />

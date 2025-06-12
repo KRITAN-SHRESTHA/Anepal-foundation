@@ -38,7 +38,6 @@ export default function HelpSection() {
   return (
     <div className="bg-accent mt-10 flex items-center justify-center py-12">
       <div>
-        {/* Our help consists of... */}
         <h2 className="text-center text-4xl font-bold tracking-tight sm:text-5xl">
           Nuestra ayuda consiste en...
         </h2>
