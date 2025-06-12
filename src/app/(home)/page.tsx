@@ -4,7 +4,10 @@ import { HydrateClient, trpc } from '@/trpc/server';
 // export const dynamic = 'force-dynamic';
 
 export default async function Home() {
-  void trpc.home.getBanner.prefetch();
+  await Promise.all([
+    trpc.home.getBanner.prefetch(),
+    trpc.home.getAboutUs.prefetch()
+  ]);
 
   return (
     <HydrateClient>

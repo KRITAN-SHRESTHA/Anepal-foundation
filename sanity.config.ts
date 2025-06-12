@@ -31,7 +31,7 @@ export default defineConfig({
         { id: 'es', title: 'Spanish' }
       ],
       defaultLanguages: ['en', 'es'],
-      fieldTypes: ['string']
+      fieldTypes: ['string', 'text']
     })
   ]
 });

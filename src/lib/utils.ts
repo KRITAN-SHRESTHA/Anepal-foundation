@@ -1,4 +1,7 @@
-import { InternationalizedArrayStringValue } from '@/sanity/types';
+import {
+  InternationalizedArrayStringValue,
+  InternationalizedArrayTextValue
+} from '@/sanity/types';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -7,9 +10,14 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 type T =
-  | ({
-      _key: string;
-    } & InternationalizedArrayStringValue)
+  | (
+      | ({
+          _key: string;
+        } & InternationalizedArrayStringValue)
+      | ({
+          _key: string;
+        } & InternationalizedArrayTextValue)
+    )
   | undefined;
 
 export function getLocalizedString(data: T[], lang = 'en') {
