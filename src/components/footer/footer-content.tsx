@@ -1,31 +1,26 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
-import { Button } from './ui/button';
 import { ArrowUpRight, Facebook, Instagram, Twitter } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
-const linksList = [
-  { text: 'Home', url: '#' },
-  { text: 'About us', url: '#' },
-  { text: 'Team members', url: '#' },
-  { text: 'Gallery', url: '#' },
-  { text: 'Contact', url: '#' },
-  { text: 'Stories', url: '#' }
-];
+import { trpc } from '@/trpc/client';
 
-const bottomLinks = [
-  { text: 'Terms and Conditions', url: '#' },
-  { text: 'Privacy Policy', url: '#' }
-];
+import Logo from '../header/logo';
+import { Button } from '../ui/button';
+import { bottomLinks, linksList } from './footer-config';
 
-export default function Footer() {
+export default function FooterContent() {
   const pathname = usePathname();
 
   if (pathname.includes('/studio')) {
     return null;
   }
+
+  const [data] = trpc.settings.getSettings.useSuspenseQuery();
+
+  const footerData = data?.[0];
+
   return (
     <section className="bg-accent mt-25 pt-10 pb-10 md:pt-20">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
@@ -33,25 +28,25 @@ export default function Footer() {
           <div className="grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
             <div className="grid h-fit gap-2">
               <Link href="/" className="-ml-4 h-[80px] w-[150px]">
-                <Image
-                  src="/assets/logo.png"
-                  alt="logo-footer"
-                  className="h-full w-full mix-blend-multiply"
-                  width={200}
-                  height={100}
-                />
+                <Logo className="h-full w-full" />
               </Link>
               <ul className="">
                 <li className="flex gap-3">
-                  <Link href="#" target="_blank">
-                    <Twitter className="stroke-muted-foreground h-5 w-5 hover:stroke-black" />
-                  </Link>
-                  <Link href="#" target="_blank">
-                    <Instagram className="stroke-muted-foreground h-5 w-5 hover:stroke-black" />
-                  </Link>
-                  <Link href="#" target="_blank">
-                    <Facebook className="stroke-muted-foreground h-5 w-5 hover:stroke-black" />
-                  </Link>
+                  {footerData?.socialMedia?.twitter && (
+                    <Link href="#" target="_blank">
+                      <Twitter className="stroke-muted-foreground h-5 w-5 hover:stroke-black" />
+                    </Link>
+                  )}
+                  {footerData?.socialMedia?.instagram && (
+                    <Link href="#" target="_blank">
+                      <Instagram className="stroke-muted-foreground h-5 w-5 hover:stroke-black" />
+                    </Link>
+                  )}
+                  {footerData?.socialMedia?.facebook && (
+                    <Link href="#" target="_blank">
+                      <Facebook className="stroke-muted-foreground h-5 w-5 hover:stroke-black" />
+                    </Link>
+                  )}
                 </li>
               </ul>
             </div>
@@ -59,21 +54,23 @@ export default function Footer() {
             {/* address, phone, email */}
             <div>
               <h3 className="mb-4 font-bold">Contacts</h3>
-              <div className="text-muted-foreground space-y-2">
+              <div className="text-muted-foreground grid space-y-2">
                 <p className="hover:text-primary font-medium">
-                  Carrer Pau Casals, 4 Entresuelo, 2ª, 08860 Casteldefels,
-                  Barcelona
+                  {footerData?.contact?.address}
                 </p>
                 <a
-                  href="tel:+34 676 452 011"
+                  href={`tel:${footerData?.contact?.phone}`}
                   className="hover:text-primary font-medium"
-                  aria-label="Call us at +34 676 452 011"
+                  aria-label={`Call us at ${footerData?.contact?.phone}`}
                 >
-                  Phone: +34 676 452 011
+                  Phone: {footerData?.contact?.phone}
                 </a>
-                <p className="hover:text-primary font-medium">
-                  Email: Cristinamartianepal@gmail.com
-                </p>
+                <a
+                  href={`mailto:${footerData?.contact?.email}`}
+                  className="hover:text-primary font-medium"
+                >
+                  Email: {footerData?.contact?.email}
+                </a>
               </div>
             </div>
 
