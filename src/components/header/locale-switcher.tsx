@@ -14,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue
 } from '../ui/select';
+import Image from 'next/image';
 
 export default function LocaleSwitcher() {
   const locale = useLocale();
@@ -31,13 +32,29 @@ export default function LocaleSwitcher() {
       onValueChange={handleSwtchLocale}
       disabled={isPending}
     >
-      <SelectTrigger className="">
-        <SelectValue placeholder="Select a fruit" />
+      <SelectTrigger className="border-none pr-1 pl-0 font-bold shadow-none [&_svg]:hidden">
+        <SelectValue placeholder="Select" />
       </SelectTrigger>
       <SelectContent align="end">
         <SelectGroup>
-          <SelectItem value="en">English</SelectItem>
-          <SelectItem value="es">Spanish</SelectItem>
+          <SelectItem value="en" className="font-bold">
+            <Image
+              src={'/assets/flags/uk-flag.png'}
+              width={20}
+              height={20}
+              alt="select english language"
+            />
+            EN
+          </SelectItem>
+          <SelectItem value="es" className="font-bold">
+            <Image
+              src={'/assets/flags/spain-flag.png'}
+              width={20}
+              height={20}
+              alt="select spanish language"
+            />
+            ES
+          </SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>
