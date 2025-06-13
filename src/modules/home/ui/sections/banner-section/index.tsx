@@ -16,13 +16,12 @@ import {
   CarouselPrevious
 } from '@/components/ui/carousel';
 import { trpc } from '@/trpc/client';
-
 import useGetLocale from '@/hooks/use-get-locale';
+
 import BannerSkeletion from './banner-skeletion';
 
 const BannerImg = dynamic(() => import('./banner-img'), {
-  ssr: false,
-  loading: () => <BannerSkeletion />
+  ssr: false
 });
 
 export default function BannerSection() {
@@ -37,7 +36,6 @@ export default function BannerSection() {
 
 function BannerSectionSuspense() {
   const [bannerData] = trpc.home.getBanner.useSuspenseQuery();
-  console.log('bannerData', bannerData);
   const { getLocalizedString } = useGetLocale();
 
   return (

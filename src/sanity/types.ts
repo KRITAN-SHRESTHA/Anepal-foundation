@@ -13,6 +13,36 @@
  */
 
 // Source: schema.json
+export type WhatMakesUsUnique = {
+  _id: string;
+  _type: 'what-makes-us-unique';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  description?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayTextValue
+  >;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+};
+
 export type AboutAnepal = {
   _id: string;
   _type: 'about-anepal';
@@ -101,6 +131,11 @@ export type Settings = {
     facebook?: string;
     instagram?: string;
     twitter?: string;
+  };
+  otherInfo?: {
+    totalChildren?: number;
+    totalSponsers?: number;
+    totalDollarCollected?: string;
   };
 };
 
@@ -303,6 +338,7 @@ export type SanityAssetSourceData = {
 };
 
 export type AllSanitySchemaTypes =
+  | WhatMakesUsUnique
   | AboutAnepal
   | HomeContent
   | Settings

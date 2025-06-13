@@ -80,6 +80,29 @@ export const settingsType = defineType({
             })
         }
       ]
+    }),
+    defineField({
+      name: 'otherInfo',
+      title: 'Others Info',
+      type: 'object',
+      fields: [
+        {
+          name: 'totalChildren',
+          title: 'Total children',
+          type: 'number'
+        },
+        {
+          name: 'totalSponsers',
+          title: 'Total Sponsers',
+          type: 'number'
+        },
+        {
+          name: 'totalDollarCollected',
+          title: 'Total Dollars Collected',
+          description: 'Show estimation amount (e.g. 220k)',
+          type: 'string'
+        }
+      ]
     })
   ],
   preview: {

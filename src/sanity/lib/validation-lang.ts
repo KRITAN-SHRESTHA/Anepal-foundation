@@ -5,7 +5,6 @@ type valueType = {
 }[];
 
 export const validationLang = (value: valueType, errorMsg: string) => {
-  console.log('value', value);
   if (!value) {
     return errorMsg;
   }
