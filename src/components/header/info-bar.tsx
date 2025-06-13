@@ -15,9 +15,7 @@ export default function InfoBar() {
 
 function InfoBarSuspense() {
   const pathname = usePathname();
-  const [settings] = trpc.settings.getSettings.useSuspenseQuery();
-
-  const settingsData = settings[0];
+  const [settingsData] = trpc.settings.getSettings.useSuspenseQuery();
 
   if (pathname.includes('/studio')) {
     return null;

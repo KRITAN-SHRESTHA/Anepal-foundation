@@ -17,9 +17,7 @@ export default function FooterContent() {
     return null;
   }
 
-  const [data] = trpc.settings.getSettings.useSuspenseQuery();
-
-  const footerData = data?.[0];
+  const [footerData] = trpc.settings.getSettings.useSuspenseQuery();
 
   return (
     <section className="bg-accent mt-25 pt-10 pb-10 md:pt-20">

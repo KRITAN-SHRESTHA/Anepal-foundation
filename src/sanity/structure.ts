@@ -1,3 +1,4 @@
+import { InfoIcon, SettingsIcon } from 'lucide-react';
 import type { StructureResolver } from 'sanity/structure';
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
@@ -15,22 +16,30 @@ export const structure: StructureResolver = S =>
               S.documentTypeListItem('home-banner').title('Home Banners'),
               S.listItem()
                 .title('About Anepal')
+                .icon(InfoIcon)
                 .child(
                   S.document()
                     .schemaType('about-anepal')
                     .documentId('about-anepal')
                 ),
-              // S.documentTypeListItem('about-anepal').title('About Anepal'),
               S.documentTypeListItem('home-content').title('Home Content')
             ])
         ),
-
       S.divider(),
-      ...S.documentTypeListItems().filter(
-        item =>
-          item.getId() &&
-          !['home-banner', 'header', 'home-content', 'about-anepal'].includes(
-            item.getId()!
-          )
-      )
+
+      S.listItem()
+        .title('Settings')
+        .icon(SettingsIcon)
+        .child(S.document().schemaType('settings').documentId('settings'))
+      // ...S.documentTypeListItems().filter(
+      //   item =>
+      //     item.getId() &&
+      //     ![
+      //       'home-banner',
+      //       'header',
+      //       'home-content',
+      //       'about-anepal',
+      //       'settings'
+      //     ].includes(item.getId()!)
+      // )
     ]);

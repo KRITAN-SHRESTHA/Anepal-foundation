@@ -9,10 +9,8 @@ import { trpc } from '@/trpc/client';
 import Logo from './logo';
 
 export const NavigationSheet = () => {
-  const [settings] = trpc.settings.getSettings.useSuspenseQuery();
+  const [settingsData] = trpc.settings.getSettings.useSuspenseQuery();
   const [navData] = trpc.header.getHeader.useSuspenseQuery();
-
-  const settingsData = settings[0];
 
   return (
     <Sheet>
