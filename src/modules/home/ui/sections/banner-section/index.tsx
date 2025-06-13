@@ -37,6 +37,7 @@ export default function BannerSection() {
 
 function BannerSectionSuspense() {
   const [bannerData] = trpc.home.getBanner.useSuspenseQuery();
+  console.log('bannerData', bannerData);
   const { getLocalizedString } = useGetLocale();
 
   return (

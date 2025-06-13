@@ -1,5 +1,13 @@
 {
-  "HomePage": {
-    "title": "Hello world!"
+  "Homepage": {
+    "our_help_consist_of": "Our help consists of...",
+    "EDUCATION": "EDUCATION",
+    "NUTRITION": "NUTRITION",
+    "FINANCIAL_SUPPORT": "FINANCIAL SUPPORT",
+    "MEDICAL_CARE": "MEDICAL CARE",
+    "Providing_all_children_with_access_to_a_quality_education": "Providing all children with access to a quality education.",
+    "Ensuring_healthy_nutrient_rich_diet": "Ensuring a healthy, nutrient-rich diet.",
+    "Providing_sufficient_resources_for_a_stable_and_secure_life_so_they_focus__their_studies": "Providing sufficient resources for a stable and secure life so they can focus on their studies.",
+    "Improving_children_health_and_well_being": "Improving children's health and well-being."
   }
 }
