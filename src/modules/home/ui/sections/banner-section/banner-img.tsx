@@ -1,6 +1,7 @@
 import { getLocalizedString } from '@/lib/utils';
 import { urlFor } from '@/sanity/lib/image';
 import { HomeBanner } from '@/sanity/types';
+import { useLocale } from 'next-intl';
 import Image from 'next/image';
 import React from 'react';
 
@@ -8,6 +9,7 @@ export default function BannerImg({
   image,
   title
 }: Pick<HomeBanner, 'image' | 'title'>) {
+  const locale = useLocale();
   return (
     <>
       {image && (
@@ -17,7 +19,7 @@ export default function BannerImg({
             .width(Math.min(2048, window.innerWidth))
             .quality(100)
             .url()}
-          alt={getLocalizedString(title ?? []) ?? 'banner-img'}
+          alt={getLocalizedString(title ?? [], locale) ?? 'banner-img'}
           fill
           priority
           className="object-cover"

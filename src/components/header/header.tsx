@@ -8,7 +8,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 
 import { Button } from '@/components/ui/button';
 
-// import Logo from './logo';
+import LocaleSwitcher from './locale-switcher';
 import { NavigationSheet } from './navigation-sheet';
 
 const Logo = dynamic(() => import('./logo'), {
@@ -47,6 +47,8 @@ function HeaderClientSuspense() {
             <Button className="h-[40px] w-[130px] rounded-full bg-purple-700 hover:bg-purple-900">
               Donacion <ArrowUpRight />
             </Button>
+
+            <LocaleSwitcher />
 
             {/* Mobile Menu */}
             <div className="laptop:hidden">

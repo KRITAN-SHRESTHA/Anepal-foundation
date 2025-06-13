@@ -2,6 +2,7 @@
 
 import Autoplay from 'embla-carousel-autoplay';
 import Fade from 'embla-carousel-fade';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
@@ -14,11 +15,10 @@ import {
   CarouselNext,
   CarouselPrevious
 } from '@/components/ui/carousel';
-import { getLocalizedString } from '@/lib/utils';
 import { trpc } from '@/trpc/client';
 
+import useGetLocale from '@/hooks/use-get-locale';
 import BannerSkeletion from './banner-skeletion';
-import dynamic from 'next/dynamic';
 
 const BannerImg = dynamic(() => import('./banner-img'), {
   ssr: false,
@@ -37,6 +37,7 @@ export default function BannerSection() {
 
 function BannerSectionSuspense() {
   const [bannerData] = trpc.home.getBanner.useSuspenseQuery();
+  const { getLocalizedString } = useGetLocale();
 
   return (
     <div className="w-full pb-4">
