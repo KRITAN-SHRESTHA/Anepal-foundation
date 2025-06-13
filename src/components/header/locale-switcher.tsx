@@ -32,7 +32,7 @@ export default function LocaleSwitcher() {
       onValueChange={handleSwtchLocale}
       disabled={isPending}
     >
-      <SelectTrigger className="border-none pr-1 pl-0 font-bold shadow-none [&_svg]:hidden">
+      <SelectTrigger className="cursor-pointer border-none pr-1 pl-0 font-bold shadow-none [&_svg]:hidden">
         <SelectValue placeholder="Select" />
       </SelectTrigger>
       <SelectContent align="end">
