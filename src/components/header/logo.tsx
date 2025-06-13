@@ -9,13 +9,15 @@ export default function Logo({
 }: React.HTMLAttributes<HTMLDivElement>) {
   const [settings] = trpc.settings.getSettings.useSuspenseQuery();
 
-  const settingsData = settings[0];
+  // const settingsData = settings[0];
+
+  console.log('settings', settings);
 
   return (
     <div className={cn('relative h-[56px] w-[100px] shrink-0', className)}>
-      {settingsData.logo && (
+      {settings.logo && (
         <Image
-          src={urlFor(settingsData.logo).quality(100).url()}
+          src={urlFor(settings.logo).quality(100).url()}
           alt="Anepal Organization logo"
           sizes="20vw"
           fill
