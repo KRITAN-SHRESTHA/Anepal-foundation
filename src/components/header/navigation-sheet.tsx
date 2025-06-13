@@ -3,14 +3,15 @@ import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { getLocalizedString } from '@/lib/utils';
 import { trpc } from '@/trpc/client';
+import useGetLocale from '@/hooks/use-get-locale';
 
 import Logo from './logo';
 
 export const NavigationSheet = () => {
   const [settingsData] = trpc.settings.getSettings.useSuspenseQuery();
   const [navData] = trpc.header.getHeader.useSuspenseQuery();
+  const { getLocalizedString } = useGetLocale();
 
   return (
     <Sheet>

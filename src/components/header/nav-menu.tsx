@@ -1,5 +1,9 @@
 'use client';
 
+import { NavigationMenuProps } from '@radix-ui/react-navigation-menu';
+import Link from 'next/link';
+import React from 'react';
+
 import { Button } from '@/components/ui/button';
 import {
   NavigationMenu,
@@ -9,16 +13,13 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger
 } from '@/components/ui/navigation-menu';
-import { cn, getLocalizedString } from '@/lib/utils';
-import { NavigationMenuProps } from '@radix-ui/react-navigation-menu';
-import Link from 'next/link';
-import React from 'react';
+import { cn } from '@/lib/utils';
 import { trpc } from '@/trpc/client';
-import { useDictionary } from '@/context/dictionary-context';
+import useGetLocale from '@/hooks/use-get-locale';
 
 export const NavMenu = (props: NavigationMenuProps) => {
   const [navData] = trpc.header.getHeader.useSuspenseQuery();
-  const { locale } = useDictionary();
+  const { getLocalizedString } = useGetLocale();
 
   return (
     <NavigationMenu viewport={false} {...props}>
@@ -28,19 +29,17 @@ export const NavMenu = (props: NavigationMenuProps) => {
             {link.subLinks && link.subLinks?.length > 0 ? (
               <>
                 <NavigationMenuTrigger className="text-[15px] font-normal capitalize">
-                  {getLocalizedString(link.name ?? [], locale)}
+                  {getLocalizedString(link.name ?? [])}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="z-50">
                   <ul className="grid w-[200px] gap-1">
                     {link.subLinks.map(menu => {
                       if (!menu.link) return null;
+
                       return (
                         <ListItem
                           key={menu._key}
-                          title={
-                            getLocalizedString(menu.name ?? [], locale) ??
-                            undefined
-                          }
+                          titleTxt={getLocalizedString(menu.name ?? [])}
                           href={menu.link}
                         />
                       );
@@ -56,10 +55,10 @@ export const NavMenu = (props: NavigationMenuProps) => {
               >
                 {link.link ? (
                   <Link href={link.link}>
-                    {getLocalizedString(link.name ?? [], locale)}
+                    {getLocalizedString(link.name ?? [])}
                   </Link>
                 ) : (
-                  getLocalizedString(link.name ?? [], locale)
+                  getLocalizedString(link.name ?? [])
                 )}
               </Button>
             )}
@@ -72,8 +71,10 @@ export const NavMenu = (props: NavigationMenuProps) => {
 
 const ListItem = React.forwardRef<
   React.ElementRef<typeof Link>,
-  React.ComponentPropsWithoutRef<typeof Link>
->(({ className, title, ...props }, ref) => {
+  React.ComponentPropsWithoutRef<typeof Link> & {
+    titleTxt: string | null | undefined;
+  }
+>(({ className, titleTxt, ...props }, ref) => {
   return (
     <li>
       <NavigationMenuLink asChild>
@@ -85,7 +86,7 @@ const ListItem = React.forwardRef<
           )}
           {...props}
         >
-          <div className="text-sm leading-none font-semibold">{title}</div>
+          <div className="text-sm leading-none">{titleTxt}</div>
         </Link>
       </NavigationMenuLink>
     </li>

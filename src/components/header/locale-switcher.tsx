@@ -1,97 +1,45 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
-import { type Locale } from '@/lib/i18n-config';
-import { Button } from '@/components/ui/button';
+import React, { useTransition } from 'react';
+import { useLocale } from 'next-intl';
+
+import { setUserLocale } from '@/lib/locale';
+import { Locale } from '@/i18n/config';
+
 import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu';
-import React, { useEffect } from 'react';
-import { useDictionary } from '@/context/dictionary-context';
-import Image from 'next/image';
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '../ui/select';
 
 export default function LocaleSwitcher() {
-  const pathname = usePathname();
-  const { locale } = useDictionary();
-  const [showStatusBar, setShowStatusBar] = React.useState<Locale>('en');
+  const locale = useLocale();
+  const [isPending, startTransition] = useTransition();
 
-  useEffect(() => {
-    setShowStatusBar(locale);
-  }, [locale]);
-
-  // useEffect(() => {
-  //   setShowStatusBar(locale === 'en' ? 'en' : 'es');
-  // }, [locale]);
-
-  // const handleChange = e => {
-  //   if (showStatusBar) console.log('e', e);
-  // };
-
-  const redirectedPathname = (locale: Locale) => {
-    if (!pathname) return '/';
-    const segments = pathname.split('/');
-    segments[1] = locale;
-    return segments.join('/');
-  };
+  function handleSwtchLocale(value: Locale) {
+    startTransition(() => {
+      setUserLocale(value);
+    });
+  }
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline">Open</Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-10" align="end">
-        <Link href={redirectedPathname('en')} scroll={false}>
-          <DropdownMenuCheckboxItem
-            textValue="en"
-            checked={showStatusBar === 'en'}
-            className="relative"
-          >
-            <Image
-              src={'/flag-round-500.png'}
-              alt="british flag"
-              width={20}
-              height={20}
-            />
-            en
-          </DropdownMenuCheckboxItem>
-        </Link>
-        <Link href={redirectedPathname('es')} scroll={false}>
-          <DropdownMenuCheckboxItem
-            textValue="es"
-            checked={showStatusBar === 'es'}
-          >
-            <div className="relative h-[40px] w-[40px]">
-              <Image
-                src={'/assets/spain-flag.svg'}
-                alt="spanish flag"
-                fill
-                className="h-full w-full"
-              />
-            </div>
-            es
-          </DropdownMenuCheckboxItem>
-        </Link>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <Select
+      defaultValue={locale}
+      onValueChange={handleSwtchLocale}
+      disabled={isPending}
+    >
+      <SelectTrigger className="">
+        <SelectValue placeholder="Select a fruit" />
+      </SelectTrigger>
+      <SelectContent align="end">
+        <SelectGroup>
+          <SelectItem value="en">English</SelectItem>
+          <SelectItem value="es">Spanish</SelectItem>
+        </SelectGroup>
+      </SelectContent>
+    </Select>
   );
-
-  // return (
-  //   <div>
-  //     <ul className="flex items-center">
-  //       {i18n.locales.map(locale => {
-  //         return (
-  //           <li key={locale}>
-  //             <Link href={redirectedPathname(locale)} scroll={false}>
-  //               {locale}
-  //             </Link>
-  //           </li>
-  //         );
-  //       })}
-  //     </ul>
-  //   </div>
-  // );
 }

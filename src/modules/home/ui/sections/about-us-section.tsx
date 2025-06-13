@@ -1,16 +1,18 @@
 'use client';
 
+import { urlFor } from '@/sanity/lib/image';
 import { BookOpen } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { urlFor } from '@/sanity/lib/image';
 
 import { Button } from '@/components/ui/button';
-import { getLocalizedString } from '@/lib/utils';
+import useGetLocale from '@/hooks/use-get-locale';
 import { trpc } from '@/trpc/client';
 
 export default function AboutUsSection() {
   const [data] = trpc.home.getAboutUs.useSuspenseQuery();
+
+  const { getLocalizedString } = useGetLocale();
 
   return (
     <div className="tablet:grid-cols-2 mx-auto mt-5 grid w-full max-w-screen-xl items-center gap-x-12 gap-y-8 px-4 py-8 sm:px-6 md:mt-14 md:py-12 lg:px-8">
