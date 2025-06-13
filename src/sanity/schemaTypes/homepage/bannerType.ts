@@ -1,7 +1,7 @@
 import { ImageIcon } from '@sanity/icons';
 import { defineField, defineType } from 'sanity';
 
-import { validationLang } from '../lib/validation-lang';
+import { validationLang } from '../../lib/validation-lang';
 
 export const bannerType = defineType({
   title: 'Home Banner',

@@ -22,6 +22,17 @@ export const structure: StructureResolver = S =>
                     .schemaType('about-anepal')
                     .documentId('about-anepal')
                 ),
+              // S.listItem()
+              //   .title('What makes us unique')
+              //   .icon(InfoIcon)
+              //   .child(
+              //     S.document()
+              //       .schemaType('what-makes-us-unique')
+              //       .documentId('what-makes-us-unique')
+              //   ),
+              S.documentTypeListItem('what-makes-us-unique').title(
+                'what makes us unique'
+              ),
               S.documentTypeListItem('home-content').title('Home Content')
             ])
         ),
@@ -31,15 +42,4 @@ export const structure: StructureResolver = S =>
         .title('Settings')
         .icon(SettingsIcon)
         .child(S.document().schemaType('settings').documentId('settings'))
-      // ...S.documentTypeListItems().filter(
-      //   item =>
-      //     item.getId() &&
-      //     ![
-      //       'home-banner',
-      //       'header',
-      //       'home-content',
-      //       'about-anepal',
-      //       'settings'
-      //     ].includes(item.getId()!)
-      // )
     ]);

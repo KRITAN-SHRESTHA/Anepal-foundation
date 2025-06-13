@@ -20,7 +20,7 @@ export const aboutAnepalType = defineType({
     }),
     defineField({
       name: 'subtitle',
-      title: 'Sub title',
+      title: 'Subtitle',
       type: 'internationalizedArrayString',
       validation: rule =>
         rule.custom<{ value: string; _type: string; _key: string }[]>(value => {
@@ -68,7 +68,7 @@ export const aboutAnepalType = defineType({
   preview: {
     prepare() {
       return {
-        title: 'About Anepal Section'
+        title: 'About Anepal'
       };
     }
   }
