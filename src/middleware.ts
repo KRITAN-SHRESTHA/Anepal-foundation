@@ -1,31 +1,53 @@
-import { NextResponse } from 'next/server';
-// import { checkAuth } from './lib/auth';
-// import { env } from './env';
+import { match as matchLocale } from '@formatjs/intl-localematcher';
+import Negotiator from 'negotiator';
+import { NextRequest, NextResponse } from 'next/server';
 
-// export async function middleware(request: NextRequest) {
-export async function middleware() {
-  // const user = await checkAuth();
+import { i18n } from './lib/i18n-config';
 
-  // const redirectUrl = request.url.split(`${env.NEXT_PUBLIC_APP_URL}`)[1];
+function getLocale(request: NextRequest): string | undefined {
+  // Negotiator expects plain object so we need to transform headers
+  const negotiatorHeaders: Record<string, string> = {};
+  request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
 
-  // if (request.nextUrl.pathname.startsWith('/dealer')) {
-  //   if (user?.role === 'dealer') {
-  //     return NextResponse.next();
-  //   } else {
-  //     return NextResponse.redirect(
-  //       new URL(`/login?redirect=${redirectUrl}`, request.url)
-  //     );
-  //   }
-  // }
-  // if (request.nextUrl.pathname.startsWith('/admin')) {
-  //   if (user?.role === 'admin') {
-  //     return NextResponse.next();
-  //   } else {
-  //     return NextResponse.redirect(
-  //       new URL(`/login?redirect=${redirectUrl}`, request.url)
-  //     );
-  //   }
-  // }
+  const locales: readonly string[] = i18n.locales;
+
+  // Use negotiator and intl-localematcher to get best locale
+  const languages = new Negotiator({ headers: negotiatorHeaders }).languages([
+    ...locales
+  ]);
+
+  const locale = matchLocale(languages, locales, i18n.defaultLocale);
+
+  return locale;
+}
+
+export async function middleware(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+
+  // Check if the request is for the studio
+  if (pathname.startsWith('/studio')) {
+    // Redirect /studio to /en/studio (or your default locale)
+    return NextResponse.redirect(new URL(`/en${pathname}`, request.url));
+  }
+
+  // Check if there is any supported locale in the pathname
+  const pathnameIsMissingLocale = i18n.locales.every(
+    locale => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+  );
+
+  // Redirect if there is no locale
+  if (pathnameIsMissingLocale) {
+    const locale = getLocale(request);
+
+    // e.g. incoming request is /products
+    // The new URL is now /en-US/products
+    return NextResponse.redirect(
+      new URL(
+        `/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`,
+        request.url
+      )
+    );
+  }
 
   return NextResponse.next();
 }

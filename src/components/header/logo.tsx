@@ -9,10 +9,6 @@ export default function Logo({
 }: React.HTMLAttributes<HTMLDivElement>) {
   const [settings] = trpc.settings.getSettings.useSuspenseQuery();
 
-  // const settingsData = settings[0];
-
-  console.log('settings', settings);
-
   return (
     <div className={cn('relative h-[56px] w-[100px] shrink-0', className)}>
       {settings.logo && (

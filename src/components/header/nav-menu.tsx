@@ -14,9 +14,11 @@ import { NavigationMenuProps } from '@radix-ui/react-navigation-menu';
 import Link from 'next/link';
 import React from 'react';
 import { trpc } from '@/trpc/client';
+import { useDictionary } from '@/context/dictionary-context';
 
 export const NavMenu = (props: NavigationMenuProps) => {
   const [navData] = trpc.header.getHeader.useSuspenseQuery();
+  const { locale } = useDictionary();
 
   return (
     <NavigationMenu viewport={false} {...props}>
@@ -26,7 +28,7 @@ export const NavMenu = (props: NavigationMenuProps) => {
             {link.subLinks && link.subLinks?.length > 0 ? (
               <>
                 <NavigationMenuTrigger className="text-[15px] font-normal capitalize">
-                  {getLocalizedString(link.name ?? [])}
+                  {getLocalizedString(link.name ?? [], locale)}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="z-50">
                   <ul className="grid w-[200px] gap-1">
@@ -36,7 +38,8 @@ export const NavMenu = (props: NavigationMenuProps) => {
                         <ListItem
                           key={menu._key}
                           title={
-                            getLocalizedString(menu.name ?? []) ?? undefined
+                            getLocalizedString(menu.name ?? [], locale) ??
+                            undefined
                           }
                           href={menu.link}
                         />
@@ -53,10 +56,10 @@ export const NavMenu = (props: NavigationMenuProps) => {
               >
                 {link.link ? (
                   <Link href={link.link}>
-                    {getLocalizedString(link.name ?? [])}
+                    {getLocalizedString(link.name ?? [], locale)}
                   </Link>
                 ) : (
-                  getLocalizedString(link.name ?? [])
+                  getLocalizedString(link.name ?? [], locale)
                 )}
               </Button>
             )}

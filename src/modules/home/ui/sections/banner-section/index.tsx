@@ -19,6 +19,7 @@ import { trpc } from '@/trpc/client';
 
 import BannerSkeletion from './banner-skeletion';
 import dynamic from 'next/dynamic';
+import { useDictionary } from '@/context/dictionary-context';
 
 const BannerImg = dynamic(() => import('./banner-img'), {
   ssr: false,
@@ -37,6 +38,7 @@ export default function BannerSection() {
 
 function BannerSectionSuspense() {
   const [bannerData] = trpc.home.getBanner.useSuspenseQuery();
+  const { locale } = useDictionary();
 
   return (
     <div className="w-full pb-4">
@@ -62,10 +64,10 @@ function BannerSectionSuspense() {
                   <div className="relative">
                     <div className="max-w-2xl">
                       <h1 className="text-[40px] leading-[130%] font-bold text-balance text-white first-letter:capitalize md:text-5xl lg:text-6xl">
-                        {getLocalizedString(data?.title ?? [])}
+                        {getLocalizedString(data?.title ?? [], locale)}
                       </h1>
                       <p className="my-6 line-clamp-2 text-base leading-[100%] text-balance text-white first-letter:capitalize md:text-xl lg:text-2xl">
-                        {getLocalizedString(data?.description ?? [])}
+                        {getLocalizedString(data?.description ?? [], locale)}
                       </p>
                     </div>
                     {data.link && (
