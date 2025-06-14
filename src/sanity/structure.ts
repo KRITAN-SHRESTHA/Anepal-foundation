@@ -12,8 +12,8 @@ export const structure: StructureResolver = S =>
           S.list()
             .title('Home page section')
             .items([
-              S.documentTypeListItem('header').title('Header'),
-              S.documentTypeListItem('home-banner').title('Home Banners'),
+              S.documentTypeListItem('header'),
+              S.documentTypeListItem('home-banner'),
               S.listItem()
                 .title('About Anepal')
                 .icon(InfoIcon)
@@ -22,17 +22,7 @@ export const structure: StructureResolver = S =>
                     .schemaType('about-anepal')
                     .documentId('about-anepal')
                 ),
-              // S.listItem()
-              //   .title('What makes us unique')
-              //   .icon(InfoIcon)
-              //   .child(
-              //     S.document()
-              //       .schemaType('what-makes-us-unique')
-              //       .documentId('what-makes-us-unique')
-              //   ),
-              S.documentTypeListItem('what-makes-us-unique').title(
-                'what makes us unique'
-              ),
+              S.documentTypeListItem('what-makes-us-unique'),
               S.documentTypeListItem('home-content').title('Home Content')
             ])
         ),

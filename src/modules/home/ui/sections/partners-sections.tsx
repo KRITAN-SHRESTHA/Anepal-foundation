@@ -2,8 +2,8 @@ import Image from 'next/image';
 
 export default function PartnersSection() {
   return (
-    <section className="bg-accent">
-      <div className="mx-auto max-w-5xl px-6 py-12">
+    <section className="bg-accent px-6 py-12">
+      <div className="mx-auto max-w-5xl">
         <div>
           <p className="text-muted-foreground text-center font-semibold">
             Who help us

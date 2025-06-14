@@ -20,7 +20,7 @@ export default function FooterContent() {
   const [footerData] = trpc.settings.getSettings.useSuspenseQuery();
 
   return (
-    <section className="bg-accent mt-25 pt-10 pb-10 md:pt-20">
+    <section className="bg-accent pt-10 pb-10 md:pt-20">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <footer>
           <div className="grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">

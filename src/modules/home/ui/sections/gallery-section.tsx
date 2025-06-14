@@ -11,7 +11,7 @@ import { Card } from '@/components/ui/card';
 
 export default function GallerySection() {
   return (
-    <div className="mt-10 mb-14 md:mt-14">
+    <div className="mt-10 mb-25 md:mt-14">
       <h2 className="text-center text-4xl font-semibold md:text-5xl">
         Galería
       </h2>

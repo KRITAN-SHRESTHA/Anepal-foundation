@@ -23,7 +23,7 @@ function WhoDoWeHelpSectionSuspense() {
   return (
     <div className="bg-accent mt-10">
       <div className="mx-auto max-w-screen-md py-12 text-center">
-        <h2 className="text-4xl font-semibold md:text-5xl">Who do we help</h2>
+        <h2 className="text-4xl font-bold md:text-5xl">Who do we help</h2>
         <div className="mt-10 grid justify-center gap-x-8 gap-y-16 sm:mt-14 sm:grid-cols-3">
           {/* Our Children */}
           <div className="grid justify-center">
