@@ -8,7 +8,7 @@ import MemoriesCollectionSection from '../sections/memories-collection-section';
 import PartnersSection from '../sections/partners-sections';
 import TeamSection from '../sections/team-section';
 import TestimonialsSection from '../sections/testimonials-section';
-import VolunteerSection from '../sections/volunteer-section';
+// import VolunteerSection from '../sections/volunteer-section';
 import WhoDoWeHelpSection from '../sections/who-do-we-help-section';
 import WorkHistorySection from '../sections/work-history-section';
 
@@ -25,7 +25,7 @@ export default function HomeView() {
       <EventsSection />
       <TestimonialsSection />
       <BlogSection />
-      <VolunteerSection />
+      {/* <VolunteerSection /> */}
       <PartnersSection />
       <GallerySection />
     </>

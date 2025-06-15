@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 import TeamMemberCard from '@/components/team-member-card';
 import { Button } from '@/components/ui/button';
+import ContentTitle from '@/components/content-title';
 
 const teamMembers = [
   {
@@ -37,10 +38,9 @@ export default function TeamSection() {
     <div className="flex flex-col items-center justify-center px-4 py-8 sm:px-6 md:py-12 lg:px-8">
       <div className="mx-auto max-w-[1000px] text-center">
         {/* Meet Our Team */}
-        <h2 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
-          NUESTRO EQUIPO
-        </h2>
-        <p className="mt-4 text-base sm:text-lg">
+
+        <ContentTitle subtitle={'NUESTRO EQUIPO'} />
+        <p className="text-muted-foreground pt-10 text-base sm:text-lg">
           Nuestro equipo está formado por personas que alternan su labor
           profesional con el trabajo para la Fundación. Nuestro objetivo es
           hacer de este mundo un lugar mejor y por eso trabajamos con ilusión,

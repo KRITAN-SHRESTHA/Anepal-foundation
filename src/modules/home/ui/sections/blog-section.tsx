@@ -10,20 +10,19 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
+import ContentTitle from '@/components/content-title';
 
 export default function BlogSection() {
   return (
     <section className="bg-accent py-14">
       <div className="mx-auto flex max-w-screen-xl flex-col items-center gap-16 px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="mb-3 text-3xl font-semibold text-pretty md:mb-4 md:text-4xl lg:mb-6 lg:text-5xl">
-            News & Updates
-          </h2>
+          <ContentTitle subtitle={'News & Updates'} />
 
           <Button
             variant="outline"
             border={'purple'}
-            className="w-[180px] rounded-full"
+            className="mt-7 w-[180px] rounded-full"
             asChild
           >
             <Link href={'/'} target="_blank">
@@ -55,7 +54,7 @@ export default function BlogSection() {
               <CardHeader className="gap-2.5">
                 <Badge variant={'secondary'}>Water</Badge>
 
-                <h3 className="text-lg font-semibold hover:underline md:text-xl">
+                <h3 className="text-primary text-lg font-semibold hover:underline md:text-xl">
                   <a href={post.url} target="_blank">
                     {post.title}
                   </a>

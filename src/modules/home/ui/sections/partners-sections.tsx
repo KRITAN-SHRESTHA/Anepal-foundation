@@ -1,16 +1,21 @@
+import ContentTitle from '@/components/content-title';
+import { cn } from '@/lib/utils';
 import Image from 'next/image';
+import { HTMLAttributes } from 'react';
 
-export default function PartnersSection() {
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+interface PartnerSectionProps extends HTMLAttributes<HTMLDivElement> {}
+
+export default function PartnersSection({ className }: PartnerSectionProps) {
   return (
-    <section className="bg-accent px-6 py-12">
+    <section className={cn('bg-accent px-6 py-12', className)}>
       <div className="mx-auto max-w-5xl">
         <div>
-          <p className="text-muted-foreground text-center font-semibold">
-            Who help us
-          </p>
-          <h2 className="text-center text-4xl font-bold md:text-5xl">
-            Our Partners & Donors
-          </h2>
+          <ContentTitle
+            title={'Who help us'}
+            subtitle={'Our Partners & Donors'}
+            align="center"
+          />
 
           <div className="mx-auto mt-14 flex max-w-2xl flex-wrap items-center justify-center gap-8">
             {/* <div className="flex"> */}

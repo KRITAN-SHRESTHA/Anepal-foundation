@@ -1,12 +1,22 @@
 import Image from 'next/image';
 import React from 'react';
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  image: string;
+  boldTitle: string;
+  normalTitle: string;
+}
+
+export default function HeroSection({
+  boldTitle,
+  image,
+  normalTitle
+}: HeroSectionProps) {
   return (
     <div className="font-permanentMaker relative h-[50vh] w-full md:h-[60vh] lg:h-[70vh]">
       <Image
-        src={'/assets/main-slider/24.jpg'}
-        alt=""
+        src={image}
+        alt={`${boldTitle} ${normalTitle}`}
         // src={urlFor(image)
         //   .auto('format')
         //   .width(Math.min(2048, window.innerWidth))
@@ -24,14 +34,12 @@ export default function HeroSection() {
         <div className="relative">
           <div className="max-w-2xl">
             <p className="font-permanentMaker text-2xl text-white md:text-3xl">
-              DONATION
+              {boldTitle}
             </p>
-            <div className="pt-4">
-              <h1 className="font-quicksand text-[40px] leading-[130%] text-balance text-white first-letter:capitalize md:text-5xl lg:text-6xl">
-                <strong>About</strong> Organization
-                {/* {getLocalizedString(data?.title ?? [])} */}
-              </h1>
-            </div>
+            <h1 className="font-quicksand text-[40px] leading-[130%] font-medium text-balance text-white first-letter:capitalize md:text-5xl lg:text-6xl">
+              {normalTitle}
+              {/* {getLocalizedString(data?.title ?? [])} */}
+            </h1>
           </div>
         </div>
       </section>

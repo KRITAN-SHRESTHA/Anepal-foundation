@@ -9,16 +9,16 @@ import {
 } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
+import ContentTitle from '@/components/content-title';
 
 export default function EventsSection() {
   return (
     <section className="bg-accent py-14">
       <div className="mx-auto flex max-w-screen-xl flex-col items-center gap-16 px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="mb-3 text-3xl font-semibold text-pretty md:mb-4 md:text-4xl lg:mb-6 lg:text-5xl">
-            Upcoming Events
-          </h2>
-          <p className="text-muted-foreground mb-8 md:text-base lg:max-w-2xl lg:text-lg">
+          <ContentTitle subtitle={'Upcoming Events'} />
+
+          <p className="text-muted-foreground mb-8 pt-7 sm:text-lg md:text-base lg:max-w-2xl">
             Sharksucker sea toad candiru rocket danio tilefish stingray
             deepwater stingray Sacramento splittail, Canthigaster rostrata.
             Midshipman dartfish
@@ -59,7 +59,7 @@ export default function EventsSection() {
                 <p className="text-muted-foreground text-sm">
                   Jan 30, 2020 - 10:00 am
                 </p>
-                <h3 className="text-lg font-semibold hover:underline md:text-xl">
+                <h3 className="text-primary text-lg font-semibold hover:underline md:text-xl">
                   <a href={post.url} target="_blank">
                     {post.title}
                   </a>

@@ -76,7 +76,7 @@ export const NavigationSheet = () => {
                       {sub.link ? (
                         <Link
                           href={sub.link}
-                          className="underline-offset-2 hover:underline"
+                          className="text-muted-foreground underline-offset-2 hover:underline"
                         >
                           {getLocalizedString(nav.name ?? [])}
                         </Link>
