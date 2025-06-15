@@ -1,3 +1,4 @@
+import ContentTitle from '@/components/content-title';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent } from '@/components/ui/card';
 
@@ -97,9 +98,7 @@ export default function TestimonialsSection() {
       <div className="py-16">
         <div className="mx-auto max-w-6xl px-6">
           <div className="text-center">
-            <h2 className="mb-3 text-3xl font-semibold text-pretty md:mb-4 md:text-4xl lg:mb-6 lg:text-5xl">
-              What People Say About Us
-            </h2>
+            <ContentTitle subtitle={'What People Say About Us'} />
           </div>
 
           <div className="mt-8 grid gap-3 sm:grid-cols-2 md:mt-12 lg:grid-cols-3">
@@ -120,7 +119,7 @@ export default function TestimonialsSection() {
                       </Avatar>
 
                       <div>
-                        <h3 className="font-medium">{name}</h3>
+                        <h3 className="text-primary font-medium">{name}</h3>
 
                         <span className="text-muted-foreground block text-sm tracking-wide">
                           {role}

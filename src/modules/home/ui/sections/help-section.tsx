@@ -1,3 +1,4 @@
+import ContentTitle from '@/components/content-title';
 import {
   LucideProps,
   School,
@@ -46,20 +47,22 @@ export default function HelpSection() {
   return (
     <div className="bg-accent mt-10 flex items-center justify-center py-12">
       <div>
-        <h2 className="text-center text-4xl font-bold tracking-tight sm:text-5xl">
-          {t('our_help_consist_of')}
-        </h2>
+        <ContentTitle
+          title={'What we do'}
+          subtitle={'We do it for People in need'}
+          align="center"
+        />
         <div className="mx-auto mt-10 grid max-w-screen-xl gap-6 px-4 sm:mt-16 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
           {data?.map(feature => (
             <div
               key={feature.title}
-              className="flex h-auto flex-col rounded-xl border px-5 py-6"
+              className="flex h-auto flex-col rounded-xl border border-gray-300 px-5 py-6"
             >
               <div className="bg-muted mb-3 flex h-10 w-10 items-center justify-center rounded-full">
                 <feature.icon className="h-6 w-6" />
               </div>
               <span className="text-lg font-semibold">{t(feature.title)}</span>
-              <p className="text-foreground/80 mt-1 text-[15px]">
+              <p className="text-muted-foreground mt-1 text-[15px]">
                 {t(feature.description)}
               </p>
             </div>

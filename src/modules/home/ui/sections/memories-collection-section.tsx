@@ -10,16 +10,16 @@ import { urlFor } from '@/sanity/lib/image';
 
 import { BentoGrid, BentoGridItem } from './bento-grid';
 import { useTranslations } from 'next-intl';
+import ContentTitle from '@/components/content-title';
 
 export default function MemoriesCollectionSection() {
   const t = useTranslations('Homepage');
   return (
     <div className="py-8 md:py-16">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-        <h2 className="text-center text-4xl font-semibold md:text-5xl">
-          {t('What_makes_us_unique')}
-        </h2>
-        <p className="mx-auto mt-6 max-w-[62ch] text-center text-lg">
+        <ContentTitle subtitle={t('What_makes_us_unique')} align="center" />
+
+        <p className="text-muted-foreground mx-auto mt-6 max-w-[62ch] text-center sm:text-lg">
           {t(
             'We_work_altruistically_to_transform_lives_Every_donation_we_receive_is_dedicated_entirely_to_the_education_and_well_being__children'
           )}

@@ -1,13 +1,13 @@
 import { defineField, defineType } from 'sanity';
-import { InfoOutlineIcon } from '@sanity/icons';
 
 import { validationLang } from '../../lib/validation-lang';
+import { PuzzleIcon } from 'lucide-react';
 
 export const whatmakesUsUniqueType = defineType({
   title: 'What makes us unique',
   name: 'what-makes-us-unique',
   type: 'document',
-  icon: InfoOutlineIcon,
+  icon: PuzzleIcon,
   fields: [
     defineField({
       name: 'title',

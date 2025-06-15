@@ -1,12 +1,11 @@
+import ContentTitle from '@/components/content-title';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 
 export default function MemoriesCollection() {
   return (
     <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 md:py-16 lg:px-8">
-      <h2 className="text-center text-4xl font-semibold md:text-5xl">
-        Nuestra Historia
-      </h2>
+      <ContentTitle subtitle={'Nuestra Historia'} align="center" />
 
       <div className="mt-14 grid items-center gap-12">
         {items.map((item, idx) => {
@@ -22,15 +21,17 @@ export default function MemoriesCollection() {
                 )}
               >
                 {/* name */}
-                <h2 className="text-4xl font-semibold tracking-tight md:text-4xl">
+                <h2 className="text-primary text-4xl font-semibold tracking-tight md:text-4xl">
                   {item.title}
                 </h2>
                 {/* description */}
-                <p className="mt-5 line-clamp-6 text-lg md:mt-6">
+                <p className="text-card-foreground mt-5 line-clamp-6 text-lg md:mt-6">
                   {item.description}
                 </p>
 
-                <p className="mt-4 font-medium">- {item.name}</p>
+                <p className="text-muted-foreground mt-4 font-medium">
+                  - {item.name}
+                </p>
                 {/* name of the person */}
               </div>
               <div
