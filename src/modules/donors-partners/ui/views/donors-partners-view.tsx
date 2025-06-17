@@ -9,7 +9,7 @@ export default function DonorsPartnersView() {
     <div className="">
       <HeroSection
         image={'/assets/main-slider/20.jpg'}
-        boldTitle="Partner"
+        boldTitle="Partners"
         normalTitle="& Donors"
       />
 
