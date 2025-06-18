@@ -90,9 +90,11 @@ export default function FooterContent() {
                 <p className="hover:text-primary font-medium">
                   Help Us Change the Lives of Children in World
                 </p>
-                <Button className="h-[50px] w-[150px] rounded-full bg-purple-700 text-base hover:bg-purple-900">
-                  Donacion <ArrowUpRight />
-                </Button>
+                <Link href={'/payment'}>
+                  <Button className="h-[50px] w-[150px] rounded-full bg-purple-700 text-base hover:bg-purple-900">
+                    Donate us <ArrowUpRight />
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

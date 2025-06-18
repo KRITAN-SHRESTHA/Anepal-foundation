@@ -3,22 +3,25 @@ import { z } from 'zod';
 
 export const env = createEnv({
   server: {
-    DATABASE_URL: z.string().url(),
+    // DATABASE_URL: z.string().url(),
     // CLERK_SECRET_KEY:
     //   process.env.NODE_ENV === 'development'
     //     ? z.string().startsWith('sk_test_').min(1)
     //     : z.string().startsWith('sk_test_').min(1),
-    GOOGLE_CLIENT_ID: z.string(),
-    GOOGLE_CLIENT_SECRET: z.string()
+    // GOOGLE_CLIENT_ID: z.string(),
+    // GOOGLE_CLIENT_SECRET: z.string()
+    PAYPAL_CLIENT_ID: z.string()
   },
   client: {
-    NEXT_PUBLIC_APP_URL: z.string().url()
+    NEXT_PUBLIC_APP_URL: z.string().url(),
+    NEXT_PUBLIC_PAYPAL_CLIENT_ID: z.string()
   },
   runtimeEnv: {
-    DATABASE_URL: process.env.DATABASE_URL,
+    PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID,
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
-    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
-    GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET
+    NEXT_PUBLIC_PAYPAL_CLIENT_ID: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID
+    // GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+    // GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET
   }
   // skipValidation:
   //   !!process.env.SKIP_ENV_VALIDATION ||

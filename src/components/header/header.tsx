@@ -44,9 +44,11 @@ function HeaderClientSuspense() {
           <NavMenu className="laptop:block hidden" />
 
           <div className="flex items-center gap-3">
-            <Button className="h-[40px] w-[130px] rounded-full bg-purple-700 hover:bg-purple-900">
-              Donacion <ArrowUpRight />
-            </Button>
+            <Link href={'/payment'}>
+              <Button className="h-[40px] w-[130px] rounded-full bg-purple-700 hover:bg-purple-900">
+                Donate us <ArrowUpRight />
+              </Button>
+            </Link>
 
             <LocaleSwitcher />
 
