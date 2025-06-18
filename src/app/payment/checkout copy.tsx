@@ -1,14 +1,10 @@
 'use client';
 
-import { trpc } from '@/trpc/client';
-import type { OnApproveData } from '@paypal/paypal-js';
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
-import CustomCard from './custom-card copy';
-import { useId } from 'react';
+import type { OnApproveData } from '@paypal/paypal-js';
+import { trpc } from '@/trpc/client';
 
 export default function Checkout() {
-  const key = useId();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [{ options, isPending }] = usePayPalScriptReducer();
 
   const { mutate: createOrderMutate, isPending: isCreateOrderPending } =
@@ -62,29 +58,16 @@ export default function Checkout() {
   console.log('isCreateOrderPending', isCreateOrderPending);
 
   return (
-    <>
-      <PayPalButtons
-        fundingSource={'paypal'}
-        style={{ layout: 'vertical', label: 'donate' }}
-        createOrder={onCreateOrder}
-        onApprove={onApproveOrder}
-        key={key}
-        disabled={isCreateOrderPending}
-      />
-
-      <div className="my-6 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
-        <hr className="border-dashed" />
-        <span className="text-muted-foreground text-xs">
-          Or donate with Credit/Debit Card
-        </span>
-        <hr className="border-dashed" />
-      </div>
-
-      <CustomCard
-        createOrder={onCreateOrder}
-        onApprove={onApproveOrder}
-        isCreatingOrder={isCreateOrderPending}
-      />
-    </>
+    <div className="">
+      {isPending ? (
+        <p>LOADING...</p>
+      ) : (
+        <PayPalButtons
+          style={{ layout: 'vertical', label: 'donate' }}
+          createOrder={onCreateOrder}
+          onApprove={onApproveOrder}
+        />
+      )}
+    </div>
   );
 }
