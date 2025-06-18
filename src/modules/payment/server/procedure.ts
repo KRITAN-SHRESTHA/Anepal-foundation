@@ -2,7 +2,6 @@ import { env } from '@/env';
 import { createTRPCRouter, publicProcedure } from '@/trpc/init';
 import { CreateOrderRequestBody, OrderResponseBody } from '@paypal/paypal-js';
 import { TRPCError } from '@trpc/server';
-import { cache } from 'react';
 import { z } from 'zod';
 
 interface PaypalOauthToken {
@@ -17,7 +16,7 @@ const authToken = Buffer.from(
   `${process.env.PAYPAL_CLIENT_ID}:${process.env.PAYPAL_SECRET}`
 ).toString('base64');
 
-const getAccessToken = cache(async () => {
+const getAccessToken = async () => {
   const accessTokenRes = await fetch(
     'https://api-m.sandbox.paypal.com/v1/oauth2/token',
     {
@@ -29,11 +28,9 @@ const getAccessToken = cache(async () => {
       body: 'grant_type=client_credentials'
     }
   );
-
   const { access_token } = (await accessTokenRes.json()) as PaypalOauthToken;
-
   return access_token;
-});
+};
 
 export const paymentRoute = createTRPCRouter({
   generateClientToken: publicProcedure.query(async () => {
@@ -74,55 +71,61 @@ export const paymentRoute = createTRPCRouter({
       // const { currency } = (await res.json()) as {
       //   currency: string;
       // };
+      try {
+        // 1️⃣ Get Access Token
+        const access_token = await getAccessToken();
 
-      // 1️⃣ Get Access Token
-      const access_token = await getAccessToken();
-
-      // 2️⃣ Create Order
-      // https://developer.paypal.com/docs/api/orders/v2/#orders_create
-      const orderRes = await fetch(
-        'https://api-m.sandbox.paypal.com/v2/checkout/orders',
-        {
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            intent: 'CAPTURE',
-            purchase_units: [
-              {
-                amount: {
-                  currency_code: currency_code, //defualt USD
-                  value: amount
+        // 2️⃣ Create Order
+        // https://developer.paypal.com/docs/api/orders/v2/#orders_create
+        const orderRes = await fetch(
+          'https://api-m.sandbox.paypal.com/v2/checkout/orders',
+          {
+            method: 'POST',
+            headers: {
+              Authorization: `Bearer ${access_token}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              intent: 'CAPTURE',
+              purchase_units: [
+                {
+                  amount: {
+                    currency_code: currency_code, //defualt USD
+                    value: amount
+                  }
+                }
+              ],
+              payment_source: {
+                paypal: {
+                  experience_context: {
+                    payment_method_preference: 'IMMEDIATE_PAYMENT_REQUIRED',
+                    landing_page: 'GUEST_CHECKOUT', // GUEST_CHECKOUT | LOGIN | NO_PREFERENCE
+                    shipping_preference: 'NO_SHIPPING', // GET_FROM_FILE | NO_SHIPPING | SET_PROVIDED_ADDRESS
+                    user_action: 'PAY_NOW',
+                    return_url: `${env.NEXT_PUBLIC_APP_URL}/payment/success`,
+                    cancel_url: `${env.NEXT_PUBLIC_APP_URL}/payment/cancel`
+                  }
                 }
               }
-            ],
-            // payment_source: {
-            //   paypal: {
-            //     experience_context: {
-            //       payment_method_preference: 'IMMEDIATE_PAYMENT_REQUIRED',
-            //       landing_page: 'GUEST_CHECKOUT', // GUEST_CHECKOUT | LOGIN | NO_PREFERENCE
-            //       shipping_preference: 'NO_SHIPPING', // GET_FROM_FILE | NO_SHIPPING | SET_PROVIDED_ADDRESS
-            //       user_action: 'PAY_NOW',
-            //       return_url: `${env.NEXT_PUBLIC_APP_URL}/payment/success`,
-            //       cancel_url: `${env.NEXT_PUBLIC_APP_URL}/payment/cancel`
-            //     }
-            //   }
-            // },
-            application_context: {
-              return_url: `${env.NEXT_PUBLIC_APP_URL}/payment/success`,
-              cancel_url: `${env.NEXT_PUBLIC_APP_URL}/payment/cancel`
-            }
-          } satisfies CreateOrderRequestBody)
+              // application_context: {
+              //   return_url: `${env.NEXT_PUBLIC_APP_URL}/payment/success`,
+              //   cancel_url: `${env.NEXT_PUBLIC_APP_URL}/payment/cancel`
+              // }
+            } satisfies CreateOrderRequestBody)
+          }
+        );
+
+        const order = (await orderRes.json()) as OrderResponseBody;
+        return order;
+      } catch (error) {
+        if (error instanceof Error) {
+          throw new Error(error.message);
+        } else {
+          throw new Error('An unknown error occurred');
         }
-      );
-
-      const order = (await orderRes.json()) as OrderResponseBody;
-
-      return order;
+      }
     }),
-
+  // NOTE: Confirm Order
   confirmOrder: publicProcedure
     .input(
       z.object({
@@ -132,43 +135,65 @@ export const paymentRoute = createTRPCRouter({
     .mutation(async otps => {
       const { orderId } = otps.input;
 
-      // 1️⃣ Get Access Token
-      const access_token = await getAccessToken();
-      // will get order details
-      const orderDetailsData = await fetch(
-        `https://api-m.sandbox.paypal.com/v2/checkout/orders/${orderId}`,
-        {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-            'Content-Type': 'application/json'
+      try {
+        // 1️⃣ Get Access Token
+        const access_token = await getAccessToken();
+        // will get order details
+        const orderDetailsData = await fetch(
+          `https://api-m.sandbox.paypal.com/v2/checkout/orders/${orderId}`,
+          {
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${access_token}`,
+              'Content-Type': 'application/json'
+            }
           }
+        );
+        const orderDetails = (await orderDetailsData.json()) as {
+          id: string;
+          status: string;
+          purchase_units: {
+            reference_id: string;
+            amount: {
+              currency_code: string; // USD
+              value: string;
+            };
+            payee: {
+              email_address: string;
+              merchant_id: string;
+            };
+          }[];
+        };
+
+        // console.log('orderDetailsData-----------', orderDetails);
+
+        if (!orderDetails) {
+          return new TRPCError({
+            code: 'NOT_FOUND',
+            message: 'Order id not found'
+          });
         }
-      );
-      const orderDetails = await orderDetailsData.json();
 
-      console.log('orderDetailsData-----------', orderDetails);
+        const data = await fetch(
+          `https://api-m.sandbox.paypal.com/v2/checkout/orders/${orderId}/capture`,
+          {
+            method: 'POST',
+            headers: {
+              Authorization: `Bearer ${access_token}`,
+              'Content-Type': 'application/json'
+            }
+          }
+        );
+        const confirmData = await data.json();
+        // console.log('success data---------', confirmData);
 
-      if (!orderDetails) {
-        return new TRPCError({
-          code: 'NOT_FOUND',
-          message: 'Order id not found'
-        });
+        return confirmData;
+      } catch (error) {
+        if (error instanceof Error) {
+          throw new Error(error.message);
+        } else {
+          throw new Error('An unknown error occurred');
+        }
       }
-
-      const data = await fetch(
-        `https://api-m.sandbox.paypal.com/v2/checkout/orders/${orderId}/capture`,
-        {
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-            'Content-Type': 'application/json'
-          }
-        }
-      );
-      const confirmData = await data.json();
-      console.log('success data---------', confirmData);
-
-      return confirmData;
     })
 });

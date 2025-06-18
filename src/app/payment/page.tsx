@@ -1,16 +1,5 @@
-import { env } from '@/env';
-
-import Checkout from './checkout';
-import PaypalProvider from './provider';
+import PaymentView from '@/modules/payment/ui/views/payment-view';
 
 export default async function PaymentPage() {
-  // void trpc.payment.generateClientToken.prefetch();
-
-  const clientId = env.PAYPAL_CLIENT_ID;
-
-  return (
-    <PaypalProvider clientId={clientId}>
-      <Checkout />
-    </PaypalProvider>
-  );
+  return <PaymentView />;
 }

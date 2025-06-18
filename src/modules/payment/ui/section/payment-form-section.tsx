@@ -1,19 +1,21 @@
-'use client';
+import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
+import { OnApproveData } from '@paypal/paypal-js';
+import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 import { trpc } from '@/trpc/client';
-import type { OnApproveData } from '@paypal/paypal-js';
-import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
-import CustomCard from './custom-card copy';
-import { useId } from 'react';
 
-export default function Checkout() {
-  const key = useId();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [{ options, isPending }] = usePayPalScriptReducer();
+import CardFormSection from './card-form-section';
+
+export default function PaymentFormSection() {
+  const router = useRouter();
+
+  const [{ options, isPending: isPaypalLoading }] = usePayPalScriptReducer();
 
   const { mutate: createOrderMutate, isPending: isCreateOrderPending } =
     trpc.payment.createOrder.useMutation();
-  const { mutate: confirmOrderMutate } =
+
+  const { mutate: confirmOrderMutate, isPending: isConfirmOrderPending } =
     trpc.payment.confirmOrder.useMutation();
 
   const onCreateOrder = (): Promise<string> => {
@@ -32,6 +34,7 @@ export default function Checkout() {
             reject('Order id not found');
           },
           onError(error) {
+            // error will be handled by onError in PayPalButtons or PayPalCardFieldsProvider
             reject(error);
           }
         }
@@ -49,9 +52,13 @@ export default function Checkout() {
         {
           onSuccess: data => {
             console.log('success data----', data);
+            router.push('/payment/success');
             resolve();
           },
           onError: error => {
+            // error will be handled by onError in PayPalButtons or PayPalCardFieldsProvider
+            console.error('payment error', error);
+            // router.push('/payment/error');
             reject(error);
           }
         }
@@ -59,7 +66,7 @@ export default function Checkout() {
     });
   };
 
-  console.log('isCreateOrderPending', isCreateOrderPending);
+  if (isPaypalLoading) return <h1>Loading....</h1>;
 
   return (
     <>
@@ -68,8 +75,12 @@ export default function Checkout() {
         style={{ layout: 'vertical', label: 'donate' }}
         createOrder={onCreateOrder}
         onApprove={onApproveOrder}
-        key={key}
-        disabled={isCreateOrderPending}
+        disabled={isCreateOrderPending || isConfirmOrderPending}
+        onError={err => {
+          // global error handler for payment
+          console.error('err PayPalButtons', err);
+          toast.error('Something went wrong, try again!');
+        }}
       />
 
       <div className="my-6 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
@@ -80,10 +91,10 @@ export default function Checkout() {
         <hr className="border-dashed" />
       </div>
 
-      <CustomCard
-        createOrder={onCreateOrder}
-        onApprove={onApproveOrder}
-        isCreatingOrder={isCreateOrderPending}
+      <CardFormSection
+        isLoading={isCreateOrderPending || isConfirmOrderPending}
+        onApproveOrder={onApproveOrder}
+        onCreateOrder={onCreateOrder}
       />
     </>
   );
