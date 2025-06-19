@@ -77,6 +77,7 @@ export default function CardFormSection({
                 })}
                 placeholder="Enter amount"
                 required
+                type="number"
                 onChange={e => {
                   if (!!e.target.value) {
                     setAmount(e.target.value);
@@ -86,6 +87,13 @@ export default function CardFormSection({
                     setAmount(null);
                   }
                 }}
+                onKeyDown={e => {
+                  // Block 'e', 'E', '+', '-'
+                  if (['e', 'E', '+', '-'].includes(e.key)) {
+                    e.preventDefault();
+                  }
+                }}
+                disabled={isLoading}
               />
             </div>
             {!!amountError && (

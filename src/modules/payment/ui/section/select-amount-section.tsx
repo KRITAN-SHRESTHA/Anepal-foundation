@@ -10,8 +10,10 @@ export default function SelectAmountSection() {
   const setSelectOtherField = usePaymentAmountStore(
     state => state.setSelectOtherField
   );
+  const setAmountError = usePaymentAmountStore(state => state.setAmountError);
 
   function handleChange(val: string) {
+    setAmountError(null);
     if (val === 'custom') {
       setSelectOtherField('custom');
       setAmount(null);
