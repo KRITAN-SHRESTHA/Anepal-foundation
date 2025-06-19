@@ -15,7 +15,13 @@ export default function DonorsPartnersView() {
 
       <div className="m-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <WhoHelpUsSection />
-        <WhoWeWorkWithSection />
+      </div>
+      <div className="bg-accent">
+        <div className="m-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <WhoWeWorkWithSection />
+        </div>
+      </div>
+      <div className="m-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <ThankyouSection />
       </div>
     </div>
