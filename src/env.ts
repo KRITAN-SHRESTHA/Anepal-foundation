@@ -10,16 +10,22 @@ export const env = createEnv({
     //     : z.string().startsWith('sk_test_').min(1),
     // GOOGLE_CLIENT_ID: z.string(),
     // GOOGLE_CLIENT_SECRET: z.string()
-    PAYPAL_CLIENT_ID: z.string()
+    PAYPAL_CLIENT_ID: z.string(),
+    STRIPE_SECRET_KEY: z.string()
   },
   client: {
     NEXT_PUBLIC_APP_URL: z.string().url(),
-    NEXT_PUBLIC_PAYPAL_CLIENT_ID: z.string()
+    NEXT_PUBLIC_PAYPAL_CLIENT_ID: z.string(),
+    NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string()
   },
   runtimeEnv: {
     PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID,
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
-    NEXT_PUBLIC_PAYPAL_CLIENT_ID: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID
+    NEXT_PUBLIC_PAYPAL_CLIENT_ID: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
+    STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+    NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY:
+      process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+
     // GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
     // GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET
   }

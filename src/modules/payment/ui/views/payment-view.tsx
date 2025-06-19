@@ -8,7 +8,8 @@ import {
 import ContentTitle from '@/components/content-title';
 import { env } from '@/env';
 
-import PaymentFormSection from '../section/payment-form-section';
+// import PaymentFormSection from '../section/payment-form-section';
+import StripePaymentSection from '../section/stripe-payment-section';
 
 const initialOptions: ReactPayPalScriptOptions = {
   clientId: env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
@@ -32,7 +33,8 @@ export default function PaymentView() {
           Your generosity changes lives of other children
         </p>
 
-        <PaymentFormSection />
+        {/* <PaymentFormSection /> */}
+        <StripePaymentSection />
       </div>
     </PayPalScriptProvider>
   );
