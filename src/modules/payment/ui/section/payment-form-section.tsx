@@ -6,6 +6,7 @@ import { toast } from 'sonner';
 import { trpc } from '@/trpc/client';
 
 import CardFormSection from './card-form-section';
+import { usePaymentAmountStore } from '../store/payment-amount-store';
 
 export default function PaymentFormSection() {
   const router = useRouter();
@@ -19,10 +20,12 @@ export default function PaymentFormSection() {
     trpc.payment.confirmOrder.useMutation();
 
   const onCreateOrder = (): Promise<string> => {
+    const currentAmount = usePaymentAmountStore.getState().amount;
+
     return new Promise((resolve, reject) => {
       createOrderMutate(
         {
-          amount: '23',
+          amount: currentAmount ?? '0',
           currency_code: options.currency!
         },
         {

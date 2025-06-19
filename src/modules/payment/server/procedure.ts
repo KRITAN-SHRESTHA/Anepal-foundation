@@ -67,6 +67,8 @@ export const paymentRoute = createTRPCRouter({
     .mutation(async opts => {
       const { amount, currency_code } = opts.input;
 
+      console.log('amount', amount);
+
       // const res = await fetch('https://ipapi.co/json/');
       // const { currency } = (await res.json()) as {
       //   currency: string;

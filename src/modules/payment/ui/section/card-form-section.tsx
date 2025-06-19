@@ -12,6 +12,11 @@ import { toast } from 'sonner';
 import Loader from '@/components/loader';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+
+import SelectAmountSection from './select-amount-section';
+import { usePaymentAmountStore } from '../store/payment-amount-store';
+import { cn } from '@/lib/utils';
 
 const INVALID_COLOR = {
   color: '#dc3545'
@@ -28,8 +33,20 @@ export default function CardFormSection({
   onApproveOrder,
   onCreateOrder
 }: CardFormSectionProps) {
+  const selectOtherField = usePaymentAmountStore(
+    state => state.selectOtherField
+  );
+  const setAmount = usePaymentAmountStore(state => state.setAmount);
+  const amountError = usePaymentAmountStore(state => state.amountError);
+  const setAmountError = usePaymentAmountStore(state => state.setAmountError);
+  console.log('selectOtherField', selectOtherField);
+
   return (
     <div className="pb-15">
+      {/* amount selector */}
+      <SelectAmountSection />
+
+      {/* paypal debit/credit form */}
       <PayPalCardFieldsProvider
         createOrder={onCreateOrder}
         onApprove={onApproveOrder}
@@ -49,8 +66,37 @@ export default function CardFormSection({
           toast.error('Something went wrong, try again!');
         }}
       >
-        <Label className="gap-0.5 pl-[0.375rem]">Cardholder name</Label>
-        <PayPalNameField />
+        {selectOtherField === 'custom' && (
+          <div className="p-1.5">
+            <Label className="gap-0.5">Amount</Label>
+            <div className="py-1.5">
+              <Input
+                className={cn('input-custom-focus', {
+                  'shadow-payment-input-error! focus:shadow-payment-input-focus! border-[#d9360b]! outline-none focus:border-[#000000]! focus:outline-none! focus-visible:ring-0':
+                    !!amountError
+                })}
+                placeholder="Enter amount"
+                required
+                onChange={e => {
+                  if (!!e.target.value) {
+                    setAmount(e.target.value);
+                    setAmountError(null);
+                  } else {
+                    setAmountError('Please enter amount');
+                    setAmount(null);
+                  }
+                }}
+              />
+            </div>
+            {!!amountError && (
+              <p className="text-destructive pb-2">{amountError}</p>
+            )}
+          </div>
+        )}
+        <div>
+          <Label className="gap-0.5 pl-[0.375rem]">Cardholder name</Label>
+          <PayPalNameField />
+        </div>
 
         <div>
           <Label className="gap-0.5 pl-[0.375rem]">
@@ -82,6 +128,8 @@ export default function CardFormSection({
 
 const SubmitPayment = ({ isLoading }: { isLoading: boolean }) => {
   const { cardFieldsForm } = usePayPalCardFields();
+  const amount = usePaymentAmountStore(state => state.amount);
+  const setAmountError = usePaymentAmountStore(state => state.setAmountError);
 
   const handleClick = async () => {
     if (!cardFieldsForm) {
@@ -91,17 +139,24 @@ const SubmitPayment = ({ isLoading }: { isLoading: boolean }) => {
       throw new Error(childErrorMessage);
     }
 
+    if (!amount) {
+      setAmountError('Please enter amount');
+      return;
+    }
+    setAmountError(null);
     cardFieldsForm.submit().catch(() => {});
   };
 
   return (
-    <Button
-      variant={'outline'}
-      className="group mt-3 h-[50px] w-full bg-purple-700 text-base text-white hover:bg-purple-900 hover:text-white"
-      onClick={handleClick}
-      disabled={isLoading}
-    >
-      {isLoading ? <Loader /> : 'Donate'}
-    </Button>
+    <div className="p-1.5">
+      <Button
+        variant={'outline'}
+        className="group mt-3 h-[50px] w-full bg-purple-700 text-base text-white hover:bg-purple-900 hover:text-white"
+        onClick={handleClick}
+        disabled={isLoading}
+      >
+        {isLoading ? <Loader /> : 'Donate'}
+      </Button>
+    </div>
   );
 };
