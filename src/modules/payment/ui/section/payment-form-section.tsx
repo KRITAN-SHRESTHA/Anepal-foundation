@@ -7,22 +7,26 @@ import { trpc } from '@/trpc/client';
 
 import CardFormSection from './card-form-section';
 import { usePaymentAmountStore } from '../store/payment-amount-store';
+import PaymentSkeleton from '../components/payment-skeleton';
 
 export default function PaymentFormSection() {
   const router = useRouter();
 
   const [{ options, isPending: isPaypalLoading }] = usePayPalScriptReducer();
 
-  const { mutate: createOrderMutate, isPending: isCreateOrderPending } =
-    trpc.payment.createOrder.useMutation();
+  const { mutate: createOrderMutate } = trpc.payment.createOrder.useMutation();
 
-  const { mutate: confirmOrderMutate, isPending: isConfirmOrderPending } =
+  const { mutate: confirmOrderMutate } =
     trpc.payment.confirmOrder.useMutation();
+
+  const setIsPaying = usePaymentAmountStore(state => state.setIsPaying);
+  const isPaying = usePaymentAmountStore(state => state.isPaying);
 
   const onCreateOrder = (): Promise<string> => {
     const currentAmount = usePaymentAmountStore.getState().amount;
 
     return new Promise((resolve, reject) => {
+      setIsPaying(true);
       createOrderMutate(
         {
           amount: currentAmount ?? '0',
@@ -30,13 +34,14 @@ export default function PaymentFormSection() {
         },
         {
           onSuccess(data) {
-            console.log('data onCreateOrder', data);
+            // console.log('data onCreateOrder', data);
             if (data.id) {
               resolve(data.id);
             }
             reject('Order id not found');
           },
           onError(error) {
+            setIsPaying(false);
             // error will be handled by onError in PayPalButtons or PayPalCardFieldsProvider
             reject(error);
           }
@@ -46,7 +51,7 @@ export default function PaymentFormSection() {
   };
 
   const onApproveOrder = (data: OnApproveData): Promise<void> => {
-    console.log('onApproveOrder data ----', data);
+    // console.log('onApproveOrder data ----', data);
     return new Promise((resolve, reject) => {
       confirmOrderMutate(
         {
@@ -55,12 +60,14 @@ export default function PaymentFormSection() {
         {
           onSuccess: data => {
             console.log('success data----', data);
+            setIsPaying(false);
             router.push('/payment/success');
             resolve();
           },
           onError: error => {
             // error will be handled by onError in PayPalButtons or PayPalCardFieldsProvider
             console.error('payment error', error);
+            setIsPaying(false);
             // router.push('/payment/error');
             reject(error);
           }
@@ -69,7 +76,7 @@ export default function PaymentFormSection() {
     });
   };
 
-  if (isPaypalLoading) return <h1>Loading....</h1>;
+  if (isPaypalLoading) return <PaymentSkeleton />;
 
   return (
     <>
@@ -78,9 +85,10 @@ export default function PaymentFormSection() {
         style={{ layout: 'vertical', label: 'donate' }}
         createOrder={onCreateOrder}
         onApprove={onApproveOrder}
-        disabled={isCreateOrderPending || isConfirmOrderPending}
+        disabled={isPaying}
         onError={err => {
           // global error handler for payment
+          setIsPaying(false);
           console.error('err PayPalButtons', err);
           toast.error('Something went wrong, try again!');
         }}
@@ -95,7 +103,6 @@ export default function PaymentFormSection() {
       </div>
 
       <CardFormSection
-        isLoading={isCreateOrderPending || isConfirmOrderPending}
         onApproveOrder={onApproveOrder}
         onCreateOrder={onCreateOrder}
       />
