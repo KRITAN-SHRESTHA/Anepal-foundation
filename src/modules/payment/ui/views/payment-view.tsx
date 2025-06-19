@@ -21,7 +21,7 @@ const initialOptions: ReactPayPalScriptOptions = {
 export default function PaymentView() {
   return (
     <PayPalScriptProvider options={initialOptions}>
-      <div className="relative z-10 mx-auto max-w-[450px] pt-[40px] pb-[100px]">
+      <div className="relative z-10 mx-auto max-w-[500px] px-4 pt-[40px] pb-[100px]">
         <ContentTitle
           title={'Donate us'}
           align="center"

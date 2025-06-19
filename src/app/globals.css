@@ -47,6 +47,10 @@
   --breakpoint-laptop: 1280px;
   --breakpoint-tablet: 940px;
   --breakpoint-xs: 540px;
+
+  --shadow-payment-input-error: 0 0 0 0.0625rem #d9360b inset;
+  --shadow-payment-input-focus:
+    0 0 0 0.125rem #000000 inset, 0 0 0 0.375rem rgb(0 0 0 / 16%);
 }
 
 body {
@@ -133,11 +137,20 @@ body {
   }
 }
 
-/* @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-} */
+.input-custom-focus {
+  font-size: 15px;
+  padding: 12px 16px;
+  height: auto;
+  border: 0.0625rem solid #909697;
+  border-radius: 0.25rem;
+  width: 100%;
+  font-weight: 500;
+}
+
+.input-custom-focus:focus {
+  border: 0.0625rem solid #000000;
+  outline: none;
+  box-shadow:
+    0 0 0 0.125rem #000000 inset,
+    0 0 0 0.375rem rgb(0 0 0 / 16%);
+}
