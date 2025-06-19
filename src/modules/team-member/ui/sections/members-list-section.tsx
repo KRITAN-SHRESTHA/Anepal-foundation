@@ -1,7 +1,6 @@
-import { Dribbble, Github, Linkedin } from 'lucide-react';
-
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import ContentTitle from './content-title';
+import React from 'react';
+import TeamMemberCard from '../components/team-member-card';
+import ContentTitle from '@/components/content-title';
 
 const people = [
   {
@@ -76,21 +75,21 @@ const people = [
   }
 ];
 
-const Team2 = () => {
+export default function MembersListSection() {
   return (
-    <section className="mx-auto max-w-[1280px] px-4 py-32 sm:px-6 lg:px-8">
+    <section className="mx-auto max-w-[1280px] px-4 pt-[80px] pb-32 sm:px-6 lg:px-8">
       <div className="flex flex-col items-start text-left">
         {/* title */}
         {/* Support a Brighter Future Give Hope,
-        Change Lives Your Gift Makes a
-        Difference Empower Children in Nepal
-        Join Us in Making an Impact */}
+      Change Lives Your Gift Makes a
+      Difference Empower Children in Nepal
+      Join Us in Making an Impact */}
         {/* subtitle */}
         {/* Every donation helps transform a life.
-        Together, we can create lasting change.
-        Your generosity fuels our mission.
-        Small acts, big impact.
-        Be the reason someone smiles today. */}
+      Together, we can create lasting change.
+      Your generosity fuels our mission.
+      Small acts, big impact.
+      Be the reason someone smiles today. */}
         <ContentTitle
           title={'Support a Brighter Future'}
           subtitle={'Your generosity fuels our mission'}
@@ -103,32 +102,9 @@ const Team2 = () => {
       </div>
       <div className="mt-16 grid gap-x-12 gap-y-16 md:grid-cols-2 lg:grid-cols-4">
         {people.map(person => (
-          <div key={person.id} className="flex flex-col items-start">
-            <Avatar className="mb-4 size-20 md:mb-5 lg:size-24">
-              <AvatarImage src={person.avatar} />
-              <AvatarFallback>{person.name}</AvatarFallback>
-            </Avatar>
-            <p className="font-medium">{person.name}</p>
-            <p className="text-muted-foreground">{person.role}</p>
-            <p className="text-muted-foreground py-3 text-sm">
-              {person.description}
-            </p>
-            <div className="mt-2 flex gap-4">
-              <a href="#">
-                <Github className="text-muted-foreground size-5" />
-              </a>
-              <a href="#">
-                <Linkedin className="text-muted-foreground size-5" />
-              </a>
-              <a href="#">
-                <Dribbble className="text-muted-foreground size-5" />
-              </a>
-            </div>
-          </div>
+          <TeamMemberCard key={person.id} person={person} />
         ))}
       </div>
     </section>
   );
-};
-
-export { Team2 };
+}

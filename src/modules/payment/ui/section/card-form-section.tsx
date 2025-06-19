@@ -23,13 +23,13 @@ const INVALID_COLOR = {
 };
 
 interface CardFormSectionProps {
-  isLoading: boolean;
+  // isLoading: boolean;
   onCreateOrder: () => Promise<string>;
   onApproveOrder: (data: OnApproveData) => Promise<void>;
 }
 
 export default function CardFormSection({
-  isLoading,
+  // isLoading,
   onApproveOrder,
   onCreateOrder
 }: CardFormSectionProps) {
@@ -39,7 +39,8 @@ export default function CardFormSection({
   const setAmount = usePaymentAmountStore(state => state.setAmount);
   const amountError = usePaymentAmountStore(state => state.amountError);
   const setAmountError = usePaymentAmountStore(state => state.setAmountError);
-  console.log('selectOtherField', selectOtherField);
+  const isPaying = usePaymentAmountStore(state => state.isPaying);
+  const setIsPaying = usePaymentAmountStore(state => state.setIsPaying);
 
   return (
     <div className="pb-15">
@@ -61,6 +62,7 @@ export default function CardFormSection({
           '.invalid': { color: 'purple' }
         }}
         onError={err => {
+          setIsPaying(false);
           // global error handler for payment
           console.error('err PayPalCardFieldsProvider', err);
           toast.error('Something went wrong, try again!');
@@ -93,7 +95,7 @@ export default function CardFormSection({
                     e.preventDefault();
                   }
                 }}
-                disabled={isLoading}
+                disabled={isPaying}
               />
             </div>
             {!!amountError && (
@@ -128,16 +130,17 @@ export default function CardFormSection({
           </div>
         </div>
 
-        <SubmitPayment isLoading={isLoading} />
+        <SubmitPayment />
       </PayPalCardFieldsProvider>
     </div>
   );
 }
 
-const SubmitPayment = ({ isLoading }: { isLoading: boolean }) => {
+const SubmitPayment = () => {
   const { cardFieldsForm } = usePayPalCardFields();
   const amount = usePaymentAmountStore(state => state.amount);
   const setAmountError = usePaymentAmountStore(state => state.setAmountError);
+  const isPaying = usePaymentAmountStore(state => state.isPaying);
 
   const handleClick = async () => {
     if (!cardFieldsForm) {
@@ -161,9 +164,9 @@ const SubmitPayment = ({ isLoading }: { isLoading: boolean }) => {
         variant={'outline'}
         className="group mt-3 h-[50px] w-full bg-purple-700 text-base text-white hover:bg-purple-900 hover:text-white"
         onClick={handleClick}
-        disabled={isLoading}
+        disabled={isPaying}
       >
-        {isLoading ? <Loader /> : 'Donate'}
+        {isPaying ? <Loader /> : 'Donate'}
       </Button>
     </div>
   );

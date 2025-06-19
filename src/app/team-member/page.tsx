@@ -1,14 +1,5 @@
-import HeroSection from '@/components/hero-section';
-import React from 'react';
+import TeamMemberView from '@/modules/team-member/ui/views/team-member-view';
 
 export default function TeamMemberPage() {
-  return (
-    <div>
-      <HeroSection
-        image={'/assets/main-slider/24.jpg'}
-        boldTitle="Team"
-        normalTitle="Member"
-      />
-    </div>
-  );
+  return <TeamMemberView />;
 }

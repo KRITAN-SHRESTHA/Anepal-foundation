@@ -167,6 +167,8 @@ export const paymentRoute = createTRPCRouter({
           }[];
         };
 
+        // TODO: add email -> send email to an user who have donated money
+
         // console.log('orderDetailsData-----------', orderDetails);
 
         if (!orderDetails) {
