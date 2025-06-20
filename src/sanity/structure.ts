@@ -26,6 +26,11 @@ export const structure: StructureResolver = S =>
               S.documentTypeListItem('home-content').title('Home Content')
             ])
         ),
+      S.documentTypeListItem('events'),
+      // S.listItem()
+      //   .title('Post')
+      //   .icon(SettingsIcon)
+      //   .child(S.document().schemaType('post').documentId('post')),
       S.divider(),
 
       S.listItem()

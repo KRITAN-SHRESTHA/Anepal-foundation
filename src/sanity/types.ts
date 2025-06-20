@@ -13,6 +13,88 @@
  */
 
 // Source: schema.json
+export type BlockContent = Array<
+  | {
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: 'span';
+        _key: string;
+      }>;
+      style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'blockquote';
+      listItem?: 'bullet' | 'number' | 'checkmarks';
+      markDefs?: Array<{
+        href?: string;
+        _type: 'link';
+        _key: string;
+      }>;
+      level?: number;
+      _type: 'block';
+      _key: string;
+    }
+  | {
+      asset?: {
+        _ref: string;
+        _type: 'reference';
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: 'image';
+      _key: string;
+    }
+>;
+
+export type Events = {
+  _id: string;
+  _type: 'events';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  slug?: Slug;
+  short_description?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayTextValue
+  >;
+  mainImage?: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: 'image';
+  };
+  organizer_info?: {
+    phone?: number;
+    email?: string;
+  };
+  venue?: {
+    location?: string;
+  };
+  event_time?: {
+    start?: string;
+    end?: string;
+  };
+  body?: {
+    body_en?: BlockContent;
+    body_es?: BlockContent;
+  };
+};
+
 export type WhatMakesUsUnique = {
   _id: string;
   _type: 'what-makes-us-unique';
@@ -338,6 +420,8 @@ export type SanityAssetSourceData = {
 };
 
 export type AllSanitySchemaTypes =
+  | BlockContent
+  | Events
   | WhatMakesUsUnique
   | AboutAnepal
   | HomeContent
