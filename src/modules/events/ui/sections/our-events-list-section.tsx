@@ -31,7 +31,7 @@ function OurEventsListSectionSuspense() {
   const { getLocalizedString } = useGetLocale();
 
   const [data] = trpc.events.getAllEvents.useSuspenseQuery({
-    page: Number(page)
+    page: page ? Number(page) : 1
   });
   console.log('data', data);
 
