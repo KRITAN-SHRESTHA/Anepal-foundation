@@ -6,6 +6,8 @@ import { settingsType } from './settingsType';
 import { aboutAnepalType } from './homepage/about-anepal-type';
 import { homeContentType } from './homepage/homeContentType';
 import { whatmakesUsUniqueType } from './homepage/what-makes-us-unique';
+import { eventsType } from './eventsType';
+import { blockContentType } from './blockContentType';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -14,6 +16,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     settingsType,
     homeContentType,
     aboutAnepalType,
-    whatmakesUsUniqueType
+    whatmakesUsUniqueType,
+    eventsType,
+    blockContentType
   ]
 };

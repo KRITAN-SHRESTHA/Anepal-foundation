@@ -25,13 +25,18 @@ export const blockContentType = defineType({
       // use your content.
       styles: [
         { title: 'Normal', value: 'normal' },
+        { title: 'Paragraph', value: 'p' },
         { title: 'H1', value: 'h1' },
         { title: 'H2', value: 'h2' },
         { title: 'H3', value: 'h3' },
         { title: 'H4', value: 'h4' },
         { title: 'Quote', value: 'blockquote' }
       ],
-      lists: [{ title: 'Bullet', value: 'bullet' }],
+      lists: [
+        { title: 'Bullet', value: 'bullet' },
+        { title: 'number', value: 'number' },
+        { title: 'checkmarks', value: 'checkmarks' }
+      ],
       // Marks let you mark up inline text in the Portable Text Editor
       marks: {
         // Decorators usually describe a single property – e.g. a typographic
@@ -68,7 +73,7 @@ export const blockContentType = defineType({
         {
           name: 'alt',
           type: 'string',
-          title: 'Alternative Text'
+          title: 'Alternative Text (about image)'
         }
       ]
     })
