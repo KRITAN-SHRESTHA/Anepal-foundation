@@ -21,7 +21,7 @@ export type BlockContent = Array<
         _type: 'span';
         _key: string;
       }>;
-      style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'blockquote';
+      style?: 'normal' | 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'blockquote';
       listItem?: 'bullet' | 'number' | 'checkmarks';
       markDefs?: Array<{
         href?: string;

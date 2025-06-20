@@ -10,12 +10,13 @@ export const eventsRouter = createTRPCRouter({
   getAllEvents: publicProcedure
     .input(
       z.object({
-        page: z.number().min(1).default(1),
+        page: z.number(),
         pageSize: z.number().min(1).max(40).default(2)
       })
     )
     .query(async ({ input }) => {
       const { page, pageSize } = input;
+      console.log('page--------', page);
       const start = (page - 1) * pageSize;
       const end = start + pageSize;
 

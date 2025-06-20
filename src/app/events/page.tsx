@@ -5,17 +5,17 @@ import { HydrateClient, trpc } from '@/trpc/server';
 
 interface OurEventsPageParams {
   searchParams: Promise<{
-    page: string;
+    page?: string;
   }>;
 }
 
 export default async function OurEventsPage({
   searchParams
 }: OurEventsPageParams) {
-  const page = (await searchParams).page ?? 1;
-
+  const page = (await searchParams).page;
+  console.log('page', page);
   void trpc.events.getAllEvents.prefetch({
-    page: Number(page)
+    page: page ? Number(page) : 1
   });
 
   return (
