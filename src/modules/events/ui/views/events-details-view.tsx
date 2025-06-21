@@ -28,13 +28,13 @@ function EventsDetailsViewSuspense() {
 
   return (
     <div className="m-auto max-w-5xl px-4 pt-[50px] pb-32 sm:px-6 lg:px-8">
-      {locale === 'en' && data.body?.body_en && (
+      {locale === 'en' && data?.body?.body_en && (
         <PortableText
           value={data?.body?.body_en}
           components={textEditorComponentsConfig}
         />
       )}
-      {locale === 'es' && data.body?.body_es && (
+      {locale === 'es' && data?.body?.body_es && (
         <PortableText
           value={data.body?.body_es}
           components={textEditorComponentsConfig}

@@ -3,6 +3,11 @@ import { Events } from '@/sanity/types';
 import { createTRPCRouter, publicProcedure } from '@/trpc/init';
 import { z } from 'zod';
 
+const EVENT_COUNT_QUERY = 'count(*[_type == "events"])';
+const EVENT_LIST_WITH_PAGINATION = `*[
+            _type == "events"
+          ] | order(_createdAt desc)[$start...$end]`;
+
 // will revalidate after every 30 seconds
 const options = { next: { revalidate: 30 } };
 
@@ -11,22 +16,38 @@ export const eventsRouter = createTRPCRouter({
     .input(
       z.object({
         page: z.number(),
-        pageSize: z.number().min(1).max(40).default(2)
+        pageSize: z.number().min(1).max(40).default(10)
       })
     )
     .query(async ({ input }) => {
       const { page, pageSize } = input;
-      console.log('page--------', page);
       const start = (page - 1) * pageSize;
       const end = start + pageSize;
 
-      return await client.fetch<Events[]>(
-        `*[
-            _type == "events"
-          ]|order(_createdAt desc)[$start...$end]`,
-        { start, end },
-        options
-      );
+      const [totalCount, events] = await Promise.all([
+        client.fetch(EVENT_COUNT_QUERY),
+        client.fetch<Events[]>(
+          EVENT_LIST_WITH_PAGINATION,
+          { start, end },
+          options
+        )
+      ]);
+      const totalPages = Math.ceil(totalCount / pageSize);
+      return {
+        events,
+        pagination: {
+          total: totalCount,
+          totalPages,
+          page,
+          pageSize
+        }
+      };
+
+      // return await client.fetch<Events[]>(
+      //   EVENT_LIST_WITH_PAGINATION,
+      //   { start, end },
+      //   options
+      // );
     }),
   getOneEvent: publicProcedure
     .input(
