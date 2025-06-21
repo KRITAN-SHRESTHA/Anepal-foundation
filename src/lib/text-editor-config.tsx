@@ -65,8 +65,9 @@ export const textEditorComponentsConfig: PortableTextComponents = {
       <p className="text-muted-foreground my-3 text-base">{children}</p>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="border-s-4 border-gray-300 bg-gray-50 p-4 dark:border-gray-500 dark:bg-gray-800">
-        {children}
+      <blockquote className="border-s-4 border-gray-300 bg-gray-50 p-4 font-medium italic dark:border-gray-500 dark:bg-gray-800">
+        &ldquo;
+        {children}&rdquo;
       </blockquote>
     )
   },
