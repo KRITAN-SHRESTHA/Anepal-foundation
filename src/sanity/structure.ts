@@ -1,3 +1,4 @@
+import { InfoOutlineIcon } from '@sanity/icons';
 import { InfoIcon, SettingsIcon } from 'lucide-react';
 import type { StructureResolver } from 'sanity/structure';
 
@@ -27,10 +28,11 @@ export const structure: StructureResolver = S =>
             ])
         ),
       S.documentTypeListItem('events'),
-      // S.listItem()
-      //   .title('Post')
-      //   .icon(SettingsIcon)
-      //   .child(S.document().schemaType('post').documentId('post')),
+      S.listItem()
+        .title('aboutus')
+        .icon(InfoOutlineIcon)
+        .child(S.document().schemaType('aboutus').documentId('aboutus')),
+
       S.divider(),
 
       S.listItem()

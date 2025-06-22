@@ -17,7 +17,7 @@ interface CountryToTimezoneMap {
 
 export function formatDateByCountry(
   isoDate: string | number | Date,
-  countryCode: keyof CountryToTimezoneMap = 'NP'
+  countryCode: keyof CountryToTimezoneMap = 'ES'
 ): string {
   const timeZone =
     (countryToTimezone as CountryToTimezoneMap)[countryCode] || 'UTC'; // fallback to UTC
@@ -25,5 +25,13 @@ export function formatDateByCountry(
   const zonedDate = toZonedTime(date, timeZone);
 
   const formatted = format(zonedDate, 'd MMMM, h a');
-  return formatted.replace('AM', 'a.m.').replace('PM', 'p.m.');
+  // return formatted.replace('AM', 'A.M.').replace('PM', 'P.M.');
+  return formatted;
+}
+
+// 15 Feb 2024
+// Jan 30, 2020
+
+export function formatMDY(date: string | number | Date) {
+  return format(new Date(date), 'MMM d, h a');
 }

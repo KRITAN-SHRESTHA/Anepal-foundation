@@ -8,7 +8,8 @@ export default async function Home() {
     trpc.home.getBanner.prefetch(),
     trpc.home.getAboutUs.prefetch(),
     trpc.home.getWhatMakesUsUnique.prefetch(),
-    trpc.settings.getSettings.prefetch()
+    trpc.settings.getSettings.prefetch(),
+    trpc.events.getFeaturedEvents.prefetch()
   ]);
 
   return (

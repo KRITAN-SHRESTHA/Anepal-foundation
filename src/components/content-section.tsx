@@ -22,9 +22,10 @@ interface ContentSectionProps
   orientation?: 'ltr' | 'rtl';
   title: InternalizedArrayStringValueType;
   subtitle?: InternalizedArrayStringValueType;
-  description: InternalizedArrayTextValueType;
+  description?: InternalizedArrayTextValueType;
   readmoreLink?: string;
   titleClassname?: string;
+  imageAlt?: string;
 }
 
 export default function ContentSection({
@@ -35,7 +36,8 @@ export default function ContentSection({
   title,
   readmoreLink,
   titleClassname,
-  className
+  className,
+  imageAlt
 }: ContentSectionProps) {
   const { getLocalizedString } = useGetLocale();
 
@@ -69,7 +71,7 @@ export default function ContentSection({
             <Image
               className="laptop:p-[80px] tablet:p-[60px] xs:p-[60px] h-full w-full object-cover p-[40px] sm:p-[80px]"
               src={urlFor(image).quality(100).url()}
-              alt={convertedSubtitle ?? ''}
+              alt={imageAlt ?? ''}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
@@ -77,7 +79,7 @@ export default function ContentSection({
             <Image
               className="laptop:p-[80px] tablet:p-[60px] xs:p-[60px] h-full w-full object-cover p-[40px] sm:p-[80px]"
               src={'/assets/our_story/dharmajit_budha.jpg'}
-              alt={convertedSubtitle ?? ''}
+              alt={imageAlt ?? ''}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />

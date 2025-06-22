@@ -1,7 +1,9 @@
 'use client';
 
-import PaginationComponent from '@/components/pagination-component';
 import React, { Suspense } from 'react';
+
+import PaginationComponent from '@/components/pagination-component';
+
 import useGetAllEvents from '../hooks/use-get-all-events';
 
 export default function EventsPagination() {

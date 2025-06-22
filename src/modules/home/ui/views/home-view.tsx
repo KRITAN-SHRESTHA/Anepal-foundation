@@ -1,6 +1,6 @@
 import AboutUsSection from '../sections/about-us-section';
 import BannerSection from '../sections/banner-section';
-import BlogSection from '../sections/blog-section';
+// import BlogSection from '../sections/blog-section';
 import EventsSection from '../sections/events-section';
 import GallerySection from '../sections/gallery-section';
 import HelpSection from '../sections/help-section';
@@ -24,7 +24,7 @@ export default function HomeView() {
       <WorkHistorySection />
       <EventsSection />
       <TestimonialsSection />
-      <BlogSection />
+      {/* <BlogSection /> */}
       {/* <VolunteerSection /> */}
       <PartnersSection />
       <GallerySection />

@@ -9,7 +9,7 @@ const EVENT_LIST_WITH_PAGINATION = `*[
           ] | order(_createdAt desc)[$start...$end]`;
 
 // will revalidate after every 30 seconds
-const options = { next: { revalidate: 30 } };
+const options = { next: { revalidate: 0 } };
 
 export const eventsRouter = createTRPCRouter({
   getAllEvents: publicProcedure
@@ -42,12 +42,6 @@ export const eventsRouter = createTRPCRouter({
           pageSize
         }
       };
-
-      // return await client.fetch<Events[]>(
-      //   EVENT_LIST_WITH_PAGINATION,
-      //   { start, end },
-      //   options
-      // );
     }),
   getOneEvent: publicProcedure
     .input(
@@ -63,5 +57,12 @@ export const eventsRouter = createTRPCRouter({
         { slug },
         options
       );
-    })
+    }),
+  getFeaturedEvents: publicProcedure.query(async () => {
+    return await client.fetch<Events[]>(
+      `*[_type == "events" && event_time.start >= now()] | order(event_time.start asc)[0...3]`,
+      {},
+      options
+    );
+  })
 });

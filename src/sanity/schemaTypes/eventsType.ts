@@ -41,6 +41,11 @@ export const eventsType = defineType({
       }
     }),
     defineField({
+      name: 'featured',
+      type: 'boolean',
+      description: 'Enable this to display the events on the homepage'
+    }),
+    defineField({
       name: 'short_description',
       type: 'internationalizedArrayText',
       validation: rule =>
@@ -51,6 +56,7 @@ export const eventsType = defineType({
           );
         })
     }),
+
     defineField({
       name: 'mainImage',
       type: 'image',
@@ -61,7 +67,8 @@ export const eventsType = defineType({
         defineField({
           name: 'alt',
           type: 'string',
-          title: 'Alternative Text (about image)'
+          title: 'Alternative Text (about image)',
+          validation: rule => rule.required().error('Image alt is required')
         })
       ]
     }),

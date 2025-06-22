@@ -1,5 +1,11 @@
 import AboutView from '@/modules/about/ui/views/about-view';
+import { HydrateClient, trpc } from '@/trpc/server';
 
-export default function AboutUsPage() {
-  return <AboutView />;
+export default async function AboutUsPage() {
+  void trpc.aboutus.getAboutUs.prefetch();
+  return (
+    <HydrateClient>
+      <AboutView />
+    </HydrateClient>
+  );
 }
