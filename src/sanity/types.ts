@@ -13,51 +13,9 @@
  */
 
 // Source: schema.json
-export type Member = {
+export type About_team_members = {
   _id: string;
-  _type: 'member';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  image?: {
-    asset?: {
-      _ref: string;
-      _type: 'reference';
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: 'image';
-  };
-  name?: string;
-  role?: {
-    _ref: string;
-    _type: 'reference';
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: 'memberRole';
-  };
-  socialMedia?: {
-    facebook?: string;
-    instagram?: string;
-    twitter?: string;
-  };
-};
-
-export type MemberRole = {
-  _id: string;
-  _type: 'memberRole';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: string;
-};
-
-export type Teammembers = {
-  _id: string;
-  _type: 'teammembers';
+  _type: 'about_team_members';
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
@@ -79,8 +37,55 @@ export type Teammembers = {
     _type: 'reference';
     _weak?: boolean;
     _key: string;
-    [internalGroqTypeReferenceTo]?: 'member';
+    [internalGroqTypeReferenceTo]?: 'team_members';
   }>;
+};
+
+export type Team_members = {
+  _id: string;
+  _type: 'team_members';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: 'image';
+  };
+  name?: string;
+  short_intro?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayTextValue
+  >;
+  role?: {
+    _ref: string;
+    _type: 'reference';
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: 'team_member_roles';
+  };
+  socialMedia?: {
+    facebook?: string;
+    instagram?: string;
+    twitter?: string;
+  };
+};
+
+export type Team_member_roles = {
+  _id: string;
+  _type: 'team_member_roles';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
 };
 
 export type Aboutus = {
@@ -563,9 +568,9 @@ export type SanityAssetSourceData = {
 };
 
 export type AllSanitySchemaTypes =
-  | Member
-  | MemberRole
-  | Teammembers
+  | About_team_members
+  | Team_members
+  | Team_member_roles
   | Aboutus
   | BlockContent
   | Events

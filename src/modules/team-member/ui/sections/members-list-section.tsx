@@ -1,81 +1,14 @@
-import React from 'react';
-import TeamMemberCard from '../components/team-member-card';
+'use client';
+
+import { trpc } from '@/trpc/client';
+
 import ContentTitle from '@/components/content-title';
 
-const people = [
-  {
-    id: 'person-1',
-    name: 'Name',
-    role: 'Role',
-    description:
-      'Elig doloremque mollitia fugiat omnis! Porro facilis quo animi consequatur. Explicabo.',
-    avatar:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-1.webp'
-  },
-  {
-    id: 'person-2',
-    name: 'Name',
-    role: 'Role',
-    description: 'Elig doloremque mollitia fugiat omnis!',
-    avatar:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-2.webp'
-  },
-  {
-    id: 'person-3',
-    name: 'Name',
-    role: 'Role',
-    description:
-      'Elig doloremque mollitia fugiat omnis! Porro facilis quo animi consequatur. Explicabo.',
-    avatar:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-3.webp'
-  },
-  {
-    id: 'person-4',
-    name: 'Name',
-    role: 'Role',
-    description: 'Elig doloremque mollitia fugiat omnis!',
-    avatar:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-4.webp'
-  },
-  {
-    id: 'person-5',
-    name: 'Name',
-    role: 'Role',
-    description:
-      'Elig doloremque mollitia fugiat omnis! Porro facilis quo animi consequatur. Explicabo.',
-    avatar:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-5.webp'
-  },
-  {
-    id: 'person-6',
-    name: 'Name',
-    role: 'Role',
-    description:
-      'Elig doloremque mollitia fugiat omnis! Porro facilis quo animi consequatur. Explicabo.',
-    avatar:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-6.webp'
-  },
-  {
-    id: 'person-7',
-    name: 'Name',
-    role: 'Role',
-    description:
-      'Elig doloremque mollitia fugiat omnis! Porro facilis quo animi consequatur. Explicabo.',
-    avatar:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-7.webp'
-  },
-  {
-    id: 'person-8',
-    name: 'Name',
-    role: 'Role',
-    description:
-      'Elig doloremque mollitia fugiat omnis! Porro facilis quo animi consequatur. Explicabo.',
-    avatar:
-      'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-8.webp'
-  }
-];
+import TeamMemberCard from '../components/team-member-card';
 
 export default function MembersListSection() {
+  const [teamaMembers] = trpc.teamMember.getAboutTeamMembers.useSuspenseQuery();
+
   return (
     <section className="mx-auto max-w-[1280px] px-4 pt-[80px] pb-32 sm:px-6 lg:px-8">
       <div className="flex flex-col items-start text-left">
@@ -101,8 +34,8 @@ export default function MembersListSection() {
         </p>
       </div>
       <div className="mt-16 grid gap-x-12 gap-y-16 md:grid-cols-2 lg:grid-cols-4">
-        {people.map(person => (
-          <TeamMemberCard key={person.id} person={person} />
+        {teamaMembers.membersList?.map(member => (
+          <TeamMemberCard key={member._id} {...member} />
         ))}
       </div>
     </section>

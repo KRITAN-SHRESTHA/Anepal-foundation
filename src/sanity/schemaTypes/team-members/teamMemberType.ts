@@ -1,3 +1,4 @@
+import { validationLang } from '@/sanity/lib/validation-lang';
 import { defineField, defineType } from 'sanity';
 
 export const teamMemberType = defineType({
@@ -25,6 +26,19 @@ export const teamMemberType = defineType({
       title: 'Name',
       type: 'string',
       validation: rule => rule.required().error('Name is required')
+    }),
+    defineField({
+      name: 'short_intro',
+      title: 'Short Intruction',
+      description: 'Write 10-15 characters',
+      type: 'internationalizedArrayText',
+      validation: rule =>
+        rule.custom<{ value: string; _type: string; _key: string }[]>(value => {
+          return validationLang(
+            value,
+            'Please add short description of a member'
+          );
+        })
     }),
     defineField({
       name: 'role',

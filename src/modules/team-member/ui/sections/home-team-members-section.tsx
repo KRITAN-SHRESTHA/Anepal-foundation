@@ -1,39 +1,29 @@
+'use client';
+
 import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';
+import { Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 
+import ContentTitle from '@/components/content-title';
 import TeamMemberCard from '@/components/team-member-card';
 import { Button } from '@/components/ui/button';
-import ContentTitle from '@/components/content-title';
+import { trpc } from '@/trpc/client';
 
-const teamMembers = [
-  {
-    name: 'Cristina Marti Roca',
-    title: 'Founder',
-    imageUrl: '/assets/team/founder.jpg'
-  },
-  {
-    name: 'Monica Marti',
-    title: 'Member',
-    imageUrl: '/assets/team/member1.jpg'
-  },
-  {
-    name: 'Mercedes Bertomeu Ferrate',
-    title: 'Member',
-    imageUrl: '/assets/team/member.jpg'
-  },
-  {
-    name: 'Max Casas',
-    title: 'Member',
-    imageUrl: '/assets/team/max.jpg'
-  },
-  {
-    name: 'Anju Solas',
-    title: 'Member',
-    imageUrl: '/assets/team/anju.jpg'
-  }
-];
+export default function HomeTeamMembersSection() {
+  return (
+    <ErrorBoundary fallback="Something went wrong">
+      <Suspense fallback="Loading....">
+        <HomeTeamMembersSectionSuspense />
+      </Suspense>
+    </ErrorBoundary>
+  );
+}
 
-export default function TeamSection() {
+function HomeTeamMembersSectionSuspense() {
+  const [aboutTeamMembers] =
+    trpc.teamMember.getAboutTeamMembers.useSuspenseQuery();
+
   return (
     <div className="flex flex-col items-center justify-center px-4 py-8 sm:px-6 md:py-12 lg:px-8">
       <div className="mx-auto max-w-[1000px] text-center">
@@ -60,17 +50,12 @@ export default function TeamSection() {
           </Link>
         </Button>
       </div>
-      <div className="mx-auto mt-10 flex max-w-screen-sm flex-col gap-5 gap-y-10 md:mt-20">
-        {/* Top row - 3 members */}
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
-          {teamMembers.slice(0, 3).map(member => (
-            <TeamMemberCard key={member.name} {...member} />
-          ))}
-        </div>
-        {/* Bottom row - 2 members */}
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:px-24">
-          {teamMembers.slice(3, 5).map(member => (
-            <TeamMemberCard key={member.name} {...member} />
+      <div className="mx-auto mt-10 flex max-w-3xl flex-col gap-5 gap-y-10 md:mt-20">
+        <div className="flex flex-wrap justify-center gap-7">
+          {aboutTeamMembers?.membersList?.map(member => (
+            <div key={member._id} className="w-full max-w-[200px] grow">
+              <TeamMemberCard key={member._id} {...member} />
+            </div>
           ))}
         </div>
       </div>

@@ -1,15 +1,15 @@
 'use client';
 
+import { ErrorBoundary } from 'react-error-boundary';
+import { Suspense } from 'react';
+
 import ContentSection from '@/components/content-section';
 import HeroSection from '@/components/hero-section';
 import PartnersSection from '@/modules/home/ui/sections/partners-sections';
 import WhoDoWeHelpSection from '@/modules/home/ui/sections/who-do-we-help-section';
-
-import TeamSection from '../sections/team-section';
-import { ErrorBoundary } from 'react-error-boundary';
-import { Suspense } from 'react';
 import { trpc } from '@/trpc/client';
-import { urlFor } from '@/sanity/lib/image';
+
+import AboutUsTeamSection from '../sections/about-us-team-section';
 
 export default function AboutView() {
   return (
@@ -28,11 +28,7 @@ function AboutViewSuspense() {
     <>
       {data.heroimage && (
         <HeroSection
-          image={urlFor(data.heroimage)
-            .auto('format')
-            .width(Math.min(2048, window.innerWidth))
-            .quality(100)
-            .url()}
+          image={data.heroimage}
           alt={data.heroimage?.alt ?? ''}
           boldTitle="About"
           normalTitle="Organization"
@@ -55,7 +51,7 @@ function AboutViewSuspense() {
         imageAlt={data.secondcontent?.image?.alt}
       />
       <WhoDoWeHelpSection />
-      <TeamSection />
+      <AboutUsTeamSection />
       {/* <Separator /> */}
       <PartnersSection className="bg-transparent pb-[100px]" />
     </>

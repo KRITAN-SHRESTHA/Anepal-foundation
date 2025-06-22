@@ -1,8 +1,9 @@
-import Image from 'next/image';
 import React from 'react';
+import CustomImage from './custom-image';
+import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 interface HeroSectionProps {
-  image: string;
+  image: SanityImageSource;
   boldTitle: string;
   normalTitle: string;
   alt: string;
@@ -17,13 +18,13 @@ export default function HeroSection({
   return (
     <div className="font-permanentMaker relative h-[50vh] w-full md:h-[60vh] lg:h-[70vh]">
       {image && (
-        <Image
+        <CustomImage
           src={image}
           alt={alt}
           fill
           priority
           className="object-cover"
-          sizes="100vw"
+          sizes="(max-width: 780px) 60vw, (min-width: 1024px) 100vw, 1440px"
           quality={100}
         />
       )}
