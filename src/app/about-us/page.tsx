@@ -2,7 +2,10 @@ import AboutView from '@/modules/about/ui/views/about-view';
 import { HydrateClient, trpc } from '@/trpc/server';
 
 export default async function AboutUsPage() {
-  void trpc.aboutus.getAboutUs.prefetch();
+  await Promise.all([
+    trpc.aboutus.getAboutUs.prefetch(),
+    trpc.settings.getSettings.prefetch()
+  ]);
   return (
     <HydrateClient>
       <AboutView />

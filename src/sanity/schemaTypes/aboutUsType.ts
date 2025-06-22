@@ -131,7 +131,7 @@ export const aboutUsType = defineType({
   preview: {
     prepare() {
       return {
-        title: 'Site Settings'
+        title: 'About us'
       };
     }
   }

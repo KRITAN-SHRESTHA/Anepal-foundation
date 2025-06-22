@@ -12,12 +12,15 @@ import { formatDateByCountry } from '@/lib/date-format';
 
 import EventsListSkeleton from '../components/events-list-skeleton';
 import useGetAllEvents from '../hooks/use-get-all-events';
+import { ErrorBoundary } from 'react-error-boundary';
 
 export default function OurEventsListSection() {
   return (
-    <Suspense fallback={<EventsListSkeleton />}>
-      <OurEventsListSectionSuspense />
-    </Suspense>
+    <ErrorBoundary fallback={<div>Something went wrong</div>}>
+      <Suspense fallback={<EventsListSkeleton />}>
+        <OurEventsListSectionSuspense />
+      </Suspense>
+    </ErrorBoundary>
   );
 }
 
