@@ -8,6 +8,10 @@ import { homeContentType } from './homepage/homeContentType';
 import { whatmakesUsUniqueType } from './homepage/what-makes-us-unique';
 import { eventsType } from './eventsType';
 import { blockContentType } from './blockContentType';
+import { aboutUsType } from './aboutUsType';
+import { teamMemberType } from './team-members/teamMemberType';
+import { teamMemberRolesType } from './team-members/teamMemberRoleType';
+import { aboutTeamMembersType } from './team-members/aboutTeamMembersType';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -18,6 +22,10 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     aboutAnepalType,
     whatmakesUsUniqueType,
     eventsType,
-    blockContentType
+    blockContentType,
+    aboutUsType,
+    teamMemberType,
+    teamMemberRolesType,
+    aboutTeamMembersType
   ]
 };

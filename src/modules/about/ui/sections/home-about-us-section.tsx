@@ -3,8 +3,8 @@
 import { trpc } from '@/trpc/client';
 import ContentSection from '@/components/content-section';
 
-export default function AboutUsSection() {
-  const [data] = trpc.home.getAboutUs.useSuspenseQuery();
+export default function HomeAboutUsSection() {
+  const [data] = trpc.aboutus.getHomeAboutUs.useSuspenseQuery();
 
   return (
     <ContentSection
@@ -13,6 +13,7 @@ export default function AboutUsSection() {
       subtitle={data?.subtitle}
       description={data?.description}
       readmoreLink="/about-us"
+      imageAlt={data.image?.alt}
     />
   );
 }

@@ -1,38 +1,45 @@
+import { urlFor } from '@/sanity/lib/image';
+import Link from 'next/link';
+import { Facebook, Instagram, Twitter } from 'lucide-react';
+
+import useGetLocale from '@/hooks/use-get-locale';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { GithubIcon, LinkedinIcon } from '@sanity/icons';
-import { Dribbble } from 'lucide-react';
-import React from 'react';
+import { PopulatedTeamMember } from '@/types/team-member-types';
 
-interface TeamMemberCardProps {
-  person: {
-    id: string;
-    name: string;
-    role: string;
-    description: string;
-    avatar: string;
-  };
-}
-
-export default function TeamMemberCard({ person }: TeamMemberCardProps) {
+export default function TeamMemberCard(member: PopulatedTeamMember) {
+  const { getLocalizedString } = useGetLocale();
   return (
-    <div key={person.id} className="flex flex-col items-start">
+    <div key={member._id} className="flex flex-col items-start">
       <Avatar className="mb-4 size-20 md:mb-5 lg:size-24">
-        <AvatarImage src={person.avatar} />
-        <AvatarFallback>{person.name}</AvatarFallback>
+        {member.image && (
+          <AvatarImage
+            src={urlFor(member.image).quality(100).url()}
+            className="object-cover"
+          />
+        )}
+        <AvatarFallback>{member.name}</AvatarFallback>
       </Avatar>
-      <p className="font-medium">{person.name}</p>
-      <p className="text-muted-foreground">{person.role}</p>
-      <p className="text-muted-foreground py-3 text-sm">{person.description}</p>
+      <p className="font-medium">{member.name}</p>
+      <p className="text-muted-foreground">{member.role?.name}</p>
+      <p className="text-muted-foreground py-3 text-sm">
+        {getLocalizedString(member.short_intro ?? [])}
+      </p>
       <div className="mt-2 flex gap-4">
-        <a href="#">
-          <GithubIcon className="text-muted-foreground size-5" />
-        </a>
-        <a href="#">
-          <LinkedinIcon className="text-muted-foreground size-5" />
-        </a>
-        <a href="#">
-          <Dribbble className="text-muted-foreground size-5" />
-        </a>
+        {member.socialMedia?.facebook && (
+          <Link href={member.socialMedia?.facebook} target="_blank">
+            <Facebook className="stroke-muted-foreground h-5 w-5" />
+          </Link>
+        )}
+        {member.socialMedia?.twitter && (
+          <Link href={member.socialMedia?.twitter} target="_blank">
+            <Twitter className="stroke-muted-foreground h-5 w-5" />
+          </Link>
+        )}
+        {member.socialMedia?.instagram && (
+          <Link href={member.socialMedia?.instagram} target="_blank">
+            <Instagram className="stroke-muted-foreground h-5 w-5" />
+          </Link>
+        )}
       </div>
     </div>
   );

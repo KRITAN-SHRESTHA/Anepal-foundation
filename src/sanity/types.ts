@@ -13,6 +13,152 @@
  */
 
 // Source: schema.json
+export type About_team_members = {
+  _id: string;
+  _type: 'about_team_members';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  heroimage?: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: 'image';
+  };
+  membersList?: Array<{
+    _ref: string;
+    _type: 'reference';
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: 'team_members';
+  }>;
+};
+
+export type Team_members = {
+  _id: string;
+  _type: 'team_members';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: 'image';
+  };
+  name?: string;
+  short_intro?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayTextValue
+  >;
+  role?: {
+    _ref: string;
+    _type: 'reference';
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: 'team_member_roles';
+  };
+  socialMedia?: {
+    facebook?: string;
+    instagram?: string;
+    twitter?: string;
+  };
+};
+
+export type Team_member_roles = {
+  _id: string;
+  _type: 'team_member_roles';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+};
+
+export type Aboutus = {
+  _id: string;
+  _type: 'aboutus';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  heroimage?: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: 'image';
+  };
+  firstcontent?: {
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: 'reference';
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: 'image';
+    };
+    title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    description?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayTextValue
+    >;
+  };
+  secondcontent?: {
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: 'reference';
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: 'image';
+    };
+    title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    description?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayTextValue
+    >;
+  };
+};
+
 export type BlockContent = Array<
   | {
       children?: Array<{
@@ -60,6 +206,7 @@ export type Events = {
     } & InternationalizedArrayStringValue
   >;
   slug?: Slug;
+  featured?: boolean;
   short_description?: Array<
     {
       _key: string;
@@ -156,6 +303,7 @@ export type AboutAnepal = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
+    alt?: string;
     _type: 'image';
   };
 };
@@ -420,6 +568,10 @@ export type SanityAssetSourceData = {
 };
 
 export type AllSanitySchemaTypes =
+  | About_team_members
+  | Team_members
+  | Team_member_roles
+  | Aboutus
   | BlockContent
   | Events
   | WhatMakesUsUnique

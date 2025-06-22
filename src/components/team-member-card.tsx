@@ -1,33 +1,38 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { Facebook, Instagram, Twitter } from 'lucide-react';
 
-export default function TeamMemberCard(member: {
-  name: string;
-  title: string;
-  imageUrl: string;
-}) {
+import { PopulatedTeamMember } from '@/types/team-member-types';
+
+import CustomImage from './custom-image';
+
+export default function TeamMemberCard(member: PopulatedTeamMember) {
   return (
-    <div key={member.name} className="text-center">
-      <Image
-        src={member.imageUrl}
-        alt={member.name}
+    <div className="text-center">
+      <CustomImage
+        src={member.image}
+        alt={member.name ?? ''}
         className="bg-secondary mx-auto h-20 w-20 rounded-full object-cover"
         width={120}
         height={120}
       />
       <h3 className="mt-4 text-lg font-semibold">{member.name}</h3>
-      <p className="text-muted-foreground">{member.title}</p>
+      <p className="text-muted-foreground">{member.role?.name}</p>
       <div className="mt-3 flex items-center justify-center gap-4">
-        <Link href="#" target="_blank">
-          <Twitter className="stroke-muted-foreground h-5 w-5" />
-        </Link>
-        <Link href="#" target="_blank">
-          <Instagram className="stroke-muted-foreground h-5 w-5" />
-        </Link>
-        <Link href="#" target="_blank">
-          <Facebook className="stroke-muted-foreground h-5 w-5" />
-        </Link>
+        {member.socialMedia?.facebook && (
+          <Link href={member.socialMedia?.facebook} target="_blank">
+            <Facebook className="stroke-muted-foreground h-5 w-5" />
+          </Link>
+        )}
+        {member.socialMedia?.twitter && (
+          <Link href={member.socialMedia?.twitter} target="_blank">
+            <Twitter className="stroke-muted-foreground h-5 w-5" />
+          </Link>
+        )}
+        {member.socialMedia?.instagram && (
+          <Link href={member.socialMedia?.instagram} target="_blank">
+            <Instagram className="stroke-muted-foreground h-5 w-5" />
+          </Link>
+        )}
       </div>
     </div>
   );

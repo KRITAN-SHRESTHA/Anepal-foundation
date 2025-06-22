@@ -1,34 +1,33 @@
-import Image from 'next/image';
 import React from 'react';
+import CustomImage from './custom-image';
+import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 interface HeroSectionProps {
-  image: string;
+  image: SanityImageSource;
   boldTitle: string;
   normalTitle: string;
+  alt: string;
 }
 
 export default function HeroSection({
   boldTitle,
   image,
-  normalTitle
+  normalTitle,
+  alt
 }: HeroSectionProps) {
   return (
     <div className="font-permanentMaker relative h-[50vh] w-full md:h-[60vh] lg:h-[70vh]">
-      <Image
-        src={image}
-        alt={`${boldTitle} ${normalTitle}`}
-        // src={urlFor(image)
-        //   .auto('format')
-        //   .width(Math.min(2048, window.innerWidth))
-        //   .quality(100)
-        //   .url()}
-        // alt={getLocalizedString(title ?? [], locale) ?? 'banner-img'}
-        fill
-        priority
-        className="object-cover"
-        sizes="100vw"
-        quality={100}
-      />
+      {image && (
+        <CustomImage
+          src={image}
+          alt={alt}
+          fill
+          priority
+          className="object-cover"
+          sizes="(max-width: 780px) 60vw, (min-width: 1024px) 100vw, 1440px"
+          quality={100}
+        />
+      )}
 
       <section className="mx-auto flex h-full max-w-[1200px] items-center px-4 sm:px-6 lg:px-8">
         <div className="relative">

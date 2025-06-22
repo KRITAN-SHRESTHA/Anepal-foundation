@@ -11,6 +11,7 @@ export default function DonorsPartnersView() {
         image={'/assets/main-slider/20.jpg'}
         boldTitle="Partners"
         normalTitle="& Donors"
+        alt=""
       />
 
       <div className="m-auto max-w-7xl px-4 sm:px-6 lg:px-8">

@@ -1,5 +1,11 @@
-import { ArrowRight } from 'lucide-react';
+'use client';
 
+import { urlFor } from '@/sanity/lib/image';
+import { ArrowRight } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+
+import ContentTitle from '@/components/content-title';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -7,11 +13,15 @@ import {
   CardFooter,
   CardHeader
 } from '@/components/ui/card';
-import Image from 'next/image';
-import Link from 'next/link';
-import ContentTitle from '@/components/content-title';
+import useGetLocale from '@/hooks/use-get-locale';
+import { trpc } from '@/trpc/client';
+import { formatMDY } from '@/lib/date-format';
 
 export default function EventsSection() {
+  const [events] = trpc.events.getFeaturedEvents.useSuspenseQuery();
+
+  const { getLocalizedString } = useGetLocale();
+
   return (
     <section className="bg-accent py-14">
       <div className="mx-auto flex max-w-screen-xl flex-col items-center gap-16 px-4 sm:px-6 lg:px-8">
@@ -29,49 +39,53 @@ export default function EventsSection() {
             className="w-[180px] rounded-full"
             asChild
           >
-            <Link href={'/'} target="_blank">
+            <Link href={'/events'}>
               View all events
               <ArrowRight className="ml-2 size-4" />
             </Link>
           </Button>
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-          {posts.map(post => (
+          {events.map(event => (
             <Card
-              key={post.id}
-              className="grid grid-rows-[auto_auto_1fr_auto] pt-0"
+              key={event._id}
+              className="grid grid-rows-[auto_auto_1fr_auto] overflow-hidden pt-0"
             >
               <div className="relative aspect-16/9 w-full">
                 <Link
-                  href={post.url}
-                  target="_blank"
+                  href={`/events/${event.slug?.current}`}
                   className="fade-in transition-opacity duration-200 hover:opacity-70"
                 >
-                  <Image
-                    src={post.image}
-                    alt={post.title}
-                    className="h-full w-full object-cover object-center"
-                    fill
-                  />
+                  {event.mainImage && (
+                    <Image
+                      src={urlFor(event.mainImage).quality(100).url()}
+                      alt={event.mainImage?.alt ?? ''}
+                      className="h-full w-full object-cover object-center"
+                      fill
+                    />
+                  )}
                 </Link>
               </div>
               <CardHeader>
                 <p className="text-muted-foreground text-sm">
-                  Jan 30, 2020 - 10:00 am
+                  {event.event_time?.start &&
+                    formatMDY(event.event_time?.start)}{' '}
+                  -{event.event_time?.end && formatMDY(event.event_time?.end)}
                 </p>
                 <h3 className="text-primary text-lg font-semibold hover:underline md:text-xl">
-                  <a href={post.url} target="_blank">
-                    {post.title}
-                  </a>
+                  <Link href={`/events/${event.slug?.current}`}>
+                    {getLocalizedString(event.title ?? [])}
+                  </Link>
                 </h3>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">{post.summary}</p>
+                <p className="text-muted-foreground line-clamp-3">
+                  {getLocalizedString(event.short_description ?? [])}
+                </p>
               </CardContent>
               <CardFooter>
                 <Link
-                  href={post.url}
-                  target="_blank"
+                  href={`/events/${event.slug?.current}`}
                   className="text-foreground flex items-center hover:underline"
                 >
                   Read more
@@ -85,39 +99,3 @@ export default function EventsSection() {
     </section>
   );
 }
-
-const posts = [
-  {
-    id: 'post-1',
-    title: 'Getting Started with shadcn/ui Components',
-    summary:
-      "Learn how to quickly integrate and customize shadcn/ui components in your Next.js projects. We'll cover installation, theming, and best practices for building modern interfaces.",
-    label: 'Tutorial',
-    author: 'Sarah Chen',
-    published: '1 Jan 2024',
-    url: 'https://shadcnblocks.com',
-    image: 'https://shadcnblocks.com/images/block/placeholder-dark-1.svg'
-  },
-  {
-    id: 'post-2',
-    title: 'Building Accessible Web Applications',
-    summary:
-      "Explore how to create inclusive web experiences using shadcn/ui's accessible components. Discover practical tips for implementing ARIA labels, keyboard navigation, and semantic HTML.",
-    label: 'Accessibility',
-    author: 'Marcus Rodriguez',
-    published: '1 Jan 2024',
-    url: 'https://shadcnblocks.com',
-    image: 'https://shadcnblocks.com/images/block/placeholder-dark-1.svg'
-  },
-  {
-    id: 'post-3',
-    title: 'Modern Design Systems with Tailwind CSS',
-    summary:
-      'Dive into creating scalable design systems using Tailwind CSS and shadcn/ui. Learn how to maintain consistency while building flexible and maintainable component libraries.',
-    label: 'Design Systems',
-    author: 'Emma Thompson',
-    published: '1 Jan 2024',
-    url: 'https://shadcnblocks.com',
-    image: 'https://shadcnblocks.com/images/block/placeholder-dark-1.svg'
-  }
-];
