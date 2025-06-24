@@ -13,6 +13,150 @@
  */
 
 // Source: schema.json
+export type OrganizationStats = {
+  _id: string;
+  _type: 'organizationStats';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  label?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  value?: string;
+};
+
+export type PartnersList = {
+  _id: string;
+  _type: 'partnersList';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  partnersName?: string;
+  partnersLogo?: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+};
+
+export type DonorsList = {
+  _id: string;
+  _type: 'donorsList';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  donorsName?: string;
+};
+
+export type DonorsAndPartnersPage = {
+  _id: string;
+  _type: 'donorsAndPartnersPage';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  heroSection?: {
+    title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    subtitle?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    backgroundImage?: {
+      asset?: {
+        _ref: string;
+        _type: 'reference';
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: 'image';
+    };
+  };
+  whoHelpUsSection?: {
+    title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    subtitle?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    description?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayTextValue
+    >;
+    partnersName?: Array<{
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: 'partnersList';
+    }>;
+    donorsNames?: Array<{
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: 'donorsList';
+    }>;
+  };
+  statisticsSection?: {
+    statsTitle?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    statsSubtitle?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    statsDescription?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayTextValue
+    >;
+    statistics?: Array<{
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: 'organizationStats';
+    }>;
+  };
+  thankYouSection?: {
+    subtitle?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayTextValue
+    >;
+    description?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayTextValue
+    >;
+  };
+};
+
 export type About_team_members = {
   _id: string;
   _type: 'about_team_members';
@@ -94,18 +238,30 @@ export type Aboutus = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  heroimage?: {
-    asset?: {
-      _ref: string;
-      _type: 'reference';
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+  heroSection?: {
+    title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    subtitle?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    backgroundImage?: {
+      asset?: {
+        _ref: string;
+        _type: 'reference';
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: 'image';
     };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: 'image';
   };
   firstcontent?: {
     image?: {
@@ -122,6 +278,11 @@ export type Aboutus = {
       _type: 'image';
     };
     title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    subtitle?: Array<
       {
         _key: string;
       } & InternationalizedArrayStringValue
@@ -156,6 +317,63 @@ export type Aboutus = {
         _key: string;
       } & InternationalizedArrayTextValue
     >;
+  };
+  statisticsSection?: {
+    statsTitle?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    statsSubtitle?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    statistics?: Array<{
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: 'organizationStats';
+    }>;
+  };
+  teamsSection?: {
+    title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    subtitle?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    teamMembers?: Array<{
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: 'team_members';
+    }>;
+  };
+  partnersSection?: {
+    title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    subtitle?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    partner?: Array<{
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: 'partnersList';
+    }>;
   };
 };
 
@@ -361,11 +579,7 @@ export type Settings = {
     facebook?: string;
     instagram?: string;
     twitter?: string;
-  };
-  otherInfo?: {
-    totalChildren?: number;
-    totalSponsers?: number;
-    totalDollarCollected?: string;
+    youtube?: string;
   };
 };
 
@@ -568,6 +782,10 @@ export type SanityAssetSourceData = {
 };
 
 export type AllSanitySchemaTypes =
+  | OrganizationStats
+  | PartnersList
+  | DonorsList
+  | DonorsAndPartnersPage
   | About_team_members
   | Team_members
   | Team_member_roles

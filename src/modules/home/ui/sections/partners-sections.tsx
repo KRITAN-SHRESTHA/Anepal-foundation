@@ -12,13 +12,12 @@ export default function PartnersSection({ className }: PartnerSectionProps) {
       <div className="mx-auto max-w-5xl">
         <div>
           <ContentTitle
-            title={'Who help us'}
-            subtitle={'Our Partners & Donors'}
+            title={'Our Partners & Donors'}
+            subtitle={'Who help us'}
             align="center"
           />
 
           <div className="mx-auto mt-14 flex max-w-2xl flex-wrap items-center justify-center gap-8">
-            {/* <div className="flex"> */}
             <Image
               className="mx-auto h-6 w-fit"
               src="https://html.tailus.io/blocks/customers/nvidia.svg"
@@ -26,9 +25,6 @@ export default function PartnersSection({ className }: PartnerSectionProps) {
               height={200}
               width={200}
             />
-            {/* </div> */}
-
-            {/* <div className="flex"> */}
             <Image
               className="mx-auto h-6 w-fit"
               src="https://html.tailus.io/blocks/customers/column.svg"
@@ -36,8 +32,6 @@ export default function PartnersSection({ className }: PartnerSectionProps) {
               height="16"
               width={200}
             />
-            {/* </div> */}
-            {/* <div className="flex"> */}
             <Image
               className="mx-auto h-6 w-fit"
               src="https://html.tailus.io/blocks/customers/github.svg"
@@ -45,8 +39,6 @@ export default function PartnersSection({ className }: PartnerSectionProps) {
               height="16"
               width={200}
             />
-            {/* </div> */}
-            {/* <div className="flex"> */}
             <Image
               className="mx-auto h-6 w-fit"
               src="https://html.tailus.io/blocks/customers/nike.svg"
@@ -54,8 +46,6 @@ export default function PartnersSection({ className }: PartnerSectionProps) {
               height="20"
               width={200}
             />
-            {/* </div> */}
-            {/* </div> */}
           </div>
         </div>
       </div>

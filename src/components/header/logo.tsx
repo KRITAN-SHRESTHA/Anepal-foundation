@@ -12,6 +12,7 @@ export default function Logo({
     <div className={cn('relative h-[56px] w-[100px] shrink-0', className)}>
       <CustomImage
         src={settings.logo}
+        className="mix-blend-multiply"
         alt="Anepal Organization logo"
         sizes="20vw"
         fill

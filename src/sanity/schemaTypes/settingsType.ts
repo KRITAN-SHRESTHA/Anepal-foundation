@@ -78,29 +78,15 @@ export const settingsType = defineType({
             rule.uri({
               scheme: ['http', 'https']
             })
-        }
-      ]
-    }),
-    defineField({
-      name: 'otherInfo',
-      title: 'Others Info',
-      type: 'object',
-      fields: [
-        {
-          name: 'totalChildren',
-          title: 'Total children',
-          type: 'number'
         },
         {
-          name: 'totalSponsers',
-          title: 'Total Sponsers',
-          type: 'number'
-        },
-        {
-          name: 'totalDollarCollected',
-          title: 'Total Dollars Collected',
-          description: 'Show estimation amount (e.g. 220k)',
-          type: 'string'
+          name: 'youtube',
+          title: 'Youtube URL',
+          type: 'url',
+          validation: rule =>
+            rule.uri({
+              scheme: ['http', 'https']
+            })
         }
       ]
     })

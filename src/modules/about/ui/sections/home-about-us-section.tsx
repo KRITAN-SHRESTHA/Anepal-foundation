@@ -2,8 +2,20 @@
 
 import { trpc } from '@/trpc/client';
 import ContentSection from '@/components/content-section';
+import { Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 
 export default function HomeAboutUsSection() {
+  return (
+    <ErrorBoundary fallback="Something went wrong">
+      <Suspense fallback="Loading...">
+        <HomeAboutUsSectionSuspense />
+      </Suspense>
+    </ErrorBoundary>
+  );
+}
+
+function HomeAboutUsSectionSuspense() {
   const [data] = trpc.aboutus.getHomeAboutUs.useSuspenseQuery();
 
   return (

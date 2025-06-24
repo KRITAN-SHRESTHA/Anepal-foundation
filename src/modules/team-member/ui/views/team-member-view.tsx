@@ -26,8 +26,8 @@ function TeamMemberViewSuspense() {
       {teamaMembers.heroimage && (
         <HeroSection
           image={teamaMembers.heroimage}
-          boldTitle="Team"
-          normalTitle="Member"
+          subtitle="Team"
+          title="Member"
           alt={teamaMembers.heroimage.alt ?? ''}
         />
       )}

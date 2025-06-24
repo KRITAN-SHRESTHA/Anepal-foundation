@@ -1,30 +1,28 @@
 'use client';
 
+import { SanityAsset } from '@sanity/image-url/lib/types/types';
+import { BookOpen } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { HTMLAttributes } from 'react';
 
 import useGetLocale from '@/hooks/use-get-locale';
-import { cn } from '@/lib/utils';
-import { urlFor } from '@/sanity/lib/image';
-import { SanityAsset } from '@sanity/image-url/lib/types/types';
-import {
-  InternalizedArrayStringValueType,
-  InternalizedArrayTextValueType
-} from '@/types';
-import Link from 'next/link';
-import { Button } from './ui/button';
-import { BookOpen } from 'lucide-react';
+import { cn, LocalisedDataType } from '@/lib/utils';
+import { InternalizedArrayTextValueType } from '@/types';
 import ContentTitle from './content-title';
-import { HTMLAttributes } from 'react';
+import CustomImage from './custom-image';
+import { Button } from './ui/button';
 
 interface ContentSectionProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
   image?: string | SanityAsset;
   orientation?: 'ltr' | 'rtl';
-  title: InternalizedArrayStringValueType;
-  subtitle?: InternalizedArrayStringValueType;
+  title?: LocalisedDataType[] | string;
+  subtitle?: LocalisedDataType[];
   description?: InternalizedArrayTextValueType;
   readmoreLink?: string;
   titleClassname?: string;
+  subtitleClassname?: string;
   imageAlt?: string;
 }
 
@@ -36,15 +34,11 @@ export default function ContentSection({
   title,
   readmoreLink,
   titleClassname,
+  subtitleClassname,
   className,
   imageAlt
 }: ContentSectionProps) {
   const { getLocalizedString } = useGetLocale();
-
-  const convertedSubtitle =
-    typeof subtitle === 'string'
-      ? subtitle
-      : getLocalizedString(subtitle ?? []);
 
   return (
     <div
@@ -68,9 +62,9 @@ export default function ContentSection({
 
         <div className="relative aspect-square w-full">
           {image ? (
-            <Image
+            <CustomImage
               className="laptop:p-[80px] tablet:p-[60px] xs:p-[60px] h-full w-full object-cover p-[40px] sm:p-[80px]"
-              src={urlFor(image).quality(100).url()}
+              src={image}
               alt={imageAlt ?? ''}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -92,10 +86,9 @@ export default function ContentSection({
         })}
       >
         <ContentTitle
-          title={
-            typeof title === 'string' ? title : getLocalizedString(title ?? [])
-          }
-          subtitle={convertedSubtitle}
+          title={title}
+          subtitle={subtitle}
+          subtitleClassname={subtitleClassname}
           titleClassname={titleClassname}
         />
 
