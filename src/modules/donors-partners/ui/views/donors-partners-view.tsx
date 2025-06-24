@@ -10,11 +10,12 @@ import StatsSection from '../sections/stats-section';
 import ThankyouSection from '../sections/thankyou-section';
 import WhoHelpUsSection from '../sections/who-help-us-section';
 import { ErrorBoundary } from 'react-error-boundary';
+import DonorsPartnersPageSkeleton from '../components/donors-partners-page-skeleton';
 
 export default function DonorsPartnersView() {
   return (
     <ErrorBoundary fallback="Something went wrong">
-      <Suspense fallback="Loading...">
+      <Suspense fallback={<DonorsPartnersPageSkeleton />}>
         <DonorsPartnersViewSuspense />
       </Suspense>
     </ErrorBoundary>

@@ -1,23 +1,10 @@
 'use client';
 
-import React, { Suspense } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
-
 import ContentTitle from '@/components/content-title';
 import { trpc } from '@/trpc/client';
 import useGetLocale from '@/hooks/use-get-locale';
 
 export default function WhoDoWeHelpSection() {
-  return (
-    <ErrorBoundary fallback={<div>Something went wrong</div>}>
-      <Suspense fallback={<div>Loading...</div>}>
-        <WhoDoWeHelpSectionSuspense />
-      </Suspense>
-    </ErrorBoundary>
-  );
-}
-
-function WhoDoWeHelpSectionSuspense() {
   const { data } = trpc.aboutus.getAboutUs.useQuery();
 
   const { getLocalizedString } = useGetLocale();

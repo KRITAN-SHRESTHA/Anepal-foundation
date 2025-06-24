@@ -10,11 +10,12 @@ import { trpc } from '@/trpc/client';
 import AboutUsTeamSection from '../sections/about-us-team-section';
 import WhoDoWeHelpSection from '../sections/who-do-we-help-section';
 import PartnersSection from '../sections/partners-sections';
+import AboutUsPageSkeleton from '../components/about-us-page-skeleton';
 
 export default function AboutView() {
   return (
     <ErrorBoundary fallback="Something went wrong">
-      <Suspense fallback="loading...">
+      <Suspense fallback={<AboutUsPageSkeleton />}>
         <AboutViewSuspense />
       </Suspense>
     </ErrorBoundary>
