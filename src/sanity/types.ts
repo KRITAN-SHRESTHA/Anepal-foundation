@@ -238,18 +238,30 @@ export type Aboutus = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  heroimage?: {
-    asset?: {
-      _ref: string;
-      _type: 'reference';
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+  heroSection?: {
+    title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    subtitle?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    backgroundImage?: {
+      asset?: {
+        _ref: string;
+        _type: 'reference';
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: 'image';
     };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: 'image';
   };
   firstcontent?: {
     image?: {
@@ -266,6 +278,11 @@ export type Aboutus = {
       _type: 'image';
     };
     title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    subtitle?: Array<
       {
         _key: string;
       } & InternationalizedArrayStringValue
@@ -300,6 +317,63 @@ export type Aboutus = {
         _key: string;
       } & InternationalizedArrayTextValue
     >;
+  };
+  statisticsSection?: {
+    statsTitle?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    statsSubtitle?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    statistics?: Array<{
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: 'organizationStats';
+    }>;
+  };
+  teamsSection?: {
+    title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    subtitle?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    teamMembers?: Array<{
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: 'team_members';
+    }>;
+  };
+  partnersSection?: {
+    title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    subtitle?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    partner?: Array<{
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: 'partnersList';
+    }>;
   };
 };
 

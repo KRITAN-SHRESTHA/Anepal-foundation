@@ -1,20 +1,32 @@
 import React from 'react';
 import CustomImage from './custom-image';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import { LocalisedDataType } from '@/lib/utils';
+import useGetLocale from '@/hooks/use-get-locale';
 
 interface HeroSectionProps {
   image: SanityImageSource;
-  boldTitle: string;
-  normalTitle: string;
+  title?: LocalisedDataType[] | string | null;
+  subtitle?: LocalisedDataType[] | string | null;
   alt: string;
 }
 
 export default function HeroSection({
-  boldTitle,
+  title,
   image,
-  normalTitle,
+  subtitle,
   alt
 }: HeroSectionProps) {
+  const { getLocalizedString } = useGetLocale();
+
+  const convertedTitle =
+    typeof title === 'string' ? title : getLocalizedString(title ?? []);
+
+  const convertedSubtitle =
+    typeof subtitle === 'string'
+      ? subtitle
+      : getLocalizedString(subtitle ?? []);
+
   return (
     <div className="font-permanentMaker relative h-[50vh] w-full md:h-[60vh] lg:h-[70vh]">
       {image && (
@@ -33,11 +45,10 @@ export default function HeroSection({
         <div className="relative">
           <div className="max-w-2xl">
             <p className="font-permanentMaker text-2xl text-white md:text-3xl">
-              {boldTitle}
+              {convertedSubtitle}
             </p>
             <h1 className="font-quicksand text-[40px] leading-[130%] font-medium text-balance text-white first-letter:capitalize md:text-5xl lg:text-6xl">
-              {normalTitle}
-              {/* {getLocalizedString(data?.title ?? [])} */}
+              {convertedTitle}
             </h1>
           </div>
         </div>

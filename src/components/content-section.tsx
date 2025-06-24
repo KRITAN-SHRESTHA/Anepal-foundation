@@ -22,6 +22,7 @@ interface ContentSectionProps
   description?: InternalizedArrayTextValueType;
   readmoreLink?: string;
   titleClassname?: string;
+  subtitleClassname?: string;
   imageAlt?: string;
 }
 
@@ -33,6 +34,7 @@ export default function ContentSection({
   title,
   readmoreLink,
   titleClassname,
+  subtitleClassname,
   className,
   imageAlt
 }: ContentSectionProps) {
@@ -86,6 +88,7 @@ export default function ContentSection({
         <ContentTitle
           title={title}
           subtitle={subtitle}
+          subtitleClassname={subtitleClassname}
           titleClassname={titleClassname}
         />
 

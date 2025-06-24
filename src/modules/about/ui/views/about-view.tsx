@@ -5,11 +5,11 @@ import { Suspense } from 'react';
 
 import ContentSection from '@/components/content-section';
 import HeroSection from '@/components/hero-section';
-import PartnersSection from '@/modules/home/ui/sections/partners-sections';
-import WhoDoWeHelpSection from '@/modules/home/ui/sections/who-do-we-help-section';
 import { trpc } from '@/trpc/client';
 
 import AboutUsTeamSection from '../sections/about-us-team-section';
+import WhoDoWeHelpSection from '../sections/who-do-we-help-section';
+import PartnersSection from '../sections/partners-sections';
 
 export default function AboutView() {
   return (
@@ -26,12 +26,12 @@ function AboutViewSuspense() {
 
   return (
     <>
-      {data.heroimage && (
+      {data.heroSection?.backgroundImage && (
         <HeroSection
-          image={data.heroimage}
-          alt={data.heroimage?.alt ?? ''}
-          boldTitle="About"
-          normalTitle="Organization"
+          image={data.heroSection?.backgroundImage}
+          alt={data.heroSection.backgroundImage.alt ?? ''}
+          subtitle={data.heroSection?.subtitle}
+          title={data.heroSection?.title}
         />
       )}
       <ContentSection
@@ -44,8 +44,8 @@ function AboutViewSuspense() {
       />
       <ContentSection
         description={data.secondcontent?.description}
-        title={data.secondcontent?.title}
-        titleClassname="text-[24px] text-primary"
+        subtitle={data.secondcontent?.title}
+        subtitleClassname="text-[24px] text-primary"
         className="pt-[0px]"
         image={data.secondcontent?.image}
         imageAlt={data.secondcontent?.image?.alt}

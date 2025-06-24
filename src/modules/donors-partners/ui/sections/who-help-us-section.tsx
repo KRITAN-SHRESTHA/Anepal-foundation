@@ -1,3 +1,5 @@
+'use client';
+
 import ContentTitle from '@/components/content-title';
 import useGetLocale from '@/hooks/use-get-locale';
 import { trpc } from '@/trpc/client';
