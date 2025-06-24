@@ -1,6 +1,7 @@
 import {
   DonorsAndPartnersPage,
   DonorsList,
+  OrganizationStats,
   PartnersList
 } from '@/sanity/types';
 
@@ -16,7 +17,7 @@ import {
 
 export type PopulatedDonorsAndPartnersPage = Omit<
   DonorsAndPartnersPage,
-  'whoHelpUsSection'
+  'whoHelpUsSection' | 'statisticsSection'
 > & {
   whoHelpUsSection: Omit<
     NonNullable<DonorsAndPartnersPage['whoHelpUsSection']>,
@@ -24,5 +25,13 @@ export type PopulatedDonorsAndPartnersPage = Omit<
   > & {
     donorsNames: DonorsList[];
     partnersName: PartnersList[];
+  };
+} & {
+  // statisticsSection: OrganizationStats[];
+  statisticsSection: Omit<
+    NonNullable<DonorsAndPartnersPage['statisticsSection']>,
+    'statistics'
+  > & {
+    statistics: OrganizationStats[];
   };
 };

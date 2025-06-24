@@ -64,7 +64,7 @@ export const structure: StructureResolver = S =>
                 )
             ])
         ),
-
+      S.documentTypeListItem('organizationStats'),
       S.listItem()
         .title('About us')
         .icon(InfoOutlineIcon)

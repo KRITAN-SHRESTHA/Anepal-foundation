@@ -13,6 +13,20 @@
  */
 
 // Source: schema.json
+export type OrganizationStats = {
+  _id: string;
+  _type: 'organizationStats';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  label?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  value?: string;
+};
+
 export type PartnersList = {
   _id: string;
   _type: 'partnersList';
@@ -70,6 +84,7 @@ export type DonorsAndPartnersPage = {
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
+      alt?: string;
       _type: 'image';
     };
   };
@@ -104,7 +119,7 @@ export type DonorsAndPartnersPage = {
       [internalGroqTypeReferenceTo]?: 'donorsList';
     }>;
   };
-  statsSection?: {
+  statisticsSection?: {
     statsTitle?: Array<
       {
         _key: string;
@@ -115,19 +130,17 @@ export type DonorsAndPartnersPage = {
         _key: string;
       } & InternationalizedArrayStringValue
     >;
-    partnersDescription?: Array<
+    statsDescription?: Array<
       {
         _key: string;
       } & InternationalizedArrayTextValue
     >;
     statistics?: Array<{
-      label?: Array<
-        {
-          _key: string;
-        } & InternationalizedArrayStringValue
-      >;
-      value?: string;
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
       _key: string;
+      [internalGroqTypeReferenceTo]?: 'organizationStats';
     }>;
   };
   thankYouSection?: {
@@ -492,11 +505,7 @@ export type Settings = {
     facebook?: string;
     instagram?: string;
     twitter?: string;
-  };
-  otherInfo?: {
-    totalChildren?: number;
-    totalSponsers?: number;
-    totalDollarCollected?: string;
+    youtube?: string;
   };
 };
 
@@ -699,6 +708,7 @@ export type SanityAssetSourceData = {
 };
 
 export type AllSanitySchemaTypes =
+  | OrganizationStats
   | PartnersList
   | DonorsList
   | DonorsAndPartnersPage

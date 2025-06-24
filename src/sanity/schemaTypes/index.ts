@@ -15,6 +15,7 @@ import { aboutTeamMembersType } from './team-members/aboutTeamMembersType';
 import { donorsPartnersType } from './donors-and-partners/donors-partners-type';
 import { donorsList } from './donors-and-partners/donors-list';
 import { partnersList } from './donors-and-partners/partners-list';
+import { organizationStatsType } from './organization-stats-type';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -32,6 +33,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     aboutTeamMembersType,
     donorsPartnersType,
     donorsList,
-    partnersList
+    partnersList,
+    organizationStatsType
   ]
 };

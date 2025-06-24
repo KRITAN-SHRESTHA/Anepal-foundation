@@ -1,5 +1,71 @@
 [
   {
+    "name": "organizationStats",
+    "type": "document",
+    "attributes": {
+      "_id": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_type": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string",
+          "value": "organizationStats"
+        }
+      },
+      "_createdAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_updatedAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_rev": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "label": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "array",
+          "of": {
+            "type": "object",
+            "attributes": {
+              "_key": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                }
+              }
+            },
+            "rest": {
+              "type": "inline",
+              "name": "internationalizedArrayStringValue"
+            }
+          }
+        },
+        "optional": true
+      },
+      "value": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      }
+    }
+  },
+  {
     "name": "partnersList",
     "type": "document",
     "attributes": {
@@ -298,6 +364,13 @@
                     },
                     "optional": true
                   },
+                  "alt": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    },
+                    "optional": true
+                  },
                   "_type": {
                     "type": "objectAttribute",
                     "value": {
@@ -476,7 +549,7 @@
         },
         "optional": true
       },
-      "statsSection": {
+      "statisticsSection": {
         "type": "objectAttribute",
         "value": {
           "type": "object",
@@ -525,7 +598,7 @@
               },
               "optional": true
             },
-            "partnersDescription": {
+            "statsDescription": {
               "type": "objectAttribute",
               "value": {
                 "type": "array",
@@ -554,36 +627,28 @@
                 "of": {
                   "type": "object",
                   "attributes": {
-                    "label": {
-                      "type": "objectAttribute",
-                      "value": {
-                        "type": "array",
-                        "of": {
-                          "type": "object",
-                          "attributes": {
-                            "_key": {
-                              "type": "objectAttribute",
-                              "value": {
-                                "type": "string"
-                              }
-                            }
-                          },
-                          "rest": {
-                            "type": "inline",
-                            "name": "internationalizedArrayStringValue"
-                          }
-                        }
-                      },
-                      "optional": true
-                    },
-                    "value": {
+                    "_ref": {
                       "type": "objectAttribute",
                       "value": {
                         "type": "string"
+                      }
+                    },
+                    "_type": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "string",
+                        "value": "reference"
+                      }
+                    },
+                    "_weak": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "boolean"
                       },
                       "optional": true
                     }
                   },
+                  "dereferencesTo": "organizationStats",
                   "rest": {
                     "type": "object",
                     "attributes": {
@@ -2585,31 +2650,8 @@
                 "type": "string"
               },
               "optional": true
-            }
-          }
-        },
-        "optional": true
-      },
-      "otherInfo": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "object",
-          "attributes": {
-            "totalChildren": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "number"
-              },
-              "optional": true
             },
-            "totalSponsers": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "number"
-              },
-              "optional": true
-            },
-            "totalDollarCollected": {
+            "youtube": {
               "type": "objectAttribute",
               "value": {
                 "type": "string"

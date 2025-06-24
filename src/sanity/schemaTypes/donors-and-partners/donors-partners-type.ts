@@ -1,5 +1,6 @@
+import { validationLang } from '@/sanity/lib/validation-lang';
 import { BinaryDocumentIcon } from '@sanity/icons';
-import { defineArrayMember, defineType } from 'sanity';
+import { defineArrayMember, defineField, defineType, Reference } from 'sanity';
 
 export const donorsPartnersType = defineType({
   name: 'donorsAndPartnersPage',
@@ -12,17 +13,48 @@ export const donorsPartnersType = defineType({
       title: 'Hero Section',
       type: 'object',
       fields: [
-        { name: 'title', title: 'Title', type: 'internationalizedArrayString' }, // "Partners & Donors"
+        {
+          name: 'title',
+          title: 'Title',
+          type: 'internationalizedArrayString',
+          validation: rule =>
+            rule.custom<{ value: string; _type: string; _key: string }[]>(
+              value => {
+                return validationLang(
+                  value,
+                  'Please add title in all languages'
+                );
+              }
+            )
+        }, // "Partners & Donors"
         {
           name: 'subtitle',
           title: 'Subtitle',
-          type: 'internationalizedArrayString'
+          type: 'internationalizedArrayString',
+          validation: rule =>
+            rule.custom<{ value: string; _type: string; _key: string }[]>(
+              value => {
+                return validationLang(
+                  value,
+                  'Please add subtitle in all languages'
+                );
+              }
+            )
         }, // "Donation"
         {
           name: 'backgroundImage',
           title: 'Background Image',
           type: 'image',
-          options: { hotspot: true }
+          options: { hotspot: true },
+          validation: rule => rule.required().error('Image is required'),
+          fields: [
+            defineField({
+              name: 'alt',
+              type: 'string',
+              title: 'Alternative Text (about donors and partners)',
+              validation: rule => rule.required().error('Image alt is required')
+            })
+          ]
         }
         // { name: 'highlightText', title: 'Highlight Text', type: 'string' } // "Mercy"
       ]
@@ -32,22 +64,61 @@ export const donorsPartnersType = defineType({
       title: 'Who Help Us Section',
       type: 'object',
       fields: [
-        { name: 'title', title: 'Title', type: 'internationalizedArrayString' }, // "Who Help Us"
+        {
+          name: 'title',
+          title: 'Title',
+          type: 'internationalizedArrayString',
+          validation: rule =>
+            rule.custom<{ value: string; _type: string; _key: string }[]>(
+              value => {
+                return validationLang(
+                  value,
+                  'Please add title in all languages'
+                );
+              }
+            )
+        }, // "Who Help Us"
         {
           name: 'subtitle',
           title: 'Subtitle',
-          type: 'internationalizedArrayString'
+          type: 'internationalizedArrayString',
+          validation: rule =>
+            rule.custom<{ value: string; _type: string; _key: string }[]>(
+              value => {
+                return validationLang(
+                  value,
+                  'Please add subtitle in all languages'
+                );
+              }
+            )
         }, // "Who Help Us"
         {
           name: 'description',
           title: 'Description',
-          type: 'internationalizedArrayText'
+          type: 'internationalizedArrayText',
+          validation: rule =>
+            rule.custom<{ value: string; _type: string; _key: string }[]>(
+              value => {
+                return validationLang(
+                  value,
+                  'Please add description in all languages'
+                );
+              }
+            )
         },
         {
           name: 'partnersName',
           title: 'Partner Name',
           type: 'array',
-          validation: rule => rule.required().error('Please select partners'),
+          validation: rule =>
+            rule.custom((arr: Reference[]) => {
+              // arr will gives the array of selected fields
+              if (!arr) return 'Please select at least a partner';
+
+              const refs = arr.map(item => item._ref);
+              const hasDuplicates = refs.length !== new Set(refs).size;
+              return hasDuplicates ? 'No duplicate selections allowed' : true;
+            }),
           of: [
             defineArrayMember({
               type: 'reference',
@@ -59,7 +130,15 @@ export const donorsPartnersType = defineType({
           name: 'donorsNames',
           title: 'Donors Names',
           type: 'array',
-          validation: rule => rule.required().error('Please select donors'),
+          validation: rule =>
+            rule.custom((arr: Reference[]) => {
+              // arr will gives the array of selected fields
+              if (!arr) return 'Please select at least a donor';
+
+              const refs = arr.map(item => item._ref);
+              const hasDuplicates = refs.length !== new Set(refs).size;
+              return hasDuplicates ? 'No duplicate selections allowed' : true;
+            }),
           of: [
             defineArrayMember({
               type: 'reference',
@@ -70,47 +149,74 @@ export const donorsPartnersType = defineType({
       ]
     },
     {
-      name: 'statsSection',
-      title: 'Statistics Section',
+      name: 'statisticsSection',
+      title: 'Statistics section',
       type: 'object',
       fields: [
         {
           name: 'statsTitle',
           title: 'Statistics Title',
-          type: 'internationalizedArrayString'
+          type: 'internationalizedArrayString',
+          validation: rule =>
+            rule.custom<{ value: string; _type: string; _key: string }[]>(
+              value => {
+                return validationLang(
+                  value,
+                  'Please add title in all languages'
+                );
+              }
+            )
         }, // "Partners & Donors"
         {
           name: 'statsSubtitle',
           title: 'Statistics Subtitle',
-          type: 'internationalizedArrayString'
+          type: 'internationalizedArrayString',
+          validation: rule =>
+            rule.custom<{ value: string; _type: string; _key: string }[]>(
+              value => {
+                return validationLang(
+                  value,
+                  'Please add susbtitle in all languages'
+                );
+              }
+            )
         },
         {
-          name: 'partnersDescription',
+          name: 'statsDescription',
           title: 'Description',
-          type: 'internationalizedArrayText'
+          type: 'internationalizedArrayText',
+          validation: rule =>
+            rule.custom<{ value: string; _type: string; _key: string }[]>(
+              value => {
+                return validationLang(
+                  value,
+                  'Please add description in all languages'
+                );
+              }
+            )
         },
         {
           name: 'statistics',
-          title: 'Statistics',
+          title: 'Select Statistics',
           type: 'array',
-          description: 'Add upto 2 field only',
+          description: 'Select upto 2 field only',
+          validation: rule =>
+            rule.custom((arr: Reference[]) => {
+              // arr will gives the array of selected fields
+              if (!arr) return 'Please select at least a field';
+
+              if (arr.length > 2) {
+                return 'You can select up to 2 fields only';
+              }
+              const refs = arr.map(item => item._ref);
+              const hasDuplicates = refs.length !== new Set(refs).size;
+              return hasDuplicates ? 'No duplicate selections allowed' : true;
+            }),
           of: [
-            {
-              type: 'object',
-              fields: [
-                {
-                  name: 'label',
-                  title: 'Label',
-                  type: 'internationalizedArrayString'
-                }, // "People We Helped on 2019"
-                {
-                  name: 'value',
-                  title: 'Value',
-                  type: 'string',
-                  description: '200+ or 220k'
-                } // "200k"
-              ]
-            }
+            defineArrayMember({
+              type: 'reference',
+              to: { type: 'organizationStats' }
+            })
           ]
         }
       ]
@@ -124,12 +230,30 @@ export const donorsPartnersType = defineType({
         {
           name: 'subtitle',
           title: 'Subtitle',
-          type: 'internationalizedArrayText'
+          type: 'internationalizedArrayText',
+          validation: rule =>
+            rule.custom<{ value: string; _type: string; _key: string }[]>(
+              value => {
+                return validationLang(
+                  value,
+                  'Please add subtitle in all languages'
+                );
+              }
+            )
         }, // "To all our donors, partners and volunteers"
         {
           name: 'description',
           title: 'Description',
-          type: 'internationalizedArrayText'
+          type: 'internationalizedArrayText',
+          validation: rule =>
+            rule.custom<{ value: string; _type: string; _key: string }[]>(
+              value => {
+                return validationLang(
+                  value,
+                  'Please add description in all languages'
+                );
+              }
+            )
         }
       ]
     }

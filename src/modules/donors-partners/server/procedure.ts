@@ -10,6 +10,12 @@ const GET_DONORS_PAGE_CONTENT = `*[_type == "donorsAndPartnersPage"][0]{
     description,
     partnersName[]->,
     donorsNames[]->
+  },
+  statisticsSection{
+    statsTitle,
+    statsSubtitle,
+    statsDescription,
+    statistics[]->
   }
 }`;
 // const EVENT_LIST_WITH_PAGINATION = `*[
