@@ -1,9 +1,10 @@
-import { cn } from '@/lib/utils';
+import useGetLocale from '@/hooks/use-get-locale';
+import { cn, LocalisedDataType } from '@/lib/utils';
 import React, { HTMLAttributes } from 'react';
 
 interface ContentTitleCustomProps {
-  title?: string | null;
-  subtitle?: string | null;
+  title?: LocalisedDataType[] | string | null;
+  subtitle?: LocalisedDataType[] | string | null;
   titleClassname?: string;
   subtitleClassname?: string;
   align?: 'center' | 'left';
@@ -21,6 +22,16 @@ export default function ContentTitle({
   align = 'left',
   ...props
 }: ContentTitleProps) {
+  const { getLocalizedString } = useGetLocale();
+
+  const convertedTitle =
+    typeof title === 'string' ? title : getLocalizedString(title ?? []);
+
+  const convertedSubtitle =
+    typeof subtitle === 'string'
+      ? subtitle
+      : getLocalizedString(subtitle ?? []);
+
   return (
     <div
       className={cn(
@@ -32,28 +43,30 @@ export default function ContentTitle({
       )}
       {...props}
     >
-      {!!title ? (
+      {!!subtitle ? (
         <h2
           className={cn(
             '!leading-[1.2] font-extrabold text-[#9e9e9e]',
-            titleClassname
+            subtitleClassname
           )}
         >
-          {title}
+          {/* {getLocalizedString(subtitle) ?? []} */}
+          {convertedSubtitle}
         </h2>
       ) : null}
 
-      {subtitle ? (
+      {title ? (
         <h3
           className={cn(
             'text-[32px] leading-[110%] font-extrabold tracking-tight text-[#515266] md:text-[40px] lg:text-[50px]',
             {
-              'pt-4': !!title
+              'pt-4': !!subtitle
             },
-            subtitleClassname
+            titleClassname
           )}
         >
-          {subtitle}
+          {/* {getLocalizedString(title) ?? []} */}
+          {convertedTitle}
         </h3>
       ) : null}
     </div>

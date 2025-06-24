@@ -1,10 +1,13 @@
 import DonorsPartnersView from '@/modules/donors-partners/ui/views/donors-partners-view';
+import { HydrateClient, trpc } from '@/trpc/server';
 import React from 'react';
 
 export default function DonorsPartnersPage() {
+  void trpc.donorsPartners.getContentOfDonorsPartnersPage.prefetch();
+
   return (
-    <div>
+    <HydrateClient>
       <DonorsPartnersView />
-    </div>
+    </HydrateClient>
   );
 }

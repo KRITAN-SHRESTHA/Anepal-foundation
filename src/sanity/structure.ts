@@ -1,4 +1,4 @@
-import { InfoOutlineIcon } from '@sanity/icons';
+import { BinaryDocumentIcon, InfoOutlineIcon } from '@sanity/icons';
 import { InfoIcon, SettingsIcon } from 'lucide-react';
 import type { StructureResolver } from 'sanity/structure';
 
@@ -43,6 +43,24 @@ export const structure: StructureResolver = S =>
                   S.document()
                     .schemaType('about_team_members')
                     .documentId('about_team_members')
+                )
+            ])
+        ),
+      S.listItem()
+        .title('Partner & Donors')
+        .child(
+          S.list()
+            .title('Partner & Donors section')
+            .items([
+              S.documentTypeListItem('partnersList'),
+              S.documentTypeListItem('donorsList'),
+              S.listItem()
+                .title('Partners & Donors Page')
+                .icon(BinaryDocumentIcon)
+                .child(
+                  S.document()
+                    .schemaType('donorsAndPartnersPage')
+                    .documentId('donorsAndPartnersPage')
                 )
             ])
         ),

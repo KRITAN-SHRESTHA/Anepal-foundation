@@ -16,8 +16,20 @@ import {
 import useGetLocale from '@/hooks/use-get-locale';
 import { trpc } from '@/trpc/client';
 import { formatMDY } from '@/lib/date-format';
+import { ErrorBoundary } from 'react-error-boundary';
+import { Suspense } from 'react';
 
 export default function EventsSection() {
+  return (
+    <ErrorBoundary fallback="Something went worng">
+      <Suspense fallback="Loading....">
+        <EventsSectionSuspense />
+      </Suspense>
+    </ErrorBoundary>
+  );
+}
+
+function EventsSectionSuspense() {
   const [events] = trpc.events.getFeaturedEvents.useSuspenseQuery();
 
   const { getLocalizedString } = useGetLocale();
