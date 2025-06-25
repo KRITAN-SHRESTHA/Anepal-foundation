@@ -52,7 +52,7 @@ function HomeTeamMembersSectionSuspense() {
       </div>
       <div className="mx-auto mt-10 flex max-w-3xl flex-col gap-5 gap-y-10 md:mt-20">
         <div className="flex flex-wrap justify-center gap-7">
-          {aboutTeamMembers?.membersList?.map(member => (
+          {aboutTeamMembers?.membersDetails?.membersList?.map(member => (
             <div key={member._id} className="w-full max-w-[200px] grow">
               <TeamMemberCard key={member._id} {...member} />
             </div>
