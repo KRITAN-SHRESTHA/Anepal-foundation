@@ -18,16 +18,17 @@ const GET_ALL_MEMBERS = `*[
 // "role" : role-> will give every fields from role schema
 
 const GET_ABOUT_TEAM_MEMBERS = `*[
-  _type == "about_team_members"
+  _type == "team_members_page"
 ][0]{
   ...,
-  membersList[]->{
+  membersDetails{
+    ...,
+    membersList[]->{
       ...,
-      "role": role->
+      role->
     }
-  }`;
-
-// "membersList": *[_type=='team_members' && references(^._id)]{ name }÷÷
+  }
+}`;
 
 // will revalidate after every 30 seconds
 const options = { next: { revalidate: 0 } };

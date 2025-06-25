@@ -2,7 +2,7 @@ import { validationLang } from '@/sanity/lib/validation-lang';
 import { List } from 'lucide-react';
 import { defineArrayMember, defineField, defineType, Reference } from 'sanity';
 
-export const storiesPageType = defineType({
+export const storiesPageSchema = defineType({
   name: 'storiesPageContent',
   title: 'Stories Page Content',
   icon: List,

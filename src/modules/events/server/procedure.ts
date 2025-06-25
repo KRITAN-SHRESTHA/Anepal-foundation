@@ -1,5 +1,5 @@
 import { client } from '@/sanity/lib/client';
-import { Events } from '@/sanity/types';
+import { Events, EventsPage } from '@/sanity/types';
 import { createTRPCRouter, publicProcedure } from '@/trpc/init';
 import { z } from 'zod';
 
@@ -7,11 +7,15 @@ const EVENT_COUNT_QUERY = 'count(*[_type == "events"])';
 const EVENT_LIST_WITH_PAGINATION = `*[
             _type == "events"
           ] | order(_createdAt desc)[$start...$end]`;
+const EVENT_PAGE_QUERY = '*[_type == "eventsPage"][0]';
 
 // will revalidate after every 30 seconds
 const options = { next: { revalidate: 0 } };
 
 export const eventsRouter = createTRPCRouter({
+  getEventPage: publicProcedure.query(async () => {
+    return await client.fetch<EventsPage>(EVENT_PAGE_QUERY, {}, options);
+  }),
   getAllEvents: publicProcedure
     .input(
       z.object({

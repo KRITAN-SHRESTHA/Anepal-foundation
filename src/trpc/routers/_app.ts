@@ -7,6 +7,7 @@ import { eventsRouter } from '@/modules/events/server/procedure';
 import { aboutusRouter } from '@/modules/about/server/procedure';
 import { teamMemberRouter } from '@/modules/team-member/server/procedure';
 import { donorsPartnersRouter } from '@/modules/donors-partners/server/procedure';
+import { storiesRouter } from '@/modules/stories/server/procedure';
 
 export const appRouter = createTRPCRouter({
   home: homeRouter,
@@ -16,7 +17,8 @@ export const appRouter = createTRPCRouter({
   events: eventsRouter,
   aboutus: aboutusRouter,
   teamMember: teamMemberRouter,
-  donorsPartners: donorsPartnersRouter
+  donorsPartners: donorsPartnersRouter,
+  stories: storiesRouter
 });
 // export type definition of API
 export type AppRouter = typeof appRouter;

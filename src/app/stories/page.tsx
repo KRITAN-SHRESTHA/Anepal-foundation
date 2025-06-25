@@ -1,5 +1,12 @@
-import React from 'react';
+import StoriesView from '@/modules/stories/ui/views/stories-view';
+import { HydrateClient, trpc } from '@/trpc/server';
 
-export default function StoriesPage() {
-  return <div>StoriesPage</div>;
+export default async function StoriesPage() {
+  void trpc.stories.getStoriesPageContent.prefetch();
+
+  return (
+    <HydrateClient>
+      <StoriesView />
+    </HydrateClient>
+  );
 }

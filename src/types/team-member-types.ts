@@ -1,7 +1,7 @@
 import {
-  About_team_members,
   Team_member_roles,
-  Team_members
+  Team_members,
+  Team_members_page
 } from '@/sanity/types';
 
 export type PopulatedTeamMember = Omit<Team_members, 'role'> & {
@@ -9,8 +9,13 @@ export type PopulatedTeamMember = Omit<Team_members, 'role'> & {
 };
 
 export type PopulatedAboutTeamMember = Omit<
-  About_team_members,
-  'membersList'
+  Team_members_page,
+  'membersDetails'
 > & {
-  membersList?: PopulatedTeamMember[];
+  membersDetails: Omit<
+    NonNullable<Team_members_page['membersDetails']>,
+    'membersList'
+  > & {
+    membersList: PopulatedTeamMember[];
+  };
 };

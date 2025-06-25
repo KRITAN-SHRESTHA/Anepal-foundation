@@ -3,7 +3,7 @@ import { defineField, defineType } from 'sanity';
 import { validationLang } from '../../lib/validation-lang';
 import { PuzzleIcon } from 'lucide-react';
 
-export const whatmakesUsUniqueType = defineType({
+export const whatmakesUsUniqueSchema = defineType({
   title: 'What makes us unique',
   name: 'what-makes-us-unique',
   type: 'document',

@@ -35,7 +35,21 @@ export const structure: StructureResolver = (S, context) =>
               S.documentTypeListItem('home-content').title('Home Content')
             ])
         ),
-      S.documentTypeListItem('events'),
+      S.listItem()
+        .title('Events')
+        .child(
+          S.list()
+            .title('Events section')
+            .items([
+              S.documentTypeListItem('events'),
+              S.listItem()
+                .title('Event Page')
+                .icon(BinaryDocumentIcon)
+                .child(
+                  S.document().schemaType('eventsPage').documentId('eventsPage')
+                )
+            ])
+        ),
       S.listItem()
         .title('Team members')
         .child(
@@ -49,8 +63,8 @@ export const structure: StructureResolver = (S, context) =>
                 .icon(BinaryDocumentIcon)
                 .child(
                   S.document()
-                    .schemaType('about_team_members')
-                    .documentId('about_team_members')
+                    .schemaType('team_members_page')
+                    .documentId('team_members_page')
                 )
             ])
         ),

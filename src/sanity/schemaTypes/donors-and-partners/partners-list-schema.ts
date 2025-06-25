@@ -1,7 +1,7 @@
 import { ListIcon } from '@sanity/icons';
 import { defineType } from 'sanity';
 
-export const partnersList = defineType({
+export const partnersListSchema = defineType({
   name: 'partnersList',
   title: 'Partners list',
   icon: ListIcon,

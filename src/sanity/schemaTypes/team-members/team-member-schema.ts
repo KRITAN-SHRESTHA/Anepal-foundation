@@ -1,7 +1,7 @@
 import { validationLang } from '@/sanity/lib/validation-lang';
 import { defineField, defineType } from 'sanity';
 
-export const teamMemberType = defineType({
+export const teamMemberSchema = defineType({
   name: 'team_members',
   title: 'Team Members',
   type: 'document',

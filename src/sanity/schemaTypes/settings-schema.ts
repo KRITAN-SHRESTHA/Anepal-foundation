@@ -1,7 +1,7 @@
 import { defineField, defineType } from 'sanity';
 import { Settings } from 'lucide-react';
 
-export const settingsType = defineType({
+export const settingsSchema = defineType({
   name: 'settings',
   title: 'Settings',
   type: 'document',
