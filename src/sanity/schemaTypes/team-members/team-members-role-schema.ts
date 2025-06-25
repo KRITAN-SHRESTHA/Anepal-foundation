@@ -1,6 +1,6 @@
 import { defineField, defineType } from 'sanity';
 
-export const teamMemberRolesType = defineType({
+export const teamMembersRoleSchema = defineType({
   name: 'team_member_roles',
   title: 'Roles',
   type: 'document',

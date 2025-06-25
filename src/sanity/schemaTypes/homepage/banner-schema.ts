@@ -3,7 +3,7 @@ import { defineType } from 'sanity';
 
 import { validationLang } from '../../lib/validation-lang';
 
-export const bannerType = defineType({
+export const bannerSchema = defineType({
   title: 'Home Banners',
   name: 'home-banner',
   type: 'document',

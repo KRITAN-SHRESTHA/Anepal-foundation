@@ -11,6 +11,8 @@ import {
   Quicksand,
   Permanent_Marker
 } from 'next/font/google';
+import NextTopLoader from 'nextjs-toploader';
+
 import './globals.css';
 
 const geistSans = Geist({
@@ -52,6 +54,7 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider>
           <TRPCProvider>
+            <NextTopLoader color="#a6289f" />
             <Header />
             {children}
             <Footer />

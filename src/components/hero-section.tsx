@@ -1,4 +1,3 @@
-import React from 'react';
 import CustomImage from './custom-image';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import { LocalisedDataType } from '@/lib/utils';
@@ -21,6 +20,10 @@ export default function HeroSection({
 
   const convertedTitle =
     typeof title === 'string' ? title : getLocalizedString(title ?? []);
+
+  const splitTitle = convertedTitle?.split(' ');
+  const firstText = splitTitle && splitTitle[0];
+  const lastText = splitTitle?.slice(1, splitTitle.length).join(' ');
 
   const convertedSubtitle =
     typeof subtitle === 'string'
@@ -47,8 +50,8 @@ export default function HeroSection({
             <p className="font-permanentMaker text-2xl text-white md:text-3xl">
               {convertedSubtitle}
             </p>
-            <h1 className="font-quicksand text-[40px] leading-[130%] font-medium text-balance text-white first-letter:capitalize md:text-5xl lg:text-6xl">
-              {convertedTitle}
+            <h1 className="font-quicksand text-[40px] leading-[130%] text-balance text-white first-letter:capitalize md:text-5xl lg:text-6xl">
+              <b>{firstText}</b>&nbsp;{lastText}
             </h1>
           </div>
         </div>

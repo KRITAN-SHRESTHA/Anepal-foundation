@@ -32,7 +32,7 @@ const buttonVariants = cva(
         icon: 'size-9'
       },
       border: {
-        purple: 'border-purple-800'
+        purple: 'border-purple-800 text-purple-800 hover:bg-purple-100/40'
       }
     },
     defaultVariants: {

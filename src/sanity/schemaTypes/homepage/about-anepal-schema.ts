@@ -3,7 +3,7 @@ import { defineField, defineType } from 'sanity';
 import { validationLang } from '../../lib/validation-lang';
 import { InfoOutlineIcon } from '@sanity/icons';
 
-export const aboutAnepalType = defineType({
+export const aboutAnepalSchema = defineType({
   title: 'About Anepal',
   name: 'about-anepal',
   type: 'document',

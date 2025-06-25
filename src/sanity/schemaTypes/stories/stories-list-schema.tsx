@@ -3,7 +3,7 @@ import { defineField, defineType } from 'sanity';
 
 import { validationLang } from '@/sanity/lib/validation-lang';
 
-export const storiesListType = defineType({
+export const storiesListSchema = defineType({
   name: 'storiesList',
   title: 'Stories list',
   icon: List,

@@ -12,9 +12,12 @@ export default async function OurEventsPage({
 }: OurEventsPageParams) {
   const page = (await searchParams).page;
 
-  void trpc.events.getAllEvents.prefetch({
-    page: page ? Number(page) : 1
-  });
+  await Promise.all([
+    trpc.events.getAllEvents.prefetch({
+      page: page ? Number(page) : 1
+    }),
+    trpc.events.getEventPage.prefetch()
+  ]);
 
   return (
     <HydrateClient>

@@ -2,7 +2,7 @@ import { defineField, defineType } from 'sanity';
 import { Settings } from 'lucide-react';
 import { validationLang } from '../lib/validation-lang';
 
-export const organizationStatsType = defineType({
+export const organizationStatsSchema = defineType({
   name: 'organizationStats',
   title: 'Organization Statistics',
   type: 'document',
