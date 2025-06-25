@@ -19,16 +19,16 @@ export default function TeamMemberView() {
 }
 
 function TeamMemberViewSuspense() {
-  const [teamaMembers] = trpc.teamMember.getAboutTeamMembers.useSuspenseQuery();
+  const [teamMembers] = trpc.teamMember.getAboutTeamMembers.useSuspenseQuery();
 
   return (
     <div>
-      {teamaMembers.heroimage && (
+      {teamMembers.heroSection?.backgroundImage && (
         <HeroSection
-          image={teamaMembers.heroimage}
-          subtitle="Team"
-          title="Member"
-          alt={teamaMembers.heroimage.alt ?? ''}
+          image={teamMembers.heroSection?.backgroundImage}
+          subtitle={teamMembers.heroSection.subtitle}
+          title={teamMembers.heroSection.title}
+          alt={teamMembers.heroSection?.backgroundImage.alt ?? ''}
         />
       )}
 

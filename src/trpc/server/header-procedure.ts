@@ -4,7 +4,7 @@ import { createTRPCRouter, publicProcedure } from '@/trpc/init';
 
 const POSTS_QUERY = `*[
   _type == "header"
-]|order(order asc)[0...8]`;
+] | order(orderRank asc)[0...8]`;
 
 // will revalidate after every 30 seconds
 const options = { next: { revalidate: 30 } };

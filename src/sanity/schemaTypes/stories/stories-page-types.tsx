@@ -1,12 +1,12 @@
-import { defineArrayMember, defineField, defineType, Reference } from 'sanity';
-import { Info } from 'lucide-react';
 import { validationLang } from '@/sanity/lib/validation-lang';
+import { List } from 'lucide-react';
+import { defineArrayMember, defineField, defineType, Reference } from 'sanity';
 
-export const aboutTeamMembersType = defineType({
-  name: 'about_team_members',
-  title: 'About',
+export const storiesPageType = defineType({
+  name: 'storiesPageContent',
+  title: 'Stories Page Content',
+  icon: List,
   type: 'document',
-  icon: Info,
   fields: [
     {
       name: 'heroSection',
@@ -46,7 +46,6 @@ export const aboutTeamMembersType = defineType({
           title: 'Background Image',
           type: 'image',
           options: { hotspot: true },
-          description: 'Hero image (recommended size: 1440 × 687px)',
           validation: rule => rule.required().error('Image is required'),
           fields: [
             defineField({
@@ -61,28 +60,30 @@ export const aboutTeamMembersType = defineType({
       ]
     },
     {
-      name: 'membersList',
-      title: 'Members',
+      name: 'stories',
+      title: 'Select Stories',
       type: 'array',
-      // validation: rule => rule.required().error('Please select member'),
       validation: rule =>
         rule.custom((arr: Reference[]) => {
           // arr will gives the array of selected fields
-          if (!arr) return 'Please select at least a member';
+          if (!arr) return 'Please select at least a story';
 
           const refs = arr.map(item => item._ref);
           const hasDuplicates = refs.length !== new Set(refs).size;
           return hasDuplicates ? 'No duplicate selections allowed' : true;
         }),
       of: [
-        defineArrayMember({ type: 'reference', to: { type: 'team_members' } })
+        defineArrayMember({ type: 'reference', to: { type: 'storiesList' } })
       ]
     }
   ],
   preview: {
+    select: {
+      title: 'title'
+    },
     prepare() {
       return {
-        title: 'About Team members'
+        title: 'Stories page'
       };
     }
   }

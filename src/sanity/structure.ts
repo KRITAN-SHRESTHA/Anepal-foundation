@@ -1,19 +1,27 @@
-import { BinaryDocumentIcon, InfoOutlineIcon } from '@sanity/icons';
+import { BinaryDocumentIcon, InfoOutlineIcon, MenuIcon } from '@sanity/icons';
+import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list';
 import { InfoIcon, SettingsIcon } from 'lucide-react';
 import type { StructureResolver } from 'sanity/structure';
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
-export const structure: StructureResolver = S =>
+export const structure: StructureResolver = (S, context) =>
   S.list()
     .title('ANepal Foundation')
     .items([
+      // S.documentTypeListItem('header'),
+      orderableDocumentListDeskItem({
+        type: 'header',
+        S,
+        context,
+        title: 'Header',
+        icon: MenuIcon
+      }),
       S.listItem()
         .title('Home page')
         .child(
           S.list()
             .title('Home page section')
             .items([
-              S.documentTypeListItem('header'),
               S.documentTypeListItem('home-banner'),
               S.listItem()
                 .title('About Anepal')
@@ -37,12 +45,29 @@ export const structure: StructureResolver = S =>
               S.documentTypeListItem('team_member_roles'),
               S.documentTypeListItem('team_members'),
               S.listItem()
-                .title('About Team Member')
-                .icon(InfoOutlineIcon)
+                .title('Team Member Page')
+                .icon(BinaryDocumentIcon)
                 .child(
                   S.document()
                     .schemaType('about_team_members')
                     .documentId('about_team_members')
+                )
+            ])
+        ),
+      S.listItem()
+        .title('Stories')
+        .child(
+          S.list()
+            .title('Stories section')
+            .items([
+              S.documentTypeListItem('storiesList'),
+              S.listItem()
+                .title('Stories Page')
+                .icon(BinaryDocumentIcon)
+                .child(
+                  S.document()
+                    .schemaType('storiesPageContent')
+                    .documentId('storiesPageContent')
                 )
             ])
         ),
@@ -66,7 +91,7 @@ export const structure: StructureResolver = S =>
         ),
       S.documentTypeListItem('organizationStats'),
       S.listItem()
-        .title('About us')
+        .title('About Us Page')
         .icon(InfoOutlineIcon)
         .child(S.document().schemaType('aboutus').documentId('aboutus')),
 
