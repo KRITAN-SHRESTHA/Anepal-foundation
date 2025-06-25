@@ -163,18 +163,30 @@ export type About_team_members = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  heroimage?: {
-    asset?: {
-      _ref: string;
-      _type: 'reference';
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+  heroSection?: {
+    title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    subtitle?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    backgroundImage?: {
+      asset?: {
+        _ref: string;
+        _type: 'reference';
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: 'image';
     };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: 'image';
   };
   membersList?: Array<{
     _ref: string;
@@ -589,13 +601,12 @@ export type Header = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  Identifier?: string;
+  orderRank?: string;
   name?: Array<
     {
       _key: string;
     } & InternationalizedArrayStringValue
   >;
-  order?: number;
   link?: string;
   subLinks?: Array<{
     Identifier?: string;

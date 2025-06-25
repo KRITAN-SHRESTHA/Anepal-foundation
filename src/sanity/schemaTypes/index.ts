@@ -16,6 +16,8 @@ import { donorsPartnersType } from './donors-and-partners/donors-partners-type';
 import { donorsList } from './donors-and-partners/donors-list';
 import { partnersList } from './donors-and-partners/partners-list';
 import { organizationStatsType } from './organization-stats-type';
+import { storiesListType } from './stories/stories-list-types';
+import { storiesPageType } from './stories/stories-page-types';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -34,6 +36,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     donorsPartnersType,
     donorsList,
     partnersList,
-    organizationStatsType
+    organizationStatsType,
+    storiesListType,
+    storiesPageType
   ]
 };

@@ -1,5 +1,5 @@
 import { ImageIcon } from '@sanity/icons';
-import { defineField, defineType } from 'sanity';
+import { defineType } from 'sanity';
 
 import { validationLang } from '../../lib/validation-lang';
 
@@ -9,15 +9,7 @@ export const bannerType = defineType({
   type: 'document',
   icon: ImageIcon,
   fields: [
-    defineField({
-      name: 'Identifier',
-      title: 'Identifier',
-      type: 'string',
-      description: 'Internal name to identify this header item in the Studio',
-      validation: rule =>
-        rule.required().error('Please provide an identifier for this banner')
-    }),
-    defineField({
+    {
       name: 'title',
       title: 'Title',
       type: 'internationalizedArrayString',
@@ -27,8 +19,8 @@ export const bannerType = defineType({
           .custom<{ value: string; _type: string; _key: string }[]>(value => {
             return validationLang(value, 'Please add title in all languages');
           })
-    }),
-    defineField({
+    },
+    {
       name: 'image',
       title: 'Image',
       type: 'image',
@@ -37,8 +29,8 @@ export const bannerType = defineType({
         hotspot: true
       },
       validation: rule => rule.required().error('Banner image is required')
-    }),
-    defineField({
+    },
+    {
       name: 'description',
       type: 'internationalizedArrayString',
       validation: rule =>
@@ -50,8 +42,8 @@ export const bannerType = defineType({
               'Please add description in all languages'
             );
           })
-    }),
-    defineField({
+    },
+    {
       name: 'link',
       title: 'Link',
       type: 'url',
@@ -62,6 +54,16 @@ export const bannerType = defineType({
           .required()
           .uri({ allowRelative: true })
           .error('Please add a valid URL')
-    })
-  ]
+    }
+  ],
+  preview: {
+    select: {
+      title: 'title'
+    },
+    prepare(args) {
+      return {
+        title: args.title?.[0]?.value || ''
+      };
+    }
+  }
 });

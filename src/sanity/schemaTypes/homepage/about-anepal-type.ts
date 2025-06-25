@@ -9,7 +9,7 @@ export const aboutAnepalType = defineType({
   type: 'document',
   icon: InfoOutlineIcon,
   fields: [
-    defineField({
+    {
       name: 'title',
       title: 'Title',
       type: 'internationalizedArrayString',
@@ -17,8 +17,8 @@ export const aboutAnepalType = defineType({
         rule.custom<{ value: string; _type: string; _key: string }[]>(value => {
           return validationLang(value, 'Please add title in all languages');
         })
-    }),
-    defineField({
+    },
+    {
       name: 'subtitle',
       title: 'Subtitle',
       type: 'internationalizedArrayString',
@@ -26,8 +26,8 @@ export const aboutAnepalType = defineType({
         rule.custom<{ value: string; _type: string; _key: string }[]>(value => {
           return validationLang(value, 'Please add subtitle in all languages');
         })
-    }),
-    defineField({
+    },
+    {
       name: 'description',
       type: 'internationalizedArrayText',
       validation: rule =>
@@ -39,8 +39,8 @@ export const aboutAnepalType = defineType({
               'Please add description in all languages'
             );
           })
-    }),
-    defineField({
+    },
+    {
       name: 'image',
       title: 'Image',
       type: 'image',
@@ -57,21 +57,7 @@ export const aboutAnepalType = defineType({
           validation: rule => rule.required().error('Image alt is required')
         })
       ]
-    })
-    // defineField({
-    //   name: 'link',
-    //   title: 'Link',
-    //   type: 'url',
-    //   description:
-    //     'After clicking on "read more" will be redirected to the link you provided - /about-us',
-    //   initialValue: '/about-us',
-    //   validation: rule =>
-    //     rule
-    //       .uri({ allowRelative: true })
-    //       .error(
-    //         'Please enter a valid URL (e.g., "/about" or "https://example.com")'
-    //       )
-    // })
+    }
   ],
   preview: {
     prepare() {

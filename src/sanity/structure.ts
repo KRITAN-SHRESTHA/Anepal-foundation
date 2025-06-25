@@ -1,4 +1,4 @@
-import { BinaryDocumentIcon, InfoOutlineIcon } from '@sanity/icons';
+import { BinaryDocumentIcon, InfoOutlineIcon, MenuIcon } from '@sanity/icons';
 import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list';
 import { InfoIcon, SettingsIcon } from 'lucide-react';
 import type { StructureResolver } from 'sanity/structure';
@@ -9,7 +9,13 @@ export const structure: StructureResolver = (S, context) =>
     .title('ANepal Foundation')
     .items([
       // S.documentTypeListItem('header'),
-      orderableDocumentListDeskItem({ type: 'header', S, context }),
+      orderableDocumentListDeskItem({
+        type: 'header',
+        S,
+        context,
+        title: 'Header',
+        icon: MenuIcon
+      }),
       S.listItem()
         .title('Home page')
         .child(
@@ -45,6 +51,23 @@ export const structure: StructureResolver = (S, context) =>
                   S.document()
                     .schemaType('about_team_members')
                     .documentId('about_team_members')
+                )
+            ])
+        ),
+      S.listItem()
+        .title('Stories')
+        .child(
+          S.list()
+            .title('Stories section')
+            .items([
+              S.documentTypeListItem('storiesList'),
+              S.listItem()
+                .title('Stories Page')
+                .icon(BinaryDocumentIcon)
+                .child(
+                  S.document()
+                    .schemaType('storiesPageContent')
+                    .documentId('storiesPageContent')
                 )
             ])
         ),
