@@ -7,6 +7,8 @@ interface ContentTitleCustomProps {
   subtitle?: LocalisedDataType[] | string | null;
   titleClassname?: string;
   subtitleClassname?: string;
+  highlightTitleText?: string;
+  description?: string;
   align?: 'center' | 'left';
 }
 
@@ -19,7 +21,9 @@ export default function ContentTitle({
   className,
   subtitleClassname,
   titleClassname,
+  highlightTitleText,
   align = 'left',
+  description,
   ...props
 }: ContentTitleProps) {
   const { getLocalizedString } = useGetLocale();
@@ -27,10 +31,20 @@ export default function ContentTitle({
   const convertedTitle =
     typeof title === 'string' ? title : getLocalizedString(title ?? []);
 
+  const convertedHighlightTitleText =
+    typeof highlightTitleText === 'string'
+      ? highlightTitleText
+      : getLocalizedString(highlightTitleText ?? []);
+
   const convertedSubtitle =
     typeof subtitle === 'string'
       ? subtitle
       : getLocalizedString(subtitle ?? []);
+
+  const convertedDescription =
+    typeof description === 'string'
+      ? description
+      : getLocalizedString(description ?? []);
 
   return (
     <div
@@ -58,16 +72,30 @@ export default function ContentTitle({
       {title ? (
         <h3
           className={cn(
-            'text-[32px] leading-[110%] font-extrabold tracking-tight text-[#515266] md:text-[40px] lg:text-[50px]',
+            'text-[32px] leading-[110%] tracking-tight text-[#515266] md:text-[40px] lg:text-[50px]',
             {
               'pt-4': !!subtitle
             },
             titleClassname
           )}
         >
-          {/* {getLocalizedString(title) ?? []} */}
+          {highlightTitleText && <b>{convertedHighlightTitleText}&nbsp;</b>}
           {convertedTitle}
         </h3>
+      ) : null}
+
+      {description ? (
+        <p
+          className={cn(
+            'text-muted-foreground mx-auto mb-8 pt-7 sm:text-lg md:text-base lg:max-w-2xl',
+            {
+              '': align === 'left',
+              'text-center': align === 'center'
+            }
+          )}
+        >
+          {convertedDescription}
+        </p>
       ) : null}
     </div>
   );

@@ -23,7 +23,7 @@ export default function HeroSection({
 
   const splitTitle = convertedTitle?.split(' ');
   const firstText = splitTitle && splitTitle[0];
-  const lastText = splitTitle?.slice(1, splitTitle.length).join(' ');
+  const lastText = splitTitle?.slice(1, splitTitle.length).join(' '); //or str.slice(1)
 
   const convertedSubtitle =
     typeof subtitle === 'string'

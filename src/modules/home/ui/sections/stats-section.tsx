@@ -8,17 +8,17 @@ import { ErrorBoundary } from 'react-error-boundary';
 import ContentTitle from '@/components/content-title';
 // import ContentTitle from '@/components/content-title';
 
-export default function WhoDoWeHelpSection() {
+export default function StatsSection() {
   return (
     <ErrorBoundary fallback={<div>Something went wrong</div>}>
       <Suspense fallback={<div>Loading...</div>}>
-        <WhoDoWeHelpSectionSuspense />
+        <StatsSectionSuspense />
       </Suspense>
     </ErrorBoundary>
   );
 }
 
-function WhoDoWeHelpSectionSuspense() {
+function StatsSectionSuspense() {
   // const [data] = trpc.settings.getSettings.useSuspenseQuery();
   // const t = useTranslations('Homepage');
 

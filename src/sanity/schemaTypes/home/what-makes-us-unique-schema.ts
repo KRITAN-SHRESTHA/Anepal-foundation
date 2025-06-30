@@ -9,7 +9,7 @@ export const whatmakesUsUniqueSchema = defineType({
   type: 'document',
   icon: PuzzleIcon,
   fields: [
-    defineField({
+    {
       name: 'title',
       title: 'Title',
       type: 'internationalizedArrayString',
@@ -17,9 +17,9 @@ export const whatmakesUsUniqueSchema = defineType({
         rule.custom<{ value: string; _type: string; _key: string }[]>(value => {
           return validationLang(value, 'Please add title in all languages');
         })
-    }),
+    },
 
-    defineField({
+    {
       name: 'description',
       type: 'internationalizedArrayText'
       // validation: rule =>
@@ -31,7 +31,7 @@ export const whatmakesUsUniqueSchema = defineType({
       //         'Please add description in all languages'
       //       );
       //     })
-    }),
+    },
     defineField({
       name: 'image',
       title: 'Image',

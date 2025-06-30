@@ -8,6 +8,7 @@ export default async function Home() {
   await Promise.all([
     trpc.home.getBanner.prefetch(),
     trpc.aboutus.getHomeAboutUs.prefetch(),
+    trpc.home.getOrgHelpsInFields.prefetch(),
     trpc.home.getWhatMakesUsUnique.prefetch(),
     trpc.settings.getSettings.prefetch(),
     trpc.events.getFeaturedEvents.prefetch(),

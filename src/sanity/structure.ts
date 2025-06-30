@@ -17,10 +17,10 @@ export const structure: StructureResolver = (S, context) =>
         icon: MenuIcon
       }),
       S.listItem()
-        .title('Home page')
+        .title('Home')
         .child(
           S.list()
-            .title('Home page section')
+            .title('Home section')
             .items([
               S.documentTypeListItem('home-banner'),
               S.listItem()
@@ -31,8 +31,72 @@ export const structure: StructureResolver = (S, context) =>
                     .schemaType('about-anepal')
                     .documentId('about-anepal')
                 ),
+              // S.documentTypeListItem('org_helps_in_fields'),
+
+              S.listItem()
+                .title('Organization helps in different fields')
+                .icon(InfoIcon)
+                .child(
+                  S.document()
+                    .schemaType('org_helps_in_fields')
+                    .documentId('org_helps_in_fields')
+                ),
+              S.listItem()
+                .title('Featured projects')
+                .icon(InfoIcon)
+                .child(
+                  S.document()
+                    .schemaType('featured_projects')
+                    .documentId('featured_projects')
+                ),
+              S.listItem()
+                .title('Home stats')
+                .icon(InfoIcon)
+                .child(
+                  S.document().schemaType('home_stats').documentId('home_stats')
+                ),
+
               S.documentTypeListItem('what-makes-us-unique'),
-              S.documentTypeListItem('home-content').title('Home Content')
+              S.listItem()
+                .title('Events')
+                .icon(InfoIcon)
+                .child(
+                  S.document()
+                    .schemaType('home_events')
+                    .documentId('home_events')
+                ),
+              S.listItem()
+                .title('Testimonials')
+                .icon(InfoIcon)
+                .child(
+                  S.document()
+                    .schemaType('home_testimonial')
+                    .documentId('home_testimonial')
+                ),
+              S.listItem()
+                .title('Team members')
+                .icon(InfoIcon)
+                .child(
+                  S.document()
+                    .schemaType('home_team_member')
+                    .documentId('home_team_member')
+                ),
+              S.listItem()
+                .title('Partners')
+                .icon(InfoIcon)
+                .child(
+                  S.document()
+                    .schemaType('home_partners')
+                    .documentId('home_partners')
+                ),
+              S.listItem()
+                .title('Gallery')
+                .icon(InfoIcon)
+                .child(
+                  S.document()
+                    .schemaType('home_gallery')
+                    .documentId('home_gallery')
+                )
             ])
         ),
       S.listItem()
@@ -104,6 +168,7 @@ export const structure: StructureResolver = (S, context) =>
             ])
         ),
       S.documentTypeListItem('organizationStats'),
+      S.documentTypeListItem('testimonials_list'),
       S.listItem()
         .title('About Us Page')
         .icon(InfoOutlineIcon)

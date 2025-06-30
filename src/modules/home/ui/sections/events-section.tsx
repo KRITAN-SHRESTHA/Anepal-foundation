@@ -38,13 +38,14 @@ function EventsSectionSuspense() {
     <section className="bg-accent py-14">
       <div className="mx-auto flex max-w-screen-xl flex-col items-center gap-16 px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <ContentTitle subtitle={'Upcoming Events'} />
-
-          <p className="text-muted-foreground mb-8 pt-7 sm:text-lg md:text-base lg:max-w-2xl">
-            Sharksucker sea toad candiru rocket danio tilefish stingray
+          <ContentTitle
+            subtitle={'Events'}
+            title={'Upcoming Events'}
+            description=" Sharksucker sea toad candiru rocket danio tilefish stingray
             deepwater stingray Sacramento splittail, Canthigaster rostrata.
-            Midshipman dartfish
-          </p>
+            Midshipman dartfish"
+          />
+
           <Button
             variant="outline"
             border={'purple'}
@@ -57,12 +58,9 @@ function EventsSectionSuspense() {
             </Link>
           </Button>
         </div>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+        <div className="grid w-full gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
           {events.map(event => (
-            <Card
-              key={event._id}
-              className="grid grid-rows-[auto_auto_1fr_auto] overflow-hidden pt-0"
-            >
+            <Card key={event._id} className="grid w-full overflow-hidden pt-0">
               <div className="relative aspect-16/9 w-full">
                 <Link
                   href={`/events/${event.slug?.current}`}
@@ -98,7 +96,7 @@ function EventsSectionSuspense() {
               <CardFooter>
                 <Link
                   href={`/events/${event.slug?.current}`}
-                  className="text-foreground flex items-center hover:underline"
+                  className="text-foreground flex cursor-pointer items-center hover:underline"
                 >
                   Read more
                   <ArrowRight className="ml-2 size-4" />

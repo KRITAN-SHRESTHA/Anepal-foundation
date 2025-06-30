@@ -53,8 +53,8 @@ export const aboutAnepalSchema = defineType({
         defineField({
           name: 'alt',
           type: 'string',
-          title: 'Alternative Text (about image)',
-          validation: rule => rule.required().error('Image alt is required')
+          title: 'Alternative Text (describe about the image)'
+          // validation: rule => rule.required().error('Image alt is required')
         })
       ]
     }

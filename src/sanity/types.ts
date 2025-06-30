@@ -13,6 +13,371 @@
  */
 
 // Source: schema.json
+export type Home_gallery = {
+  _id: string;
+  _type: 'home_gallery';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  subtitle?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  images?: Array<{
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: 'reference';
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: 'image';
+    };
+    _key: string;
+  }>;
+};
+
+export type Home_events = {
+  _id: string;
+  _type: 'home_events';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  subtitle?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  short_description?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayTextValue
+  >;
+};
+
+export type Home_team_member = {
+  _id: string;
+  _type: 'home_team_member';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  subtitle?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  short_description?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayTextValue
+  >;
+  membersList?: Array<{
+    _ref: string;
+    _type: 'reference';
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: 'team_members';
+  }>;
+};
+
+export type Home_partners = {
+  _id: string;
+  _type: 'home_partners';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  subtitle?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+};
+
+export type Home_testimonial = {
+  _id: string;
+  _type: 'home_testimonial';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  subtitle?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  select_testimonials?: Array<{
+    _ref: string;
+    _type: 'reference';
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: 'testimonials_list';
+  }>;
+};
+
+export type Testimonials_list = {
+  _id: string;
+  _type: 'testimonials_list';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  user_name?: string;
+  content?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayTextValue
+  >;
+  role?: {
+    _ref: string;
+    _type: 'reference';
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: 'team_member_roles';
+  };
+};
+
+export type Home_stats = {
+  _id: string;
+  _type: 'home_stats';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  subtitle?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  select_stats?: Array<{
+    _ref: string;
+    _type: 'reference';
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: 'organizationStats';
+  }>;
+};
+
+export type Featured_projects = {
+  _id: string;
+  _type: 'featured_projects';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  subtitle?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  description?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayTextValue
+  >;
+  content?: Array<{
+    title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    description?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayTextValue
+    >;
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: 'reference';
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: 'image';
+    };
+    _key: string;
+  }>;
+};
+
+export type Org_helps_in_fields_copy = {
+  _id: string;
+  _type: 'org_helps_in_fields_copy';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  subtitle?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  content?: Array<{
+    title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    description?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayTextValue
+    >;
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: 'reference';
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: 'image';
+    };
+    _key: string;
+  }>;
+};
+
+export type Homepage_anepal = {
+  _id: string;
+  _type: 'homepage_anepal';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  heroSection?: {
+    title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    subtitle?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    backgroundImage?: {
+      asset?: {
+        _ref: string;
+        _type: 'reference';
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: 'image';
+    };
+  };
+  membersDetails?: {
+    title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    subtitle?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    description?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayTextValue
+    >;
+    membersList?: Array<{
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: 'team_members';
+    }>;
+  };
+};
+
+export type Org_helps_in_fields = {
+  _id: string;
+  _type: 'org_helps_in_fields';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  subtitle?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  content?: Array<{
+    title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    description?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayTextValue
+    >;
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: 'reference';
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: 'image';
+    };
+    _key: string;
+  }>;
+};
+
 export type EventsPage = {
   _id: string;
   _type: 'eventsPage';
@@ -964,6 +1329,17 @@ export type SanityAssetSourceData = {
 };
 
 export type AllSanitySchemaTypes =
+  | Home_gallery
+  | Home_events
+  | Home_team_member
+  | Home_partners
+  | Home_testimonial
+  | Testimonials_list
+  | Home_stats
+  | Featured_projects
+  | Org_helps_in_fields_copy
+  | Homepage_anepal
+  | Org_helps_in_fields
   | EventsPage
   | StoriesPageContent
   | StoriesList
