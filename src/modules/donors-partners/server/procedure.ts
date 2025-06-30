@@ -1,4 +1,5 @@
 import { client } from '@/sanity/lib/client';
+import { PartnersList } from '@/sanity/types';
 import { createTRPCRouter, publicProcedure } from '@/trpc/init';
 import { PopulatedDonorsAndPartnersPage } from '@/types/donors-partners-types';
 
@@ -18,9 +19,7 @@ const GET_DONORS_PAGE_CONTENT = `*[_type == "donorsAndPartnersPage"][0]{
     statistics[]->
   }
 }`;
-// const EVENT_LIST_WITH_PAGINATION = `*[
-//             _type == "events"
-//           ] | order(_createdAt desc)[$start...$end]`;
+const GET_ALL_PARTNERS_LIST = `*[_type == "partnersList"]`;
 
 // will revalidate after every 30 seconds
 const options = { next: { revalidate: 0 } };
@@ -32,6 +31,9 @@ export const donorsPartnersRouter = createTRPCRouter({
       {},
       options
     );
+  }),
+  getPartnersList: publicProcedure.query(async () => {
+    return await client.fetch<PartnersList>(GET_ALL_PARTNERS_LIST, {}, options);
   })
   // getOneEvent: publicProcedure
   //   .input(

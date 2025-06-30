@@ -30,20 +30,26 @@ export default function EventsSection() {
 }
 
 function EventsSectionSuspense() {
-  const [events] = trpc.events.getFeaturedEvents.useSuspenseQuery();
-
+  const [eventsList] = trpc.events.getFeaturedHomeEvents.useSuspenseQuery();
+  const [events] = trpc.home.getHomeEventsTitle.useSuspenseQuery();
   const { getLocalizedString } = useGetLocale();
 
   return (
-    <section className="bg-accent py-14">
-      <div className="mx-auto flex max-w-screen-xl flex-col items-center gap-16 px-4 sm:px-6 lg:px-8">
+    <section className="relative py-14">
+      <div className="pointer-events-none absolute top-0 left-0 h-full w-[400px] select-none">
+        <Image
+          src={'/assets/events_bg.png'}
+          alt=""
+          fill
+          className="object-cover"
+        />
+      </div>
+      <div className="relative mx-auto flex max-w-screen-xl flex-col items-center gap-16 px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <ContentTitle
-            subtitle={'Events'}
-            title={'Upcoming Events'}
-            description=" Sharksucker sea toad candiru rocket danio tilefish stingray
-            deepwater stingray Sacramento splittail, Canthigaster rostrata.
-            Midshipman dartfish"
+            subtitle={events.subtitle}
+            title={events.title}
+            description={events.short_description}
           />
 
           <Button
@@ -59,7 +65,7 @@ function EventsSectionSuspense() {
           </Button>
         </div>
         <div className="grid w-full gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-          {events.map(event => (
+          {eventsList.map(event => (
             <Card key={event._id} className="grid w-full overflow-hidden pt-0">
               <div className="relative aspect-16/9 w-full">
                 <Link

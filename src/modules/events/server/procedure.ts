@@ -62,7 +62,7 @@ export const eventsRouter = createTRPCRouter({
         options
       );
     }),
-  getFeaturedEvents: publicProcedure.query(async () => {
+  getFeaturedHomeEvents: publicProcedure.query(async () => {
     return await client.fetch<Events[]>(
       `*[_type == "events" && event_time.start >= now()] | order(event_time.start asc)[0...3]`,
       {},

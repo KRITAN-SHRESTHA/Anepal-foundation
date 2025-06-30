@@ -4,8 +4,20 @@ import ContentTitle from '@/components/content-title';
 import CustomImage from '@/components/custom-image';
 import useGetLocale from '@/hooks/use-get-locale';
 import { trpc } from '@/trpc/client';
+import { Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 
 export default function HelpSection() {
+  return (
+    <ErrorBoundary fallback="Something went wrong">
+      <Suspense fallback="Loading...">
+        <HelpSectionSuspense />
+      </Suspense>
+    </ErrorBoundary>
+  );
+}
+
+function HelpSectionSuspense() {
   const [data] = trpc.home.getOrgHelpsInFields.useSuspenseQuery();
 
   const { getLocalizedString } = useGetLocale();

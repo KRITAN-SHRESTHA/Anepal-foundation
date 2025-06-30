@@ -54,7 +54,12 @@ function AboutViewSuspense() {
       <WhoDoWeHelpSection />
       <AboutUsTeamSection />
       {/* <Separator /> */}
-      <PartnersSection className="bg-transparent pb-[100px]" />
+      <PartnersSection
+        className="bg-transparent pb-[100px]"
+        title={data.partnersSection.title}
+        subtitle={data.partnersSection.subtitle}
+        partners={data.partnersSection.partner}
+      />
     </>
   );
 }

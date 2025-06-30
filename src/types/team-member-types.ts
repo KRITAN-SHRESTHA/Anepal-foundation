@@ -1,4 +1,5 @@
 import {
+  Home_team_member,
   Team_member_roles,
   Team_members,
   Team_members_page
@@ -18,4 +19,8 @@ export type PopulatedAboutTeamMember = Omit<
   > & {
     membersList: PopulatedTeamMember[];
   };
+};
+
+export type PopulatedHomeTeamMember = Omit<Home_team_member, 'membersList'> & {
+  membersList: PopulatedTeamMember[];
 };
