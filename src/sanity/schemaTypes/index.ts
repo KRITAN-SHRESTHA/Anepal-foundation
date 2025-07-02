@@ -21,7 +21,7 @@ import { eventsPageSchema } from './events/events-page-schema';
 import { orgHelpsInFieldsSchema } from './home/org-helps-in-fields-schema';
 import { settingsSchema } from './settings-schema';
 import { homePageSchema } from './home/homepage-schema';
-import { orgHelpsInFieldsCopySchema } from './home/org-helps-in-fields-schema copy';
+// import { orgHelpsInFieldsCopySchema } from './home/org-helps-in-fields-schema copy';
 import { featuredProjetsSchema } from './home/featured-projects-schema';
 import { homeStatsSchema } from './home/home-stats';
 import { createtestimonialsSchema } from './testimonials/create-testimonials-schema';
@@ -54,7 +54,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     eventsPageSchema,
     orgHelpsInFieldsSchema,
     homePageSchema,
-    orgHelpsInFieldsCopySchema,
+    // orgHelpsInFieldsCopySchema,
     featuredProjetsSchema,
     homeStatsSchema,
     createtestimonialsSchema,

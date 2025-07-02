@@ -26,7 +26,23 @@ export const donorsPartnersPageSchema = defineType({
                 );
               }
             )
-        }, // "Partners & Donors"
+        },
+        {
+          name: 'highlightTitle',
+          title: 'Highlight Title',
+          type: 'internationalizedArrayString',
+          validation: rule =>
+            rule
+              .required()
+              .custom<
+                { value: string; _type: string; _key: string }[]
+              >(value => {
+                return validationLang(
+                  value,
+                  'Please add highlight title in all languages'
+                );
+              })
+        },
         {
           name: 'subtitle',
           title: 'Subtitle',
@@ -77,7 +93,23 @@ export const donorsPartnersPageSchema = defineType({
                 );
               }
             )
-        }, // "Who Help Us"
+        },
+        {
+          name: 'highlightTitle',
+          title: 'Highlight Title',
+          type: 'internationalizedArrayString',
+          validation: rule =>
+            rule
+              .required()
+              .custom<
+                { value: string; _type: string; _key: string }[]
+              >(value => {
+                return validationLang(
+                  value,
+                  'Please add highlight title in all languages'
+                );
+              })
+        },
         {
           name: 'subtitle',
           title: 'Subtitle',
@@ -91,7 +123,7 @@ export const donorsPartnersPageSchema = defineType({
                 );
               }
             )
-        }, // "Who Help Us"
+        },
         {
           name: 'description',
           title: 'Description',
@@ -166,7 +198,23 @@ export const donorsPartnersPageSchema = defineType({
                 );
               }
             )
-        }, // "Partners & Donors"
+        },
+        {
+          name: 'highlightTitle',
+          title: 'Highlight Title',
+          type: 'internationalizedArrayString',
+          validation: rule =>
+            rule
+              .required()
+              .custom<
+                { value: string; _type: string; _key: string }[]
+              >(value => {
+                return validationLang(
+                  value,
+                  'Please add highlight title in all languages'
+                );
+              })
+        },
         {
           name: 'statsSubtitle',
           title: 'Statistics Subtitle',
@@ -240,7 +288,7 @@ export const donorsPartnersPageSchema = defineType({
                 );
               }
             )
-        }, // "To all our donors, partners and volunteers"
+        },
         {
           name: 'description',
           title: 'Description',

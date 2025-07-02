@@ -50,6 +50,20 @@ export const featuredProjetsSchema = defineType({
         })
     },
     {
+      name: 'highlightTitle',
+      title: 'Highlight Title',
+      type: 'internationalizedArrayString',
+      validation: rule =>
+        rule
+          .required()
+          .custom<{ value: string; _type: string; _key: string }[]>(value => {
+            return validationLang(
+              value,
+              'Please add highlight title in all languages'
+            );
+          })
+    },
+    {
       name: 'subtitle',
       title: 'Subtitle',
       type: 'internationalizedArrayString',
