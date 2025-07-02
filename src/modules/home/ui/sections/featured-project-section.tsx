@@ -34,6 +34,7 @@ function MemoriesCollectionSectionSuspense() {
           subtitle={data.subtitle}
           title={data.title}
           description={data.description}
+          highlightTitleText={data.highlightTitle}
           align="center"
         />
       </div>

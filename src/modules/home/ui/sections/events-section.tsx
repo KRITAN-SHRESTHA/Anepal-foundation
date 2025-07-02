@@ -50,6 +50,7 @@ function EventsSectionSuspense() {
             subtitle={events.subtitle}
             title={events.title}
             description={events.short_description}
+            highlightTitleText={events.highlightTitle}
           />
 
           <Button

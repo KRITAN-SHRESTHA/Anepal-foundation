@@ -24,6 +24,11 @@ export type Home_gallery = {
       _key: string;
     } & InternationalizedArrayStringValue
   >;
+  highlightTitle?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
   subtitle?: Array<
     {
       _key: string;
@@ -57,6 +62,11 @@ export type Home_events = {
       _key: string;
     } & InternationalizedArrayStringValue
   >;
+  highlightTitle?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
   subtitle?: Array<
     {
       _key: string;
@@ -76,6 +86,11 @@ export type Home_team_member = {
   _updatedAt: string;
   _rev: string;
   title?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  highlightTitle?: Array<
     {
       _key: string;
     } & InternationalizedArrayStringValue
@@ -110,6 +125,11 @@ export type Home_partners = {
       _key: string;
     } & InternationalizedArrayStringValue
   >;
+  highlightTitle?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
   subtitle?: Array<
     {
       _key: string;
@@ -124,6 +144,11 @@ export type Home_testimonial = {
   _updatedAt: string;
   _rev: string;
   title?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  highlightTitle?: Array<
     {
       _key: string;
     } & InternationalizedArrayStringValue
@@ -173,6 +198,11 @@ export type Home_stats = {
       _key: string;
     } & InternationalizedArrayStringValue
   >;
+  highlightTitle?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
   subtitle?: Array<
     {
       _key: string;
@@ -198,6 +228,11 @@ export type Featured_projects = {
       _key: string;
     } & InternationalizedArrayStringValue
   >;
+  highlightTitle?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
   subtitle?: Array<
     {
       _key: string;
@@ -207,49 +242,6 @@ export type Featured_projects = {
     {
       _key: string;
     } & InternationalizedArrayTextValue
-  >;
-  content?: Array<{
-    title?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
-    description?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayTextValue
-    >;
-    image?: {
-      asset?: {
-        _ref: string;
-        _type: 'reference';
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: 'image';
-    };
-    _key: string;
-  }>;
-};
-
-export type Org_helps_in_fields_copy = {
-  _id: string;
-  _type: 'org_helps_in_fields_copy';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: Array<
-    {
-      _key: string;
-    } & InternationalizedArrayStringValue
-  >;
-  subtitle?: Array<
-    {
-      _key: string;
-    } & InternationalizedArrayStringValue
   >;
   content?: Array<{
     title?: Array<
@@ -346,6 +338,11 @@ export type Org_helps_in_fields = {
       _key: string;
     } & InternationalizedArrayStringValue
   >;
+  highlightTitle?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
   subtitle?: Array<
     {
       _key: string;
@@ -408,6 +405,11 @@ export type StoriesPageContent = {
         _key: string;
       } & InternationalizedArrayStringValue
     >;
+    highlightTitle?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
     subtitle?: Array<
       {
         _key: string;
@@ -427,13 +429,6 @@ export type StoriesPageContent = {
       _type: 'image';
     };
   };
-  stories?: Array<{
-    _ref: string;
-    _type: 'reference';
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: 'storiesList';
-  }>;
 };
 
 export type StoriesList = {
@@ -589,6 +584,11 @@ export type DonorsAndPartnersPage = {
         _key: string;
       } & InternationalizedArrayStringValue
     >;
+    highlightTitle?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
     subtitle?: Array<
       {
         _key: string;
@@ -610,6 +610,11 @@ export type DonorsAndPartnersPage = {
   };
   whoHelpUsSection?: {
     title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    highlightTitle?: Array<
       {
         _key: string;
       } & InternationalizedArrayStringValue
@@ -641,6 +646,11 @@ export type DonorsAndPartnersPage = {
   };
   statisticsSection?: {
     statsTitle?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    highlightTitle?: Array<
       {
         _key: string;
       } & InternationalizedArrayStringValue
@@ -689,6 +699,11 @@ export type Team_members_page = {
         _key: string;
       } & InternationalizedArrayStringValue
     >;
+    highlightTitle?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
     subtitle?: Array<
       {
         _key: string;
@@ -710,6 +725,11 @@ export type Team_members_page = {
   };
   membersDetails?: {
     title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    highlightTitle?: Array<
       {
         _key: string;
       } & InternationalizedArrayStringValue
@@ -789,6 +809,11 @@ export type Aboutus = {
   _rev: string;
   heroSection?: {
     title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    highlightTitle?: Array<
       {
         _key: string;
       } & InternationalizedArrayStringValue
@@ -873,6 +898,11 @@ export type Aboutus = {
         _key: string;
       } & InternationalizedArrayStringValue
     >;
+    highlightTitle?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
     statsSubtitle?: Array<
       {
         _key: string;
@@ -892,6 +922,11 @@ export type Aboutus = {
         _key: string;
       } & InternationalizedArrayStringValue
     >;
+    highlightTitle?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
     subtitle?: Array<
       {
         _key: string;
@@ -907,6 +942,11 @@ export type Aboutus = {
   };
   partnersSection?: {
     title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    highlightTitle?: Array<
       {
         _key: string;
       } & InternationalizedArrayStringValue
@@ -1050,6 +1090,11 @@ export type AboutAnepal = {
       _key: string;
     } & InternationalizedArrayStringValue
   >;
+  highlightTitle?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
   subtitle?: Array<
     {
       _key: string;
@@ -1164,6 +1209,11 @@ export type HomeBanner = {
   _updatedAt: string;
   _rev: string;
   title?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  highlightTitle?: Array<
     {
       _key: string;
     } & InternationalizedArrayStringValue
@@ -1337,7 +1387,6 @@ export type AllSanitySchemaTypes =
   | Testimonials_list
   | Home_stats
   | Featured_projects
-  | Org_helps_in_fields_copy
   | Homepage_anepal
   | Org_helps_in_fields
   | EventsPage

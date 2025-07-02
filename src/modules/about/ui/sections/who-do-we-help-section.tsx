@@ -15,6 +15,7 @@ export default function WhoDoWeHelpSection() {
         <ContentTitle
           title={data?.statisticsSection.statsTitle}
           subtitle={data?.statisticsSection.statsSubtitle}
+          highlightTitleText={data?.statisticsSection?.highlightTitle}
         />
         <div className="mt-10 grid justify-center gap-x-8 gap-y-16 sm:mt-14 sm:grid-cols-4">
           {data?.statisticsSection.statistics.map(stat => (

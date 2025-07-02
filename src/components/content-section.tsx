@@ -19,6 +19,7 @@ interface ContentSectionProps
   orientation?: 'ltr' | 'rtl';
   title?: LocalisedDataType[] | string;
   subtitle?: LocalisedDataType[];
+  highlightTitleText?: LocalisedDataType[];
   description?: InternalizedArrayTextValueType;
   readmoreLink?: string;
   titleClassname?: string;
@@ -36,7 +37,8 @@ export default function ContentSection({
   titleClassname,
   subtitleClassname,
   className,
-  imageAlt
+  imageAlt,
+  highlightTitleText
 }: ContentSectionProps) {
   const { getLocalizedString } = useGetLocale();
 
@@ -90,6 +92,7 @@ export default function ContentSection({
           subtitle={subtitle}
           subtitleClassname={subtitleClassname}
           titleClassname={titleClassname}
+          highlightTitleText={highlightTitleText}
         />
 
         <p className="tablet:max-w-[60ch] text-muted-foreground pt-7 text-lg leading-[135%]">

@@ -12,6 +12,7 @@ export default function AboutUsTeamSection() {
       <ContentTitle
         title={data?.teamsSection.title}
         subtitle={data?.teamsSection.subtitle}
+        highlightTitleText={data?.teamsSection?.highlightTitle}
         align="center"
       />
       <div className="mx-auto mt-10 flex max-w-3xl flex-col gap-5 gap-y-10 md:mt-20">

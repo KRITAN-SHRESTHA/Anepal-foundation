@@ -61,7 +61,9 @@ function BannerSectionSuspense() {
                 <section className="mx-auto flex h-full max-w-[1200px] items-center px-4 sm:px-6 lg:px-8">
                   <div className="relative">
                     <div className="max-w-2xl">
-                      <h1 className="text-[40px] leading-[130%] font-bold text-balance text-white first-letter:capitalize md:text-5xl lg:text-6xl">
+                      <h1 className="text-[40px] leading-[130%] text-balance text-white first-letter:capitalize md:text-5xl lg:text-6xl">
+                        <b>{getLocalizedString(data?.highlightTitle ?? [])}</b>
+                        <br />
                         {getLocalizedString(data?.title ?? [])}
                       </h1>
                       <p className="my-6 line-clamp-2 text-base leading-[100%] text-balance text-white first-letter:capitalize md:text-xl lg:text-2xl">

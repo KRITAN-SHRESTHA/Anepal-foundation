@@ -7,7 +7,7 @@ interface ContentTitleCustomProps {
   subtitle?: LocalisedDataType[] | string | null;
   titleClassname?: string;
   subtitleClassname?: string;
-  highlightTitleText?: string;
+  highlightTitleText?: LocalisedDataType[] | string | null;
   description?: LocalisedDataType[] | string | null;
   align?: 'center' | 'left';
 }

@@ -194,7 +194,7 @@ export const donorsPartnersPageSchema = defineType({
               value => {
                 return validationLang(
                   value,
-                  'Please add title in all languages'
+                  'Please add title in all language'
                 );
               }
             )
@@ -211,7 +211,7 @@ export const donorsPartnersPageSchema = defineType({
               >(value => {
                 return validationLang(
                   value,
-                  'Please add highlight title in all languages'
+                  'Please add highlight title in all languagessss'
                 );
               })
         },

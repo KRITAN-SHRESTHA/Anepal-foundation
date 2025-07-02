@@ -8,6 +8,7 @@ import { trpc } from '@/trpc/client';
 
 import StoriesListSection from '../sections/stories-list-section';
 import StoriesPageSkeleton from '../components/stories-page-skeleton';
+import StoriesListPagination from '../components/stories-list-pagination';
 
 export default function StoriesView() {
   return (
@@ -29,11 +30,13 @@ function StoriesViewSuspnse() {
           image={storiesData.heroSection?.backgroundImage}
           title={storiesData.heroSection.title}
           subtitle={storiesData.heroSection.subtitle}
+          highlightTitleText={storiesData.heroSection.highlightTitle}
           alt={storiesData.heroSection.backgroundImage.alt ?? ''}
         />
       )}
 
       <StoriesListSection />
+      <StoriesListPagination />
     </div>
   );
 }

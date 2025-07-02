@@ -30,6 +30,7 @@ function HomeTeamMembersSectionSuspense() {
           subtitle={teamMember.subtitle}
           title={teamMember.title}
           description={teamMember.short_description}
+          highlightTitleText={teamMember.highlightTitle}
         />
 
         <Button

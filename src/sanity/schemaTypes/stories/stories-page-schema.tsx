@@ -1,6 +1,6 @@
 import { validationLang } from '@/sanity/lib/validation-lang';
 import { List } from 'lucide-react';
-import { defineArrayMember, defineField, defineType, Reference } from 'sanity';
+import { defineField, defineType } from 'sanity';
 
 export const storiesPageSchema = defineType({
   name: 'storiesPageContent',
@@ -74,24 +74,24 @@ export const storiesPageSchema = defineType({
         }
         // { name: 'highlightText', title: 'Highlight Text', type: 'string' } // "Mercy"
       ]
-    },
-    {
-      name: 'stories',
-      title: 'Select Stories',
-      type: 'array',
-      validation: rule =>
-        rule.custom((arr: Reference[]) => {
-          // arr will gives the array of selected fields
-          if (!arr) return 'Please select at least a story';
-
-          const refs = arr.map(item => item._ref);
-          const hasDuplicates = refs.length !== new Set(refs).size;
-          return hasDuplicates ? 'No duplicate selections allowed' : true;
-        }),
-      of: [
-        defineArrayMember({ type: 'reference', to: { type: 'storiesList' } })
-      ]
     }
+    // {
+    //   name: 'stories',
+    //   title: 'Select Stories',
+    //   type: 'array',
+    //   validation: rule =>
+    //     rule.custom((arr: Reference[]) => {
+    //       // arr will gives the array of selected fields
+    //       if (!arr) return 'Please select at least a story';
+
+    //       const refs = arr.map(item => item._ref);
+    //       const hasDuplicates = refs.length !== new Set(refs).size;
+    //       return hasDuplicates ? 'No duplicate selections allowed' : true;
+    //     }),
+    //   of: [
+    //     defineArrayMember({ type: 'reference', to: { type: 'storiesList' } })
+    //   ]
+    // }
   ],
   preview: {
     select: {

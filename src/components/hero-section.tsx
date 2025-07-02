@@ -7,6 +7,7 @@ interface HeroSectionProps {
   image: SanityImageSource;
   title?: LocalisedDataType[] | string | null;
   subtitle?: LocalisedDataType[] | string | null;
+  highlightTitleText?: LocalisedDataType[] | string | null;
   alt: string;
 }
 
@@ -14,16 +15,22 @@ export default function HeroSection({
   title,
   image,
   subtitle,
-  alt
+  alt,
+  highlightTitleText
 }: HeroSectionProps) {
   const { getLocalizedString } = useGetLocale();
 
   const convertedTitle =
     typeof title === 'string' ? title : getLocalizedString(title ?? []);
 
-  const splitTitle = convertedTitle?.split(' ');
-  const firstText = splitTitle && splitTitle[0];
-  const lastText = splitTitle?.slice(1, splitTitle.length).join(' '); //or str.slice(1)
+  const convertedHighlightTitle =
+    typeof highlightTitleText === 'string'
+      ? highlightTitleText
+      : getLocalizedString(highlightTitleText ?? []);
+
+  // const splitTitle = convertedTitle?.split(' ');
+  // const firstText = splitTitle && splitTitle[0];
+  // const lastText = splitTitle?.slice(1, splitTitle.length).join(' '); //or str.slice(1)
 
   const convertedSubtitle =
     typeof subtitle === 'string'
@@ -51,7 +58,7 @@ export default function HeroSection({
               {convertedSubtitle}
             </p>
             <h1 className="font-quicksand text-[40px] leading-[130%] text-balance text-white first-letter:capitalize md:text-5xl lg:text-6xl">
-              <b>{firstText}</b>&nbsp;{lastText}
+              <b>{convertedHighlightTitle}</b>&nbsp;{convertedTitle}
             </h1>
           </div>
         </div>

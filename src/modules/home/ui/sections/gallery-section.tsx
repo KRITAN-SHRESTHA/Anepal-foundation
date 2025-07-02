@@ -32,6 +32,7 @@ function GallerySectionSuspense() {
       <ContentTitle
         subtitle={data.subtitle}
         title={data.title}
+        highlightTitleText={data.highlightTitle}
         align="center"
       />
 

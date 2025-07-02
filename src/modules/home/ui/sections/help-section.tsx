@@ -28,7 +28,7 @@ function HelpSectionSuspense() {
         <ContentTitle
           subtitle={data.subtitle}
           title={data.title}
-          highlightTitleText="Help"
+          highlightTitleText={data.highlightTitle}
           align="center"
         />
         <div className="mx-auto mt-10 grid max-w-screen-xl gap-6 px-4 sm:mt-16 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">

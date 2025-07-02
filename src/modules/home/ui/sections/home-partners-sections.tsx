@@ -26,6 +26,7 @@ function HomePartnersSectionSuspense(props: PartnerSectionProps) {
       partners={data.partners ?? []}
       title={data.title}
       subtitle={data.subtitle}
+      highlightTitleText={data.highlightTitle}
       {...props}
     />
   );

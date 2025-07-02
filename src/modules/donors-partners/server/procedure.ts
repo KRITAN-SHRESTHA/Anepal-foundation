@@ -6,16 +6,12 @@ import { PopulatedDonorsAndPartnersPage } from '@/types/donors-partners-types';
 const GET_DONORS_PAGE_CONTENT = `*[_type == "donorsAndPartnersPage"][0]{
   ...,
   whoHelpUsSection{
-    title,
-    subtitle,
-    description,
+    ...,
     partnersName[]->,
     donorsNames[]->
   },
   statisticsSection{
-    statsTitle,
-    statsSubtitle,
-    statsDescription,
+    ...,
     statistics[]->
   }
 }`;

@@ -24,7 +24,11 @@ function StatsSectionSuspense() {
   return (
     <div className="bg-accent mt-10">
       <div className="mx-auto max-w-6xl py-12 text-center">
-        <ContentTitle title={data.title} subtitle={data.subtitle} />
+        <ContentTitle
+          title={data.title}
+          subtitle={data.subtitle}
+          highlightTitleText={data.highlightTitle}
+        />
 
         <div className="mt-10 grid justify-center gap-x-8 gap-y-16 sm:mt-14 sm:grid-cols-4">
           {data.select_stats.map(stat => (

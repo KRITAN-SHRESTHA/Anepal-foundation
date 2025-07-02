@@ -11,6 +11,7 @@ interface PartnerSectionProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
   title?: LocalisedDataType[] | string | null;
   subtitle?: LocalisedDataType[] | string | null;
+  highlightTitleText?: LocalisedDataType[] | string | null;
   partners: PartnersList[];
 }
 
@@ -18,13 +19,19 @@ export default function PartnersSection({
   className,
   title,
   subtitle,
-  partners
+  partners,
+  highlightTitleText
 }: PartnerSectionProps) {
   return (
     <section className={cn('bg-accent px-6 py-12', className)}>
       <div className="mx-auto max-w-5xl">
         <div>
-          <ContentTitle title={title} subtitle={subtitle} align="center" />
+          <ContentTitle
+            title={title}
+            subtitle={subtitle}
+            align="center"
+            highlightTitleText={highlightTitleText}
+          />
 
           <div className="mx-auto mt-14 flex max-w-6xl flex-wrap items-center justify-center gap-8">
             {partners?.map(partner => (
