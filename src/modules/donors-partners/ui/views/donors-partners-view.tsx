@@ -34,6 +34,7 @@ function DonorsPartnersViewSuspense() {
         <HeroSection
           image={data.heroSection?.backgroundImage}
           subtitle={data.heroSection.subtitle ?? []}
+          highlightTitleText={data.heroSection.highlightTitle}
           title={data.heroSection.title ?? []}
           alt={data.heroSection.backgroundImage.alt ?? ''}
         />

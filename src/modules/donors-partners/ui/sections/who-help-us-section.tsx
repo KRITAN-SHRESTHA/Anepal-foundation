@@ -9,6 +9,8 @@ export default function WhoHelpUsSection() {
   const { data } =
     trpc.donorsPartners.getContentOfDonorsPartnersPage.useQuery();
 
+  console.log('data', data);
+
   const { getLocalizedString } = useGetLocale();
 
   return (
@@ -17,6 +19,7 @@ export default function WhoHelpUsSection() {
         <ContentTitle
           title={data?.whoHelpUsSection?.title}
           subtitle={data?.whoHelpUsSection?.subtitle}
+          highlightTitleText={data?.whoHelpUsSection.highlightTitle}
           align="center"
         />
         <p className="text-muted-foreground max-w-[60ch] pt-6 text-center">

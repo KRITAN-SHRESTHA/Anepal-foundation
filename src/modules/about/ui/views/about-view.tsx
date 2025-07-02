@@ -32,6 +32,7 @@ function AboutViewSuspense() {
           image={data.heroSection?.backgroundImage}
           alt={data.heroSection.backgroundImage.alt ?? ''}
           subtitle={data.heroSection?.subtitle}
+          highlightTitleText={data.heroSection.highlightTitle}
           title={data.heroSection?.title}
         />
       )}
@@ -39,6 +40,7 @@ function AboutViewSuspense() {
         description={data.firstcontent?.description}
         title="About Us"
         subtitle={data.firstcontent?.title}
+        // highlightTitleText={data.firstcontent?.highlightTitle}
         orientation="rtl"
         image={data.firstcontent?.image}
         imageAlt={data.firstcontent?.image?.alt}
@@ -54,7 +56,13 @@ function AboutViewSuspense() {
       <WhoDoWeHelpSection />
       <AboutUsTeamSection />
       {/* <Separator /> */}
-      <PartnersSection className="bg-transparent pb-[100px]" />
+      <PartnersSection
+        className="bg-transparent pb-[100px]"
+        title={data.partnersSection.title}
+        subtitle={data.partnersSection.subtitle}
+        partners={data.partnersSection.partner}
+        highlightTitleText={data?.partnersSection?.highlightTitle}
+      />
     </>
   );
 }

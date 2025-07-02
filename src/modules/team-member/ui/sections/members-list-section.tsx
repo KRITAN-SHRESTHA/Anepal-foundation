@@ -18,6 +18,7 @@ export default function MembersListSection() {
         <ContentTitle
           title={data?.membersDetails.title}
           subtitle={data?.membersDetails.subtitle}
+          highlightTitleText={data?.membersDetails.highlightTitle}
         />
         <p className="text-muted-foreground mt-6 mb-8 max-w-3xl">
           {getLocalizedString(data?.membersDetails.description ?? [])}

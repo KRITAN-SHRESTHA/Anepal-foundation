@@ -2,22 +2,23 @@ import CustomImage from '@/components/custom-image';
 import { Button } from '@/components/ui/button';
 import useGetLocale from '@/hooks/use-get-locale';
 import { cn } from '@/lib/utils';
-import { trpc } from '@/trpc/client';
 import { BookOpen } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import useGetAllStories from '../hooks/use-get-all-stories';
 
 export default function StoriesListSection() {
-  const { data } = trpc.stories.getStoriesPageContent.useQuery();
-
   const { getLocalizedString } = useGetLocale();
+  const { stories, pagination } = useGetAllStories();
 
   return (
     <div>
-      {data?.stories.map((story, idx) => {
+      {stories.map((story, idx) => {
         const splitName = story.name?.split(' ');
         const firstName = splitName && splitName[0];
         const lastname = splitName?.slice(1, splitName.length).join(' ');
+
+        const numbering = (pagination.page - 1) * pagination.pageSize + idx + 1;
 
         return (
           <div
@@ -54,7 +55,13 @@ export default function StoriesListSection() {
                 'order-1': (idx + 1) % 2 !== 0 // odd
               })}
             >
-              <strong className="text-muted-foreground/60">0{idx + 1}</strong>
+              <strong className="text-muted-foreground/60">
+                {pagination.page == 1
+                  ? numbering == 10
+                    ? numbering
+                    : `0${numbering}`
+                  : numbering}
+              </strong>
               <h4 className="text-[32px] md:text-[50px]">
                 <b>{firstName}</b>&nbsp;
                 {lastname}

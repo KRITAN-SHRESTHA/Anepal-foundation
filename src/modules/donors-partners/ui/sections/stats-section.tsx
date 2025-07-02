@@ -13,6 +13,7 @@ export default function StatsSection() {
         <ContentTitle
           title={data?.statisticsSection?.statsTitle}
           subtitle={data?.statisticsSection?.statsSubtitle}
+          highlightTitleText={data?.statisticsSection.highlightTitle}
         />
         <p className="text-muted-foreground tablet:max-w-[60ch] pt-6">
           {getLocalizedString(data?.statisticsSection?.statsDescription ?? [])}

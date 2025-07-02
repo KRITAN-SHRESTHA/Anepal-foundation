@@ -21,23 +21,18 @@ export default function HomeTeamMembersSection() {
 }
 
 function HomeTeamMembersSectionSuspense() {
-  const [aboutTeamMembers] =
-    trpc.teamMember.getAboutTeamMembers.useSuspenseQuery();
+  const [teamMember] = trpc.home.getHomeTeamMembers.useSuspenseQuery();
 
   return (
     <div className="flex flex-col items-center justify-center px-4 py-8 sm:px-6 md:py-12 lg:px-8">
       <div className="mx-auto max-w-[1000px] text-center">
-        {/* Meet Our Team */}
+        <ContentTitle
+          subtitle={teamMember.subtitle}
+          title={teamMember.title}
+          description={teamMember.short_description}
+          highlightTitleText={teamMember.highlightTitle}
+        />
 
-        <ContentTitle subtitle={'NUESTRO EQUIPO'} />
-        <p className="text-muted-foreground pt-10 text-base sm:text-lg">
-          Nuestro equipo está formado por personas que alternan su labor
-          profesional con el trabajo para la Fundación. Nuestro objetivo es
-          hacer de este mundo un lugar mejor y por eso trabajamos con ilusión,
-          constancia y compromiso. Formamos un buen equipo, dinámico y
-          organizado en el que a cada miembro se le asigna una competencia para
-          que este trabajo sea lo más fructífero posible.
-        </p>
         <Button
           asChild
           variant="outline"
@@ -52,7 +47,7 @@ function HomeTeamMembersSectionSuspense() {
       </div>
       <div className="mx-auto mt-10 flex max-w-3xl flex-col gap-5 gap-y-10 md:mt-20">
         <div className="flex flex-wrap justify-center gap-7">
-          {aboutTeamMembers?.membersDetails?.membersList?.map(member => (
+          {teamMember?.membersList?.map(member => (
             <div key={member._id} className="w-full max-w-[200px] grow">
               <TeamMemberCard key={member._id} {...member} />
             </div>

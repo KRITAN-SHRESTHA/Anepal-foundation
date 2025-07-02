@@ -30,21 +30,29 @@ export default function EventsSection() {
 }
 
 function EventsSectionSuspense() {
-  const [events] = trpc.events.getFeaturedEvents.useSuspenseQuery();
-
+  const [eventsList] = trpc.events.getFeaturedHomeEvents.useSuspenseQuery();
+  const [events] = trpc.home.getHomeEventsTitle.useSuspenseQuery();
   const { getLocalizedString } = useGetLocale();
 
   return (
-    <section className="bg-accent py-14">
-      <div className="mx-auto flex max-w-screen-xl flex-col items-center gap-16 px-4 sm:px-6 lg:px-8">
+    <section className="relative py-14">
+      <div className="pointer-events-none absolute top-0 left-0 h-full w-[400px] select-none">
+        <Image
+          src={'/assets/events_bg.png'}
+          alt=""
+          fill
+          className="object-cover"
+        />
+      </div>
+      <div className="relative mx-auto flex max-w-screen-xl flex-col items-center gap-16 px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <ContentTitle subtitle={'Upcoming Events'} />
+          <ContentTitle
+            subtitle={events.subtitle}
+            title={events.title}
+            description={events.short_description}
+            highlightTitleText={events.highlightTitle}
+          />
 
-          <p className="text-muted-foreground mb-8 pt-7 sm:text-lg md:text-base lg:max-w-2xl">
-            Sharksucker sea toad candiru rocket danio tilefish stingray
-            deepwater stingray Sacramento splittail, Canthigaster rostrata.
-            Midshipman dartfish
-          </p>
           <Button
             variant="outline"
             border={'purple'}
@@ -57,12 +65,9 @@ function EventsSectionSuspense() {
             </Link>
           </Button>
         </div>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-          {events.map(event => (
-            <Card
-              key={event._id}
-              className="grid grid-rows-[auto_auto_1fr_auto] overflow-hidden pt-0"
-            >
+        <div className="grid w-full gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+          {eventsList.map(event => (
+            <Card key={event._id} className="grid w-full overflow-hidden pt-0">
               <div className="relative aspect-16/9 w-full">
                 <Link
                   href={`/events/${event.slug?.current}`}
@@ -98,7 +103,7 @@ function EventsSectionSuspense() {
               <CardFooter>
                 <Link
                   href={`/events/${event.slug?.current}`}
-                  className="text-foreground flex items-center hover:underline"
+                  className="text-foreground flex cursor-pointer items-center hover:underline"
                 >
                   Read more
                   <ArrowRight className="ml-2 size-4" />

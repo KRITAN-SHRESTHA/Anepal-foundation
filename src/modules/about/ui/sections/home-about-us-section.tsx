@@ -21,6 +21,7 @@ function HomeAboutUsSectionSuspense() {
   return (
     <ContentSection
       image={data.image}
+      highlightTitleText={data.highlightTitle}
       title={data.title}
       subtitle={data?.subtitle}
       description={data?.description}

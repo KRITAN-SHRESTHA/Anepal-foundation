@@ -8,9 +8,16 @@ export default async function Home() {
   await Promise.all([
     trpc.home.getBanner.prefetch(),
     trpc.aboutus.getHomeAboutUs.prefetch(),
-    trpc.home.getWhatMakesUsUnique.prefetch(),
+    trpc.home.getOrgHelpsInFields.prefetch(),
+    trpc.home.getFeaturedProjects.prefetch(),
+    trpc.home.getHomeStats.prefetch(),
+    trpc.home.getHomeEventsTitle.prefetch(),
+    trpc.home.getHomeTestimonials.prefetch(),
+    trpc.home.getHomeTeamMembers.prefetch(),
+    trpc.home.getHomePartners.prefetch(),
+    trpc.home.getHomeGallery.prefetch(),
     trpc.settings.getSettings.prefetch(),
-    trpc.events.getFeaturedEvents.prefetch(),
+    trpc.events.getFeaturedHomeEvents.prefetch(),
     trpc.teamMember.getAboutTeamMembers.prefetch()
   ]);
   // const end = performance.now();
