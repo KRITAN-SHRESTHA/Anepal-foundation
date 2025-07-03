@@ -9,6 +9,7 @@ import ContentTitle from '@/components/content-title';
 import TeamMemberCard from '@/components/team-member-card';
 import { Button } from '@/components/ui/button';
 import { trpc } from '@/trpc/client';
+import Image from 'next/image';
 
 export default function HomeTeamMembersSection() {
   return (
@@ -24,8 +25,16 @@ function HomeTeamMembersSectionSuspense() {
   const [teamMember] = trpc.home.getHomeTeamMembers.useSuspenseQuery();
 
   return (
-    <div className="flex flex-col items-center justify-center px-4 py-8 sm:px-6 md:py-12 lg:px-8">
-      <div className="mx-auto max-w-[1000px] text-center">
+    <div className="relative flex flex-col items-center justify-center px-4 py-8 sm:px-6 md:py-12 lg:px-8">
+      <div className="pointer-events-none absolute top-0 -right-[100px] h-full w-[600px] select-none">
+        <Image
+          src={'/assets/background/causes_img.png'}
+          alt=""
+          fill
+          className="object-contain"
+        />
+      </div>
+      <div className="relative mx-auto max-w-[1000px] text-center">
         <ContentTitle
           subtitle={teamMember.subtitle}
           title={teamMember.title}
@@ -45,7 +54,7 @@ function HomeTeamMembersSectionSuspense() {
           </Link>
         </Button>
       </div>
-      <div className="mx-auto mt-10 flex max-w-3xl flex-col gap-5 gap-y-10 md:mt-20">
+      <div className="relative mx-auto mt-10 flex max-w-3xl flex-col gap-5 gap-y-10 md:mt-20">
         <div className="flex flex-wrap justify-center gap-7">
           {teamMember?.membersList?.map(member => (
             <div key={member._id} className="w-full max-w-[200px] grow">

@@ -28,7 +28,7 @@ function MemoriesCollectionSectionSuspense() {
   const { getLocalizedString } = useGetLocale();
 
   return (
-    <div className="py-8 md:py-16">
+    <div className="pt-8 md:pt-16">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <ContentTitle
           subtitle={data.subtitle}

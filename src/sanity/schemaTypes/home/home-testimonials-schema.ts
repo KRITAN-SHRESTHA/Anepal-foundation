@@ -49,8 +49,8 @@ export const homeTestimonialsSchema = defineType({
           // arr will gives the array of selected fields
           if (!arr) return 'Please select at least a stat';
 
-          if (arr.length > 4) {
-            return 'Select upto 4 stats only';
+          if (arr.length > 9) {
+            return 'Select upto 9 stats only';
           }
 
           const refs = arr.map(item => item._ref);
