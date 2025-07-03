@@ -18,8 +18,8 @@ export default function HomeView() {
       <BannerSection />
       <HomeAboutUsSection />
       <HelpSection />
-      <StatsSection />
       <FeaturedProjectSection />
+      <StatsSection />
       {/* <WorkHistorySection /> */}
       <EventsSection />
       <TestimonialsSection />

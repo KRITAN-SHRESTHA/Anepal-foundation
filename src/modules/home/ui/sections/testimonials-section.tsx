@@ -6,6 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import useGetLocale from '@/hooks/use-get-locale';
 import { trpc } from '@/trpc/client';
 import { PopulatedTestimonialsList } from '@/types/testimonials-type';
+import Image from 'next/image';
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
@@ -51,11 +52,14 @@ function TestimonialsSectionSuspense() {
             />
           </div>
 
-          <div className="mt-8 grid gap-3 sm:grid-cols-2 md:mt-12 lg:grid-cols-3">
+          <div className="relative mt-8 grid gap-3 sm:grid-cols-2 md:mt-12 lg:grid-cols-3">
+            <div className="absolute top-1/2 left-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2">
+              <Image src={'/assets/background/bg-img-1.png'} fill alt="" />
+            </div>
             {testimonialChunks.map((chunk, chunkIndex) => (
-              <div key={chunkIndex} className="space-y-3">
+              <div key={chunkIndex} className="relative space-y-3">
                 {chunk.map(({ role, user_name, content }, index) => (
-                  <Card key={index} className="bg-transparent">
+                  <Card key={index} className="">
                     <CardContent className="grid grid-cols-[auto_1fr] gap-3">
                       <Avatar className="size-9">
                         {/* <AvatarImage
