@@ -30,6 +30,9 @@ import { homePartnersSchema } from './home/partners-section-schema';
 import { homeTeamMemberSchema } from './home/team-member-schema';
 import { homeEventsSchema } from './home/events-section-schema';
 import { homeGallerySchema } from './home/gallery-section-schema';
+import { blogsSchema } from './blogs/blogs-schema';
+import { blogTagSchema } from './blogs/blog-tag-schema';
+import { blogListPageSchema } from './blogs/blog-list-page-schema';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -62,6 +65,9 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     homePartnersSchema,
     homeTeamMemberSchema,
     homeEventsSchema,
-    homeGallerySchema
+    homeGallerySchema,
+    blogsSchema,
+    blogTagSchema,
+    blogListPageSchema
   ]
 };
