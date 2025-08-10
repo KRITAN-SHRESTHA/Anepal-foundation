@@ -70,7 +70,6 @@ function OurEventsListSectionSuspense() {
                 <div className="mt-6 flex items-center space-x-2 md:mt-8">
                   <Link
                     href={`/events/${event.slug?.current}`}
-                    target="_blank"
                     className="inline-flex items-center font-semibold hover:underline md:text-base"
                   >
                     <span>Read more</span>
