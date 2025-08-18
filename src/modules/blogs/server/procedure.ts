@@ -1,7 +1,7 @@
 import { client } from '@/sanity/lib/client';
-import { BlogListPage, Blogs } from '@/sanity/types';
+import { BlogListPage } from '@/sanity/types';
 import { createTRPCRouter, publicProcedure } from '@/trpc/init';
-import { PopulatedBlogsList } from '@/types/blogs-types';
+import { PopulatedBlogDetails, PopulatedBlogsList } from '@/types/blogs-types';
 import { z } from 'zod';
 
 const BLOG_COUNT_QUERY = 'count(*[_type == "blogs"])';
@@ -13,7 +13,10 @@ const BLOG_LIST_WITH_PAGINATION = `*[
           }`;
 const BLOG_PAGE_QUERY = '*[_type == "blogListPage"][0]';
 
-const GET_EVENT_DETAILS_QUERY = `*[_type == "blogs" && slug.current == $slug][0]`;
+const GET_EVENT_DETAILS_QUERY = `*[_type == "blogs" && slug.current == $slug][0]{
+  ...,
+  tag->
+}`;
 // will revalidate after every 30 seconds
 const options = { next: { revalidate: 0 } };
 
@@ -60,7 +63,12 @@ export const blogsRouter = createTRPCRouter({
     )
     .query(async ({ input }) => {
       const { slug } = input;
+      console.log('slug', slug);
 
-      return client.fetch<Blogs>(GET_EVENT_DETAILS_QUERY, { slug }, options);
+      return client.fetch<PopulatedBlogDetails>(
+        GET_EVENT_DETAILS_QUERY,
+        { slug },
+        options
+      );
     })
 });

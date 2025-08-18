@@ -1,17 +1,20 @@
 import useGetLocale from '@/hooks/use-get-locale';
 import { urlFor } from '@/sanity/lib/image';
-import { Events } from '@/sanity/types';
+import { PopulatedBlogDetails } from '@/types/blogs-types';
 import Image from 'next/image';
-import React from 'react';
 
-export default function EventDetailsHeaderSection({ data }: { data: Events }) {
+export default function BlogDetailsHeaderSection({
+  data
+}: {
+  data: PopulatedBlogDetails;
+}) {
   const { getLocalizedString } = useGetLocale();
 
   return (
     <div>
       <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
         <h1 className="max-w-3xl text-[40px] font-semibold text-pretty md:text-6xl">
-          {getLocalizedString(data.title ?? [])}
+          {data.title && getLocalizedString(data.title ?? [])}
         </h1>
         <h3 className="text-muted-foreground max-w-3xl text-lg md:text-xl">
           {getLocalizedString(data.short_description ?? [])}

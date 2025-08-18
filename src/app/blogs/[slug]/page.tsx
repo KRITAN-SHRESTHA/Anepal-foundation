@@ -1,8 +1,8 @@
-import EventsDetailsView from '@/modules/events/ui/views/events-details-view';
+import BlogsDetailsView from '@/modules/blogs/ui/views/events-details-view';
 import { HydrateClient, trpc } from '@/trpc/server';
 import React from 'react';
 
-interface EventsDetailsPageParams {
+interface BlogDetailsPageParams {
   params: Promise<{
     slug: string;
   }>;
@@ -10,17 +10,16 @@ interface EventsDetailsPageParams {
 
 export default async function EventsDetailsPage({
   params
-}: EventsDetailsPageParams) {
+}: BlogDetailsPageParams) {
   const slug = (await params).slug;
-  console.log('slug', slug);
 
-  void trpc.events.getOneEvent.prefetch({
+  void trpc.blogs.getOneBlog.prefetch({
     slug
   });
 
   return (
     <HydrateClient>
-      <EventsDetailsView />
+      <BlogsDetailsView />
     </HydrateClient>
   );
 }

@@ -1,7 +1,7 @@
 import { Skeleton } from '@/components/ui/skeleton';
 import React from 'react';
 
-export default function EventsDetailsSkeleton() {
+export default function BlogDetailsSkeleton() {
   return (
     <div className="m-auto max-w-6xl px-4 pt-[50px] pb-32 sm:px-6 lg:px-8">
       <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
