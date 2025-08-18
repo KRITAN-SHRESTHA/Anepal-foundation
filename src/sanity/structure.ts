@@ -115,6 +115,24 @@ export const structure: StructureResolver = (S, context) =>
             ])
         ),
       S.listItem()
+        .title('Blogs')
+        .child(
+          S.list()
+            .title('Blogs section')
+            .items([
+              S.documentTypeListItem('blog_tag'),
+              S.documentTypeListItem('blogs'),
+              S.listItem()
+                .title('Blog List Page')
+                .icon(BinaryDocumentIcon)
+                .child(
+                  S.document()
+                    .schemaType('blogListPage')
+                    .documentId('blogListPage')
+                )
+            ])
+        ),
+      S.listItem()
         .title('Team members')
         .child(
           S.list()

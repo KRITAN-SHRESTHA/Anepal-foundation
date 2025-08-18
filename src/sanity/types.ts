@@ -13,6 +13,145 @@
  */
 
 // Source: schema.json
+export type BlogListPage = {
+  _id: string;
+  _type: 'blogListPage';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  subtitle?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayTextValue
+  >;
+};
+
+export type Blogs = {
+  _id: string;
+  _type: 'blogs';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  slug?: Slug;
+  tag?: {
+    _ref: string;
+    _type: 'reference';
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: 'blog_tag';
+  };
+  short_description?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayTextValue
+  >;
+  mainImage?: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: 'image';
+  };
+  content?: {
+    content_en?: Array<
+      | {
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: 'span';
+            _key: string;
+          }>;
+          style?: 'normal' | 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'blockquote';
+          listItem?: 'bullet' | 'number' | 'checkmarks';
+          markDefs?: Array<{
+            href?: string;
+            _type: 'link';
+            _key: string;
+          }>;
+          level?: number;
+          _type: 'block';
+          _key: string;
+        }
+      | {
+          asset?: {
+            _ref: string;
+            _type: 'reference';
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+          };
+          media?: unknown;
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          alt?: string;
+          _type: 'image';
+          _key: string;
+        }
+    >;
+    content_es?: Array<
+      | {
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: 'span';
+            _key: string;
+          }>;
+          style?: 'normal' | 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'blockquote';
+          listItem?: 'bullet' | 'number' | 'checkmarks';
+          markDefs?: Array<{
+            href?: string;
+            _type: 'link';
+            _key: string;
+          }>;
+          level?: number;
+          _type: 'block';
+          _key: string;
+        }
+      | {
+          asset?: {
+            _ref: string;
+            _type: 'reference';
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+          };
+          media?: unknown;
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          alt?: string;
+          _type: 'image';
+          _key: string;
+        }
+    >;
+  };
+};
+
+export type Blog_tag = {
+  _id: string;
+  _type: 'blog_tag';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+};
+
 export type Home_gallery = {
   _id: string;
   _type: 'home_gallery';
@@ -1379,6 +1518,9 @@ export type SanityAssetSourceData = {
 };
 
 export type AllSanitySchemaTypes =
+  | BlogListPage
+  | Blogs
+  | Blog_tag
   | Home_gallery
   | Home_events
   | Home_team_member

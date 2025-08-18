@@ -75,7 +75,9 @@ const Blog8 = ({
                 <div className="sm:col-span-5">
                   <div className="mb-4 md:mb-6">
                     <div className="text-muted-foreground flex flex-wrap gap-3 text-xs tracking-wider uppercase md:gap-5 lg:gap-6">
-                      {post.tags?.map(tag => <span key={tag}>{tag}</span>)}
+                      {post.tags?.map(tag => (
+                        <span key={tag}>{tag}</span>
+                      ))}
                     </div>
                   </div>
                   <h3 className="text-xl font-semibold md:text-2xl lg:text-3xl">
