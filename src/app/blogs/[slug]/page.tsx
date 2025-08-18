@@ -1,6 +1,5 @@
-import BlogsDetailsView from '@/modules/blogs/ui/views/events-details-view';
+import BlogsDetailsView from '@/modules/blogs/ui/views/blog-details-view';
 import { HydrateClient, trpc } from '@/trpc/server';
-import React from 'react';
 
 interface BlogDetailsPageParams {
   params: Promise<{
@@ -8,7 +7,7 @@ interface BlogDetailsPageParams {
   }>;
 }
 
-export default async function EventsDetailsPage({
+export default async function BlogDetailsPage({
   params
 }: BlogDetailsPageParams) {
   const slug = (await params).slug;
