@@ -7,11 +7,14 @@ import { trpc } from '@/trpc/client';
 import useGetLocale from '@/hooks/use-get-locale';
 
 import Logo from './logo';
+import { usePathname } from 'next/navigation';
+import { cn } from '@/lib/utils';
 
 export const NavigationSheet = () => {
   const [settingsData] = trpc.settings.getSettings.useSuspenseQuery();
   const [navData] = trpc.header.getHeader.useSuspenseQuery();
   const { getLocalizedString } = useGetLocale();
+  const pathname = usePathname();
 
   return (
     <Sheet>
@@ -21,9 +24,11 @@ export const NavigationSheet = () => {
         </Button>
       </SheetTrigger>
       <SheetContent className="overflow-y-auto p-6">
-        <Link href={'/'}>
-          <Logo />
-        </Link>
+        <SheetTrigger asChild>
+          <Link href={'/'}>
+            <Logo />
+          </Link>
+        </SheetTrigger>
 
         <div className="bg-accent space-y-1.5 rounded-md px-4 py-3">
           {/* phone number */}
@@ -59,11 +64,20 @@ export const NavigationSheet = () => {
           {navData.map(nav => (
             <div key={nav._id}>
               {nav.link ? (
-                <Link href={nav.link}>
-                  <div className="font-bold underline-offset-2 hover:underline">
-                    {getLocalizedString(nav.name ?? [])}
-                  </div>
-                </Link>
+                <SheetTrigger asChild>
+                  <Link href={nav.link}>
+                    <div
+                      className={cn(
+                        'text-muted-foreground underline-offset-2 hover:underline',
+                        {
+                          'font-bold! text-purple-700!': pathname === nav.link
+                        }
+                      )}
+                    >
+                      {getLocalizedString(nav.name ?? [])}
+                    </div>
+                  </Link>
+                </SheetTrigger>
               ) : (
                 <div className="font-bold">
                   {getLocalizedString(nav.name ?? [])}
@@ -74,12 +88,20 @@ export const NavigationSheet = () => {
                   {nav.subLinks.map(sub => (
                     <li key={sub._key}>
                       {sub.link ? (
-                        <Link
-                          href={sub.link}
-                          className="text-muted-foreground underline-offset-2 hover:underline"
-                        >
-                          {getLocalizedString(nav.name ?? [])}
-                        </Link>
+                        <SheetTrigger asChild>
+                          <Link
+                            href={sub.link}
+                            className={cn(
+                              'text-muted-foreground underline-offset-2 hover:underline',
+                              {
+                                'font-bold! text-purple-700!':
+                                  pathname === sub.link
+                              }
+                            )}
+                          >
+                            {getLocalizedString(nav.name ?? [])}
+                          </Link>
+                        </SheetTrigger>
                       ) : (
                         <p>{getLocalizedString(nav.name ?? [])}</p>
                       )}

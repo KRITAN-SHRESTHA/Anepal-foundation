@@ -34,7 +34,8 @@ const Blog7 = ({
   heading = 'Blog Posts',
   description = 'Discover the latest trends, tips, and best practices in modern web development. From UI components to design systems, stay updated with our expert insights.',
   buttonText = 'View all articles',
-  buttonUrl = 'https://shadcnblocks.com'
+  buttonUrl = 'https://shadcnblocks.com',
+  posts
 }: Blog7Props) => {
   return (
     <section className="py-32">

@@ -1,7 +1,7 @@
 'use client';
 
 import { notFound, useParams } from 'next/navigation';
-import React, { Suspense } from 'react';
+// import React, { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import useGetLocale from '@/hooks/use-get-locale';
@@ -9,15 +9,15 @@ import { trpc } from '@/trpc/client';
 import EditorPortableText from '@/components/EditorPortableText';
 
 import EventDetailsHeaderSection from '../sections/event-details-header-section';
-import EventsDetailsSkeleton from '../components/events-details-skeleton';
+// import EventsDetailsSkeleton from '../components/events-details-skeleton';
 import EventsDetailsFooterSection from '../sections/events-details-footer-section';
 
 export default function EventsDetailsView() {
   return (
     <ErrorBoundary fallback={<div>Something went wrong</div>}>
-      <Suspense fallback={<EventsDetailsSkeleton />}>
-        <EventsDetailsViewSuspense />
-      </Suspense>
+      {/* <Suspense fallback={<EventsDetailsSkeleton />}> */}
+      <EventsDetailsViewSuspense />
+      {/* </Suspense> */}
     </ErrorBoundary>
   );
 }

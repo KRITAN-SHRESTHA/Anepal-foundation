@@ -8,6 +8,7 @@ import { aboutusRouter } from '@/modules/about/server/procedure';
 import { teamMemberRouter } from '@/modules/team-member/server/procedure';
 import { donorsPartnersRouter } from '@/modules/donors-partners/server/procedure';
 import { storiesRouter } from '@/modules/stories/server/procedure';
+import { blogsRouter } from '@/modules/blogs/server/procedure';
 
 export const appRouter = createTRPCRouter({
   home: homeRouter,
@@ -18,7 +19,8 @@ export const appRouter = createTRPCRouter({
   aboutus: aboutusRouter,
   teamMember: teamMemberRouter,
   donorsPartners: donorsPartnersRouter,
-  stories: storiesRouter
+  stories: storiesRouter,
+  blogs: blogsRouter
 });
 // export type definition of API
 export type AppRouter = typeof appRouter;

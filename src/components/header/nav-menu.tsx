@@ -16,10 +16,12 @@ import {
 import { cn } from '@/lib/utils';
 import { trpc } from '@/trpc/client';
 import useGetLocale from '@/hooks/use-get-locale';
+import { usePathname } from 'next/navigation';
 
 export const NavMenu = (props: NavigationMenuProps) => {
   const [navData] = trpc.header.getHeader.useSuspenseQuery();
   const { getLocalizedString } = useGetLocale();
+  const pathname = usePathname();
 
   return (
     <NavigationMenu viewport={false} {...props}>
@@ -28,7 +30,9 @@ export const NavMenu = (props: NavigationMenuProps) => {
           <NavigationMenuItem key={link._id}>
             {link.subLinks && link.subLinks?.length > 0 ? (
               <>
-                <NavigationMenuTrigger className="text-[15px] font-normal capitalize">
+                <NavigationMenuTrigger
+                  className={cn('text-[15px] font-normal capitalize')}
+                >
                   {getLocalizedString(link.name ?? [])}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="z-50">
@@ -50,11 +54,16 @@ export const NavMenu = (props: NavigationMenuProps) => {
             ) : (
               <Button
                 variant="ghost"
-                className="text-[15px] font-normal capitalize"
+                className="text-[15px] font-normal capitalize hover:text-purple-700"
                 asChild
               >
                 {link.link ? (
-                  <Link href={link.link}>
+                  <Link
+                    href={link.link}
+                    className={cn('', {
+                      'font-bold! text-purple-700': pathname === link.link
+                    })}
+                  >
                     {getLocalizedString(link.name ?? [])}
                   </Link>
                 ) : (

@@ -1,5 +1,5 @@
 import { client } from '@/sanity/lib/client';
-import { Blogs } from '@/sanity/types';
+import { BlogListPage, Blogs } from '@/sanity/types';
 import { createTRPCRouter, publicProcedure } from '@/trpc/init';
 import { PopulatedBlogsList } from '@/types/blogs-types';
 import { z } from 'zod';
@@ -14,9 +14,9 @@ const GET_EVENT_DETAILS_QUERY = `*[_type == "blogs" && slug.current == $slug][0]
 // will revalidate after every 30 seconds
 const options = { next: { revalidate: 0 } };
 
-export const eventsRouter = createTRPCRouter({
+export const blogsRouter = createTRPCRouter({
   getBlogPage: publicProcedure.query(async () => {
-    return await client.fetch<PopulatedBlogsList>(BLOG_PAGE_QUERY, {}, options);
+    return await client.fetch<BlogListPage>(BLOG_PAGE_QUERY, {}, options);
   }),
   getAllBlogs: publicProcedure
     .input(
@@ -30,7 +30,7 @@ export const eventsRouter = createTRPCRouter({
       const start = (page - 1) * pageSize;
       const end = start + pageSize;
 
-      const [totalCount, events] = await Promise.all([
+      const [totalCount, blogs] = await Promise.all([
         client.fetch(BLOG_COUNT_QUERY),
         client.fetch<PopulatedBlogsList[]>(
           BLOG_LIST_WITH_PAGINATION,
@@ -40,7 +40,7 @@ export const eventsRouter = createTRPCRouter({
       ]);
       const totalPages = Math.ceil(totalCount / pageSize);
       return {
-        events,
+        blogs,
         pagination: {
           total: totalCount,
           totalPages,
