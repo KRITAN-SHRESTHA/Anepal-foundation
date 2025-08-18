@@ -1,17 +1,17 @@
 'use client';
 
-import React, { Suspense } from 'react';
+// import React, { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { trpc } from '@/trpc/client';
 import useGetLocale from '@/hooks/use-get-locale';
-import EventsPageTitleSkeleton from '../components/events-page-title-skeleton';
+// import EventsPageTitleSkeleton from '../components/events-page-title-skeleton';
 
 export default function EventPageTitleSection() {
   return (
     <ErrorBoundary fallback={<div>Something went wrong</div>}>
-      <Suspense fallback={<EventsPageTitleSkeleton />}>
-        <EventPageTitleSectionSuspense />
-      </Suspense>
+      {/* <Suspense fallback={<EventsPageTitleSkeleton />}> */}
+      <EventPageTitleSectionSuspense />
+      {/* </Suspense> */}
     </ErrorBoundary>
   );
 }
