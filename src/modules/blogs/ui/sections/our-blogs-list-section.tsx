@@ -17,6 +17,7 @@ import { urlFor } from '@/sanity/lib/image';
 import { ErrorBoundary } from 'react-error-boundary';
 import BlogsListSkeleton from '../components/blogs-list-skeleton';
 import useGetAllBlogs from '../hooks/use-get-all-blogs';
+import { Badge } from '@/components/ui/badge';
 
 export default function OurBlogsListSection() {
   return (
@@ -32,8 +33,6 @@ function OurBlogsListSectionSuspense() {
   const { getLocalizedString } = useGetLocale();
 
   const { blogs } = useGetAllBlogs();
-
-  console.log('blogs', blogs);
 
   if (blogs.length === 0) {
     return <h1>No blogs found</h1>;
@@ -61,6 +60,10 @@ function OurBlogsListSectionSuspense() {
                 />
               )}
             </Link>
+
+            <Badge className="absolute top-3 right-3">
+              {getLocalizedString(blog?.tag.name ?? [])}
+            </Badge>
           </div>
           <CardHeader>
             <h3 className="text-lg font-semibold hover:underline md:text-xl">
@@ -71,7 +74,6 @@ function OurBlogsListSectionSuspense() {
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground">
-              {' '}
               {getLocalizedString(blog.short_description ?? [])}
             </p>
           </CardContent>

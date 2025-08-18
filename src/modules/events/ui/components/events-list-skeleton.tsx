@@ -5,7 +5,7 @@ import React from 'react';
 export default function EventsListSkeleton() {
   return (
     <div className="grid w-full gap-y-10 sm:gap-y-12 md:gap-y-16 lg:gap-y-20">
-      {Array.from({ length: 1 }).map((_, idx) => (
+      {Array.from({ length: 4 }).map((_, idx) => (
         <Card
           key={idx}
           className="order-last border-0 bg-transparent py-5 shadow-none sm:order-first sm:col-span-12 md:py-10 lg:col-span-10 lg:col-start-2"

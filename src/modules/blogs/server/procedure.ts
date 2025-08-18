@@ -7,7 +7,10 @@ import { z } from 'zod';
 const BLOG_COUNT_QUERY = 'count(*[_type == "blogs"])';
 const BLOG_LIST_WITH_PAGINATION = `*[
             _type == "blogs"
-          ] | order(_createdAt desc)[$start...$end]`;
+          ] | order(_createdAt desc)[$start...$end] {
+            ...,
+            tag->
+          }`;
 const BLOG_PAGE_QUERY = '*[_type == "blogListPage"][0]';
 
 const GET_EVENT_DETAILS_QUERY = `*[_type == "blogs" && slug.current == $slug][0]`;
