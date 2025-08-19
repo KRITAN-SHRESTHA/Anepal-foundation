@@ -8,6 +8,6 @@ export const linksList = [
 ];
 
 export const bottomLinks = [
-  { text: 'Terms and Conditions', url: '/terms-and-conditions' },
-  { text: 'Privacy Policy', url: '/privacy-policy' }
+  { text: 'Terms_and_Conditions', url: '/terms-and-conditions' },
+  { text: 'Privacy_Policy', url: '/privacy-policy' }
 ];

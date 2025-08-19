@@ -18,6 +18,10 @@ export default defineConfig({
   basePath: '/studio',
   projectId,
   dataset,
+  cors: {
+    origin: ['*'], // Allow all origins for contact form submissions
+    credentials: true
+  },
   // Add and edit the content schema in the './sanity/schemaTypes' folder
   schema,
   plugins: [

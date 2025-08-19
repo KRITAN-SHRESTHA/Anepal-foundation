@@ -191,7 +191,24 @@ export const structure: StructureResolver = (S, context) =>
         .title('About Us Page')
         .icon(InfoOutlineIcon)
         .child(S.document().schemaType('aboutus').documentId('aboutus')),
-
+      S.listItem()
+        .title('Contact')
+        .child(
+          S.list()
+            .title('Contact section')
+            .items([
+              S.documentTypeListItem('contact'),
+              S.listItem()
+                .title('Contact Page')
+                .icon(BinaryDocumentIcon)
+                .child(
+                  S.document()
+                    .schemaType('contactPage')
+                    .documentId('contactPage')
+                )
+            ])
+        ),
+      // S.documentTypeListItem('contact'),
       S.divider(),
 
       S.listItem()
