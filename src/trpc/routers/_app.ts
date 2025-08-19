@@ -1,14 +1,15 @@
-import { createTRPCRouter } from '../init';
+import { aboutusRouter } from '@/modules/about/server/procedure';
+import { blogsRouter } from '@/modules/blogs/server/procedure';
+import { contactRouter } from '@/modules/contacts/server/procedure';
+import { donorsPartnersRouter } from '@/modules/donors-partners/server/procedure';
+import { eventsRouter } from '@/modules/events/server/procedure';
 import { homeRouter } from '@/modules/home/server/procedure';
+import { paymentRoute } from '@/modules/payment/server/procedure';
+import { storiesRouter } from '@/modules/stories/server/procedure';
+import { teamMemberRouter } from '@/modules/team-member/server/procedure';
+import { createTRPCRouter } from '../init';
 import { headerRouter } from '../server/header-procedure';
 import { settingsRouter } from '../server/settings-procedure';
-import { paymentRoute } from '@/modules/payment/server/procedure';
-import { eventsRouter } from '@/modules/events/server/procedure';
-import { aboutusRouter } from '@/modules/about/server/procedure';
-import { teamMemberRouter } from '@/modules/team-member/server/procedure';
-import { donorsPartnersRouter } from '@/modules/donors-partners/server/procedure';
-import { storiesRouter } from '@/modules/stories/server/procedure';
-import { blogsRouter } from '@/modules/blogs/server/procedure';
 
 export const appRouter = createTRPCRouter({
   home: homeRouter,
@@ -20,7 +21,8 @@ export const appRouter = createTRPCRouter({
   teamMember: teamMemberRouter,
   donorsPartners: donorsPartnersRouter,
   stories: storiesRouter,
-  blogs: blogsRouter
+  blogs: blogsRouter,
+  contact: contactRouter
 });
 // export type definition of API
 export type AppRouter = typeof appRouter;

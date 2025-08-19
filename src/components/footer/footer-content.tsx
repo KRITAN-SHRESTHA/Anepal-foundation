@@ -8,17 +8,22 @@ import { trpc } from '@/trpc/client';
 
 import Logo from '../header/logo';
 import { Button } from '../ui/button';
-import { bottomLinks, linksList } from './footer-config';
+import { bottomLinks } from './footer-config';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
+import useGetLocale from '@/hooks/use-get-locale';
 
 export default function FooterContent() {
   const pathname = usePathname();
+  const t = useTranslations('Default');
+  const { getLocalizedString } = useGetLocale();
 
   if (pathname.includes('/studio')) {
     return null;
   }
 
   const [footerData] = trpc.settings.getSettings.useSuspenseQuery();
+  const [navData] = trpc.header.getHeader.useSuspenseQuery();
 
   return (
     <>
@@ -63,7 +68,7 @@ export default function FooterContent() {
 
               {/* address, phone, email */}
               <div>
-                <h3 className="mb-4 font-bold">Contacts</h3>
+                <h3 className="mb-4 font-bold">{t('Contacts')}</h3>
                 <div className="text-muted-foreground grid space-y-2">
                   <p className="hover:text-primary font-medium">
                     {footerData?.contact?.address}
@@ -73,41 +78,43 @@ export default function FooterContent() {
                     className="hover:text-primary font-medium"
                     aria-label={`Call us at ${footerData?.contact?.phone}`}
                   >
-                    Phone: {footerData?.contact?.phone}
+                    {t('Phone')}: {footerData?.contact?.phone}
                   </a>
                   <a
                     href={`mailto:${footerData?.contact?.email}`}
                     className="hover:text-primary font-medium"
                   >
-                    Email: {footerData?.contact?.email}
+                    {t('Email')}: {footerData?.contact?.email}
                   </a>
                 </div>
               </div>
 
               {/* navigations links */}
               <div>
-                <h3 className="mb-4 font-bold">Links</h3>
+                <h3 className="mb-4 font-bold">{t('Links')}</h3>
                 <ul className="text-muted-foreground space-y-2">
-                  {linksList.map((link, linkIdx) => (
+                  {navData.map((link, linkIdx) => (
                     <li
                       key={linkIdx}
                       className="hover:text-primary font-medium"
                     >
-                      <a href={link.url}>{link.text}</a>
+                      <a href={link.link}>
+                        {getLocalizedString(link.name ?? [])}
+                      </a>
                     </li>
                   ))}
                 </ul>
               </div>
 
               <div>
-                <h3 className="mb-4 font-bold">Donate</h3>
+                <h3 className="mb-4 font-bold">{t('Donate')}</h3>
                 <div className="text-muted-foreground space-y-4">
                   <p className="hover:text-primary font-medium">
-                    Help Us Change the Lives of Children in World
+                    {t('Help_Us_Change_the_Lives_of_Children_in_World')}
                   </p>
                   <Link href={'/payment'}>
                     <Button className="h-[50px] w-[150px] rounded-full bg-purple-700 text-base hover:bg-purple-900">
-                      Donate us <ArrowUpRight />
+                      {t('Donate_us')} <ArrowUpRight />
                     </Button>
                   </Link>
                 </div>
@@ -115,13 +122,15 @@ export default function FooterContent() {
             </div>
             <div className="text-muted-foreground mt-12 flex flex-col justify-between gap-4 border-t pt-8 text-sm font-medium md:flex-row md:items-center">
               <p>
-                © {new Date().getFullYear()} Anepal Organization. All rights
-                reserved.
+                © {new Date().getFullYear()}{' '}
+                {t('Anepal_Organization_All_rights_reserved')}
               </p>
               <ul className="flex gap-4">
                 {bottomLinks.map((link, linkIdx) => (
                   <li key={linkIdx} className="hover:text-primary underline">
-                    <Link href={link.url}>{link.text}</Link>
+                    <Link href={link.url} className="first-letter:capitalize">
+                      {t(link.text)}
+                    </Link>
                   </li>
                 ))}
               </ul>

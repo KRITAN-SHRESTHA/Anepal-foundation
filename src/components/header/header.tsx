@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 
 import LocaleSwitcher from './locale-switcher';
 import { NavigationSheet } from './navigation-sheet';
+import { useTranslations } from 'next-intl';
 
 const Logo = dynamic(() => import('./logo'), {
   ssr: false
@@ -28,6 +29,7 @@ export default function HeaderClient() {
 
 function HeaderClientSuspense() {
   const pathname = usePathname();
+  const t = useTranslations('Default');
 
   if (pathname.includes('/studio')) {
     return null;
@@ -46,7 +48,7 @@ function HeaderClientSuspense() {
           <div className="flex items-center gap-3">
             <Link href={'/payment'}>
               <Button className="h-[40px] w-[130px] rounded-full bg-purple-700 hover:bg-purple-900">
-                Donate us <ArrowUpRight />
+                {t('Donate_us')} <ArrowUpRight />
               </Button>
             </Link>
 

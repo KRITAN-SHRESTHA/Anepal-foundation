@@ -21,7 +21,6 @@ import { eventsPageSchema } from './events/events-page-schema';
 import { orgHelpsInFieldsSchema } from './home/org-helps-in-fields-schema';
 import { settingsSchema } from './settings-schema';
 import { homePageSchema } from './home/homepage-schema';
-// import { orgHelpsInFieldsCopySchema } from './home/org-helps-in-fields-schema copy';
 import { featuredProjetsSchema } from './home/featured-projects-schema';
 import { homeStatsSchema } from './home/home-stats';
 import { createtestimonialsSchema } from './testimonials/create-testimonials-schema';
@@ -33,6 +32,8 @@ import { homeGallerySchema } from './home/gallery-section-schema';
 import { blogsSchema } from './blogs/blogs-schema';
 import { blogTagSchema } from './blogs/blog-tag-schema';
 import { blogListPageSchema } from './blogs/blog-list-page-schema';
+import { contactSchema } from './contact/contact-schema';
+import { contactPageSchema } from './contact/contact-page-schema';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -68,6 +69,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     homeGallerySchema,
     blogsSchema,
     blogTagSchema,
-    blogListPageSchema
+    blogListPageSchema,
+    contactSchema,
+    contactPageSchema
   ]
 };

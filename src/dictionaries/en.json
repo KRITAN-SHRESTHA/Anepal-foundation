@@ -1,19 +1,24 @@
 {
-  "Homepage": {
-    "our_help_consist_of": "Our help consists of...",
-    "EDUCATION": "EDUCATION",
-    "NUTRITION": "NUTRITION",
-    "FINANCIAL_SUPPORT": "FINANCIAL SUPPORT",
-    "MEDICAL_CARE": "MEDICAL CARE",
-    "Providing_all_children_with_access_to_a_quality_education": "Providing all children with access to a quality education.",
-    "Ensuring_healthy_nutrient_rich_diet": "Ensuring a healthy, nutrient-rich diet.",
-    "Providing_sufficient_resources_for_a_stable_and_secure_life_so_they_focus__their_studies": "Providing sufficient resources for a stable and secure life so they can focus on their studies.",
-    "Improving_children_health_and_well_being": "Improving children's health and well-being.",
-    "Our_History": "Our History",
-    "What_makes_us_unique": "What makes us unique?",
-    "We_work_altruistically_to_transform_lives_Every_donation_we_receive_is_dedicated_entirely_to_the_education_and_well_being__children": "We work altruistically to transform lives. Every donation we receive is dedicated entirely to the education and well-being of children.",
-    "Our_Sponsors": "Our Sponsors",
-    "Our_Children": "Our Children",
-    "Dollars_We_Collected": "Dollars We Collected"
+  "ContactPage": {
+    "Contact_Details": "Contact Details",
+    "Phone": "Phone",
+    "Email": "Email",
+    "Address": "Address",
+    "First_Name": "First Name",
+    "Last_Name": "Last Name",
+    "Message": "Message",
+    "Send_Message": "Send Message",
+    "Sending": "Sending...",
+    "Type_your_message_here": "Type your message here."
+  },
+  "Default": {
+    "Donate_us": "Donate us",
+    "Donate": "Donate",
+    "Contacts": "Contacts",
+    "Help_Us_Change_the_Lives_of_Children_in_World": "Help Us Change the Lives of Children in World",
+    "Anepal_Organization_All_rights_reserved": "Anepal Organization. All rights reserved.",
+    "Terms_and_Conditions": "Terms and Conditions",
+    "Privacy_Policy": "Privacy Policy",
+    "Links": "Links"
   }
 }

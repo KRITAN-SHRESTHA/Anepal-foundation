@@ -13,6 +13,37 @@
  */
 
 // Source: schema.json
+export type ContactPage = {
+  _id: string;
+  _type: 'contactPage';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  subtitle?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayTextValue
+  >;
+};
+
+export type Contact = {
+  _id: string;
+  _type: 'contact';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  fullName?: string;
+  email?: string;
+  phoneNumber?: string;
+  message?: string;
+  submittedAt?: string;
+};
+
 export type BlogListPage = {
   _id: string;
   _type: 'blogListPage';
@@ -1518,6 +1549,8 @@ export type SanityAssetSourceData = {
 };
 
 export type AllSanitySchemaTypes =
+  | ContactPage
+  | Contact
   | BlogListPage
   | Blogs
   | Blog_tag
