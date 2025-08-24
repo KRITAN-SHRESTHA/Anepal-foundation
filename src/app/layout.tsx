@@ -144,16 +144,16 @@ export const metadata: Metadata = {
     // locale: 'en_US',
     images: [
       {
-        url: '/assets/logo-og.png',
-        width: 1200,
-        height: 630,
+        url: '/assets/logo.png',
+        width: 800,
+        height: 450,
         alt: 'Anepal Foundation - Empowering Communities in Nepal',
         type: 'image/png'
       },
       {
         url: '/assets/logo-transparent.png',
         width: 800,
-        height: 600,
+        height: 450,
         alt: 'Anepal Foundation Logo',
         type: 'image/png'
       }
@@ -169,7 +169,7 @@ export const metadata: Metadata = {
     description:
       'Join Anepal Foundation in our mission to create sustainable change through community development, education, and humanitarian initiatives in Nepal.',
     images: {
-      url: '/assets/logo-og.png',
+      url: '/assets/logo.png',
       alt: 'Anepal Foundation - Empowering Communities in Nepal',
       width: 1200,
       height: 630,

@@ -1,52 +1,38 @@
 import type { Metadata } from 'next';
-import { serverClient } from '@/trpc/server';
-import { urlFor } from '@/sanity/lib/image';
+import { getMetadataBase } from '@/lib/utils';
 
-export async function generateMetadata(): Promise<Metadata> {
-  try {
-    // Fetch stories page content using server-side tRPC client
-    const storiesData = await serverClient.stories.getStoriesPageContent();
-    const heroImage = storiesData.heroSection?.backgroundImage
-      ? urlFor(storiesData.heroSection.backgroundImage).quality(100).url()
-      : '/assets/logo.png';
-
-    return {
-      title: 'Stories',
-      description:
-        'Read inspiring stories of impact and transformation from our work at Anepal Foundation.',
-      openGraph: {
-        type: 'website',
-        siteName: 'Anepal Foundation',
-        title: 'Stories',
-        description:
-          'Read inspiring stories of impact and transformation from our work at Anepal Foundation.',
-        images: [
-          {
-            url: heroImage,
-            width: 1200,
-            height: 630,
-            alt:
-              storiesData.heroSection?.backgroundImage?.alt ||
-              'Anepal Foundation Stories'
-          }
-        ]
+export const metadata: Metadata = {
+  title: 'Stories',
+  description:
+    'Read inspiring stories of impact and transformation from our work at Anepal Foundation.',
+  alternates: {
+    canonical: `${getMetadataBase()}/stories`
+  },
+  openGraph: {
+    type: 'website',
+    siteName: 'Anepal Foundation',
+    title: 'Stories',
+    description:
+      'Read inspiring stories of impact and transformation from our work at Anepal Foundation.',
+    url: `${getMetadataBase()}/stories`,
+    images: [
+      {
+        url: '/assets/logo.png',
+        width: 800,
+        height: 450,
+        alt: 'Anepal Foundation - Empowering Communities in Nepal',
+        type: 'image/png'
+      },
+      {
+        url: '/assets/logo-transparent.png',
+        width: 800,
+        height: 450,
+        alt: 'Anepal Foundation Logo',
+        type: 'image/png'
       }
-    };
-  } catch {
-    // Fallback metadata if API call fails
-    return {
-      title: 'Stories',
-      description:
-        'Read inspiring stories of impact and transformation from our work at Anepal Foundation.',
-      openGraph: {
-        title: 'Stories',
-        description:
-          'Read inspiring stories of impact and transformation from our work at Anepal Foundation.'
-        // images: ['/assets/logo.png']
-      }
-    };
+    ]
   }
-}
+};
 
 export default function StoriesLayout({
   children
