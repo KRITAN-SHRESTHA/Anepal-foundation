@@ -17,3 +17,6 @@ export const { trpc, HydrateClient } = createHydrationHelpers<typeof appRouter>(
   caller,
   getQueryClient
 );
+
+// Create a server-side tRPC client
+export const serverClient = caller;
