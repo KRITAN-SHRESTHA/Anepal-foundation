@@ -12,7 +12,6 @@ export default async function EventsDetailsPage({
   params
 }: EventsDetailsPageParams) {
   const slug = (await params).slug;
-  console.log('slug', slug);
 
   void trpc.events.getOneEvent.prefetch({
     slug
