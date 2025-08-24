@@ -36,8 +36,62 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'ANepal foundation',
-  description: 'ANepal foundation'
+  metadataBase: new URL(
+    process.env.VERCEL_URL ?? 'https://anepal-foundation.vercel.app'
+  ),
+  title: {
+    default: 'Anepal Foundation',
+    template: '%s | Anepal Foundation'
+  },
+  description:
+    'Anepal Foundation is dedicated to empowering communities and creating positive change through sustainable development initiatives.',
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/assets/favicon-for-app/icon0.svg', type: 'image/svg+xml' }
+    ],
+    apple: {
+      url: '/assets/favicon-for-app/apple-icon.png',
+      sizes: '180x180',
+      type: 'image/png'
+    },
+    shortcut: '/favicon.ico'
+  },
+  keywords: [
+    'Nepal',
+    'NGO',
+    'foundation',
+    'charity',
+    'community development',
+    'social impact',
+    'humanitarian aid'
+  ],
+  authors: [{ name: 'Anepal Foundation Team' }],
+  creator: 'Anepal Foundation',
+  publisher: 'Anepal Foundation',
+  openGraph: {
+    type: 'website',
+    siteName: 'Anepal Foundation',
+    title: 'Anepal Foundation',
+    description:
+      'Empowering communities and creating positive change through sustainable development initiatives.',
+    images: [
+      {
+        url: '/assets/logo.png', // Updated path
+        width: 1200,
+        height: 630,
+        alt: 'Anepal Foundation'
+      }
+    ]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Anepal Foundation',
+    description:
+      'Empowering communities and creating positive change through sustainable development initiatives.',
+    images: ['/assets/logo.png'] // Updated path
+  },
+  manifest: '/manifest.json'
 };
 
 export default async function RootLayout({
