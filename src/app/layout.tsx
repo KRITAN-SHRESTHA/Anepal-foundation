@@ -14,6 +14,7 @@ import {
 import NextTopLoader from 'nextjs-toploader';
 
 import './globals.css';
+import { getMetadataBase } from '@/lib/utils';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -35,25 +36,84 @@ const geistMono = Geist_Mono({
   subsets: ['latin']
 });
 
-const getMetadataBase = () => {
-  if (process.env.NEXT_PUBLIC_VERCEL_URL) {
-    return process.env.NEXT_PUBLIC_VERCEL_URL;
-  }
-  return 'https://anepal-foundation.vercel.app';
-};
-
 export const metadata: Metadata = {
   // Base URL for all relative URLs in metadata
-  metadataBase: new URL(getMetadataBase()), // Dynamically set based on environment
+  metadataBase: new URL(getMetadataBase()),
 
-  // Title Configuration
-  title: {
-    default: 'Anepal Foundation', // Default title for home page
-    template: '%s | Anepal Foundation' // Pattern for other pages, %s is replaced with page title
+  // Canonical URL and Alternates
+  alternates: {
+    canonical: '/'
+    // languages: {
+    //   'en': '/',
+    //   'es': '/es'
+    // },
   },
-  // Main site description used by search engines
+
+  // Enhanced Title Configuration
+  title: {
+    default: 'Anepal Foundation - Empowering Communities in Nepal',
+    template: '%s | Anepal Foundation',
+    absolute:
+      'Anepal Foundation - NGO Supporting Sustainable Development in Nepal'
+  },
+
+  // Enhanced description with targeted keywords
   description:
-    'Anepal Foundation is dedicated to empowering communities and creating positive change through sustainable development initiatives.',
+    'Anepal Foundation is a non-profit organization dedicated to empowering communities in Nepal through sustainable development, education, and humanitarian initiatives. Join us in making a difference.',
+
+  // Robots control
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1
+    }
+  },
+
+  // Viewport settings for responsive design and accessibility
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    minimumScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+    viewportFit: 'cover' // Better support for notched phones
+  },
+
+  // Theme color for browser UI
+  themeColor: '#a6289f',
+
+  // Verification tokens
+  // verification: {
+  //   google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION
+  // },
+
+  // App information
+  applicationName: 'Anepal Foundation',
+  referrer: 'origin-when-cross-origin',
+  // SEO Keywords
+
+  keywords: [
+    'Nepal NGO',
+    'Community Development Nepal',
+    'Sustainable Development',
+    'Humanitarian Aid Nepal',
+    'Education Initiatives Nepal',
+    'Social Impact Foundation',
+    'Nepal Charity',
+    'Nepal',
+    'NGO',
+    'foundation',
+    'charity',
+    'community development',
+    'social impact',
+    'humanitarian aid'
+  ],
+  category: 'non-profit',
   // Icons Configuration
   icons: {
     // Multiple icon formats for different browsers/devices
@@ -68,52 +128,60 @@ export const metadata: Metadata = {
     },
     shortcut: '/favicon.ico' // Legacy shortcut icon support
   },
-  // SEO Keywords
-  keywords: [
-    'Nepal',
-    'NGO',
-    'foundation',
-    'charity',
-    'community development',
-    'social impact',
-    'humanitarian aid'
-  ],
+
   // Content Authorship
   authors: [{ name: 'Anepal Foundation' }],
   creator: 'Anepal Foundation',
   publisher: 'Anepal Foundation',
-  // OpenGraph Metadata (for social media sharing)
+  // Enhanced OpenGraph Metadata
   openGraph: {
     type: 'website',
     siteName: 'Anepal Foundation',
-    title: 'Anepal Foundation',
+    title: 'Anepal Foundation - Empowering Communities in Nepal',
     description:
-      'Empowering communities and creating positive change through sustainable development initiatives.',
+      'Join Anepal Foundation in our mission to create sustainable change through community development, education, and humanitarian initiatives in Nepal.',
     url: getMetadataBase(),
+    // locale: 'en_US',
     images: [
       {
         url: '/assets/logo-og.png',
         width: 1200,
         height: 630,
-        alt: 'Anepal Foundation Logo'
+        alt: 'Anepal Foundation - Empowering Communities in Nepal',
+        type: 'image/png'
+      },
+      {
+        url: '/assets/logo-transparent.png',
+        width: 800,
+        height: 600,
+        alt: 'Anepal Foundation Logo',
+        type: 'image/png'
       }
     ]
   },
-  // Twitter Card Metadata
+
+  // Enhanced Twitter Card Metadata
   twitter: {
     card: 'summary_large_image',
-    title: 'Anepal Foundation',
+    site: '@anepalfoundation',
+    creator: '@anepalfoundation',
+    title: 'Anepal Foundation - Empowering Communities in Nepal',
     description:
-      'Empowering communities and creating positive change through sustainable development initiatives.',
-    images: [
-      {
-        url: '/assets/logo-og.png',
-        width: 1200,
-        height: 630,
-        alt: 'Anepal Foundation Logo'
-      }
-    ]
+      'Join Anepal Foundation in our mission to create sustainable change through community development, education, and humanitarian initiatives in Nepal.',
+    images: {
+      url: '/assets/logo-og.png',
+      alt: 'Anepal Foundation - Empowering Communities in Nepal',
+      width: 1200,
+      height: 630,
+      type: 'image/png'
+    }
   }
+
+  // Additional social media
+  // other: {
+  //   'facebook-domain-verification':
+  //     process.env.NEXT_PUBLIC_FACEBOOK_DOMAIN_VERIFICATION
+  // }
   // Web App Manifest
   // manifest: '/manifest.json' // For PWA support
 };
