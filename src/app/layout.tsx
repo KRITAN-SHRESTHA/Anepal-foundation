@@ -35,10 +35,15 @@ const geistMono = Geist_Mono({
   subsets: ['latin']
 });
 
+const getMetadataBase = () => {
+  if (process.env.NEXT_PUBLIC_VERCEL_URL) {
+    return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
+  }
+  return 'https://anepal-foundation.vercel.app';
+};
+
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.VERCEL_URL ?? 'https://anepal-foundation.vercel.app'
-  ),
+  metadataBase: new URL(getMetadataBase()),
   title: {
     default: 'Anepal Foundation',
     template: '%s | Anepal Foundation'
@@ -66,7 +71,7 @@ export const metadata: Metadata = {
     'social impact',
     'humanitarian aid'
   ],
-  authors: [{ name: 'Anepal Foundation Team' }],
+  authors: [{ name: 'Anepal Foundation' }],
   creator: 'Anepal Foundation',
   publisher: 'Anepal Foundation',
   openGraph: {
