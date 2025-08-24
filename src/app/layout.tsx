@@ -37,7 +37,7 @@ const geistMono = Geist_Mono({
 
 const getMetadataBase = () => {
   if (process.env.NEXT_PUBLIC_VERCEL_URL) {
-    return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
+    return process.env.NEXT_PUBLIC_VERCEL_URL;
   }
   return 'https://anepal-foundation.vercel.app';
 };
