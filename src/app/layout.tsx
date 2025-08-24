@@ -43,25 +43,32 @@ const getMetadataBase = () => {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(getMetadataBase()),
+  // Base URL for all relative URLs in metadata
+  metadataBase: new URL(getMetadataBase()), // Dynamically set based on environment
+
+  // Title Configuration
   title: {
-    default: 'Anepal Foundation',
-    template: '%s | Anepal Foundation'
+    default: 'Anepal Foundation', // Default title for home page
+    template: '%s | Anepal Foundation' // Pattern for other pages, %s is replaced with page title
   },
+  // Main site description used by search engines
   description:
     'Anepal Foundation is dedicated to empowering communities and creating positive change through sustainable development initiatives.',
+  // Icons Configuration
   icons: {
+    // Multiple icon formats for different browsers/devices
     icon: [
-      { url: '/favicon.ico' },
-      { url: '/assets/favicon-for-app/icon0.svg', type: 'image/svg+xml' }
+      { url: '/favicon.ico' }, // Basic favicon for all browsers
+      { url: '/assets/favicon-for-app/icon0.svg', type: 'image/svg+xml' } // SVG for modern browsers
     ],
     apple: {
-      url: '/assets/favicon-for-app/apple-icon.png',
+      url: '/assets/favicon-for-app/apple-icon.png', // Icon for iOS devices
       sizes: '180x180',
       type: 'image/png'
     },
-    shortcut: '/favicon.ico'
+    shortcut: '/favicon.ico' // Legacy shortcut icon support
   },
+  // SEO Keywords
   keywords: [
     'Nepal',
     'NGO',
@@ -71,9 +78,11 @@ export const metadata: Metadata = {
     'social impact',
     'humanitarian aid'
   ],
+  // Content Authorship
   authors: [{ name: 'Anepal Foundation' }],
   creator: 'Anepal Foundation',
   publisher: 'Anepal Foundation',
+  // OpenGraph Metadata (for social media sharing)
   openGraph: {
     type: 'website',
     siteName: 'Anepal Foundation',
@@ -82,21 +91,23 @@ export const metadata: Metadata = {
       'Empowering communities and creating positive change through sustainable development initiatives.',
     images: [
       {
-        url: '/assets/logo.png', // Updated path
-        width: 1200,
+        url: '../../public/assets/logo.png', // Updated path
+        width: 1200, // Optimal size for social sharing
         height: 630,
         alt: 'Anepal Foundation'
       }
     ]
   },
+  // Twitter Card Metadata
   twitter: {
-    card: 'summary_large_image',
+    card: 'summary_large_image', // Large image card type
     title: 'Anepal Foundation',
     description:
       'Empowering communities and creating positive change through sustainable development initiatives.',
-    images: ['/assets/logo.png'] // Updated path
+    images: ['../../public/assets/logo.png'] // Updated path
   },
-  manifest: '/manifest.json'
+  // Web App Manifest
+  manifest: '/manifest.json' // For PWA support
 };
 
 export default async function RootLayout({
