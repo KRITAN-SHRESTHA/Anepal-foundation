@@ -89,23 +89,30 @@ export const metadata: Metadata = {
     title: 'Anepal Foundation',
     description:
       'Empowering communities and creating positive change through sustainable development initiatives.',
-    url: '/',
+    url: getMetadataBase(),
     images: [
       {
-        url: '/assets/logo.png',
+        url: '/assets/logo-og.png',
         width: 1200,
         height: 630,
-        alt: 'Anepal Foundation'
+        alt: 'Anepal Foundation Logo'
       }
     ]
   },
   // Twitter Card Metadata
   twitter: {
-    card: 'summary_large_image', // Large image card type
+    card: 'summary_large_image',
     title: 'Anepal Foundation',
     description:
       'Empowering communities and creating positive change through sustainable development initiatives.',
-    images: ['/assets/logo.png'] // Updated path
+    images: [
+      {
+        url: '/assets/logo-og.png',
+        width: 1200,
+        height: 630,
+        alt: 'Anepal Foundation Logo'
+      }
+    ]
   }
   // Web App Manifest
   // manifest: '/manifest.json' // For PWA support
