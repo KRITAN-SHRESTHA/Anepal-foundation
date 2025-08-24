@@ -89,10 +89,11 @@ export const metadata: Metadata = {
     title: 'Anepal Foundation',
     description:
       'Empowering communities and creating positive change through sustainable development initiatives.',
+    url: '/',
     images: [
       {
-        url: '../../public/assets/logo.png', // Updated path
-        width: 1200, // Optimal size for social sharing
+        url: '/assets/logo.png',
+        width: 1200,
         height: 630,
         alt: 'Anepal Foundation'
       }
@@ -104,10 +105,10 @@ export const metadata: Metadata = {
     title: 'Anepal Foundation',
     description:
       'Empowering communities and creating positive change through sustainable development initiatives.',
-    images: ['../../public/assets/logo.png'] // Updated path
-  },
+    images: ['/assets/logo.png'] // Updated path
+  }
   // Web App Manifest
-  manifest: '/manifest.json' // For PWA support
+  // manifest: '/manifest.json' // For PWA support
 };
 
 export default async function RootLayout({
