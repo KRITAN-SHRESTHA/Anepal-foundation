@@ -13,9 +13,14 @@ type Changefreq =
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function GET(_request: Request) {
-  const blogSlugs = await serverClient.blogs.getBlogs();
-  const eventSlugs = await serverClient.events.getEvents();
-  const headerSlugs = await serverClient.header.getHeader();
+  const [blogSlugs, eventSlugs, headerSlugs] = await Promise.all([
+    serverClient.blogs.getBlogs(),
+    serverClient.events.getEvents(),
+    serverClient.header.getHeader()
+  ]);
+  // const blogSlugs = await serverClient.blogs.getBlogs();
+  // const eventSlugs = await serverClient.events.getEvents();
+  // const headerSlugs = await serverClient.header.getHeader();
 
   // Define static routes
   const staticRoutes = [
