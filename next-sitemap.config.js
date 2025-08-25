@@ -23,9 +23,15 @@ module.exports = {
     policies: [
       {
         userAgent: '*',
-        disallow: ['/studio', '/api']
-      },
-      { userAgent: '*', allow: '/' }
+        allow: '/',
+        disallow: [
+          '/studio/*',
+          '/api/*',
+          '/*?*', // Prevent crawling of URLs with query parameters
+          '/*/preview', // Prevent crawling of preview pages
+          '/*.json$' // Prevent crawling of JSON files
+        ]
+      }
     ],
     additionalSitemaps: [`${baseUrl}/server-sitemap-index.xml`]
   }

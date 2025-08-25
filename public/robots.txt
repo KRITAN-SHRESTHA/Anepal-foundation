@@ -1,11 +1,11 @@
 # *
 User-agent: *
-Disallow: /studio
-Disallow: /api
-
-# *
-User-agent: *
 Allow: /
+Disallow: /studio/*
+Disallow: /api/*
+Disallow: /*?*
+Disallow: /*/preview
+Disallow: /*.json$
 
 # Host
 Host: http://localhost:3000

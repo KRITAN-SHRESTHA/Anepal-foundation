@@ -2,19 +2,19 @@ import Footer from '@/components/footer';
 import Header from '@/components/header';
 import { Toaster } from '@/components/ui/sonner';
 import { TRPCProvider } from '@/trpc/client';
-import type { Metadata, Viewport } from 'next';
+import type { Viewport } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale } from 'next-intl/server';
 import {
   Geist,
   Geist_Mono,
-  Quicksand,
-  Permanent_Marker
+  Permanent_Marker,
+  Quicksand
 } from 'next/font/google';
 import NextTopLoader from 'nextjs-toploader';
 
-import './globals.css';
 import { getMetadataBase } from '@/lib/utils';
+import './globals.css';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -48,71 +48,76 @@ export const viewport: Viewport = {
   viewportFit: 'cover' // Better support for notched phones
 };
 
-export const metadata: Metadata = {
+export const metadata = {
   // Base URL for all relative URLs in metadata
   metadataBase: new URL(getMetadataBase()),
 
-  // Canonical URL and Alternates
+  // Canonical URL and Alternates with language support
   alternates: {
     canonical: '/'
     // languages: {
-    //   'en': '/',
-    //   'es': '/es'
-    // },
+    //   'en-US': '/',
+    //   'es-ES': '/es'
+    // }
   },
 
-  // Enhanced Title Configuration
+  // Enhanced Title Configuration with keywords
   title: {
-    default: 'Anepal Foundation - Empowering Communities in Nepal',
-    template: '%s | Anepal Foundation',
+    default:
+      'Anepal Foundation - Leading NGO for Community Development in Nepal',
+    template: '%s | Anepal Foundation - Nepal NGO',
     absolute:
-      'Anepal Foundation - NGO Supporting Sustainable Development in Nepal'
+      'Anepal Foundation - Transforming Lives Through Sustainable Development in Nepal'
   },
 
-  // Enhanced description with targeted keywords
+  // Enhanced description with targeted keywords and call-to-action
   description:
-    'Anepal Foundation is a non-profit organization dedicated to empowering communities in Nepal through sustainable development, education, and humanitarian initiatives. Join us in making a difference.',
+    'Anepal Foundation leads impactful community development initiatives in Nepal. Our NGO focuses on sustainable development, education, and humanitarian aid. Join us in creating lasting change for Nepalese communities. Donate or volunteer today.',
 
-  // Robots control
+  // Enhanced robots control for better SEO
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
+      noimageindex: false,
       'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1
     }
   },
 
-  // Verification tokens
-  // verification: {
-  //   google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION
-  // },
-
-  // App information
+  // App information and verification
   applicationName: 'Anepal Foundation',
   referrer: 'origin-when-cross-origin',
-  // SEO Keywords
-
+  // manifest: '/manifest.json',
+  // themeColor: '#a6289f',
+  // colorScheme: 'light dark',
+  // Enhanced SEO Keywords for better targeting
   keywords: [
     'Nepal NGO',
     'Community Development Nepal',
-    'Sustainable Development',
+    'Sustainable Development Nepal',
     'Humanitarian Aid Nepal',
     'Education Initiatives Nepal',
-    'Social Impact Foundation',
-    'Nepal Charity',
-    'Nepal',
-    'NGO',
-    'foundation',
-    'charity',
-    'community development',
-    'social impact',
-    'humanitarian aid'
+    'Social Impact Foundation Nepal',
+    'Nepal Charity Organization',
+    'Donate to Nepal',
+    'Volunteer in Nepal',
+    'Nepal Community Service',
+    'Nepal Education Programs',
+    'Nepal Social Development',
+    'Kathmandu NGO',
+    'Nepal Non-Profit Organization',
+    'Support Nepal Communities',
+    'Nepal Foundation',
+    'Nepal Social Work',
+    'Nepal Humanitarian Projects'
   ],
   category: 'non-profit',
+  classification: 'NGO, Non-Profit, Humanitarian Aid',
   // Icons Configuration
   icons: {
     // Multiple icon formats for different browsers/devices
@@ -132,33 +137,24 @@ export const metadata: Metadata = {
   authors: [{ name: 'Anepal Foundation' }],
   creator: 'Anepal Foundation',
   publisher: 'Anepal Foundation',
-  // Enhanced OpenGraph Metadata
+  // Enhanced OpenGraph Metadata for better social sharing
   openGraph: {
     type: 'website',
     siteName: 'Anepal Foundation',
-    title: 'Anepal Foundation - Empowering Communities in Nepal',
+    title: 'Anepal Foundation - Leading NGO for Community Development in Nepal',
     description:
-      'Join Anepal Foundation in our mission to create sustainable change through community development, education, and humanitarian initiatives in Nepal.',
+      'Transform lives in Nepal through sustainable development, education, and humanitarian initiatives. Join Anepal Foundation in creating lasting change. Donate or volunteer today.',
     url: getMetadataBase(),
-    // locale: 'en_US',
+    locale: 'en_US',
     images: [
       {
-        url: '/assets/logo.png',
-        width: 800,
-        height: 450,
-        alt: 'Anepal Foundation - Empowering Communities in Nepal',
-        type: 'image/png'
-      },
-      {
-        url: '/assets/logo-transparent.png',
-        width: 800,
-        height: 450,
-        alt: 'Anepal Foundation Logo',
-        type: 'image/png'
+        url: '/assets/logo-og.png',
+        width: 1200,
+        height: 630,
+        alt: 'Anepal Foundation - Transforming Lives in Nepal'
       }
     ]
   },
-
   // Enhanced Twitter Card Metadata
   twitter: {
     card: 'summary_large_image',
@@ -174,15 +170,13 @@ export const metadata: Metadata = {
       height: 630,
       type: 'image/png'
     }
-  }
+  },
 
-  // Additional social media
-  // other: {
-  //   'facebook-domain-verification':
-  //     process.env.NEXT_PUBLIC_FACEBOOK_DOMAIN_VERIFICATION
-  // }
-  // Web App Manifest
-  // manifest: '/manifest.json' // For PWA support
+  other: {
+    'facebook-domain-verification':
+      process.env.NEXT_PUBLIC_FACEBOOK_DOMAIN_VERIFICATION,
+    'google-site-verification': process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+  }
 };
 
 export default async function RootLayout({
