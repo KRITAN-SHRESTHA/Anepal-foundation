@@ -24,6 +24,13 @@ export const blogsRouter = createTRPCRouter({
   getBlogPage: publicProcedure.query(async () => {
     return await client.fetch<BlogListPage>(BLOG_PAGE_QUERY, {}, options);
   }),
+  getBlogs: publicProcedure.query(async () => {
+    return await client.fetch<string[]>(
+      `*[_type == "blogs"].slug.current`,
+      {},
+      options
+    );
+  }),
   getAllBlogs: publicProcedure
     .input(
       z.object({

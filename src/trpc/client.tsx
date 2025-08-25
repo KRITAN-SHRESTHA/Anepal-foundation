@@ -31,7 +31,7 @@ function getUrl() {
     console.log('running in browser');
     if (typeof window !== 'undefined') return window.location.origin;
     // Modified for outside vercel deployment
-    if (env.NEXT_PUBLIC_APP_URL) return `${env.NEXT_PUBLIC_APP_URL}`;
+    if (env.NEXT_PUBLIC_SITE_URL) return `${env.NEXT_PUBLIC_SITE_URL}`;
     if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
     return 'http://localhost:3000';
   })();

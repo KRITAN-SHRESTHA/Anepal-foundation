@@ -2,7 +2,7 @@ import Footer from '@/components/footer';
 import Header from '@/components/header';
 import { Toaster } from '@/components/ui/sonner';
 import { TRPCProvider } from '@/trpc/client';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale } from 'next-intl/server';
 import {
@@ -35,6 +35,18 @@ const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin']
 });
+
+// Viewport settings for responsive design and accessibility
+export const viewport: Viewport = {
+  // Theme color for browser UI
+  themeColor: '#a6289f',
+  width: 'device-width',
+  initialScale: 1,
+  minimumScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  viewportFit: 'cover' // Better support for notched phones
+};
 
 export const metadata: Metadata = {
   // Base URL for all relative URLs in metadata
@@ -73,19 +85,6 @@ export const metadata: Metadata = {
       'max-snippet': -1
     }
   },
-
-  // Viewport settings for responsive design and accessibility
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    minimumScale: 1,
-    maximumScale: 5,
-    userScalable: true,
-    viewportFit: 'cover' // Better support for notched phones
-  },
-
-  // Theme color for browser UI
-  themeColor: '#a6289f',
 
   // Verification tokens
   // verification: {

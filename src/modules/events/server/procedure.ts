@@ -16,6 +16,13 @@ export const eventsRouter = createTRPCRouter({
   getEventPage: publicProcedure.query(async () => {
     return await client.fetch<EventsPage>(EVENT_PAGE_QUERY, {}, options);
   }),
+  getEvents: publicProcedure.query(async () => {
+    return await client.fetch<string[]>(
+      `*[_type == "events"].slug.current`,
+      {},
+      options
+    );
+  }),
   getAllEvents: publicProcedure
     .input(
       z.object({

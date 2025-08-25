@@ -24,8 +24,8 @@ export function getLocalizedString(data: LocalisedDataType[], lang: string) {
 }
 
 export const getMetadataBase = () => {
-  if (process.env.NEXT_PUBLIC_VERCEL_URL) {
-    return process.env.NEXT_PUBLIC_VERCEL_URL;
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    return process.env.NEXT_PUBLIC_SITE_URL;
   }
   return 'https://anepal-foundation.vercel.app';
 };

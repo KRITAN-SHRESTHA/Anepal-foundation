@@ -104,14 +104,14 @@ export const paymentRoute = createTRPCRouter({
                     landing_page: 'GUEST_CHECKOUT', // GUEST_CHECKOUT | LOGIN | NO_PREFERENCE
                     shipping_preference: 'NO_SHIPPING', // GET_FROM_FILE | NO_SHIPPING | SET_PROVIDED_ADDRESS
                     user_action: 'PAY_NOW',
-                    return_url: `${env.NEXT_PUBLIC_APP_URL}/payment/success`,
-                    cancel_url: `${env.NEXT_PUBLIC_APP_URL}/payment/cancel`
+                    return_url: `${env.NEXT_PUBLIC_SITE_URL}/payment/success`,
+                    cancel_url: `${env.NEXT_PUBLIC_SITE_URL}/payment/cancel`
                   }
                 }
               }
               // application_context: {
-              //   return_url: `${env.NEXT_PUBLIC_APP_URL}/payment/success`,
-              //   cancel_url: `${env.NEXT_PUBLIC_APP_URL}/payment/cancel`
+              //   return_url: `${env.NEXT_PUBLIC_SITE_URL}/payment/success`,
+              //   cancel_url: `${env.NEXT_PUBLIC_SITE_URL}/payment/cancel`
               // }
             } satisfies CreateOrderRequestBody)
           }
