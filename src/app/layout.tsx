@@ -65,7 +65,7 @@ export const metadata = {
   title: {
     default:
       'Anepal Foundation - Leading NGO for Community Development in Nepal',
-    template: '%s | Anepal Foundation - Nepal NGO',
+    template: '%s | Anepal Foundation',
     absolute:
       'Anepal Foundation - Transforming Lives Through Sustainable Development in Nepal'
   },
@@ -170,13 +170,13 @@ export const metadata = {
       height: 630,
       type: 'image/png'
     }
-  },
-
-  other: {
-    'facebook-domain-verification':
-      process.env.NEXT_PUBLIC_FACEBOOK_DOMAIN_VERIFICATION,
-    'google-site-verification': process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
   }
+
+  // other: {
+  //   'facebook-domain-verification':
+  //     process.env.NEXT_PUBLIC_FACEBOOK_DOMAIN_VERIFICATION,
+  //   'google-site-verification': process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+  // }
 };
 
 export default async function RootLayout({

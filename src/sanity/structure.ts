@@ -208,9 +208,33 @@ export const structure: StructureResolver = (S, context) =>
                 )
             ])
         ),
-      // S.documentTypeListItem('contact'),
+
       S.divider(),
 
+      S.listItem()
+        .title('Policies')
+        .child(
+          S.list()
+            .title('Policies section')
+            .items([
+              S.listItem()
+                .title('Terms and Conditions')
+                .icon(BinaryDocumentIcon)
+                .child(
+                  S.document()
+                    .schemaType('termsAndConditions')
+                    .documentId('termsAndConditions')
+                ),
+              S.listItem()
+                .title('Privacy Policy')
+                .icon(BinaryDocumentIcon)
+                .child(
+                  S.document()
+                    .schemaType('privacyPolicy')
+                    .documentId('privacyPolicy')
+                )
+            ])
+        ),
       S.listItem()
         .title('Settings')
         .icon(SettingsIcon)

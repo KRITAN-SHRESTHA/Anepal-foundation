@@ -1,39 +1,41 @@
 import { type SchemaTypeDefinition } from 'sanity';
 
-import { headerSchema } from './header-schema';
-import { bannerSchema } from './home/banner-schema';
-import { aboutAnepalSchema } from './home/about-anepal-schema';
-import { homeContentSchema } from './home/home-content-schema';
-import { whatmakesUsUniqueSchema } from './home/what-makes-us-unique-schema';
-import { eventsSchema } from './events/events-schema';
-import { blockContentSchema } from './block-content-schema';
 import { aboutUsSchema } from './about-us-schema';
-import { teamMemberSchema } from './team-members/team-member-schema';
-import { teamMembersRoleSchema } from './team-members/team-members-role-schema';
-import { donorsPartnersPageSchema } from './donors-and-partners/donors-partners-page-schema';
+import { blockContentSchema } from './block-content-schema';
+import { blogListPageSchema } from './blogs/blog-list-page-schema';
+import { blogTagSchema } from './blogs/blog-tag-schema';
+import { blogsSchema } from './blogs/blogs-schema';
+import { contactPageSchema } from './contact/contact-page-schema';
+import { contactSchema } from './contact/contact-schema';
 import { donorsListSchema } from './donors-and-partners/donors-list-schema';
+import { donorsPartnersPageSchema } from './donors-and-partners/donors-partners-page-schema';
 import { partnersListSchema } from './donors-and-partners/partners-list-schema';
-import { organizationStatsSchema } from './organization-stats-schema';
-import { storiesListSchema } from './stories/stories-list-schema';
-import { storiesPageSchema } from './stories/stories-page-schema';
-import { teamMembersPageSchema } from './team-members/team-members-page-schema';
 import { eventsPageSchema } from './events/events-page-schema';
-import { orgHelpsInFieldsSchema } from './home/org-helps-in-fields-schema';
-import { settingsSchema } from './settings-schema';
-import { homePageSchema } from './home/homepage-schema';
+import { eventsSchema } from './events/events-schema';
+import { headerSchema } from './header-schema';
+import { aboutAnepalSchema } from './home/about-anepal-schema';
+import { bannerSchema } from './home/banner-schema';
+import { homeEventsSchema } from './home/events-section-schema';
 import { featuredProjetsSchema } from './home/featured-projects-schema';
+import { homeGallerySchema } from './home/gallery-section-schema';
+import { homeContentSchema } from './home/home-content-schema';
 import { homeStatsSchema } from './home/home-stats';
-import { createtestimonialsSchema } from './testimonials/create-testimonials-schema';
 import { homeTestimonialsSchema } from './home/home-testimonials-schema';
+import { homePageSchema } from './home/homepage-schema';
+import { orgHelpsInFieldsSchema } from './home/org-helps-in-fields-schema';
 import { homePartnersSchema } from './home/partners-section-schema';
 import { homeTeamMemberSchema } from './home/team-member-schema';
-import { homeEventsSchema } from './home/events-section-schema';
-import { homeGallerySchema } from './home/gallery-section-schema';
-import { blogsSchema } from './blogs/blogs-schema';
-import { blogTagSchema } from './blogs/blog-tag-schema';
-import { blogListPageSchema } from './blogs/blog-list-page-schema';
-import { contactSchema } from './contact/contact-schema';
-import { contactPageSchema } from './contact/contact-page-schema';
+import { whatmakesUsUniqueSchema } from './home/what-makes-us-unique-schema';
+import { organizationStatsSchema } from './organization-stats-schema';
+import { privacyPolicySchema } from './privacy-policy-schema';
+import { settingsSchema } from './settings-schema';
+import { storiesListSchema } from './stories/stories-list-schema';
+import { storiesPageSchema } from './stories/stories-page-schema';
+import { teamMemberSchema } from './team-members/team-member-schema';
+import { teamMembersPageSchema } from './team-members/team-members-page-schema';
+import { teamMembersRoleSchema } from './team-members/team-members-role-schema';
+import { termsAndConditionsSchema } from './terms-and-conditions-schema';
+import { createtestimonialsSchema } from './testimonials/create-testimonials-schema';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -71,6 +73,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     blogTagSchema,
     blogListPageSchema,
     contactSchema,
-    contactPageSchema
+    contactPageSchema,
+    termsAndConditionsSchema,
+    privacyPolicySchema
   ]
 };

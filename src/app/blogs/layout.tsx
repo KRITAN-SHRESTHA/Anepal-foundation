@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     title: 'Blogs',
     description:
       'Stay updated with the latest news, stories, and insights from Anepal Foundation.',
+    url: `${getMetadataBase()}/blogs`,
     images: [
       {
         url: '/assets/logo.png',

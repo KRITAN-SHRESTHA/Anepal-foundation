@@ -13,6 +13,162 @@
  */
 
 // Source: schema.json
+export type PrivacyPolicy = {
+  _id: string;
+  _type: 'privacyPolicy';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  content?: {
+    content_en?: Array<
+      | {
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: 'span';
+            _key: string;
+          }>;
+          style?: 'normal' | 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'blockquote';
+          listItem?: 'bullet' | 'number' | 'checkmarks';
+          markDefs?: Array<{
+            href?: string;
+            _type: 'link';
+            _key: string;
+          }>;
+          level?: number;
+          _type: 'block';
+          _key: string;
+        }
+      | {
+          asset?: {
+            _ref: string;
+            _type: 'reference';
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+          };
+          media?: unknown;
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          alt?: string;
+          _type: 'image';
+          _key: string;
+        }
+    >;
+    content_es?: Array<
+      | {
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: 'span';
+            _key: string;
+          }>;
+          style?: 'normal' | 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'blockquote';
+          listItem?: 'bullet' | 'number' | 'checkmarks';
+          markDefs?: Array<{
+            href?: string;
+            _type: 'link';
+            _key: string;
+          }>;
+          level?: number;
+          _type: 'block';
+          _key: string;
+        }
+      | {
+          asset?: {
+            _ref: string;
+            _type: 'reference';
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+          };
+          media?: unknown;
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          alt?: string;
+          _type: 'image';
+          _key: string;
+        }
+    >;
+  };
+};
+
+export type TermsAndConditions = {
+  _id: string;
+  _type: 'termsAndConditions';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  content?: {
+    content_en?: Array<
+      | {
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: 'span';
+            _key: string;
+          }>;
+          style?: 'normal' | 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'blockquote';
+          listItem?: 'bullet' | 'number' | 'checkmarks';
+          markDefs?: Array<{
+            href?: string;
+            _type: 'link';
+            _key: string;
+          }>;
+          level?: number;
+          _type: 'block';
+          _key: string;
+        }
+      | {
+          asset?: {
+            _ref: string;
+            _type: 'reference';
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+          };
+          media?: unknown;
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          alt?: string;
+          _type: 'image';
+          _key: string;
+        }
+    >;
+    content_es?: Array<
+      | {
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: 'span';
+            _key: string;
+          }>;
+          style?: 'normal' | 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'blockquote';
+          listItem?: 'bullet' | 'number' | 'checkmarks';
+          markDefs?: Array<{
+            href?: string;
+            _type: 'link';
+            _key: string;
+          }>;
+          level?: number;
+          _type: 'block';
+          _key: string;
+        }
+      | {
+          asset?: {
+            _ref: string;
+            _type: 'reference';
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+          };
+          media?: unknown;
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          alt?: string;
+          _type: 'image';
+          _key: string;
+        }
+    >;
+  };
+};
+
 export type ContactPage = {
   _id: string;
   _type: 'contactPage';
@@ -1549,6 +1705,8 @@ export type SanityAssetSourceData = {
 };
 
 export type AllSanitySchemaTypes =
+  | PrivacyPolicy
+  | TermsAndConditions
   | ContactPage
   | Contact
   | BlogListPage

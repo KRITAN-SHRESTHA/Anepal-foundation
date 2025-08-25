@@ -1,5 +1,14 @@
-import React from 'react';
+import TermsAndConditionsView from '@/modules/policies/ui/views/terms-and-conditions-view';
+import { HydrateClient, trpc } from '@/trpc/server';
 
-export default function TermsAndConditionsPage() {
-  return <div>TermsAndConditionsPage</div>;
+// export { generateMetadata };
+
+export default async function TermsAndConditionsPage() {
+  await trpc.policies.getTermsAndConditions.prefetch();
+
+  return (
+    <HydrateClient>
+      <TermsAndConditionsView />
+    </HydrateClient>
+  );
 }
