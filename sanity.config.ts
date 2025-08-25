@@ -13,7 +13,7 @@ import { apiVersion, dataset, projectId } from './src/sanity/env';
 import { schema } from './src/sanity/schemaTypes';
 import { structure } from './src/sanity/structure';
 import { internationalizedArray } from 'sanity-plugin-internationalized-array';
-import { webhookPlugin } from './src/sanity/plugins/webhook';
+// import { webhookPlugin } from './src/sanity/plugins/webhook';
 
 export default defineConfig({
   basePath: '/studio',
@@ -29,10 +29,10 @@ export default defineConfig({
     structureTool({ structure }),
     // Vision is for querying with GROQ from inside the Studio
     // https://www.sanity.io/docs/the-vision-plugin
-    webhookPlugin({
-      url: process.env.NEXT_PUBLIC_SITE_URL + '/api/revalidate-sitemap',
-      secret: process.env.SANITY_REVALIDATE_SECRET || ''
-    }),
+    // webhookPlugin({
+    //   url: process.env.NEXT_PUBLIC_SITE_URL + '/api/revalidate-sitemap',
+    //   secret: process.env.SANITY_REVALIDATE_SECRET || ''
+    // }),
     visionTool({ defaultApiVersion: apiVersion }),
     internationalizedArray({
       languages: [
