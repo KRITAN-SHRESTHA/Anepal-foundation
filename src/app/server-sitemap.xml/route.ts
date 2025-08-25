@@ -34,7 +34,7 @@ export async function GET(_request: Request) {
     '/stories',
     '/team-member',
     '/terms-and-conditions',
-    'privacy-policy'
+    '/privacy-policy'
   ].map(route => `${baseUrl}${route}`);
 
   const blogRoutes = blogSlugs?.map(slug => `${baseUrl}/blogs/${slug}`);
