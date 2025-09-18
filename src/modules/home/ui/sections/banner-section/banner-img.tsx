@@ -7,24 +7,20 @@ import React from 'react';
 
 export default function BannerImg({
   image,
-  title
-}: Pick<HomeBanner, 'image' | 'title'>) {
+  title,
+  priority = false
+}: Pick<HomeBanner, 'image' | 'title'> & { priority?: boolean }) {
   const locale = useLocale();
   return (
     <>
       {image && (
         <Image
-          src={urlFor(image)
-            .auto('format')
-            .width(Math.min(2048, window.innerWidth))
-            .quality(100)
-            .url()}
+          src={urlFor(image).auto('format').width(1920).url()}
           alt={getLocalizedString(title ?? [], locale) ?? 'banner-img'}
           fill
-          priority
+          priority={priority}
           className="object-cover"
           sizes="100vw"
-          quality={100}
         />
       )}
     </>

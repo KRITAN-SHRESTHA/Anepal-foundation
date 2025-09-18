@@ -2,6 +2,7 @@ import HomeView from '@/modules/home/ui/views/home-view';
 import { HydrateClient, trpc } from '@/trpc/server';
 
 // export const dynamic = 'force-dynamic';
+export const revalidate = 300;
 
 export default async function Home() {
   // const start = performance.now();

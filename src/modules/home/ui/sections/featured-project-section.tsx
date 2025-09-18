@@ -16,13 +16,13 @@ export default function FeaturedProjectSection() {
   return (
     <ErrorBoundary fallback={<div>Something went wrong</div>}>
       <Suspense fallback={<div>Loading...</div>}>
-        <MemoriesCollectionSectionSuspense />
+        <FeaturedProjectSectionSuspense />
       </Suspense>
     </ErrorBoundary>
   );
 }
 
-function MemoriesCollectionSectionSuspense() {
+function FeaturedProjectSectionSuspense() {
   const [data] = trpc.home.getFeaturedProjects.useSuspenseQuery();
 
   const { getLocalizedString } = useGetLocale();
@@ -45,7 +45,16 @@ function MemoriesCollectionSectionSuspense() {
             key={item._key}
             title={getLocalizedString(item.title ?? [])}
             description={getLocalizedString(item.description ?? [])}
-            image={item.image ? urlFor(item.image).quality(100).url() : ''}
+            // image={item.image ? urlFor(item.image).quality(100).url() : ''}
+            image={
+              item.image
+                ? urlFor(item.image)
+                    .auto('format')
+                    .width(1200)
+                    .quality(80)
+                    .url()
+                : ''
+            }
             className={cn(
               // First row: 2 items
               idx === 0 && 'md:col-span-2',

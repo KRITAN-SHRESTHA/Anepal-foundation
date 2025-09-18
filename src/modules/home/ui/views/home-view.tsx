@@ -1,3 +1,5 @@
+'use client';
+
 import BannerSection from '../sections/banner-section';
 // import BlogSection from '../sections/blog-section';
 import EventsSection from '../sections/events-section';

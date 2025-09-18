@@ -75,7 +75,12 @@ function EventsSectionSuspense() {
                 >
                   {event.mainImage && (
                     <Image
-                      src={urlFor(event.mainImage).quality(100).url()}
+                      // src={urlFor(event.mainImage).quality(100).url()}
+                      src={urlFor(event.mainImage)
+                        .auto('format')
+                        .width(1200)
+                        .quality(80)
+                        .url()}
                       alt={event.mainImage?.alt ?? ''}
                       className="h-full w-full object-cover object-center"
                       fill

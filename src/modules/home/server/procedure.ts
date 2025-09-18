@@ -67,8 +67,8 @@ const GET_HOME_GALLERY = `*[
   _type == "home_gallery"
 ][0]`;
 
-// will revalidate after every 30 seconds
-const options = { next: { revalidate: 0 } };
+// Enable ISR caching for home data (align with page revalidate)
+const options = { next: { revalidate: 300 } };
 
 export const homeRouter = createTRPCRouter({
   getBanner: publicProcedure.query(async () => {

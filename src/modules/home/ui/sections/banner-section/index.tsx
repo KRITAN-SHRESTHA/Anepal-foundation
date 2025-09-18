@@ -2,7 +2,6 @@
 
 import Autoplay from 'embla-carousel-autoplay';
 import Fade from 'embla-carousel-fade';
-import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
@@ -19,10 +18,11 @@ import { trpc } from '@/trpc/client';
 import useGetLocale from '@/hooks/use-get-locale';
 
 import BannerSkeletion from './banner-skeletion';
+import BannerImg from './banner-img';
 
-const BannerImg = dynamic(() => import('./banner-img'), {
-  ssr: false
-});
+// const BannerImg = dynamic(() => import('./banner-img'), {
+//   ssr: false
+// });
 
 export default function BannerSection() {
   return (
@@ -53,10 +53,14 @@ function BannerSectionSuspense() {
         }}
       >
         <CarouselContent>
-          {bannerData.map(data => (
+          {bannerData.map((data, idx) => (
             <CarouselItem key={data._id}>
               <div className="relative h-[65vh] w-full lg:h-[85vh]">
-                <BannerImg image={data.image} title={data.title} />
+                <BannerImg
+                  image={data.image}
+                  title={data.title}
+                  priority={idx === 0}
+                />
 
                 <section className="mx-auto flex h-full max-w-[1200px] items-center px-4 sm:px-6 lg:px-8">
                   <div className="relative">
