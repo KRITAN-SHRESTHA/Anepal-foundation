@@ -4,13 +4,13 @@ import { ArrowUpRight } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ErrorBoundary } from 'react-error-boundary';
 
 import { Button } from '@/components/ui/button';
 
 import LocaleSwitcher from './locale-switcher';
-import { NavigationSheet } from './navigation-sheet';
 import { useTranslations } from 'next-intl';
+import { Suspense } from 'react';
+import MobileNav from './mobile-nav';
 
 const Logo = dynamic(() => import('./logo'), {
   ssr: false
@@ -20,14 +20,6 @@ const NavMenu = dynamic(() => import('./nav-menu').then(mod => mod.NavMenu), {
 });
 
 export default function HeaderClient() {
-  return (
-    <ErrorBoundary fallback={<div>Something went wrong</div>}>
-      <HeaderClientSuspense />
-    </ErrorBoundary>
-  );
-}
-
-function HeaderClientSuspense() {
   const pathname = usePathname();
   const t = useTranslations('Default');
 
@@ -43,7 +35,9 @@ function HeaderClientSuspense() {
             <Logo />
           </Link>
           {/* Desktop Menu */}
-          <NavMenu className="laptop:block hidden" />
+          <Suspense fallback="Loading.....">
+            <NavMenu className="laptop:block hidden" />
+          </Suspense>
 
           <div className="flex items-center gap-3">
             <Link href={'/payment'}>
@@ -56,7 +50,7 @@ function HeaderClientSuspense() {
 
             {/* Mobile Menu */}
             <div className="laptop:hidden">
-              <NavigationSheet />
+              <MobileNav />
             </div>
           </div>
         </div>

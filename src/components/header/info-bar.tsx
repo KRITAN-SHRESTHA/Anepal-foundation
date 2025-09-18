@@ -1,20 +1,19 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { ErrorBoundary } from 'react-error-boundary';
 
 import { trpc } from '@/trpc/client';
 import { useTranslations } from 'next-intl';
 
-export default function InfoBar() {
-  return (
-    <ErrorBoundary fallback={<div>Something went wrong</div>}>
-      <InfoBarSuspense />
-    </ErrorBoundary>
-  );
-}
+// export default function InfoBar() {
+//   return (
+//     <ErrorBoundary fallback={<div>Something went wrong</div>}>
+//       <InfoBarSuspense />
+//     </ErrorBoundary>
+//   );
+// }
 
-function InfoBarSuspense() {
+export default function InfoBar() {
   const pathname = usePathname();
   const [settingsData] = trpc.settings.getSettings.useSuspenseQuery();
   const t = useTranslations('ContactPage');
