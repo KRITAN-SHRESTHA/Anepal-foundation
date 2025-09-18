@@ -48,7 +48,6 @@ function OurBlogsListSectionSuspense() {
           <div className="relative aspect-16/9 w-full overflow-clip">
             <Link
               href={`/blogs/${blog.slug?.current}`}
-              target="_blank"
               className="fade-in transition-opacity duration-200 hover:opacity-70"
             >
               {blog.mainImage && (

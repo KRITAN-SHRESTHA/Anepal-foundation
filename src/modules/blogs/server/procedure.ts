@@ -1,5 +1,5 @@
 import { client } from '@/sanity/lib/client';
-import { BlogListPage } from '@/sanity/types';
+import { BlogListPage, Blogs } from '@/sanity/types';
 import { createTRPCRouter, publicProcedure } from '@/trpc/init';
 import { PopulatedBlogDetails, PopulatedBlogsList } from '@/types/blogs-types';
 import { z } from 'zod';
@@ -12,6 +12,7 @@ const BLOG_LIST_WITH_PAGINATION = `*[
             tag->
           }`;
 const BLOG_PAGE_QUERY = '*[_type == "blogListPage"][0]';
+const ALL_BLOGS_LIST = `*[_type == "blogs"]`;
 
 const GET_EVENT_DETAILS_QUERY = `*[_type == "blogs" && slug.current == $slug][0]{
   ...,
@@ -23,6 +24,9 @@ const options = { next: { revalidate: 0 } };
 export const blogsRouter = createTRPCRouter({
   getBlogPage: publicProcedure.query(async () => {
     return await client.fetch<BlogListPage>(BLOG_PAGE_QUERY, {}, options);
+  }),
+  getAllBlogList: publicProcedure.query(async () => {
+    return await client.fetch<Blogs[]>(ALL_BLOGS_LIST, {}, options);
   }),
   getBlogs: publicProcedure.query(async () => {
     return await client.fetch<string[]>(
@@ -70,7 +74,6 @@ export const blogsRouter = createTRPCRouter({
     )
     .query(async ({ input }) => {
       const { slug } = input;
-      console.log('slug', slug);
 
       return client.fetch<PopulatedBlogDetails>(
         GET_EVENT_DETAILS_QUERY,

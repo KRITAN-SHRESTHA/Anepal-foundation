@@ -1,7 +1,6 @@
+import CustomImage from '@/components/custom-image';
 import useGetLocale from '@/hooks/use-get-locale';
-import { urlFor } from '@/sanity/lib/image';
 import { PopulatedBlogDetails } from '@/types/blogs-types';
-import Image from 'next/image';
 
 export default function BlogDetailsHeaderSection({
   data
@@ -22,12 +21,12 @@ export default function BlogDetailsHeaderSection({
       </div>
       <div className="relative my-12 aspect-video shrink-0">
         {data.mainImage && (
-          <Image
-            src={urlFor(data.mainImage).quality(100).url()}
-            alt="Anepal Organization logo"
-            sizes="20vw"
+          <CustomImage
+            src={data.mainImage}
+            alt={`${getLocalizedString(data.title ?? [])}-img`}
+            sizes="100vw"
             fill
-            className="h-full w-full rounded-lg border object-cover mix-blend-multiply"
+            className="rounded-lg border object-cover"
             quality={100}
           />
         )}
