@@ -11,10 +11,8 @@ import LocaleSwitcher from './locale-switcher';
 import { useTranslations } from 'next-intl';
 import { Suspense } from 'react';
 import MobileNav from './mobile-nav';
+import Logo from './logo';
 
-const Logo = dynamic(() => import('./logo'), {
-  ssr: false
-});
 const NavMenu = dynamic(() => import('./nav-menu').then(mod => mod.NavMenu), {
   ssr: false
 });

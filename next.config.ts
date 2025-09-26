@@ -1,8 +1,15 @@
 import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
 
-const nextConfig: NextConfig = {
+const withNextIntl = createNextIntlPlugin();
+
+const config: NextConfig = {
   /* config options here */
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
   eslint: {
     // Warning: This allows production builds to successfully complete even if
     // your project has ESLint errors.
@@ -11,9 +18,6 @@ const nextConfig: NextConfig = {
   },
   transpilePackages: ['@t3-oss/env-nextjs', '@t3-oss/env-core'],
   images:{
-    // remotePatterns: [new URL('https://cdn.sanity.io/images/**')],
-
-    // domains:['images.pexels.com', 'cdn.sanity.io']
     remotePatterns: [{
         protocol: 'https',
         hostname: 'cdn.sanity.io',
@@ -24,6 +28,7 @@ const nextConfig: NextConfig = {
 
 };
 
-const withNextIntl = createNextIntlPlugin();
-export default withNextIntl(nextConfig);
+
+
+export default withNextIntl(config);
 
