@@ -1,7 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowUpRight, Facebook, Instagram, Twitter } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+import { FiFacebook, FiInstagram } from 'react-icons/fi';
+import { BsTwitterX } from 'react-icons/bs';
 import { usePathname } from 'next/navigation';
 
 import { trpc } from '@/trpc/client';
@@ -9,7 +11,6 @@ import { trpc } from '@/trpc/client';
 import Logo from '../header/logo';
 import { Button } from '../ui/button';
 import { bottomLinks } from './footer-config';
-import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import useGetLocale from '@/hooks/use-get-locale';
 
@@ -27,7 +28,7 @@ export default function FooterContent() {
 
   return (
     <>
-      <div className="relative h-[180px] w-full">
+      {/* <div className="relative h-[180px] w-full">
         <Image
           className="w-full object-contain"
           src={'/assets/bottom-bg.png'}
@@ -35,7 +36,7 @@ export default function FooterContent() {
           quality={100}
           fill
         />
-      </div>
+      </div> */}
 
       <section className="bg-accent pt-10 pb-10 md:pt-20">
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
@@ -45,21 +46,30 @@ export default function FooterContent() {
                 <Link href="/" className="-ml-4 h-[80px] w-[150px]">
                   <Logo className="h-full w-full" />
                 </Link>
-                <ul className="">
+                <ul className="mt-5">
                   <li className="flex gap-3">
                     {footerData?.socialMedia?.twitter && (
-                      <Link href="#" target="_blank">
-                        <Twitter className="stroke-muted-foreground h-5 w-5 hover:stroke-black" />
+                      <Link
+                        href={footerData?.socialMedia?.twitter}
+                        target="_blank"
+                      >
+                        <BsTwitterX className="stroke-muted-foreground h-5 w-5 hover:stroke-black" />
                       </Link>
                     )}
                     {footerData?.socialMedia?.instagram && (
-                      <Link href="#" target="_blank">
-                        <Instagram className="stroke-muted-foreground h-5 w-5 hover:stroke-black" />
+                      <Link
+                        href={footerData?.socialMedia?.instagram}
+                        target="_blank"
+                      >
+                        <FiInstagram className="stroke-muted-foreground h-5 w-5 hover:stroke-black" />
                       </Link>
                     )}
                     {footerData?.socialMedia?.facebook && (
-                      <Link href="#" target="_blank">
-                        <Facebook className="stroke-muted-foreground h-5 w-5 hover:stroke-black" />
+                      <Link
+                        href={footerData?.socialMedia?.facebook}
+                        target="_blank"
+                      >
+                        <FiFacebook className="stroke-muted-foreground h-5 w-5 hover:stroke-black" />
                       </Link>
                     )}
                   </li>

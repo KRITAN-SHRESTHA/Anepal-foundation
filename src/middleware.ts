@@ -1,8 +1,11 @@
-import { NextResponse } from 'next/server';
+// import { NextResponse } from 'next/server';
+import createMiddleware from 'next-intl/middleware';
+import { routing } from './i18n/routing';
 
-export async function middleware() {
-  return NextResponse.next();
-}
+export default createMiddleware(routing);
+// export async function middleware() {
+//   return NextResponse.next();
+// }
 
 export const config = {
   // runtime: 'nodejs',
@@ -14,6 +17,6 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico, sitemap.xml, robots.txt (metadata files)
      */
-    '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)'
+    '/((?!api|trpc|_vercel|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\..*).*)'
   ]
 };
