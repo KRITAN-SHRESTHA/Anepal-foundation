@@ -5,5 +5,9 @@ type Props = {
 };
 
 export default async function RootLayout({ children }: Props) {
-  return children;
+  return (
+    <html>
+      <body>{children}</body>
+    </html>
+  );
 }
