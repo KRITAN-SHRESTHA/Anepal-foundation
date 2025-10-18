@@ -26,7 +26,7 @@ import BannerImg from './banner-img';
 
 export default function BannerSection() {
   return (
-    <ErrorBoundary fallback={<div>Something went wrong</div>}>
+    <ErrorBoundary fallback={<div>Something went wrong....</div>}>
       <Suspense fallback={<BannerSkeletion />}>
         <BannerSectionSuspense />
       </Suspense>

@@ -10,13 +10,15 @@ import {
 import NextTopLoader from 'nextjs-toploader';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 
-import Footer from '@/components/footer';
-import Header from '@/components/header';
+// import Footer from '@/components/footer';
+// import Header from '@/components/header';
 import { Toaster } from '@/components/ui/sonner';
 import { TRPCProvider } from '@/trpc/client';
 import { routing } from '@/i18n/routing';
 import { getClientUrl } from '@/lib/utils';
 import { generateAlternates } from '@/lib/metadata';
+
+// import '../globals.css';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -208,9 +210,9 @@ export default async function RootLayout({ children, params }: Props) {
         <NextIntlClientProvider>
           <TRPCProvider>
             <NextTopLoader color="#a6289f" />
-            <Header />
+            {/* <Header /> */}
             {children}
-            <Footer />
+            {/* <Footer /> */}
             <Toaster />
           </TRPCProvider>
         </NextIntlClientProvider>
