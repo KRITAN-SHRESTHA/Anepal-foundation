@@ -1,14 +1,23 @@
 import Link from 'next/link';
+import { ErrorBoundary } from 'react-error-boundary';
+import { usePathname } from 'next/navigation';
 
 import { SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import useGetLocale from '@/hooks/use-get-locale';
 import { trpc } from '@/trpc/client';
 
 import { cn } from '@/lib/utils';
-import { usePathname } from 'next/navigation';
 import Logo from './logo';
 
-export const NavigationSheet = () => {
+export default function NavigationSheet() {
+  return (
+    <ErrorBoundary fallback={<div>Something went wrong</div>}>
+      <NavigationSheetSuspense />
+    </ErrorBoundary>
+  );
+}
+
+const NavigationSheetSuspense = () => {
   const [settingsData] = trpc.settings.getSettings.useSuspenseQuery();
   const [navData] = trpc.header.getHeader.useSuspenseQuery();
   const { getLocalizedString } = useGetLocale();

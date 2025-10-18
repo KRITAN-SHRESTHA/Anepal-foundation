@@ -1,9 +1,6 @@
-'use client';
-
 import { ArrowUpRight } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
 
@@ -18,12 +15,7 @@ const NavMenu = dynamic(() => import('./nav-menu').then(mod => mod.NavMenu), {
 });
 
 export default function HeaderClient() {
-  const pathname = usePathname();
   const t = useTranslations('Default');
-
-  if (pathname.includes('/studio')) {
-    return null;
-  }
 
   return (
     <header className="sticky top-0 z-[50]">

@@ -11,7 +11,7 @@ import NextTopLoader from 'nextjs-toploader';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 
 // import Footer from '@/components/footer';
-// import Header from '@/components/header';
+import Header from '@/components/header';
 import { Toaster } from '@/components/ui/sonner';
 import { TRPCProvider } from '@/trpc/client';
 import { routing } from '@/i18n/routing';
@@ -210,7 +210,7 @@ export default async function RootLayout({ children, params }: Props) {
         <NextIntlClientProvider>
           <TRPCProvider>
             <NextTopLoader color="#a6289f" />
-            {/* <Header /> */}
+            <Header />
             {children}
             {/* <Footer /> */}
             <Toaster />

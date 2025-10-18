@@ -2,10 +2,17 @@ import { cn } from '@/lib/utils';
 import { trpc } from '@/trpc/client';
 
 import CustomImage from '../custom-image';
+import { ErrorBoundary } from 'react-error-boundary';
 
-export default function Logo({
-  className
-}: React.HTMLAttributes<HTMLDivElement>) {
+export default function Logo() {
+  return (
+    <ErrorBoundary fallback={<div>Something went wrong</div>}>
+      <LogoSuspense />
+    </ErrorBoundary>
+  );
+}
+
+function LogoSuspense({ className }: React.HTMLAttributes<HTMLDivElement>) {
   const [settings] = trpc.settings.getSettings.useSuspenseQuery();
 
   return (

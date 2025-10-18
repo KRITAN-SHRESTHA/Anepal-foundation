@@ -5,7 +5,7 @@ import { Menu } from 'lucide-react';
 import dynamic from 'next/dynamic';
 
 const NavigationSheet = dynamic(
-  () => import('./navigation-sheet').then(mod => mod.NavigationSheet),
+  () => import('./navigation-sheet').then(mod => mod.default),
   {
     ssr: false
   }
