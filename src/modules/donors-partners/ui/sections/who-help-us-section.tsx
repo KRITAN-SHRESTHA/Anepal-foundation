@@ -15,17 +15,19 @@ export default function WhoHelpUsSection() {
 
   return (
     <div className="py-[60px] sm:py-[100px]">
-      <div className="grid justify-center">
-        <ContentTitle
-          title={data?.whoHelpUsSection?.title}
-          subtitle={data?.whoHelpUsSection?.subtitle}
-          highlightTitleText={data?.whoHelpUsSection.highlightTitle}
-          align="center"
-        />
-        <p className="text-muted-foreground max-w-[60ch] pt-6 text-center">
-          {getLocalizedString(data?.whoHelpUsSection?.description ?? [])}
-        </p>
-      </div>
+      {data?.whoHelpUsSection && (
+        <div className="grid justify-center">
+          <ContentTitle
+            title={data?.whoHelpUsSection?.title}
+            subtitle={data?.whoHelpUsSection?.subtitle}
+            highlightTitleText={data?.whoHelpUsSection.highlightTitle}
+            align="center"
+          />
+          <p className="text-muted-foreground max-w-[60ch] pt-6 text-center">
+            {getLocalizedString(data?.whoHelpUsSection?.description ?? [])}
+          </p>
+        </div>
+      )}
 
       <div className="m-auto mt-14 flex max-w-5xl flex-wrap items-center justify-center gap-10">
         {data?.whoHelpUsSection.partnersName.map(partner => (

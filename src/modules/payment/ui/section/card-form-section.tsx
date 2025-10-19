@@ -12,11 +12,8 @@ import { toast } from 'sonner';
 import Loader from '@/components/loader';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
 
-import SelectAmountSection from './select-amount-section';
 import { usePaymentAmountStore } from '../store/payment-amount-store';
-import { cn } from '@/lib/utils';
 
 const INVALID_COLOR = {
   color: '#dc3545'
@@ -33,20 +30,10 @@ export default function CardFormSection({
   onApproveOrder,
   onCreateOrder
 }: CardFormSectionProps) {
-  const selectOtherField = usePaymentAmountStore(
-    state => state.selectOtherField
-  );
-  const setAmount = usePaymentAmountStore(state => state.setAmount);
-  const amountError = usePaymentAmountStore(state => state.amountError);
-  const setAmountError = usePaymentAmountStore(state => state.setAmountError);
-  const isPaying = usePaymentAmountStore(state => state.isPaying);
   const setIsPaying = usePaymentAmountStore(state => state.setIsPaying);
 
   return (
     <div className="pb-15">
-      {/* amount selector */}
-      <SelectAmountSection />
-
       {/* paypal debit/credit form */}
       <PayPalCardFieldsProvider
         createOrder={onCreateOrder}
@@ -68,41 +55,6 @@ export default function CardFormSection({
           toast.error('Something went wrong, try again!');
         }}
       >
-        {selectOtherField === 'custom' && (
-          <div className="p-1.5">
-            <Label className="gap-0.5">Amount</Label>
-            <div className="py-1.5">
-              <Input
-                className={cn('input-custom-focus', {
-                  'shadow-payment-input-error! focus:shadow-payment-input-focus! border-[#d9360b]! outline-none focus:border-[#000000]! focus:outline-none! focus-visible:ring-0':
-                    !!amountError
-                })}
-                placeholder="Enter amount"
-                required
-                type="number"
-                onChange={e => {
-                  if (!!e.target.value) {
-                    setAmount(e.target.value);
-                    setAmountError(null);
-                  } else {
-                    setAmountError('Please enter amount');
-                    setAmount(null);
-                  }
-                }}
-                onKeyDown={e => {
-                  // Block 'e', 'E', '+', '-'
-                  if (['e', 'E', '+', '-'].includes(e.key)) {
-                    e.preventDefault();
-                  }
-                }}
-                disabled={isPaying}
-              />
-            </div>
-            {!!amountError && (
-              <p className="text-destructive pb-2">{amountError}</p>
-            )}
-          </div>
-        )}
         <div>
           <Label className="gap-0.5 pl-[0.375rem]">Cardholder name</Label>
           <PayPalNameField />

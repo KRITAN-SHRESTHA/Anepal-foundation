@@ -18,6 +18,8 @@ import { routing } from '@/i18n/routing';
 import { getClientUrl } from '@/lib/utils';
 import { generateAlternates } from '@/lib/metadata';
 
+// import '../globals.css';
+
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin']

@@ -21,6 +21,8 @@ function StatsSectionSuspense() {
   const [data] = trpc.home.getHomeStats.useSuspenseQuery();
   const { getLocalizedString } = useGetLocale();
 
+  if (!data) return null;
+
   return (
     <div className="bg-accent">
       <div className="mx-auto max-w-6xl px-4 py-20 text-center sm:px-6 lg:px-8">

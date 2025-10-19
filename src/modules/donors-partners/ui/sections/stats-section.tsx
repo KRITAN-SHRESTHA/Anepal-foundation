@@ -9,16 +9,20 @@ export default function StatsSection() {
 
   return (
     <div className="tablet:flex-row tablet:items-center flex flex-col justify-between gap-9 py-[60px] sm:py-[100px]">
-      <div>
-        <ContentTitle
-          title={data?.statisticsSection?.statsTitle}
-          subtitle={data?.statisticsSection?.statsSubtitle}
-          highlightTitleText={data?.statisticsSection.highlightTitle}
-        />
-        <p className="text-muted-foreground tablet:max-w-[60ch] pt-6">
-          {getLocalizedString(data?.statisticsSection?.statsDescription ?? [])}
-        </p>
-      </div>
+      {data?.statisticsSection && (
+        <div>
+          <ContentTitle
+            title={data?.statisticsSection?.statsTitle}
+            subtitle={data?.statisticsSection?.statsSubtitle}
+            highlightTitleText={data?.statisticsSection.highlightTitle}
+          />
+          <p className="text-muted-foreground tablet:max-w-[60ch] pt-6">
+            {getLocalizedString(
+              data?.statisticsSection?.statsDescription ?? []
+            )}
+          </p>
+        </div>
+      )}
       <div className="xs:flex-nowrap flex flex-wrap gap-x-[60px] gap-y-[30px]">
         {data?.statisticsSection?.statistics?.map(stat => (
           <div key={stat._id}>

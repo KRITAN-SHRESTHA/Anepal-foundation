@@ -7,6 +7,8 @@ import { trpc } from '@/trpc/client';
 export default function AboutUsTeamSection() {
   const { data } = trpc.aboutus.getAboutUs.useQuery();
 
+  if (!data) return null;
+
   return (
     <div className="flex flex-col items-center justify-center px-4 py-[40px] sm:px-6 md:py-[60px] lg:px-8">
       <ContentTitle

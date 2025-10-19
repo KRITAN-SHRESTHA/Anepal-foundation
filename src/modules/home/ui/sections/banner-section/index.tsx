@@ -26,7 +26,7 @@ import BannerImg from './banner-img';
 
 export default function BannerSection() {
   return (
-    <ErrorBoundary fallback={<div>Something went wrong</div>}>
+    <ErrorBoundary fallback={<div>Something went wrong....</div>}>
       <Suspense fallback={<BannerSkeletion />}>
         <BannerSectionSuspense />
       </Suspense>
@@ -37,6 +37,8 @@ export default function BannerSection() {
 function BannerSectionSuspense() {
   const [bannerData] = trpc.home.getBanner.useSuspenseQuery();
   const { getLocalizedString } = useGetLocale();
+
+  if (bannerData.length === 0) return null;
 
   return (
     <div className="w-full pb-4">

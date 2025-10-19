@@ -21,12 +21,14 @@ export default function HomePartnersSection(props: PartnerSectionProps) {
 function HomePartnersSectionSuspense(props: PartnerSectionProps) {
   const [data] = trpc.home.getHomePartners.useSuspenseQuery();
 
+  if (!data) return null;
+
   return (
     <PartnersSection
       partners={data.partners ?? []}
-      title={data.title}
-      subtitle={data.subtitle}
-      highlightTitleText={data.highlightTitle}
+      title={data?.title}
+      subtitle={data?.subtitle}
+      highlightTitleText={data?.highlightTitle}
       {...props}
     />
   );

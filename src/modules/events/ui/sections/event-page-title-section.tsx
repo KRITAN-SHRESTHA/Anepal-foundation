@@ -21,6 +21,8 @@ function EventPageTitleSectionSuspense() {
 
   const { getLocalizedString } = useGetLocale();
 
+  if (!data) return null;
+
   return (
     <div className="text-center">
       <h2 className="mx-auto mb-6 text-3xl font-semibold text-pretty md:text-4xl lg:max-w-3xl">

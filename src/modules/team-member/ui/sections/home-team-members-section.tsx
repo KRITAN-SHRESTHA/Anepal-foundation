@@ -24,6 +24,8 @@ export default function HomeTeamMembersSection() {
 function HomeTeamMembersSectionSuspense() {
   const [teamMember] = trpc.home.getHomeTeamMembers.useSuspenseQuery();
 
+  if (!teamMember) return null;
+
   return (
     <div className="relative flex flex-col items-center justify-center overflow-hidden px-4 py-8 sm:px-6 md:py-12 lg:px-8">
       <div className="pointer-events-none absolute top-0 -right-[100px] h-full w-[600px] select-none">

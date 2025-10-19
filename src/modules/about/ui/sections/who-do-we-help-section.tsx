@@ -9,6 +9,8 @@ export default function WhoDoWeHelpSection() {
 
   const { getLocalizedString } = useGetLocale();
 
+  if (!data) return null;
+
   return (
     <div className="bg-accent mt-10">
       <div className="mx-auto max-w-6xl py-12 text-center">

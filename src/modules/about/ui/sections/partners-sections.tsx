@@ -39,7 +39,7 @@ export default function PartnersSection({
                 <CustomImage
                   className="object-contain"
                   src={partner.partnersLogo}
-                  alt="Nvidia Logo"
+                  alt={partner.partnersName ?? ''}
                   fill
                 />
               </div>

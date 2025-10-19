@@ -27,7 +27,7 @@ function AboutViewSuspense() {
 
   return (
     <>
-      {data.heroSection?.backgroundImage && (
+      {data?.heroSection?.backgroundImage && (
         <HeroSection
           image={data.heroSection?.backgroundImage}
           alt={data.heroSection.backgroundImage.alt ?? ''}
@@ -36,33 +36,40 @@ function AboutViewSuspense() {
           title={data.heroSection?.title}
         />
       )}
-      <ContentSection
-        description={data.firstcontent?.description}
-        title="About Us"
-        subtitle={data.firstcontent?.title}
-        // highlightTitleText={data.firstcontent?.highlightTitle}
-        orientation="rtl"
-        image={data.firstcontent?.image}
-        imageAlt={data.firstcontent?.image?.alt}
-      />
-      <ContentSection
-        description={data.secondcontent?.description}
-        subtitle={data.secondcontent?.title}
-        subtitleClassname="text-[24px] text-primary"
-        className="pt-[0px]"
-        image={data.secondcontent?.image}
-        imageAlt={data.secondcontent?.image?.alt}
-      />
+
+      {data?.firstcontent && (
+        <ContentSection
+          description={data.firstcontent?.description}
+          title="About Us"
+          subtitle={data.firstcontent?.title}
+          // highlightTitleText={data.firstcontent?.highlightTitle}
+          orientation="rtl"
+          image={data.firstcontent?.image}
+          imageAlt={data.firstcontent?.image?.alt}
+        />
+      )}
+      {data?.secondcontent && (
+        <ContentSection
+          description={data.secondcontent?.description}
+          subtitle={data.secondcontent?.title}
+          subtitleClassname="text-[24px] text-primary"
+          className="pt-[0px]"
+          image={data.secondcontent?.image}
+          imageAlt={data.secondcontent?.image?.alt}
+        />
+      )}
       <WhoDoWeHelpSection />
       <AboutUsTeamSection />
       {/* <Separator /> */}
-      <PartnersSection
-        className="bg-transparent pb-[100px]"
-        title={data.partnersSection.title}
-        subtitle={data.partnersSection.subtitle}
-        partners={data.partnersSection.partner}
-        highlightTitleText={data?.partnersSection?.highlightTitle}
-      />
+      {data?.partnersSection && (
+        <PartnersSection
+          className="bg-transparent pb-[100px]"
+          title={data.partnersSection.title}
+          subtitle={data.partnersSection.subtitle}
+          partners={data.partnersSection.partner}
+          highlightTitleText={data?.partnersSection?.highlightTitle}
+        />
+      )}
     </>
   );
 }
