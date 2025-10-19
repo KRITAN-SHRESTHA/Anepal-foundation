@@ -18,6 +18,8 @@ export default function HomeAboutUsSection() {
 function HomeAboutUsSectionSuspense() {
   const [data] = trpc.aboutus.getHomeAboutUs.useSuspenseQuery();
 
+  if (!data) return null;
+
   return (
     <ContentSection
       image={data.image}

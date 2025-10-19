@@ -38,6 +38,8 @@ function BannerSectionSuspense() {
   const [bannerData] = trpc.home.getBanner.useSuspenseQuery();
   const { getLocalizedString } = useGetLocale();
 
+  if (bannerData.length === 0) return null;
+
   return (
     <div className="w-full pb-4">
       <Carousel

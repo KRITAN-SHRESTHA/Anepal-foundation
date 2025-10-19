@@ -8,6 +8,7 @@ import { trpc } from '@/trpc/client';
 import CardFormSection from './card-form-section';
 import { usePaymentAmountStore } from '../store/payment-amount-store';
 import PaymentSkeleton from '../components/payment-skeleton';
+import SelectAmountSection from './select-amount-section';
 
 export default function PaymentFormSection() {
   const router = useRouter();
@@ -34,7 +35,7 @@ export default function PaymentFormSection() {
         },
         {
           onSuccess(data) {
-            // console.log('data onCreateOrder', data);
+            console.log('data onCreateOrder', data);
             if (data.id) {
               resolve(data.id);
             }
@@ -51,7 +52,7 @@ export default function PaymentFormSection() {
   };
 
   const onApproveOrder = (data: OnApproveData): Promise<void> => {
-    // console.log('onApproveOrder data ----', data);
+    console.log('onApproveOrder data ----', data);
     return new Promise((resolve, reject) => {
       confirmOrderMutate(
         {
@@ -59,14 +60,15 @@ export default function PaymentFormSection() {
         },
         {
           onSuccess: data => {
-            console.log('success data----', data);
+            // console.log('success data----', data);
             setIsPaying(false);
-            router.push('/payment/success');
+            if (data.status === 'COMPLETED') {
+              router.push('/payment/success');
+            }
             resolve();
           },
           onError: error => {
             // error will be handled by onError in PayPalButtons or PayPalCardFieldsProvider
-            console.error('payment error', error);
             setIsPaying(false);
             // router.push('/payment/error');
             reject(error);
@@ -80,19 +82,29 @@ export default function PaymentFormSection() {
 
   return (
     <>
-      <PayPalButtons
-        fundingSource={'paypal'}
-        style={{ layout: 'vertical', label: 'donate' }}
-        createOrder={onCreateOrder}
-        onApprove={onApproveOrder}
-        disabled={isPaying}
-        onError={err => {
-          // global error handler for payment
-          setIsPaying(false);
-          console.error('err PayPalButtons', err);
-          toast.error('Something went wrong, try again!');
-        }}
-      />
+      {/* amount selector */}
+      <SelectAmountSection />
+
+      <div className="px-1.5">
+        <PayPalButtons
+          fundingSource={'paypal'}
+          style={{ layout: 'vertical', label: 'donate' }}
+          createOrder={onCreateOrder}
+          onApprove={onApproveOrder}
+          disabled={isPaying}
+          onError={err => {
+            // global error handler for payment
+            setIsPaying(false);
+            console.error('err PayPalButtons--------------', err);
+            toast.error(
+              'Something went wrong, try again! Please check your credentials.'
+            );
+          }}
+          onCancel={() => {
+            setIsPaying(false);
+          }}
+        />
+      </div>
 
       <div className="my-6 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
         <hr className="border-dashed" />

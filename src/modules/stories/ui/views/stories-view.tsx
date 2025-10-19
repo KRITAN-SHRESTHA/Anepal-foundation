@@ -25,7 +25,7 @@ function StoriesViewSuspnse() {
 
   return (
     <div>
-      {storiesData.heroSection?.backgroundImage && (
+      {storiesData?.heroSection?.backgroundImage && (
         <HeroSection
           image={storiesData.heroSection?.backgroundImage}
           title={storiesData.heroSection.title}

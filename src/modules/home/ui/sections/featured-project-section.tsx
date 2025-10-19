@@ -27,6 +27,8 @@ function FeaturedProjectSectionSuspense() {
 
   const { getLocalizedString } = useGetLocale();
 
+  if (!data) return null;
+
   return (
     <div className="pt-8 md:pt-16">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">

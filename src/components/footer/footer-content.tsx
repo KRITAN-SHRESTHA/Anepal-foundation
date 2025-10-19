@@ -43,7 +43,7 @@ export default function FooterContent() {
           <footer>
             <div className="grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
               <div className="grid h-fit gap-2">
-                <Link href="/" className="-ml-4 h-[80px] w-[150px]">
+                <Link href="/" className="-ml-4 h-[100px] w-[190px]">
                   <Logo className="h-full w-full" />
                 </Link>
                 <ul className="mt-5">

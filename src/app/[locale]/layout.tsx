@@ -1,44 +1,16 @@
 import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata, Viewport } from 'next';
-import {
-  Geist,
-  Geist_Mono,
-  Permanent_Marker,
-  Quicksand
-} from 'next/font/google';
 import NextTopLoader from 'nextjs-toploader';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 
-// import Footer from '@/components/footer';
+import Footer from '@/components/footer';
 import Header from '@/components/header';
 import { Toaster } from '@/components/ui/sonner';
 import { TRPCProvider } from '@/trpc/client';
 import { routing } from '@/i18n/routing';
 import { getClientUrl } from '@/lib/utils';
 import { generateAlternates } from '@/lib/metadata';
-
-// import '../globals.css';
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin']
-});
-const permanentMarker = Permanent_Marker({
-  variable: '--font-permanent-marker',
-  subsets: ['latin'],
-  weight: '400'
-});
-
-const quickSand = Quicksand({
-  variable: '--font-quicksand',
-  subsets: ['latin']
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin']
-});
 
 // Viewport settings for responsive design and accessibility
 export const viewport: Viewport = {
@@ -203,20 +175,16 @@ export default async function RootLayout({ children, params }: Props) {
   setRequestLocale(locale);
 
   return (
-    <html lang={locale}>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${quickSand.variable} ${permanentMarker.variable} antialiased`}
-      >
-        <NextIntlClientProvider>
-          <TRPCProvider>
-            <NextTopLoader color="#a6289f" />
-            <Header />
-            {children}
-            {/* <Footer /> */}
-            <Toaster />
-          </TRPCProvider>
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <>
+      <NextIntlClientProvider>
+        <TRPCProvider>
+          <NextTopLoader color="#a6289f" />
+          <Header />
+          {children}
+          <Footer />
+          <Toaster />
+        </TRPCProvider>
+      </NextIntlClientProvider>
+    </>
   );
 }

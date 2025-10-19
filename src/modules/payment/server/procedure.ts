@@ -3,6 +3,9 @@ import { createTRPCRouter, publicProcedure } from '@/trpc/init';
 import { CreateOrderRequestBody, OrderResponseBody } from '@paypal/paypal-js';
 import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
+// import nodemailer from 'nodemailer';
+// import { render } from '@react-email/components';
+// import ContactEmail from '../ui/emails/contact-email';
 
 interface PaypalOauthToken {
   scope: string;
@@ -67,7 +70,7 @@ export const paymentRoute = createTRPCRouter({
     .mutation(async opts => {
       const { amount, currency_code } = opts.input;
 
-      console.log('amount', amount);
+      // console.log('amount', amount);
 
       // const res = await fetch('https://ipapi.co/json/');
       // const { currency } = (await res.json()) as {
@@ -189,7 +192,10 @@ export const paymentRoute = createTRPCRouter({
           }
         );
         const confirmData = await data.json();
+
         // console.log('success data---------', confirmData);
+
+        // NOTE: add email service here to send email to user
 
         return confirmData;
       } catch (error) {
@@ -201,3 +207,36 @@ export const paymentRoute = createTRPCRouter({
       }
     })
 });
+
+// const transporter = nodemailer.createTransport({
+//   host: 'smtp.gmail.com',
+//   port: 465,
+//   secure: true,
+//   auth: {
+//     user: process.env.GMAIL_USER,
+//     pass: process.env.GMAIL_PASS
+//   }
+// });
+
+//  const emailHtml = await render(
+//    ContactEmail({
+//      firstName,
+//      lastName,
+//      email,
+//      phone,
+//      qualification,
+//      weight,
+//      age,
+//      height
+//    })
+//  );
+
+//   const options = {
+//     // from: `"${firstName} ${lastName}" <${email}>`,
+//     from: 'noreply@anepalfoundation.com',
+//     to: process.env.RECEIVER_EMAIL,
+//     subject: `New Training Application from ${firstName} ${lastName}`,
+//     html: emailHtml
+//   };
+
+//   await transporter.sendMail(options);

@@ -20,7 +20,8 @@ export default function HomePartnersSection(props: PartnerSectionProps) {
 
 function HomePartnersSectionSuspense(props: PartnerSectionProps) {
   const [data] = trpc.home.getHomePartners.useSuspenseQuery();
-  console.log('data', data);
+
+  if (!data) return null;
 
   return (
     <PartnersSection

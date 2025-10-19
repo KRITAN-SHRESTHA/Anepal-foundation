@@ -27,7 +27,7 @@ const NavigationSheetSuspense = () => {
     <SheetContent className="overflow-y-auto p-6">
       <SheetTrigger asChild>
         <Link href={'/'}>
-          <Logo />
+          <Logo className="h-[80px] w-[150px]" />
         </Link>
       </SheetTrigger>
 

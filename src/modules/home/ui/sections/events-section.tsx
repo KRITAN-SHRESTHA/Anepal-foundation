@@ -34,6 +34,8 @@ function EventsSectionSuspense() {
   const [events] = trpc.home.getHomeEventsTitle.useSuspenseQuery();
   const { getLocalizedString } = useGetLocale();
 
+  if (!events) return null;
+
   return (
     <section className="relative py-14">
       <div className="pointer-events-none absolute top-0 left-0 h-full w-[400px] select-none">
@@ -65,58 +67,63 @@ function EventsSectionSuspense() {
             </Link>
           </Button>
         </div>
-        <div className="grid w-full gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-          {eventsList.map(event => (
-            <Card key={event._id} className="grid w-full overflow-hidden pt-0">
-              <div className="relative aspect-16/9 w-full">
-                <Link
-                  href={`/events/${event.slug?.current}`}
-                  className="fade-in transition-opacity duration-200 hover:opacity-70"
-                >
-                  {event.mainImage && (
-                    <Image
-                      // src={urlFor(event.mainImage).quality(100).url()}
-                      src={urlFor(event.mainImage)
-                        .auto('format')
-                        .width(1200)
-                        .quality(80)
-                        .url()}
-                      alt={event.mainImage?.alt ?? ''}
-                      className="h-full w-full object-cover object-center"
-                      fill
-                    />
-                  )}
-                </Link>
-              </div>
-              <CardHeader>
-                <p className="text-muted-foreground text-sm">
-                  {event.event_time?.start &&
-                    formatMDY(event.event_time?.start)}{' '}
-                  -{event.event_time?.end && formatMDY(event.event_time?.end)}
-                </p>
-                <h3 className="text-primary text-lg font-semibold hover:underline md:text-xl">
-                  <Link href={`/events/${event.slug?.current}`}>
-                    {getLocalizedString(event.title ?? [])}
+        {eventsList.length === 0 ? null : (
+          <div className="grid w-full gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+            {eventsList.map(event => (
+              <Card
+                key={event._id}
+                className="grid w-full overflow-hidden pt-0"
+              >
+                <div className="relative aspect-16/9 w-full">
+                  <Link
+                    href={`/events/${event.slug?.current}`}
+                    className="fade-in transition-opacity duration-200 hover:opacity-70"
+                  >
+                    {event.mainImage && (
+                      <Image
+                        // src={urlFor(event.mainImage).quality(100).url()}
+                        src={urlFor(event.mainImage)
+                          .auto('format')
+                          .width(1200)
+                          .quality(80)
+                          .url()}
+                        alt={event.mainImage?.alt ?? ''}
+                        className="h-full w-full object-cover object-center"
+                        fill
+                      />
+                    )}
                   </Link>
-                </h3>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground line-clamp-3">
-                  {getLocalizedString(event.short_description ?? [])}
-                </p>
-              </CardContent>
-              <CardFooter>
-                <Link
-                  href={`/events/${event.slug?.current}`}
-                  className="text-foreground flex cursor-pointer items-center hover:underline"
-                >
-                  Read more
-                  <ArrowRight className="ml-2 size-4" />
-                </Link>
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
+                </div>
+                <CardHeader>
+                  <p className="text-muted-foreground text-sm">
+                    {event.event_time?.start &&
+                      formatMDY(event.event_time?.start)}{' '}
+                    -{event.event_time?.end && formatMDY(event.event_time?.end)}
+                  </p>
+                  <h3 className="text-primary text-lg font-semibold hover:underline md:text-xl">
+                    <Link href={`/events/${event.slug?.current}`}>
+                      {getLocalizedString(event.title ?? [])}
+                    </Link>
+                  </h3>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground line-clamp-3">
+                    {getLocalizedString(event.short_description ?? [])}
+                  </p>
+                </CardContent>
+                <CardFooter>
+                  <Link
+                    href={`/events/${event.slug?.current}`}
+                    className="text-foreground flex cursor-pointer items-center hover:underline"
+                  >
+                    Read more
+                    <ArrowRight className="ml-2 size-4" />
+                  </Link>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

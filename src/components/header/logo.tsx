@@ -4,10 +4,12 @@ import { trpc } from '@/trpc/client';
 import CustomImage from '../custom-image';
 import { ErrorBoundary } from 'react-error-boundary';
 
-export default function Logo() {
+export default function Logo({
+  className
+}: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <ErrorBoundary fallback={<div>Something went wrong</div>}>
-      <LogoSuspense />
+      <LogoSuspense className={className} />
     </ErrorBoundary>
   );
 }

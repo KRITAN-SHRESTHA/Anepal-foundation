@@ -5,12 +5,20 @@ export default function ThankyouSection() {
   const { data } =
     trpc.donorsPartners.getContentOfDonorsPartnersPage.useQuery();
 
-  const { getLocalizedString } = useGetLocale();
+  const { getLocalizedString, locale } = useGetLocale();
+
+  if (!data?.thankYouSection) return null;
 
   return (
     <div className="py-[60px] md:py-[100px]">
       <h3 className="tablet:text-[250px] xs:text-[150px] text-center text-[110px] leading-[85%] font-medium text-yellow-500 sm:text-[200px]">
-        Thank <br /> You
+        {locale === 'en' ? (
+          <>
+            Thank <br /> You
+          </>
+        ) : (
+          'Gracias'
+        )}
       </h3>
       <div className="mt-6 sm:-mt-[60px] sm:ml-[calc(45%-130px)]">
         <p className="w-full max-w-[20ch] text-[32px] leading-[80%] font-extrabold sm:text-[40px]">

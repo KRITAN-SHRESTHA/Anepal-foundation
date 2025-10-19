@@ -36,6 +36,8 @@ function TestimonialsSectionSuspense() {
 
   const { getLocalizedString } = useGetLocale();
 
+  if (!data) return null;
+
   const testimonialChunks = chunkArray(
     data.select_testimonials,
     Math.ceil(data.select_testimonials.length / 3)

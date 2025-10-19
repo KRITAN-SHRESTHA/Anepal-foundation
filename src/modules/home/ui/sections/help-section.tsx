@@ -22,6 +22,8 @@ function HelpSectionSuspense() {
 
   const { getLocalizedString } = useGetLocale();
 
+  if (!data) return null;
+
   return (
     <div className="bg-accent mt-10 flex items-center justify-center py-12">
       <div>

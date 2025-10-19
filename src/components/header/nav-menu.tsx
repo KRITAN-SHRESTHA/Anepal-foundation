@@ -2,6 +2,7 @@
 
 import { NavigationMenuProps } from '@radix-ui/react-navigation-menu';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import React from 'react';
 
 import { Button } from '@/components/ui/button';
@@ -13,15 +14,18 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger
 } from '@/components/ui/navigation-menu';
+import useGetLocale from '@/hooks/use-get-locale';
 import { cn } from '@/lib/utils';
 import { trpc } from '@/trpc/client';
-import useGetLocale from '@/hooks/use-get-locale';
-import { usePathname } from 'next/navigation';
 
 export const NavMenu = (props: NavigationMenuProps) => {
   const [navData] = trpc.header.getHeader.useSuspenseQuery();
   const { getLocalizedString } = useGetLocale();
   const pathname = usePathname();
+
+  if (navData.length === 0) {
+    return null;
+  }
 
   return (
     <NavigationMenu viewport={false} {...props}>
@@ -61,7 +65,7 @@ export const NavMenu = (props: NavigationMenuProps) => {
                   <Link
                     href={link.link}
                     className={cn('', {
-                      'font-bold! text-purple-700': pathname === link.link
+                      'font-bold! text-purple-700': pathname.includes(link.link)
                     })}
                   >
                     {getLocalizedString(link.name ?? [])}

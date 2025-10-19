@@ -1,7 +1,7 @@
 'use client';
 
-import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 
 import HeroSection from '@/components/hero-section';
 import { trpc } from '@/trpc/client';
@@ -9,7 +9,6 @@ import { trpc } from '@/trpc/client';
 import StatsSection from '../sections/stats-section';
 import ThankyouSection from '../sections/thankyou-section';
 import WhoHelpUsSection from '../sections/who-help-us-section';
-import { ErrorBoundary } from 'react-error-boundary';
 import DonorsPartnersPageSkeleton from '../components/donors-partners-page-skeleton';
 
 export default function DonorsPartnersView() {
@@ -26,10 +25,8 @@ function DonorsPartnersViewSuspense() {
   const [data] =
     trpc.donorsPartners.getContentOfDonorsPartnersPage.useSuspenseQuery();
 
-  if (!data) return notFound();
-
   return (
-    <div className="">
+    <div>
       {data?.heroSection?.backgroundImage && (
         <HeroSection
           image={data.heroSection?.backgroundImage}

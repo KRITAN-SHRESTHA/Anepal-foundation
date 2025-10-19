@@ -27,6 +27,8 @@ export default function GallerySection() {
 function GallerySectionSuspense() {
   const [data] = trpc.home.getHomeGallery.useSuspenseQuery();
 
+  if (!data) return null;
+
   return (
     <div className="mt-10 mb-25 md:mt-14">
       <ContentTitle

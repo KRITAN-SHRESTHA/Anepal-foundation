@@ -1,15 +1,19 @@
 import CustomImage from '@/components/custom-image';
-import { Button } from '@/components/ui/button';
+// import { Button } from '@/components/ui/button';
 import useGetLocale from '@/hooks/use-get-locale';
 import { cn } from '@/lib/utils';
-import { BookOpen } from 'lucide-react';
+// import { BookOpen } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
+// import Link from 'next/link';
 import useGetAllStories from '../hooks/use-get-all-stories';
 
 export default function StoriesListSection() {
   const { getLocalizedString } = useGetLocale();
   const { stories, pagination } = useGetAllStories();
+
+  if (stories.length === 0) {
+    return <h1 className="py-10 text-center">No stories found</h1>;
+  }
 
   return (
     <div>
@@ -71,7 +75,7 @@ export default function StoriesListSection() {
                 {getLocalizedString(story.description ?? [])}
               </p>
 
-              <div className="tablet:mt-12 mt-6 flex items-center gap-4">
+              {/* <div className="tablet:mt-12 mt-6 flex items-center gap-4">
                 <Link href={`/stories/${story.slug?.current}`}>
                   <Button
                     variant="outline"
@@ -81,7 +85,7 @@ export default function StoriesListSection() {
                     <BookOpen className="!h-5 !w-5" /> Read Story
                   </Button>
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
         );

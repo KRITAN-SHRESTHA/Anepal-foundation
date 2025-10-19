@@ -15,8 +15,6 @@ function InfoBarSuspense() {
   const [settingsData] = trpc.settings.getSettings.useSuspenseQuery();
   const t = useTranslations('ContactPage');
 
-  console.log('settings', settingsData);
-
   if (!settingsData) return null;
 
   return (
