@@ -1,10 +1,12 @@
+import React from 'react';
+
 type Props = {
   children: React.ReactNode;
 };
 
-export default async function Layout({ children }: Props) {
+export default function Layout({ children }: Props) {
   return (
-    <html>
+    <html lang="en">
       <body>{children}</body>
     </html>
   );

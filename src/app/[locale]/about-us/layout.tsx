@@ -1,5 +1,6 @@
 import { generateAlternates, generateFullPath } from '@/lib/metadata';
 import type { Metadata } from 'next';
+import { setRequestLocale } from 'next-intl/server';
 
 type Props = {
   params: Promise<{
@@ -9,6 +10,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = (await params).locale;
+  setRequestLocale(locale);
 
   return {
     title: 'About Us',
@@ -80,9 +82,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 // };
 
 export default async function RootLayout({
-  children
+  children,
+  params
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }>) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   return <div>{children}</div>;
 }

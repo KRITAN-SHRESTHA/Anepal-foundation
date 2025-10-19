@@ -1,11 +1,18 @@
 import HomeView from '@/modules/home/ui/views/home-view';
 import { HydrateClient, trpc } from '@/trpc/server';
+import { setRequestLocale } from 'next-intl/server';
 
-// export const dynamic = 'force-dynamic';
-export const revalidate = 300;
+export const dynamic = 'force-dynamic';
+// export const revalidate = 300;
 
-export default async function Home() {
-  // const start = performance.now();
+type Props = {
+  params: Promise<{ locale: string }>;
+};
+
+export default async function Home({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   await Promise.all([
     trpc.home.getBanner.prefetch(),
     trpc.header.getHeader.prefetch(),
@@ -22,8 +29,7 @@ export default async function Home() {
     trpc.events.getFeaturedHomeEvents.prefetch(),
     trpc.teamMember.getAboutTeamMembers.prefetch()
   ]);
-  // const end = performance.now();
-  // console.log(`⏱ GROQ query took: ${Math.round(end - start)} ms`);
+
   return (
     <HydrateClient>
       <HomeView />

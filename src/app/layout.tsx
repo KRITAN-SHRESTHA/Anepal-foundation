@@ -7,3 +7,5 @@ type Props = {
 export default async function RootLayout({ children }: Props) {
   return children;
 }
+
+// "next": "15.3.1",

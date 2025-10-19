@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { serverClient } from '@/trpc/server';
 import { urlFor } from '@/sanity/lib/image';
 import { generateAlternates, generateFullPath } from '@/lib/metadata';
+import { setRequestLocale } from 'next-intl/server';
 
 type Props = {
   params: Promise<{
@@ -70,9 +71,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function EventDetailsPageLayout({
-  children
+  children,
+  params
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{
+    locale: string;
+  }>;
 }>) {
+  const locale = (await params).locale;
+  setRequestLocale(locale);
+
   return <div>{children}</div>;
 }

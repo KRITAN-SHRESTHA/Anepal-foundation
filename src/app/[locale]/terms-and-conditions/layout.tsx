@@ -1,5 +1,6 @@
 import { generateAlternates, generateFullPath } from '@/lib/metadata';
 import { Metadata } from 'next';
+import { setRequestLocale } from 'next-intl/server';
 
 type Props = {
   params: Promise<{
@@ -48,10 +49,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function TermsAndConditionsLayout({
-  children
+export default async function TermsAndConditionsLayout({
+  children,
+  params
 }: {
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   return <>{children}</>;
 }

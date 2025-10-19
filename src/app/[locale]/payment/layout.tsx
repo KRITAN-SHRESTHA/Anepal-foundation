@@ -1,5 +1,9 @@
 import { generateAlternates, generateFullPath } from '@/lib/metadata';
 import type { Metadata } from 'next';
+import { setRequestLocale } from 'next-intl/server';
+
+// Force dynamic rendering for all payment-related pages
+// export const dynamic = 'force-dynamic';
 
 type Props = {
   params: Promise<{
@@ -42,10 +46,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function PaymentLayout({
-  children
+export default async function PaymentLayout({
+  children,
+  params
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }>) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   return <div>{children}</div>;
 }
