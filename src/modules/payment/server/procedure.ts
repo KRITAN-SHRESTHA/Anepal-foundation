@@ -1,11 +1,7 @@
-import { env } from '@/env';
 import { createTRPCRouter, publicProcedure } from '@/trpc/init';
 import { CreateOrderRequestBody, OrderResponseBody } from '@paypal/paypal-js';
 import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
-// import nodemailer from 'nodemailer';
-// import { render } from '@react-email/components';
-// import ContactEmail from '../ui/emails/contact-email';
 
 interface PaypalOauthToken {
   scope: string;
@@ -107,8 +103,8 @@ export const paymentRoute = createTRPCRouter({
                     landing_page: 'GUEST_CHECKOUT', // GUEST_CHECKOUT | LOGIN | NO_PREFERENCE
                     shipping_preference: 'NO_SHIPPING', // GET_FROM_FILE | NO_SHIPPING | SET_PROVIDED_ADDRESS
                     user_action: 'PAY_NOW',
-                    return_url: `${env.NEXT_PUBLIC_SITE_URL}/payment/success`,
-                    cancel_url: `${env.NEXT_PUBLIC_SITE_URL}/payment/cancel`
+                    return_url: `${process.env.NEXT_PUBLIC_SITE_URL}/payment/success`,
+                    cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/payment/cancel`
                   }
                 }
               }
