@@ -1,15 +1,10 @@
 {
-  "version": 2,
-  "github": {
-    "enabled": true,
-    "autoJobCancelation": true,
-    "silent": false,
+  "buildCommand": "pnpm run build",
+  "installCommand": "pnpm install",
+  "framework": "nextjs",
+  "git": {
     "deploymentEnabled": {
-      "main": true,
-      "development": true,
-      "staging": true,
-      "preview": false,
-      "production": false
+      "main": true
     }
   }
 }
