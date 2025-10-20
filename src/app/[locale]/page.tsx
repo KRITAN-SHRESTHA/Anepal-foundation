@@ -2,8 +2,9 @@ import HomeView from '@/modules/home/ui/views/home-view';
 import { HydrateClient, trpc } from '@/trpc/server';
 import { setRequestLocale } from 'next-intl/server';
 
-export const dynamic = 'force-dynamic';
-// export const revalidate = 300;
+// export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic';
+export const revalidate = 300;
 
 type Props = {
   params: Promise<{ locale: string }>;
