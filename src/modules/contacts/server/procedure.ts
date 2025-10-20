@@ -1,4 +1,4 @@
-import { client } from '@/sanity/lib/client';
+import { client, writeClient } from '@/sanity/lib/client';
 import { ContactPage } from '@/sanity/types';
 import { createTRPCRouter, publicProcedure } from '@/trpc/init';
 import { TRPCError } from '@trpc/server';
@@ -24,7 +24,7 @@ export const contactRouter = createTRPCRouter({
     .input(contactFormSchema)
     .mutation(async ({ input }) => {
       try {
-        const result = await client.create({
+        const result = await writeClient.create({
           _type: 'contact',
           fullName: input.fullName,
           email: input.email,
