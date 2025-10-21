@@ -108,9 +108,9 @@ export default function FooterContent() {
                       key={linkIdx}
                       className="hover:text-primary font-medium"
                     >
-                      <a href={link.link}>
+                      <Link href={link.link!}>
                         {getLocalizedString(link.name ?? [])}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>

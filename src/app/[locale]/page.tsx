@@ -12,6 +12,7 @@ type Props = {
 
 export default async function Home({ params }: Props) {
   const { locale } = await params;
+  console.log('locale', locale);
   setRequestLocale(locale);
 
   await Promise.all([

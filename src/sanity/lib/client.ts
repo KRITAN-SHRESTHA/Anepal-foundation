@@ -11,10 +11,10 @@ export const client = createClient({
 });
 
 // Create a write client with anonymous write permissions
-export const writeClient = createClient({
-  projectId,
-  dataset,
-  apiVersion,
-  useCdn: false,
-  token: process.env.SANITY_API_WRITE_TOKEN // Token with write access
-});
+// export const writeClient = createClient({
+//   projectId,
+//   dataset,
+//   apiVersion,
+//   useCdn: false,
+//   token: process.env.NEXT_PUBLIC_SANITY_API_WRITE_TOKEN // Token with write access
+// });
