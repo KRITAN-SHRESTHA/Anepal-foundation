@@ -20,7 +20,7 @@ function LogoSuspense({ className }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div className={cn('relative h-[56px] w-[100px] shrink-0', className)}>
       <CustomImage
-        src={settings.logo}
+        src={settings.foundation_logo}
         className="mix-blend-multiply"
         alt="Anepal Organization logo"
         sizes="20vw"

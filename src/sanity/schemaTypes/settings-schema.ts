@@ -7,16 +7,16 @@ export const settingsSchema = defineType({
   type: 'document',
   icon: Settings,
   fields: [
-    defineField({
-      name: 'logo',
-      title: 'Logo',
-      type: 'image',
-      description: 'logo (recommended size: 200x80px)',
-      options: {
-        accept: 'image/*'
-      },
-      validation: rule => rule.required().error('Logo is required')
-    }),
+    // defineField({
+    //   name: 'logo',
+    //   title: 'Logo',
+    //   type: 'image',
+    //   description: 'logo (recommended size: 200x80px)',
+    //   options: {
+    //     accept: 'image/*'
+    //   },
+    //   validation: rule => rule.required().error('Logo is required')
+    // }),
     defineField({
       name: 'foundation_logo',
       title: 'Foundation Logo',

@@ -8153,7 +8153,7 @@
           "type": "string"
         }
       },
-      "logo": {
+      "foundation_logo": {
         "type": "objectAttribute",
         "value": {
           "type": "object",

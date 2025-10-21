@@ -1478,7 +1478,7 @@ export type Settings = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  logo?: {
+  foundation_logo?: {
     asset?: {
       _ref: string;
       _type: 'reference';
