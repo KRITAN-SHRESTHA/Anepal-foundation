@@ -11,8 +11,21 @@ export const settingsSchema = defineType({
       name: 'logo',
       title: 'Logo',
       type: 'image',
-      description: 'Company logo (recommended size: 200x80px)',
+      description: 'logo (recommended size: 200x80px)',
+      options: {
+        accept: 'image/*'
+      },
       validation: rule => rule.required().error('Logo is required')
+    }),
+    defineField({
+      name: 'foundation_logo',
+      title: 'Foundation Logo',
+      type: 'image',
+      description: 'logo (recommended size: 200x80px)',
+      options: {
+        accept: 'image/*'
+      },
+      validation: rule => rule.required().error('Foundation logo is required')
     }),
     defineField({
       name: 'contact',
