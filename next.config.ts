@@ -21,6 +21,7 @@ const config: NextConfig = {
   },
   transpilePackages: ['@t3-oss/env-nextjs', '@t3-oss/env-core'],
   images:{
+    // qualities: [25, 50, 75, 100],
     remotePatterns: [{
         protocol: 'https',
         hostname: 'cdn.sanity.io',

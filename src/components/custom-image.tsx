@@ -22,6 +22,7 @@ export default function CustomImage({
     <>
       {src && (
         <Image
+          // src={urlFor(src).url()}
           src={urlFor(src).quality(100).url()}
           alt={alt}
           className={cn('h-full w-full object-cover', className)}

@@ -17,6 +17,8 @@ import { TRPCProvider } from '@/trpc/client';
 import { routing } from '@/i18n/routing';
 import { getClientUrl } from '@/lib/utils';
 import { generateAlternates } from '@/lib/metadata';
+import { getSettings } from '@/trpc/server/settings-procedure';
+import { urlFor } from '@/sanity/lib/image';
 
 // import '../globals.css';
 
@@ -60,6 +62,8 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = (await params).locale;
   const baseUrl = getClientUrl();
+
+  const settingsData = await getSettings();
 
   return {
     // Base URL for all relative URLs in metadata
@@ -156,7 +160,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale: 'en_US',
       images: [
         {
-          url: '/assets/logo-og.png',
+          // url: '/assets/logo-og.png',
+          url: settingsData.foundation_logo
+            ? urlFor(settingsData.foundation_logo).quality(100).url()
+            : '/assets/logo-og.png',
           width: 1200,
           height: 630,
           alt: 'Anepal Foundation - Transforming Lives in Nepal'
@@ -172,7 +179,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description:
         'Join Anepal Foundation in our mission to create sustainable change through community development, education, and humanitarian initiatives in Nepal.',
       images: {
-        url: '/assets/logo.png',
+        // url: '/assets/logo.png',
+        url: settingsData.foundation_logo
+          ? urlFor(settingsData.foundation_logo).quality(100).url()
+          : '/assets/logo-og.png',
         alt: 'Anepal Foundation - Empowering Communities in Nepal',
         width: 1200,
         height: 630,
