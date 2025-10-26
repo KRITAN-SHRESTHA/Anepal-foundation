@@ -24,7 +24,6 @@ interface ContentSectionProps
   readmoreLink?: string;
   titleClassname?: string;
   subtitleClassname?: string;
-  imageAlt?: string;
 }
 
 export default function ContentSection({
@@ -37,10 +36,17 @@ export default function ContentSection({
   titleClassname,
   subtitleClassname,
   className,
-  imageAlt,
   highlightTitleText
 }: ContentSectionProps) {
   const { getLocalizedString } = useGetLocale();
+
+  const convertedTitle =
+    typeof title === 'string' ? title : getLocalizedString(title ?? []);
+
+  const convertedSubtitle =
+    typeof subtitle === 'string'
+      ? subtitle
+      : getLocalizedString(subtitle ?? []);
 
   return (
     <div
@@ -67,7 +73,7 @@ export default function ContentSection({
             <CustomImage
               className="laptop:p-[80px] tablet:p-[60px] xs:p-[60px] h-full w-full object-cover p-[40px] sm:p-[80px]"
               src={image}
-              alt={imageAlt ?? ''}
+              alt={convertedTitle ?? convertedSubtitle!}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
@@ -75,7 +81,7 @@ export default function ContentSection({
             <Image
               className="laptop:p-[80px] tablet:p-[60px] xs:p-[60px] h-full w-full object-cover p-[40px] sm:p-[80px]"
               src={'/assets/our_story/dharmajit_budha.jpg'}
-              alt={imageAlt ?? ''}
+              alt={convertedTitle ?? convertedSubtitle!}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />

@@ -28,7 +28,6 @@ function HomeAboutUsSectionSuspense() {
       subtitle={data?.subtitle}
       description={data?.description}
       readmoreLink="/about-us"
-      imageAlt={data.image?.alt}
     />
   );
 }

@@ -53,7 +53,7 @@ function OurBlogsListSectionSuspense() {
               {blog.mainImage && (
                 <Image
                   src={urlFor(blog.mainImage).quality(100).url()}
-                  alt={blog.mainImage.alt ?? ''}
+                  alt={getLocalizedString(blog.title ?? [])!}
                   fill
                   className="fade-in h-full w-full overflow-hidden rounded-t-lg object-cover transition-opacity duration-200 hover:opacity-70"
                 />

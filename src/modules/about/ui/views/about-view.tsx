@@ -30,7 +30,6 @@ function AboutViewSuspense() {
       {data?.heroSection?.backgroundImage && (
         <HeroSection
           image={data.heroSection?.backgroundImage}
-          alt={data.heroSection.backgroundImage.alt ?? ''}
           subtitle={data.heroSection?.subtitle}
           highlightTitleText={data.heroSection.highlightTitle}
           title={data.heroSection?.title}
@@ -45,7 +44,6 @@ function AboutViewSuspense() {
           // highlightTitleText={data.firstcontent?.highlightTitle}
           orientation="rtl"
           image={data.firstcontent?.image}
-          imageAlt={data.firstcontent?.image?.alt}
         />
       )}
       {data?.secondcontent && (
@@ -55,7 +53,6 @@ function AboutViewSuspense() {
           subtitleClassname="text-[24px] text-primary"
           className="pt-[0px]"
           image={data.secondcontent?.image}
-          imageAlt={data.secondcontent?.image?.alt}
         />
       )}
       <WhoDoWeHelpSection />

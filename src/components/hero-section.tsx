@@ -8,14 +8,12 @@ interface HeroSectionProps {
   title?: LocalisedDataType[] | string | null;
   subtitle?: LocalisedDataType[] | string | null;
   highlightTitleText?: LocalisedDataType[] | string | null;
-  alt: string;
 }
 
 export default function HeroSection({
   title,
   image,
   subtitle,
-  alt,
   highlightTitleText
 }: HeroSectionProps) {
   const { getLocalizedString } = useGetLocale();
@@ -42,7 +40,7 @@ export default function HeroSection({
       {image && (
         <CustomImage
           src={image}
-          alt={alt}
+          alt={convertedTitle + ' ' + convertedSubtitle}
           fill
           priority
           className="object-cover"

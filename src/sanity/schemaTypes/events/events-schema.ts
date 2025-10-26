@@ -62,15 +62,15 @@ export const eventsSchema = defineType({
       type: 'image',
       options: {
         hotspot: true
-      },
-      fields: [
-        {
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative Text (about image)',
-          validation: rule => rule.required().error('Image alt is required')
-        }
-      ]
+      }
+      // fields: [
+      //   {
+      //     name: 'alt',
+      //     type: 'string',
+      //     title: 'Alternative Text (about image)',
+      //     validation: rule => rule.required().error('Image alt is required')
+      //   }
+      // ]
     },
     {
       name: 'organizer_info',

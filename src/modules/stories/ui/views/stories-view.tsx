@@ -31,7 +31,6 @@ function StoriesViewSuspnse() {
           title={storiesData.heroSection.title}
           subtitle={storiesData.heroSection.subtitle}
           highlightTitleText={storiesData.heroSection.highlightTitle}
-          alt={storiesData.heroSection.backgroundImage.alt ?? ''}
         />
       )}
 

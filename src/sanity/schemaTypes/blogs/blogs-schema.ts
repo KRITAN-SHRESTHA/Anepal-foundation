@@ -64,15 +64,15 @@ export const blogsSchema = defineType({
       type: 'image',
       options: {
         hotspot: true
-      },
-      fields: [
-        {
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative Text (describe about image in a sentence)',
-          validation: rule => rule.required().error('Image alt is required')
-        }
-      ]
+      }
+      // fields: [
+      //   {
+      //     name: 'alt',
+      //     type: 'string',
+      //     title: 'Alternative Text (describe about image in a sentence)',
+      //     validation: rule => rule.required().error('Image alt is required')
+      //   }
+      // ]
     },
     {
       name: 'content',
