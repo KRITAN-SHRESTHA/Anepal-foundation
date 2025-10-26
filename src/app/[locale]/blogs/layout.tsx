@@ -1,4 +1,9 @@
-import { generateAlternates, generateFullPath } from '@/lib/metadata';
+import {
+  generateAlternates,
+  generateFullPath,
+  getOpenGraphLocale,
+  getOpenGraphAlternateLocales
+} from '@/lib/metadata';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 
@@ -23,22 +28,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description:
         'Stay updated with the latest news, stories, and insights from Anepal Foundation.',
       url: generateFullPath('/blogs', locale),
-      images: [
-        {
-          url: '/assets/logo.png',
-          width: 800,
-          height: 450,
-          alt: 'Anepal Foundation - Empowering Communities in Nepal',
-          type: 'image/png'
-        },
-        {
-          url: '/assets/logo-transparent.png',
-          width: 800,
-          height: 450,
-          alt: 'Anepal Foundation Logo',
-          type: 'image/png'
-        }
-      ]
+      locale: getOpenGraphLocale(locale),
+      alternateLocale: getOpenGraphAlternateLocales(locale)
     }
   };
 }

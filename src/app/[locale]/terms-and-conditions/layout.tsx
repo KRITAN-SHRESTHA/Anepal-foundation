@@ -1,4 +1,9 @@
-import { generateAlternates, generateFullPath } from '@/lib/metadata';
+import {
+  generateAlternates,
+  generateFullPath,
+  getOpenGraphLocale,
+  getOpenGraphAlternateLocales
+} from '@/lib/metadata';
 import { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 
@@ -23,28 +28,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description:
         'Read our terms and conditions to understand the rules, guidelines, and agreements that govern your use of Anepal Foundation services and website.',
       url: generateFullPath('/terms-and-conditions', locale),
-      images: [
-        {
-          url: '/assets/logo.png',
-          width: 800,
-          height: 450,
-          alt: 'Anepal Foundation - Empowering Communities in Nepal',
-          type: 'image/png'
-        },
-        {
-          url: '/assets/logo-transparent.png',
-          width: 800,
-          height: 450,
-          alt: 'Anepal Foundation Logo',
-          type: 'image/png'
-        }
-      ]
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: 'Terms and Conditions',
-      description:
-        'Read our terms and conditions to understand the rules, guidelines, and agreements that govern your use of Anepal Foundation services and website.'
+      locale: getOpenGraphLocale(locale),
+      alternateLocale: getOpenGraphAlternateLocales(locale)
     }
   };
 }

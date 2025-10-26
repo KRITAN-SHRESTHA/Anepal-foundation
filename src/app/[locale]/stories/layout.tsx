@@ -1,5 +1,10 @@
 import type { Metadata } from 'next';
-import { generateAlternates, generateFullPath } from '@/lib/metadata';
+import {
+  generateAlternates,
+  generateFullPath,
+  getOpenGraphLocale,
+  getOpenGraphAlternateLocales
+} from '@/lib/metadata';
 import { setRequestLocale } from 'next-intl/server';
 
 type Props = {
@@ -23,22 +28,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description:
         'Read inspiring stories of impact and transformation from our work at Anepal Foundation.',
       url: generateFullPath('/stories', locale),
-      images: [
-        {
-          url: '/assets/logo.png',
-          width: 800,
-          height: 450,
-          alt: 'Anepal Foundation - Empowering Communities in Nepal',
-          type: 'image/png'
-        },
-        {
-          url: '/assets/logo-transparent.png',
-          width: 800,
-          height: 450,
-          alt: 'Anepal Foundation Logo',
-          type: 'image/png'
-        }
-      ]
+      locale: getOpenGraphLocale(locale),
+      alternateLocale: getOpenGraphAlternateLocales(locale)
     }
   };
 }

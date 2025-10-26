@@ -16,7 +16,12 @@ import { Toaster } from '@/components/ui/sonner';
 import { TRPCProvider } from '@/trpc/client';
 import { routing } from '@/i18n/routing';
 import { getClientUrl } from '@/lib/utils';
-import { generateAlternates } from '@/lib/metadata';
+import {
+  generateAlternates,
+  generateFullPath,
+  getOpenGraphLocale,
+  getOpenGraphAlternateLocales
+} from '@/lib/metadata';
 import { getSettings } from '@/trpc/server/settings-procedure';
 import { urlFor } from '@/sanity/lib/image';
 
@@ -137,7 +142,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         { url: '/assets/favicon-for-app/icon0.svg', type: 'image/svg+xml' } // SVG for modern browsers
       ],
       apple: {
-        url: '/assets/favicon-for-app/apple-icon.png', // Icon for iOS devices
+        url: '/assets/favicon_io/apple-touch-icon.png', // Icon for iOS devices
         sizes: '180x180',
         type: 'image/png'
       },
@@ -156,14 +161,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         'Anepal Foundation - Leading NGO for Community Development in Nepal',
       description:
         'Transform lives in Nepal through sustainable development, education, and humanitarian initiatives. Join Anepal Foundation in creating lasting change. Donate or volunteer today.',
-      url: getClientUrl(),
-      locale: 'en_US',
+      url: generateFullPath('/', locale),
+      locale: getOpenGraphLocale(locale),
+      alternateLocale: getOpenGraphAlternateLocales(locale),
       images: [
         {
-          // url: '/assets/logo-og.png',
           url: settingsData.foundation_logo
             ? urlFor(settingsData.foundation_logo).quality(100).url()
-            : '/assets/logo-og.png',
+            : '/assets/logo.jpeg',
           width: 1200,
           height: 630,
           alt: 'Anepal Foundation - Transforming Lives in Nepal'
@@ -179,10 +184,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description:
         'Join Anepal Foundation in our mission to create sustainable change through community development, education, and humanitarian initiatives in Nepal.',
       images: {
-        // url: '/assets/logo.png',
         url: settingsData.foundation_logo
           ? urlFor(settingsData.foundation_logo).quality(100).url()
-          : '/assets/logo-og.png',
+          : '/assets/logo.jpeg',
         alt: 'Anepal Foundation - Empowering Communities in Nepal',
         width: 1200,
         height: 630,

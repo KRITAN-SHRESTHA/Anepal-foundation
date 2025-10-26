@@ -2,7 +2,12 @@ import { getLocalizedString } from '@/lib/utils';
 import type { Metadata } from 'next';
 import { serverClient } from '@/trpc/server';
 import { urlFor } from '@/sanity/lib/image';
-import { generateAlternates, generateFullPath } from '@/lib/metadata';
+import {
+  generateAlternates,
+  generateFullPath,
+  getOpenGraphLocale,
+  getOpenGraphAlternateLocales
+} from '@/lib/metadata';
 
 type Props = {
   params: Promise<{
@@ -37,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // Use logo as the default image
   const imageUrl = post.mainImage
     ? urlFor(post.mainImage).quality(100).url()
-    : '/assets/logo.png';
+    : '/assets/logo.jepg';
 
   return {
     title,
@@ -49,15 +54,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description,
       url: generateFullPath(`/blogs/${slug}`, locale),
+      locale: getOpenGraphLocale(locale),
+      alternateLocale: getOpenGraphAlternateLocales(locale),
       authors: ['Anepal Foundation'],
       images: [
-        {
-          url: imageUrl,
-          width: 1200,
-          height: 630,
-          alt: title,
-          type: 'image/png'
-        },
         {
           url: imageUrl,
           width: 1200,

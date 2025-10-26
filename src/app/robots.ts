@@ -8,18 +8,37 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: '*',
-        // allow: [
-        //   '/', // Allow all public routes
-        //   '/about', // Allow about page
-        //   '/services', // Allow services page
-        //   '/contact', // Allow contact page
-        // ],
+        allow: [
+          '/en/',
+          '/es/',
+          '/en/about-us',
+          '/es/about-us',
+          '/en/our-team',
+          '/es/our-team',
+          '/en/blogs',
+          '/es/blogs',
+          '/en/events',
+          '/es/events',
+          '/en/stories',
+          '/es/stories',
+          '/en/donors-partners',
+          '/es/donors-partners',
+          '/en/contacts',
+          '/es/contacts',
+          '/en/terms-and-conditions',
+          '/es/terms-and-conditions',
+          '/en/privacy-policy',
+          '/es/privacy-policy'
+        ],
         disallow: [
           '/api/*', // Protect API routes
-          '/studio/*', // Protect private routes
-          '/*.json$',
-          '/*?*',
-          '/*/preview'
+          '/trpc/*', // Protect tRPC endpoints
+          '/studio/*', // Protect CMS admin panel
+          '/_next/*', // Protect Next.js internal files
+          '/*/payment*', // Protect payment pages
+          '/*.json$', // Protect JSON files
+          '/*?*', // Prevent crawling URLs with query parameters
+          '/*/preview' // Protect preview/draft pages
         ]
       },
       {
