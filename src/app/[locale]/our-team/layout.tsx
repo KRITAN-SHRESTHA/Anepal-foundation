@@ -1,4 +1,11 @@
-import { generateAlternates, generateFullPath } from '@/lib/metadata';
+import {
+  generateAlternates,
+  generateFullPath,
+  getOpenGraphAlternateLocales,
+  getOpenGraphLocale
+} from '@/lib/metadata';
+import { urlFor } from '@/sanity/lib/image';
+import { serverClient } from '@/trpc/server';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 
@@ -10,40 +17,37 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = (await params).locale;
+  const settingsData = await serverClient.settings.getSettings();
 
   return {
-    title: 'Our Team',
+    title: 'Meet Our Team - Dedicated Professionals at Anepal Foundation',
     description:
-      'Meet the dedicated team members behind Anepal Foundation who work tirelessly for our cause.',
-    alternates: generateAlternates('/team-member', locale),
+      'Meet the passionate and dedicated team members at Anepal Foundation who are committed to creating lasting positive change through community development and humanitarian initiatives in Nepal. Learn about our leadership and staff.',
+    alternates: generateAlternates('/our-team', locale),
     openGraph: {
       type: 'website',
       siteName: 'Anepal Foundation',
-      title: 'Our Team',
+      title: 'Meet Our Team - Dedicated Professionals at Anepal Foundation',
       description:
-        'Meet the dedicated team members behind Anepal Foundation who work tirelessly for our cause.',
-      url: generateFullPath('/team-member', locale),
+        'Meet the passionate and dedicated team members at Anepal Foundation who are committed to creating lasting positive change through community development and humanitarian initiatives in Nepal. Learn about our leadership and staff.',
+      url: generateFullPath('/our-team', locale),
+      locale: getOpenGraphLocale(locale),
+      alternateLocale: getOpenGraphAlternateLocales(locale),
       images: [
         {
-          url: '/assets/logo.png',
-          width: 800,
-          height: 450,
-          alt: 'Anepal Foundation - Empowering Communities in Nepal',
-          type: 'image/png'
-        },
-        {
-          url: '/assets/logo-transparent.png',
-          width: 800,
-          height: 450,
-          alt: 'Anepal Foundation Logo',
-          type: 'image/png'
+          url: settingsData.foundation_logo
+            ? urlFor(settingsData.foundation_logo).quality(100).url()
+            : '/assets/logo.jpeg',
+          width: 1200,
+          height: 630,
+          alt: 'Anepal Foundation Team'
         }
       ]
     }
   };
 }
 
-export default async function TeamMemberLayout({
+export default async function Layout({
   children,
   params
 }: Readonly<{

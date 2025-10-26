@@ -1,4 +1,11 @@
-import { generateAlternates, generateFullPath } from '@/lib/metadata';
+import {
+  generateAlternates,
+  generateFullPath,
+  getOpenGraphAlternateLocales,
+  getOpenGraphLocale
+} from '@/lib/metadata';
+import { urlFor } from '@/sanity/lib/image';
+import { serverClient } from '@/trpc/server';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 
@@ -10,40 +17,37 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = (await params).locale;
+  const settingsData = await serverClient.settings.getSettings();
 
   return {
-    title: 'Contact Us',
+    title: 'Contact Anepal Foundation - Get in Touch Today',
     description:
-      "Get in touch with Anepal Foundation. We'd love to hear from you and discuss how we can work together.",
+      "Contact Anepal Foundation for inquiries, partnerships, volunteering opportunities, or donations. Reach out to discuss collaboration on community development projects in Nepal. We'd love to hear from you.",
     alternates: generateAlternates('/contacts', locale),
     openGraph: {
       type: 'website',
       siteName: 'Anepal Foundation',
-      title: 'Contact Us',
+      title: 'Contact Anepal Foundation - Get in Touch Today',
       description:
-        "Get in touch with Anepal Foundation. We'd love to hear from you and discuss how we can work together.",
+        "Contact Anepal Foundation for inquiries, partnerships, volunteering opportunities, or donations. Reach out to discuss collaboration on community development projects in Nepal. We'd love to hear from you.",
       url: generateFullPath('/contacts', locale),
+      locale: getOpenGraphLocale(locale),
+      alternateLocale: getOpenGraphAlternateLocales(locale),
       images: [
         {
-          url: '/assets/logo.png',
-          width: 800,
-          height: 450,
-          alt: 'Anepal Foundation - Empowering Communities in Nepal',
-          type: 'image/png'
-        },
-        {
-          url: '/assets/logo-transparent.png',
-          width: 800,
-          height: 450,
-          alt: 'Anepal Foundation Logo',
-          type: 'image/png'
+          url: settingsData.foundation_logo
+            ? urlFor(settingsData.foundation_logo).quality(100).url()
+            : '/assets/logo.jpeg',
+          width: 1200,
+          height: 630,
+          alt: 'Contact Anepal Foundation'
         }
       ]
     }
   };
 }
 
-export default async function ContactLayout({
+export default async function Layout({
   children,
   params
 }: Readonly<{

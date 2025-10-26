@@ -1,12 +1,71 @@
 import HomeView from '@/modules/home/ui/views/home-view';
-import { HydrateClient, trpc } from '@/trpc/server';
+import { HydrateClient, serverClient, trpc } from '@/trpc/server';
 import { setRequestLocale } from 'next-intl/server';
+import type { Metadata } from 'next';
+import {
+  generateAlternates,
+  generateFullPath,
+  getOpenGraphLocale,
+  getOpenGraphAlternateLocales
+} from '@/lib/metadata';
+import { getClientUrl } from '@/lib/utils';
+import { urlFor } from '@/sanity/lib/image';
 
 export const dynamic = 'force-dynamic';
 
 type Props = {
   params: Promise<{ locale: string }>;
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const locale = (await params).locale;
+  const settingsData = await serverClient.settings.getSettings();
+
+  return {
+    title: 'Home - Transform Lives Through Community Development',
+    description:
+      'Welcome to Anepal Foundation. Discover our mission to create sustainable change in Nepal through education, community development, and humanitarian initiatives. Join our cause and make a difference today.',
+    alternates: generateAlternates('/', locale),
+    openGraph: {
+      type: 'website',
+      siteName: 'Anepal Foundation',
+      title:
+        'Anepal Foundation - Transform Lives Through Community Development',
+      description:
+        'Welcome to Anepal Foundation. Discover our mission to create sustainable change in Nepal through education, community development, and humanitarian initiatives. Join our cause and make a difference today.',
+      url: generateFullPath('/', locale),
+      locale: getOpenGraphLocale(locale),
+      alternateLocale: getOpenGraphAlternateLocales(locale),
+      images: [
+        {
+          url: settingsData.foundation_logo
+            ? urlFor(settingsData.foundation_logo).quality(100).url()
+            : '/assets/logo.jpeg',
+          width: 1200,
+          height: 630,
+          alt: 'Anepal Foundation - Transforming Lives in Nepal'
+        }
+      ]
+    },
+    twitter: {
+      card: 'summary_large_image',
+      site: '@anepalfoundation',
+      creator: '@anepalfoundation',
+      title:
+        'Anepal Foundation - Transform Lives Through Community Development',
+      description:
+        'Welcome to Anepal Foundation. Discover our mission to create sustainable change in Nepal through education, community development, and humanitarian initiatives.',
+      images: {
+        url: settingsData.foundation_logo
+          ? urlFor(settingsData.foundation_logo).quality(100).url()
+          : '/assets/logo.jpeg',
+        alt: 'Anepal Foundation Homepage',
+        width: 1200,
+        height: 630
+      }
+    }
+  };
+}
 
 export default async function Home({ params }: Props) {
   const { locale } = await params;
@@ -29,8 +88,23 @@ export default async function Home({ params }: Props) {
     trpc.teamMember.getAboutTeamMembers.prefetch()
   ]);
 
+  const baseUrl = getClientUrl();
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Anepal Foundation',
+    url: baseUrl,
+    description:
+      'Leading NGO for community development in Nepal. Transform lives through sustainable development, education, and humanitarian initiatives.',
+    inLanguage: ['en', 'es']
+  };
+
   return (
     <HydrateClient>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
       <HomeView />
     </HydrateClient>
   );

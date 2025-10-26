@@ -27,5 +27,5 @@ export const getClientUrl = () => {
   if (process.env.NEXT_PUBLIC_SITE_URL) {
     return process.env.NEXT_PUBLIC_SITE_URL;
   }
-  return 'https://anepal-foundation.org';
+  return 'https://anepalfoundation.org';
 };
