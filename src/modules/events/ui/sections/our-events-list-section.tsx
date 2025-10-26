@@ -83,7 +83,7 @@ function OurEventsListSectionSuspense() {
                     {event.mainImage && (
                       <Image
                         src={urlFor(event.mainImage).quality(100).url()}
-                        alt={event.mainImage.alt ?? ''}
+                        alt={getLocalizedString(event.title ?? []) ?? ''}
                         fill
                         className="fade-in h-full w-full object-cover transition-opacity duration-200 hover:opacity-70"
                       />

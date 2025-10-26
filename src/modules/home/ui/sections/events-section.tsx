@@ -87,7 +87,7 @@ function EventsSectionSuspense() {
                           .width(1200)
                           .quality(80)
                           .url()}
-                        alt={event.mainImage?.alt ?? ''}
+                        alt={getLocalizedString(events.title ?? [])!}
                         className="h-full w-full object-cover object-center"
                         fill
                       />

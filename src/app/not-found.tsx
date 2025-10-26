@@ -9,7 +9,7 @@ export default function NotFound() {
             src={'/assets/404-Error-Page-not-Found.svg'}
             width={500}
             height={500}
-            alt=""
+            alt="page not found"
           />
         </div>
       </body>

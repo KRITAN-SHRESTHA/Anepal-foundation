@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity';
+import { defineType } from 'sanity';
 
 import { validationLang } from '../../lib/validation-lang';
 import { InfoOutlineIcon } from '@sanity/icons';
@@ -62,15 +62,15 @@ export const aboutAnepalSchema = defineType({
       options: {
         hotspot: true
       },
-      validation: rule => rule.required().error('Image is required'),
-      fields: [
-        defineField({
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative Text (describe about the image)'
-          // validation: rule => rule.required().error('Image alt is required')
-        })
-      ]
+      validation: rule => rule.required().error('Image is required')
+      // fields: [
+      //   defineField({
+      //     name: 'alt',
+      //     type: 'string',
+      //     title: 'Alternative Text (describe about the image)'
+      //     // validation: rule => rule.required().error('Image alt is required')
+      //   })
+      // ]
     }
   ],
   preview: {

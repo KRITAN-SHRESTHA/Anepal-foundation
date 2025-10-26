@@ -68,14 +68,14 @@ export const blockContentSchema = defineType({
     defineArrayMember({
       type: 'image',
       icon: ImageIcon,
-      options: { hotspot: true },
-      fields: [
-        {
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative Text (about image)'
-        }
-      ]
+      options: { hotspot: true }
+      // fields: [
+      //   {
+      //     name: 'alt',
+      //     type: 'string',
+      //     title: 'Alternative Text (about image)'
+      //   }
+      // ]
     })
   ]
 });

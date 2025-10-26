@@ -11,15 +11,15 @@ export const teamMemberSchema = defineType({
       title: 'Image',
       type: 'image',
       description: 'Image (recommended size: 400 × 400px)',
-      validation: rule => rule.required().error('Image is required'),
-      fields: [
-        defineField({
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative Text (about image)',
-          validation: rule => rule.required().error('Image alt is required')
-        })
-      ]
+      validation: rule => rule.required().error('Image is required')
+      // fields: [
+      //   defineField({
+      //     name: 'alt',
+      //     type: 'string',
+      //     title: 'Alternative Text (about image)',
+      //     validation: rule => rule.required().error('Image alt is required')
+      //   })
+      // ]
     }),
     defineField({
       name: 'name',

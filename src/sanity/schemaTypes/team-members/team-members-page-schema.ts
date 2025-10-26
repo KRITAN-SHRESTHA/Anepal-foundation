@@ -1,6 +1,6 @@
-import { defineArrayMember, defineField, defineType, Reference } from 'sanity';
-import { Info } from 'lucide-react';
 import { validationLang } from '@/sanity/lib/validation-lang';
+import { Info } from 'lucide-react';
+import { defineArrayMember, defineType, Reference } from 'sanity';
 
 export const teamMembersPageSchema = defineType({
   name: 'team_members_page',
@@ -63,15 +63,15 @@ export const teamMembersPageSchema = defineType({
           type: 'image',
           options: { hotspot: true },
           description: 'Hero image (recommended size: 1440 × 687px)',
-          validation: rule => rule.required().error('Image is required'),
-          fields: [
-            defineField({
-              name: 'alt',
-              type: 'string',
-              title: 'Alternative Text (about donors and partners)',
-              validation: rule => rule.required().error('Image alt is required')
-            })
-          ]
+          validation: rule => rule.required().error('Image is required')
+          // fields: [
+          //   defineField({
+          //     name: 'alt',
+          //     type: 'string',
+          //     title: 'Alternative Text (about donors and partners)',
+          //     validation: rule => rule.required().error('Image alt is required')
+          //   })
+          // ]
         }
         // { name: 'highlightText', title: 'Highlight Text', type: 'string' } // "Mercy"
       ]
