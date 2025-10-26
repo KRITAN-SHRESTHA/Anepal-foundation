@@ -20,16 +20,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = (await params).locale;
 
   return {
-    title: 'Donate',
+    title: 'Donate to Anepal Foundation - Support Community Development',
     description:
-      'Support our cause by making a donation to Anepal Foundation. Every contribution makes a difference.',
+      'Make a secure donation to Anepal Foundation and support our mission to create sustainable change through education, community development, and humanitarian initiatives in Nepal.',
+    robots: {
+      index: false, // Don't index payment pages
+      follow: true
+    },
     alternates: generateAlternates('/payment', locale),
     openGraph: {
       type: 'website',
       siteName: 'Anepal Foundation',
-      title: 'Donate',
+      title: 'Donate to Anepal Foundation - Support Community Development',
       description:
-        'Support our cause by making a donation to Anepal Foundation. Every contribution makes a difference.',
+        'Make a secure donation to Anepal Foundation and support our mission to create sustainable change through education, community development, and humanitarian initiatives in Nepal.',
       url: generateFullPath('/payment', locale),
       locale: getOpenGraphLocale(locale),
       alternateLocale: getOpenGraphAlternateLocales(locale)
@@ -37,7 +41,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function PaymentLayout({
+export default async function Layout({
   children,
   params
 }: Readonly<{

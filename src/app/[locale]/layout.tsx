@@ -22,8 +22,8 @@ import {
   getOpenGraphLocale,
   getOpenGraphAlternateLocales
 } from '@/lib/metadata';
-import { getSettings } from '@/trpc/server/settings-procedure';
 import { urlFor } from '@/sanity/lib/image';
+import { serverClient } from '@/trpc/server';
 
 // import '../globals.css';
 
@@ -68,7 +68,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = (await params).locale;
   const baseUrl = getClientUrl();
 
-  const settingsData = await getSettings();
+  const settingsData = await serverClient.settings.getSettings();
 
   return {
     // Base URL for all relative URLs in metadata
@@ -216,8 +216,54 @@ export default async function RootLayout({ children, params }: Props) {
   // Enable static rendering
   setRequestLocale(locale);
 
+  const baseUrl = getClientUrl();
+  const settingsData = await serverClient.settings.getSettings();
+
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Anepal Foundation',
+    alternateName: 'Anepal',
+    url: baseUrl,
+    logo: settingsData.foundation_logo
+      ? urlFor(settingsData.foundation_logo).quality(100).url()
+      : `${baseUrl}/assets/logo.jpeg`,
+    description:
+      'Leading NGO for community development, sustainable development, education, and humanitarian initiatives in Nepal.',
+    // foundingDate: '2010',
+    // address: {
+    //   '@type': 'PostalAddress',
+    //   addressCountry: 'NP',
+    //   addressRegion: 'Kathmandu',
+    //   addressLocality: 'Nepal'
+    // },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'Customer Service',
+      availableLanguage: ['English', 'Spanish']
+    }
+    // sameAs: [
+    //   'https://www.facebook.com/anepalfoundation',
+    //   'https://twitter.com/anepalfoundation',
+    //   'https://www.instagram.com/anepalfoundation',
+    //   'https://www.linkedin.com/company/anepalfoundation'
+    // ],
+    // areaServed: {
+    //   '@type': 'Country',
+    //   name: 'Nepal'
+    // }
+  };
+
   return (
     <html lang={locale}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema)
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${quickSand.variable} ${permanentMarker.variable} antialiased`}
       >

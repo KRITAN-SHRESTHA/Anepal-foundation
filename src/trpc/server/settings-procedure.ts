@@ -14,7 +14,3 @@ export const settingsRouter = createTRPCRouter({
     return await client.fetch<Settings>(SETTINGS_QUERY, {}, options);
   })
 });
-
-export const getSettings = async () => {
-  return await client.fetch<Settings>(SETTINGS_QUERY, {}, options);
-};

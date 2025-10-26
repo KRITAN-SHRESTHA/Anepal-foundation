@@ -1,9 +1,11 @@
 import {
   generateAlternates,
   generateFullPath,
-  getOpenGraphLocale,
-  getOpenGraphAlternateLocales
+  getOpenGraphAlternateLocales,
+  getOpenGraphLocale
 } from '@/lib/metadata';
+import { urlFor } from '@/sanity/lib/image';
+import { serverClient } from '@/trpc/server';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 
@@ -17,64 +19,37 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = (await params).locale;
   setRequestLocale(locale);
 
-  // const settingsData = await getSettings();
+  const settingsData = await serverClient.settings.getSettings();
 
   return {
-    title: 'About Us',
+    title: 'About Anepal Foundation - Our Mission, Vision & Impact',
     description:
-      'Learn more about Anepal Foundation, our mission, vision, and the team behind our initiatives.',
+      "Discover Anepal Foundation's mission to create sustainable development and humanitarian impact in Nepal. Learn about our vision, core values, initiatives, and the dedicated team driving positive change in communities across Nepal.",
     alternates: generateAlternates('/about-us', locale),
     openGraph: {
       type: 'website',
       siteName: 'Anepal Foundation',
-      title: 'About Us',
+      title: 'About Anepal Foundation - Our Mission, Vision & Impact',
       description:
-        'Learn more about Anepal Foundation, our mission, vision, and the team behind our initiatives.',
+        "Discover Anepal Foundation's mission to create sustainable development and humanitarian impact in Nepal. Learn about our vision, core values, initiatives, and the dedicated team driving positive change in communities across Nepal.",
       url: generateFullPath('/about-us', locale),
       locale: getOpenGraphLocale(locale),
-      alternateLocale: getOpenGraphAlternateLocales(locale)
+      alternateLocale: getOpenGraphAlternateLocales(locale),
+      images: [
+        {
+          url: settingsData.foundation_logo
+            ? urlFor(settingsData.foundation_logo).quality(100).url()
+            : '/assets/logo.jpeg',
+          width: 1200,
+          height: 630,
+          alt: 'About Anepal Foundation'
+        }
+      ]
     }
   };
 }
 
-// export const metadata: Metadata = {
-//   title: 'About Us',
-//   description:
-//     'Learn more about Anepal Foundation, our mission, vision, and the team behind our initiatives.',
-//   alternates: {
-//     canonical: `${getClientUrl()}/about-us`,
-//     languages: {
-//       'en-US': '/en',
-//       'es-ES': '/es'
-//     }
-//   },
-//   openGraph: {
-//     type: 'website',
-//     siteName: 'Anepal Foundation',
-//     title: 'About Us',
-//     description:
-//       'Learn more about Anepal Foundation, our mission, vision, and the team behind our initiatives.',
-//     url: `${getClientUrl()}/about-us`,
-//     images: [
-//       {
-//         url: '/assets/logo.png',
-//         width: 800,
-//         height: 450,
-//         alt: 'Anepal Foundation - Empowering Communities in Nepal',
-//         type: 'image/png'
-//       },
-//       {
-//         url: '/assets/logo-transparent.png',
-//         width: 800,
-//         height: 450,
-//         alt: 'Anepal Foundation Logo',
-//         type: 'image/png'
-//       }
-//     ]
-//   }
-// };
-
-export default async function RootLayout({
+export default async function Layout({
   children,
   params
 }: Readonly<{

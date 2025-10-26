@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!event) {
     return {
       title: 'Event Not Found',
-      description: 'The requested eventcould not be found.'
+      description: 'The requested event could not be found.'
     };
   }
 
@@ -70,7 +70,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function EventDetailsPageLayout({
+export default async function Layout({
   children,
   params
 }: Readonly<{

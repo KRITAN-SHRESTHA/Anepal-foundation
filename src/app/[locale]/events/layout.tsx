@@ -1,9 +1,11 @@
 import {
   generateAlternates,
   generateFullPath,
-  getOpenGraphLocale,
-  getOpenGraphAlternateLocales
+  getOpenGraphAlternateLocales,
+  getOpenGraphLocale
 } from '@/lib/metadata';
+import { urlFor } from '@/sanity/lib/image';
+import { serverClient } from '@/trpc/server';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 
@@ -15,26 +17,38 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = (await params).locale;
+  const settingsData = await serverClient.settings.getSettings();
 
   return {
-    title: 'Events',
+    title: 'Anepal Foundation Events - Community Development Programs in Nepal',
     description:
-      'Discover upcoming and past events organized by Anepal Foundation to support our community.',
+      'Discover upcoming and past events organized by Anepal Foundation. Join our community programs, fundraising events, volunteer activities, and initiatives that make a difference in Nepal communities.',
     alternates: generateAlternates('/events', locale),
     openGraph: {
       type: 'website',
       siteName: 'Anepal Foundation',
-      title: 'Events',
+      title:
+        'Anepal Foundation Events - Community Development Programs in Nepal',
       description:
-        'Discover upcoming and past events organized by Anepal Foundation to support our community.',
+        'Discover upcoming and past events organized by Anepal Foundation. Join our community programs, fundraising events, volunteer activities, and initiatives that make a difference in Nepal communities.',
       url: generateFullPath('/events', locale),
       locale: getOpenGraphLocale(locale),
-      alternateLocale: getOpenGraphAlternateLocales(locale)
+      alternateLocale: getOpenGraphAlternateLocales(locale),
+      images: [
+        {
+          url: settingsData.foundation_logo
+            ? urlFor(settingsData.foundation_logo).quality(100).url()
+            : '/assets/logo.jpeg',
+          width: 1200,
+          height: 630,
+          alt: 'Anepal Foundation Events'
+        }
+      ]
     }
   };
 }
 
-export default async function EventsLayout({
+export default async function Layout({
   children,
   params
 }: Readonly<{

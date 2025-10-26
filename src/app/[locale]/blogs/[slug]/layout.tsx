@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // Use logo as the default image
   const imageUrl = post.mainImage
     ? urlFor(post.mainImage).quality(100).url()
-    : '/assets/logo.jepg';
+    : '/assets/logo.jpeg';
 
   return {
     title,
@@ -70,7 +70,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function RootLayout({
+export default async function Layout({
   children
 }: Readonly<{
   children: React.ReactNode;
