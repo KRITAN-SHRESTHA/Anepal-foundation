@@ -12,6 +12,7 @@ import ContentTitle from './content-title';
 import CustomImage from './custom-image';
 import NavigationLink from './navigation-link';
 import { Button } from './ui/button';
+import { Dialog, DialogContent, DialogTrigger } from './ui/dialog';
 
 interface ContentSectionProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
@@ -47,6 +48,11 @@ export default function ContentSection({
     typeof subtitle === 'string'
       ? subtitle
       : getLocalizedString(subtitle ?? []);
+
+  const convertedDescription =
+    typeof description === 'string'
+      ? description
+      : getLocalizedString(description ?? []);
 
   return (
     <div
@@ -101,11 +107,31 @@ export default function ContentSection({
           highlightTitleText={highlightTitleText}
         />
 
-        <p className="tablet:max-w-[60ch] text-muted-foreground pt-7 text-lg leading-[135%]">
-          {typeof description === 'string'
-            ? description
-            : getLocalizedString(description ?? [])}
-        </p>
+        {convertedDescription ? (
+          <p className="text-muted-foreground pt-7 text-lg leading-[135%]">
+            <span className="whitespace-pre-line">
+              {convertedDescription.slice(0, 400)}
+            </span>
+
+            {convertedDescription?.length > 400 && (
+              <>
+                ... &nbsp;
+                <Dialog>
+                  <DialogTrigger>
+                    <button className="cursor-pointer font-medium text-purple-700 underline-offset-1 hover:underline">
+                      see more
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="max-h-[90vh] w-full max-w-[800px]! overflow-y-auto px-[25px] py-[50px] sm:p-[50px]">
+                    <p className="whitespace-pre-line">
+                      {convertedDescription}
+                    </p>
+                  </DialogContent>
+                </Dialog>
+              </>
+            )}
+          </p>
+        ) : null}
 
         {!!readmoreLink ? (
           <div className="tablet:mt-12 mt-6 flex items-center gap-4">
