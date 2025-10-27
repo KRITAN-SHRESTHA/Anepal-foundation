@@ -94,12 +94,14 @@ export const settingsSchema = defineType({
         },
         {
           name: 'youtube',
-          title: 'Youtube URL',
+          title: 'YouTube URL',
+          description:
+            'Paste a YouTube video link. Examples: https://www.youtube.com/embed/VIDEO_ID. For an embed snippet see https://youtubeembedcode.com/en/ or use YouTube Share → Embed.',
           type: 'url',
-          validation: rule =>
-            rule.uri({
-              scheme: ['http', 'https']
-            })
+          options: {
+            placeholder: 'https://www.youtube.com/embed/VIDEO_ID'
+          },
+          validation: rule => rule.uri({ scheme: ['http', 'https'] })
         }
       ]
     })
