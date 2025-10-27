@@ -69,7 +69,7 @@ export default function ContentTitle({
         </h2>
       ) : null}
 
-      {title ? (
+      {title || highlightTitleText ? (
         <h3
           className={cn(
             'text-[32px] leading-[110%] tracking-tight text-[#515266] md:text-[40px] lg:text-[50px]',

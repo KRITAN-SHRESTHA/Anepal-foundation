@@ -39,9 +39,9 @@ function AboutViewSuspense() {
       {data?.firstcontent && (
         <ContentSection
           description={data.firstcontent?.description}
-          title="About Us"
-          subtitle={data.firstcontent?.title}
-          // highlightTitleText={data.firstcontent?.highlightTitle}
+          // title={data.firstcontent.title}
+          subtitle={data.firstcontent?.subtitle}
+          highlightTitleText={data.firstcontent?.title}
           orientation="rtl"
           image={data.firstcontent?.image}
         />

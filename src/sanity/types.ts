@@ -1189,7 +1189,6 @@ export type Aboutus = {
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
-      alt?: string;
       _type: 'image';
     };
     title?: Array<
