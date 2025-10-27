@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ReactConfetti from 'react-confetti';
-import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 
+import NavigationLink from '@/components/navigation-link';
 import SuccessLogo from '../components/success-logo';
 
 export default function PaymentSuccessView() {
@@ -33,7 +33,7 @@ export default function PaymentSuccessView() {
 
         <div className="mt-[100px] flex justify-center">
           <Button className="h-[50px] w-[200px] bg-purple-700 text-base text-white hover:bg-purple-900 hover:text-white">
-            <Link href={'/'}>Back to home</Link>
+            <NavigationLink href={'/'}>Back to home</NavigationLink>
           </Button>
         </div>
       </div>

@@ -17,7 +17,6 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = (await params).locale;
-  setRequestLocale(locale);
 
   const settingsData = await serverClient.settings.getSettings();
 

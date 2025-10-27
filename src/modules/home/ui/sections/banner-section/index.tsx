@@ -2,7 +2,6 @@
 
 import Autoplay from 'embla-carousel-autoplay';
 import Fade from 'embla-carousel-fade';
-import Link from 'next/link';
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
@@ -14,11 +13,12 @@ import {
   CarouselNext,
   CarouselPrevious
 } from '@/components/ui/carousel';
-import { trpc } from '@/trpc/client';
 import useGetLocale from '@/hooks/use-get-locale';
+import { trpc } from '@/trpc/client';
 
-import BannerSkeletion from './banner-skeletion';
+import NavigationLink from '@/components/navigation-link';
 import BannerImg from './banner-img';
+import BannerSkeletion from './banner-skeletion';
 
 // const BannerImg = dynamic(() => import('./banner-img'), {
 //   ssr: false
@@ -83,9 +83,9 @@ function BannerSectionSuspense() {
                         variant="outline"
                         className="w-[150px]"
                       >
-                        <Link href={data.link}>
+                        <NavigationLink href={data.link}>
                           <span className="text-nowrap">Discover more</span>
-                        </Link>
+                        </NavigationLink>
                       </Button>
                     )}
                   </div>

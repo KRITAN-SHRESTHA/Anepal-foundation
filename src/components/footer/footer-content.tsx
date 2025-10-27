@@ -13,6 +13,7 @@ import { Button } from '../ui/button';
 import { bottomLinks } from './footer-config';
 import { useTranslations } from 'next-intl';
 import useGetLocale from '@/hooks/use-get-locale';
+import NavigationLink from '../navigation-link';
 
 export default function FooterContent() {
   const pathname = usePathname();
@@ -28,24 +29,14 @@ export default function FooterContent() {
 
   return (
     <>
-      {/* <div className="relative h-[180px] w-full">
-        <Image
-          className="w-full object-contain"
-          src={'/assets/bottom-bg.png'}
-          alt=""
-          quality={100}
-          fill
-        />
-      </div> */}
-
       <section className="bg-accent pt-10 pb-10 md:pt-20">
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <footer>
             <div className="grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
               <div className="grid h-fit gap-2">
-                <Link href="/" className="-ml-4 h-[100px] w-[190px]">
+                <NavigationLink href="/" className="-ml-4 h-[100px] w-[190px]">
                   <Logo className="h-full w-full" />
-                </Link>
+                </NavigationLink>
                 <ul className="mt-5">
                   <li className="flex gap-3">
                     {footerData?.socialMedia?.twitter && (
@@ -108,9 +99,9 @@ export default function FooterContent() {
                       key={linkIdx}
                       className="hover:text-primary font-medium"
                     >
-                      <Link href={link.link!}>
+                      <NavigationLink href={link.link!}>
                         {getLocalizedString(link.name ?? [])}
-                      </Link>
+                      </NavigationLink>
                     </li>
                   ))}
                 </ul>
@@ -122,11 +113,11 @@ export default function FooterContent() {
                   <p className="hover:text-primary font-medium">
                     {t('Help_Us_Change_the_Lives_of_Children_in_World')}
                   </p>
-                  <Link href={'/payment'}>
+                  <NavigationLink href={'/payment'}>
                     <Button className="h-[50px] w-[150px] rounded-full bg-purple-700 text-base hover:bg-purple-900">
                       {t('Donate_us')} <ArrowUpRight />
                     </Button>
-                  </Link>
+                  </NavigationLink>
                 </div>
               </div>
             </div>
@@ -138,9 +129,12 @@ export default function FooterContent() {
               <ul className="flex gap-4">
                 {bottomLinks.map((link, linkIdx) => (
                   <li key={linkIdx} className="hover:text-primary underline">
-                    <Link href={link.url} className="first-letter:capitalize">
+                    <NavigationLink
+                      href={link.url}
+                      className="first-letter:capitalize"
+                    >
                       {t(link.text)}
-                    </Link>
+                    </NavigationLink>
                   </li>
                 ))}
               </ul>

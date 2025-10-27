@@ -3,7 +3,6 @@
 import { SanityAsset } from '@sanity/image-url/lib/types/types';
 import { BookOpen } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { HTMLAttributes } from 'react';
 
 import useGetLocale from '@/hooks/use-get-locale';
@@ -11,6 +10,7 @@ import { cn, LocalisedDataType } from '@/lib/utils';
 import { InternalizedArrayTextValueType } from '@/types';
 import ContentTitle from './content-title';
 import CustomImage from './custom-image';
+import NavigationLink from './navigation-link';
 import { Button } from './ui/button';
 
 interface ContentSectionProps
@@ -109,7 +109,7 @@ export default function ContentSection({
 
         {!!readmoreLink ? (
           <div className="tablet:mt-12 mt-6 flex items-center gap-4">
-            <Link href={'/about-us'}>
+            <NavigationLink href={'/about-us'}>
               <Button
                 variant="outline"
                 className="rounded-full !px-5 text-base shadow-none [&_svg]:!size-4"
@@ -117,7 +117,7 @@ export default function ContentSection({
               >
                 <BookOpen className="!h-5 !w-5" /> Read more
               </Button>
-            </Link>
+            </NavigationLink>
           </div>
         ) : null}
       </div>

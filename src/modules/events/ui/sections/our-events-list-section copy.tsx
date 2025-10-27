@@ -2,7 +2,6 @@
 
 import { Clock4, MapPin } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { Suspense } from 'react';
 
 import {
@@ -14,6 +13,7 @@ import {
 } from '@/components/ui/card';
 import useGetLocale from '@/hooks/use-get-locale';
 
+import NavigationLink from '@/components/navigation-link';
 import EventsListSkeleton from '../components/events-list-skeleton';
 import useGetAllEvents from '../hooks/use-get-all-events';
 
@@ -47,22 +47,22 @@ function OurEventsListSectionSuspense() {
           <Card className="flex flex-1 gap-x-0 gap-y-8 overflow-hidden rounded-none border-none shadow-xl md:flex-row md:items-center">
             <div className="w-full overflow-hidden pr-6 pl-6 md:w-[40%] md:pr-0">
               <div className="relative aspect-video md:h-[230px] md:w-full">
-                <Link href={`/events/${event.slug?.current}`}>
+                <NavigationLink href={`/events/${event.slug?.current}`}>
                   <Image
                     src={'/assets/main-slider/23.jpg'}
                     alt={''}
                     className="h-full w-full object-cover"
                     fill
                   />
-                </Link>
+                </NavigationLink>
               </div>
             </div>
             <div>
               <CardHeader>
                 <CardTitle className="text-xl font-bold underline-offset-2 hover:underline">
-                  <Link href={`/events/${event.slug?.current}`}>
+                  <NavigationLink href={`/events/${event.slug?.current}`}>
                     {getLocalizedString(event.title ?? [])}
-                  </Link>
+                  </NavigationLink>
                 </CardTitle>
               </CardHeader>
               <CardContent>

@@ -76,7 +76,7 @@ export default function StoriesListSection() {
               </p>
 
               {/* <div className="tablet:mt-12 mt-6 flex items-center gap-4">
-                <Link href={`/stories/${story.slug?.current}`}>
+                <NavigationLink href={`/stories/${story.slug?.current}`}>
                   <Button
                     variant="outline"
                     className="rounded-full !px-5 text-base shadow-none [&_svg]:!size-4"
@@ -84,7 +84,7 @@ export default function StoriesListSection() {
                   >
                     <BookOpen className="!h-5 !w-5" /> Read Story
                   </Button>
-                </Link>
+                </NavigationLink>
               </div> */}
             </div>
           </div>

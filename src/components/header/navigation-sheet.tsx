@@ -1,12 +1,12 @@
-import Link from 'next/link';
-import { ErrorBoundary } from 'react-error-boundary';
 import { usePathname } from 'next/navigation';
+import { ErrorBoundary } from 'react-error-boundary';
 
 import { SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import useGetLocale from '@/hooks/use-get-locale';
 import { trpc } from '@/trpc/client';
 
 import { cn } from '@/lib/utils';
+import NavigationLink from '../navigation-link';
 import Logo from './logo';
 
 export default function NavigationSheet() {
@@ -26,9 +26,9 @@ const NavigationSheetSuspense = () => {
   return (
     <SheetContent className="overflow-y-auto p-6">
       <SheetTrigger asChild>
-        <Link href={'/'}>
+        <NavigationLink href={'/'}>
           <Logo className="h-[80px] w-[150px]" />
-        </Link>
+        </NavigationLink>
       </SheetTrigger>
 
       <div className="bg-accent space-y-1.5 rounded-md px-4 py-3">
@@ -66,18 +66,20 @@ const NavigationSheetSuspense = () => {
           <div key={nav._id}>
             {nav.link ? (
               <SheetTrigger asChild>
-                <Link href={nav.link}>
+                <NavigationLink href={nav.link}>
                   <div
                     className={cn(
                       'text-muted-foreground underline-offset-2 hover:underline',
                       {
-                        'font-bold! text-purple-700!': pathname === nav.link
+                        'font-bold! text-purple-700!': pathname.includes(
+                          nav.link
+                        )
                       }
                     )}
                   >
                     {getLocalizedString(nav.name ?? [])}
                   </div>
-                </Link>
+                </NavigationLink>
               </SheetTrigger>
             ) : (
               <div className="font-bold">
@@ -90,7 +92,7 @@ const NavigationSheetSuspense = () => {
                   <li key={sub._key}>
                     {sub.link ? (
                       <SheetTrigger asChild>
-                        <Link
+                        <NavigationLink
                           href={sub.link}
                           className={cn(
                             'text-muted-foreground underline-offset-2 hover:underline',
@@ -101,7 +103,7 @@ const NavigationSheetSuspense = () => {
                           )}
                         >
                           {getLocalizedString(nav.name ?? [])}
-                        </Link>
+                        </NavigationLink>
                       </SheetTrigger>
                     ) : (
                       <p>{getLocalizedString(nav.name ?? [])}</p>
