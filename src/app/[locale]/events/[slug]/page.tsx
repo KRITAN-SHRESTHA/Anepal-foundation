@@ -1,11 +1,10 @@
+import { getClientUrl, getLocalizedString } from '@/lib/utils';
 import EventsDetailsView from '@/modules/events/ui/views/events-details-view';
 import { client } from '@/sanity/lib/client';
-import { Events } from '@/sanity/types';
-import { HydrateClient, trpc, serverClient } from '@/trpc/server';
-import { setRequestLocale } from 'next-intl/server';
-import { getClientUrl, getLocalizedString } from '@/lib/utils';
 import { urlFor } from '@/sanity/lib/image';
-import React from 'react';
+import { Events } from '@/sanity/types';
+import { HydrateClient, serverClient, trpc } from '@/trpc/server';
+import { setRequestLocale } from 'next-intl/server';
 
 interface EventsDetailsPageParams {
   params: Promise<{

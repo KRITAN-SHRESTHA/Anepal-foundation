@@ -1,7 +1,7 @@
+import { getClientUrl } from '@/lib/utils';
 import AboutView from '@/modules/about/ui/views/about-view';
 import { HydrateClient, trpc } from '@/trpc/server';
 import { setRequestLocale } from 'next-intl/server';
-import { getClientUrl } from '@/lib/utils';
 
 export const dynamic = 'force-dynamic';
 

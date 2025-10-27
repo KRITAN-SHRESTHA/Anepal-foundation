@@ -3,9 +3,9 @@
 import { urlFor } from '@/sanity/lib/image';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 
 import ContentTitle from '@/components/content-title';
+import NavigationLink from '@/components/navigation-link';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -14,10 +14,10 @@ import {
   CardHeader
 } from '@/components/ui/card';
 import useGetLocale from '@/hooks/use-get-locale';
-import { trpc } from '@/trpc/client';
 import { formatMDY } from '@/lib/date-format';
-import { ErrorBoundary } from 'react-error-boundary';
+import { trpc } from '@/trpc/client';
 import { Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 
 export default function EventsSection() {
   return (
@@ -61,10 +61,10 @@ function EventsSectionSuspense() {
             className="w-[180px] rounded-full"
             asChild
           >
-            <Link href={'/events'}>
+            <NavigationLink href={'/events'}>
               View all events
               <ArrowRight className="ml-2 size-4" />
-            </Link>
+            </NavigationLink>
           </Button>
         </div>
         {eventsList.length === 0 ? null : (
@@ -75,7 +75,7 @@ function EventsSectionSuspense() {
                 className="grid w-full overflow-hidden pt-0"
               >
                 <div className="relative aspect-16/9 w-full">
-                  <Link
+                  <NavigationLink
                     href={`/events/${event.slug?.current}`}
                     className="fade-in transition-opacity duration-200 hover:opacity-70"
                   >
@@ -92,7 +92,7 @@ function EventsSectionSuspense() {
                         fill
                       />
                     )}
-                  </Link>
+                  </NavigationLink>
                 </div>
                 <CardHeader>
                   <p className="text-muted-foreground text-sm">
@@ -101,9 +101,9 @@ function EventsSectionSuspense() {
                     -{event.event_time?.end && formatMDY(event.event_time?.end)}
                   </p>
                   <h3 className="text-primary text-lg font-semibold hover:underline md:text-xl">
-                    <Link href={`/events/${event.slug?.current}`}>
+                    <NavigationLink href={`/events/${event.slug?.current}`}>
                       {getLocalizedString(event.title ?? [])}
-                    </Link>
+                    </NavigationLink>
                   </h3>
                 </CardHeader>
                 <CardContent>
@@ -112,13 +112,13 @@ function EventsSectionSuspense() {
                   </p>
                 </CardContent>
                 <CardFooter>
-                  <Link
+                  <NavigationLink
                     href={`/events/${event.slug?.current}`}
                     className="text-foreground flex cursor-pointer items-center hover:underline"
                   >
                     Read more
                     <ArrowRight className="ml-2 size-4" />
-                  </Link>
+                  </NavigationLink>
                 </CardFooter>
               </Card>
             ))}

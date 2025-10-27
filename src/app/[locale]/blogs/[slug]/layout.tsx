@@ -8,6 +8,7 @@ import {
   getOpenGraphLocale,
   getOpenGraphAlternateLocales
 } from '@/lib/metadata';
+import { setRequestLocale } from 'next-intl/server';
 
 type Props = {
   params: Promise<{
@@ -71,9 +72,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function Layout({
-  children
+  children,
+  params
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{
+    locale: string;
+  }>;
 }>) {
+  const locale = (await params).locale;
+  setRequestLocale(locale);
   return <div>{children}</div>;
 }

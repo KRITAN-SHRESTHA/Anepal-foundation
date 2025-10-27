@@ -1,8 +1,8 @@
 import {
   generateAlternates,
   generateFullPath,
-  getOpenGraphLocale,
-  getOpenGraphAlternateLocales
+  getOpenGraphAlternateLocales,
+  getOpenGraphLocale
 } from '@/lib/metadata';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';

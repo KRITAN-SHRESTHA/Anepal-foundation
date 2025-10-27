@@ -4,6 +4,7 @@ import { Blogs } from '@/sanity/types';
 import { HydrateClient, trpc, serverClient } from '@/trpc/server';
 import { getClientUrl, getLocalizedString } from '@/lib/utils';
 import { urlFor } from '@/sanity/lib/image';
+import { setRequestLocale } from 'next-intl/server';
 
 interface BlogDetailsPageParams {
   params: Promise<{
@@ -29,6 +30,7 @@ export default async function BlogDetailsPage({
   params
 }: BlogDetailsPageParams) {
   const { slug, locale } = await params;
+  setRequestLocale(locale);
 
   void trpc.blogs.getOneBlog.prefetch({
     slug

@@ -8,9 +8,9 @@ import {
   CardHeader
 } from '@/components/ui/card';
 import Image from 'next/image';
-import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import ContentTitle from '@/components/content-title';
+import NavigationLink from '@/components/navigation-link';
 
 export default function BlogSection() {
   return (
@@ -25,10 +25,10 @@ export default function BlogSection() {
             className="mt-7 w-[180px] rounded-full"
             asChild
           >
-            <Link href={'/'} target="_blank">
+            <NavigationLink href={'/'}>
               View all news
               <ArrowRight className="ml-2 size-4" />
-            </Link>
+            </NavigationLink>
           </Button>
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
@@ -38,9 +38,8 @@ export default function BlogSection() {
               className="grid grid-rows-[auto_auto_1fr_auto] pt-0"
             >
               <div className="relative aspect-16/9 w-full">
-                <Link
+                <NavigationLink
                   href={post.url}
-                  target="_blank"
                   className="fade-in transition-opacity duration-200 hover:opacity-70"
                 >
                   <Image
@@ -49,7 +48,7 @@ export default function BlogSection() {
                     className="h-full w-full object-cover object-center"
                     fill
                   />
-                </Link>
+                </NavigationLink>
               </div>
               <CardHeader className="gap-2.5">
                 <Badge variant={'secondary'}>Water</Badge>
@@ -65,14 +64,14 @@ export default function BlogSection() {
               </CardContent>
               <CardFooter className="justify-between">
                 <p className="text-muted-foreground text-sm">Jan 30, 2020</p>
-                <Link
+                <NavigationLink
                   href={post.url}
                   target="_blank"
                   className="text-foreground flex items-center hover:underline"
                 >
                   Read more
                   <ArrowRight className="ml-2 size-4" />
-                </Link>
+                </NavigationLink>
               </CardFooter>
             </Card>
           ))}

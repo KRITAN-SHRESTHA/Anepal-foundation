@@ -1,11 +1,11 @@
 'use client';
 
 import { ChevronRight } from 'lucide-react';
-import Link from 'next/link';
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import ContentTitle from '@/components/content-title';
+import NavigationLink from '@/components/navigation-link';
 import TeamMemberCard from '@/components/team-member-card';
 import { Button } from '@/components/ui/button';
 import { trpc } from '@/trpc/client';
@@ -50,10 +50,10 @@ function HomeTeamMembersSectionSuspense() {
           className="mt-4 rounded-full !px-5 pr-2"
           border={'purple'}
         >
-          <Link href="/team-member">
+          <NavigationLink href="/our-team">
             Read more
             <ChevronRight className="opacity-50" />
-          </Link>
+          </NavigationLink>
         </Button>
       </div>
       <div className="relative mx-auto mt-10 flex max-w-3xl flex-col gap-5 gap-y-10 md:mt-20">

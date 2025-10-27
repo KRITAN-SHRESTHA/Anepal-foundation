@@ -1,15 +1,15 @@
-import HomeView from '@/modules/home/ui/views/home-view';
-import { HydrateClient, serverClient, trpc } from '@/trpc/server';
-import { setRequestLocale } from 'next-intl/server';
-import type { Metadata } from 'next';
 import {
   generateAlternates,
   generateFullPath,
-  getOpenGraphLocale,
-  getOpenGraphAlternateLocales
+  getOpenGraphAlternateLocales,
+  getOpenGraphLocale
 } from '@/lib/metadata';
 import { getClientUrl } from '@/lib/utils';
+import HomeView from '@/modules/home/ui/views/home-view';
 import { urlFor } from '@/sanity/lib/image';
+import { HydrateClient, serverClient, trpc } from '@/trpc/server';
+import type { Metadata } from 'next';
+import { setRequestLocale } from 'next-intl/server';
 
 export const dynamic = 'force-dynamic';
 
