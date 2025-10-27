@@ -129,15 +129,13 @@ export default function ContentSection({
                   </DialogTrigger>
                   <DialogContent className="max-h-[90vh] w-full max-w-[800px]! overflow-y-auto px-[25px] py-[50px] sm:p-[50px]">
                     <DialogTitle className="text-3xl">
-                      {convertedHighlightTitleText ? (
-                        <b>
-                          {convertedHighlightTitleText + ' ' + convertedTitle}
-                        </b>
-                      ) : convertedTitle ? (
-                        convertedTitle
-                      ) : (
-                        convertedSubtitle
-                      )}
+                      <b>
+                        {convertedHighlightTitleText
+                          ? convertedHighlightTitleText + ' ' + convertedTitle
+                          : convertedTitle
+                            ? convertedTitle
+                            : convertedSubtitle}
+                      </b>
                     </DialogTitle>
                     <p className="whitespace-pre-line">
                       {convertedDescription}
