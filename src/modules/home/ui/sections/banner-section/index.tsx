@@ -52,7 +52,7 @@ function BannerSectionSuspense() {
         <CarouselContent>
           {bannerData.map((data, idx) => (
             <CarouselItem key={data._id}>
-              <div className="bg-red relative h-[65vh] w-full lg:h-[85vh]">
+              <div className="relative h-[65vh] w-full lg:h-[85vh]">
                 <div className="absolute z-20 h-full w-full bg-red-400/25" />
                 <VideoSection />
 
@@ -94,8 +94,8 @@ function BannerSectionSuspense() {
         </CarouselContent>
         {bannerData.length === 1 ? null : (
           <>
-            <CarouselPrevious className="top-[calc(100%-4.5rem)] right-18 left-auto size-10 translate-y-0" />
-            <CarouselNext className="top-[calc(100%-4.5rem)] right-15 size-10 translate-x-full translate-y-0" />
+            <CarouselPrevious className="top-[calc(100%-4.5rem)] right-18 left-auto z-50 size-10 translate-y-0" />
+            <CarouselNext className="top-[calc(100%-4.5rem)] right-15 z-50 size-10 translate-x-full translate-y-0" />
           </>
         )}
       </Carousel>
