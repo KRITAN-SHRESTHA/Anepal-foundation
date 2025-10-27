@@ -11,7 +11,7 @@ const config: NextConfig = {
     },
   },
   compiler: {
-    removeConsole: true
+    removeConsole: process.env.NODE_ENV === 'production' ? true : false
   },
   eslint: {
     // Warning: This allows production builds to successfully complete even if

@@ -13,14 +13,20 @@
   },
   "Default": {
     "Donate_us": "Donate us",
+    "Make_a_difference_today":"Make a difference today",
+    "Your_generosity_changes_lives_of_other_children":"Your generosity changes lives of other children",
+    "Or_donate_with_Credit_Debit_Card":"Or donate with Credit/Debit Card",
     "Donate": "Donate",
     "Contacts": "Contacts",
     "Help_Us_Change_the_Lives_of_Children_in_World": "Help Us Change the Lives of Children in World",
-    "Anepal_Organization_All_rights_reserved": "Anepal Organization. All rights reserved.",
+    "Anepal_Organization_All_rights_reserved": "Anepal Foundation. All rights reserved.",
     "Terms_and_Conditions": "Terms and Conditions",
     "Privacy_Policy": "Privacy Policy",
     "Links": "Links",
     "Phone": "Phone",
-    "Email": "Email"
+    "Email": "Email",
+    "Cardholder_name":"Cardholder name",
+    "Card_number":"Card number",
+    "Expiry_date":"Expiry date"
   }
 }
