@@ -1521,11 +1521,6 @@ export type HomeBanner = {
       _key: string;
     } & InternationalizedArrayStringValue
   >;
-  highlightTitle?: Array<
-    {
-      _key: string;
-    } & InternationalizedArrayStringValue
-  >;
   image?: {
     asset?: {
       _ref: string;

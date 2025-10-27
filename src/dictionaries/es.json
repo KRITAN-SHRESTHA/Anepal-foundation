@@ -13,14 +13,20 @@
   },
   "Default": {
     "Donate_us": "Donanos",
+    "Make_a_difference_today": "Haz una diferencia hoy",
+    "Your_generosity_changes_lives_of_other_children": "Tu generosidad cambia la vida de otros niños",
+    "Or_donate_with_Credit_Debit_Card": "O donar con tarjeta de crédito/débito",
     "Donate": "Donar",
     "Contacts": "Contactos",
     "Help_Us_Change_the_Lives_of_Children_in_World": "Ayúdanos a cambiar la vida de los niños del mundo",
-    "Anepal_Organization_All_rights_reserved": "Organización Anepal. Todos los derechos reservados.",
+    "Anepal_Organization_All_rights_reserved": "Fundación Anepal. Todos los derechos reservados.",
     "Terms_and_Conditions": "Términos y Condiciones",
     "Privacy_Policy": "Política de Privacidad",
     "Links": "Campo de golf",
     "Phone": "Teléfono",
-    "Email": "Correo electrónico"
+    "Email": "Correo electrónico",
+    "Cardholder_name": "Nombre del titular de la tarjeta",
+    "Card_number": "Número de tarjeta",
+    "Expiry_date": "Fecha de caducidad"
   }
 }

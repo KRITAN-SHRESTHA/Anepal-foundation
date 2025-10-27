@@ -33,7 +33,9 @@ export default function PaymentSuccessView() {
 
         <div className="mt-[100px] flex justify-center">
           <Button className="h-[50px] w-[200px] bg-purple-700 text-base text-white hover:bg-purple-900 hover:text-white">
-            <NavigationLink href={'/'}>Back to home</NavigationLink>
+            <NavigationLink href={'/'} className="">
+              Back to home
+            </NavigationLink>
           </Button>
         </div>
       </div>

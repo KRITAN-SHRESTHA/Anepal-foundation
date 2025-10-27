@@ -3,6 +3,7 @@
 import { useSelectedLayoutSegment } from 'next/navigation';
 import { ComponentProps } from 'react';
 import { Link } from '@/i18n/navigation';
+import { cn } from '@/lib/utils';
 
 export default function NavigationLink({
   href,
@@ -16,7 +17,9 @@ export default function NavigationLink({
     <Link
       aria-current={isActive ? 'page' : undefined}
       href={href}
-      style={{ fontWeight: isActive ? 'bold' : 'normal' }}
+      className={cn('', {
+        'font-bold! text-purple-700': isActive
+      })}
       {...rest}
     />
   );

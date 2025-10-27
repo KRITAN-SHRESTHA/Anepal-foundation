@@ -8,6 +8,7 @@ import { trpc } from '@/trpc/client';
 import { cn } from '@/lib/utils';
 import NavigationLink from '../navigation-link';
 import Logo from './logo';
+import { useTranslations } from 'next-intl';
 
 export default function NavigationSheet() {
   return (
@@ -22,6 +23,7 @@ const NavigationSheetSuspense = () => {
   const [navData] = trpc.header.getHeader.useSuspenseQuery();
   const { getLocalizedString } = useGetLocale();
   const pathname = usePathname();
+  const t = useTranslations('ContactPage');
 
   return (
     <SheetContent className="overflow-y-auto p-6">
@@ -34,7 +36,7 @@ const NavigationSheetSuspense = () => {
       <div className="bg-accent space-y-1.5 rounded-md px-4 py-3">
         {/* phone number */}
         <div className="flex flex-col">
-          <span className="text-xs">Phone number:</span>
+          <span className="text-xs">{t('Phone')}:</span>
           <a
             href={`tel:${settingsData.contact?.phone}`}
             className="text-[13px] leading-[100%] font-medium"
@@ -44,14 +46,14 @@ const NavigationSheetSuspense = () => {
         </div>
         {/* address */}
         <div className="flex flex-col">
-          <span className="text-xs">Address:</span>
+          <span className="text-xs">{t('Address')}:</span>
           <p className="text-[13px] leading-[115%] font-medium">
             {settingsData.contact?.address}
           </p>
         </div>
         {/* email */}
         <div className="flex flex-col">
-          <span className="text-xs">Email:</span>
+          <span className="text-xs">{t('Email')}:</span>
           <a
             href={`mailto:${settingsData.contact?.email}`}
             className="text-[13px] leading-[100%] font-medium"
