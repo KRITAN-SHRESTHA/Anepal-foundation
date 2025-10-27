@@ -5,7 +5,6 @@ import Fade from 'embla-carousel-fade';
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
-import { Button } from '@/components/ui/button';
 import {
   Carousel,
   CarouselContent,
@@ -16,13 +15,8 @@ import {
 import useGetLocale from '@/hooks/use-get-locale';
 import { trpc } from '@/trpc/client';
 
-import NavigationLink from '@/components/navigation-link';
 import BannerImg from './banner-img';
 import BannerSkeletion from './banner-skeletion';
-
-// const BannerImg = dynamic(() => import('./banner-img'), {
-//   ssr: false
-// });
 
 export default function BannerSection() {
   return (
@@ -57,26 +51,27 @@ function BannerSectionSuspense() {
         <CarouselContent>
           {bannerData.map((data, idx) => (
             <CarouselItem key={data._id}>
-              <div className="relative h-[65vh] w-full lg:h-[85vh]">
+              <div className="bg-red relative h-[65vh] w-full lg:h-[85vh]">
+                <div className="absolute z-20 h-full w-full bg-red-400/25" />
                 <BannerImg
                   image={data.image}
                   title={data.title}
                   priority={idx === 0}
                 />
 
-                <section className="mx-auto flex h-full max-w-[1200px] items-center px-4 sm:px-6 lg:px-8">
+                <section className="relative z-30 mx-auto flex h-full max-w-[1200px] items-center px-4 sm:px-6 lg:px-8">
                   <div className="relative">
                     <div className="max-w-2xl">
-                      <h1 className="text-[40px] leading-[130%] text-balance text-white first-letter:capitalize md:text-5xl lg:text-6xl">
-                        <b>{getLocalizedString(data?.highlightTitle ?? [])}</b>
-                        <br />
+                      <h1 className="text-[40px] leading-[110%] text-balance text-white first-letter:capitalize md:text-5xl lg:text-6xl">
+                        {/* <b>{getLocalizedString(data?.highlightTitle ?? [])}</b> */}
+                        {/* <br /> */}
                         {getLocalizedString(data?.title ?? [])}
                       </h1>
-                      <p className="my-6 line-clamp-2 text-base leading-[100%] text-balance text-white first-letter:capitalize md:text-xl lg:text-2xl">
+                      <p className="my-6 line-clamp-2 text-base leading-[110%] text-balance text-white first-letter:capitalize md:text-xl lg:text-2xl">
                         {getLocalizedString(data?.description ?? [])}
                       </p>
                     </div>
-                    {data.link && (
+                    {/* {data.link && (
                       <Button
                         asChild
                         size="lg"
@@ -87,7 +82,7 @@ function BannerSectionSuspense() {
                           <span className="text-nowrap">Discover more</span>
                         </NavigationLink>
                       </Button>
-                    )}
+                    )} */}
                   </div>
                 </section>
               </div>
