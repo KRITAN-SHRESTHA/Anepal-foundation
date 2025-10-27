@@ -1,10 +1,15 @@
-import CustomImage from '@/components/custom-image';
-// import { Button } from '@/components/ui/button';
-import useGetLocale from '@/hooks/use-get-locale';
-import { cn } from '@/lib/utils';
-// import { BookOpen } from 'lucide-react';
 import Image from 'next/image';
-// import Link from 'next/link';
+
+import CustomImage from '@/components/custom-image';
+import useGetLocale from '@/hooks/use-get-locale';
+import { cn, LocalisedDataType } from '@/lib/utils';
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger
+} from '@/components/ui/dialog';
+
 import useGetAllStories from '../hooks/use-get-all-stories';
 
 export default function StoriesListSection() {
@@ -15,6 +20,9 @@ export default function StoriesListSection() {
     return <h1 className="py-10 text-center">No stories found</h1>;
   }
 
+  const convertedDescription = (text: LocalisedDataType[]) =>
+    getLocalizedString(text ?? []);
+
   return (
     <div>
       {stories.map((story, idx) => {
@@ -23,6 +31,8 @@ export default function StoriesListSection() {
         const lastname = splitName?.slice(1, splitName.length).join(' ');
 
         const numbering = (pagination.page - 1) * pagination.pageSize + idx + 1;
+
+        const description = convertedDescription(story.description!);
 
         return (
           <div
@@ -71,9 +81,37 @@ export default function StoriesListSection() {
                 {lastname}
               </h4>
 
-              <p className="tablet:max-w-[60ch] text-muted-foreground line-clamp-5 pt-7 text-lg leading-[135%]">
-                {getLocalizedString(story.description ?? [])}
-              </p>
+              {description ? (
+                <p className="text-muted-foreground pt-7 text-lg leading-[135%]">
+                  <span className="whitespace-pre-line">
+                    {description?.slice(0, 300)}
+                  </span>
+                  {description?.length > 300 && (
+                    <>
+                      ... &nbsp;
+                      <Dialog>
+                        <DialogTrigger>
+                          <button className="cursor-pointer font-medium text-purple-700 underline-offset-1 hover:underline">
+                            see more
+                          </button>
+                        </DialogTrigger>
+                        <DialogContent className="max-h-[90vh] w-full max-w-[800px]! overflow-y-auto px-[25px] py-[50px] sm:p-[50px]">
+                          <DialogTitle className="text-[30px]">
+                            <b>{firstName}</b>&nbsp;
+                            {lastname}
+                          </DialogTitle>
+                          <p
+                            dangerouslySetInnerHTML={{
+                              __html:
+                                description?.replaceAll('\n', '<br/>') || ''
+                            }}
+                          ></p>
+                        </DialogContent>
+                      </Dialog>
+                    </>
+                  )}
+                </p>
+              ) : null}
 
               {/* <div className="tablet:mt-12 mt-6 flex items-center gap-4">
                 <NavigationLink href={`/stories/${story.slug?.current}`}>
