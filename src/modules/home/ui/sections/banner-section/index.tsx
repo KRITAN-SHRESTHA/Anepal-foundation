@@ -17,6 +17,7 @@ import { trpc } from '@/trpc/client';
 
 import BannerImg from './banner-img';
 import BannerSkeletion from './banner-skeletion';
+import VideoSection from './video-section';
 
 export default function BannerSection() {
   return (
@@ -53,6 +54,8 @@ function BannerSectionSuspense() {
             <CarouselItem key={data._id}>
               <div className="bg-red relative h-[65vh] w-full lg:h-[85vh]">
                 <div className="absolute z-20 h-full w-full bg-red-400/25" />
+                <VideoSection />
+
                 <BannerImg
                   image={data.image}
                   title={data.title}
