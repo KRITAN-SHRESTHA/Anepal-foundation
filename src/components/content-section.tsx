@@ -12,7 +12,7 @@ import ContentTitle from './content-title';
 import CustomImage from './custom-image';
 import NavigationLink from './navigation-link';
 import { Button } from './ui/button';
-import { Dialog, DialogContent, DialogTrigger } from './ui/dialog';
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from './ui/dialog';
 
 interface ContentSectionProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
@@ -53,6 +53,11 @@ export default function ContentSection({
     typeof description === 'string'
       ? description
       : getLocalizedString(description ?? []);
+
+  const convertedHighlightTitleText =
+    typeof highlightTitleText === 'string'
+      ? highlightTitleText
+      : getLocalizedString(highlightTitleText ?? []);
 
   return (
     <div
@@ -123,6 +128,17 @@ export default function ContentSection({
                     </button>
                   </DialogTrigger>
                   <DialogContent className="max-h-[90vh] w-full max-w-[800px]! overflow-y-auto px-[25px] py-[50px] sm:p-[50px]">
+                    <DialogTitle className="text-3xl">
+                      {convertedHighlightTitleText ? (
+                        <b>
+                          {convertedHighlightTitleText + ' ' + convertedTitle}
+                        </b>
+                      ) : convertedTitle ? (
+                        convertedTitle
+                      ) : (
+                        convertedSubtitle
+                      )}
+                    </DialogTitle>
                     <p className="whitespace-pre-line">
                       {convertedDescription}
                     </p>
