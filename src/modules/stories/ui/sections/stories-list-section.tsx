@@ -97,8 +97,10 @@ export default function StoriesListSection() {
                         </DialogTrigger>
                         <DialogContent className="max-h-[90vh] w-full max-w-[800px]! overflow-y-auto px-[25px] py-[50px] sm:p-[50px]">
                           <DialogTitle className="text-[30px]">
-                            <b>{firstName}</b>&nbsp;
-                            {lastname}
+                            <b>
+                              {firstName}&nbsp;
+                              {lastname}
+                            </b>
                           </DialogTitle>
                           <p
                             dangerouslySetInnerHTML={{
