@@ -72,7 +72,7 @@ function OurBlogsListSectionSuspense() {
             </h3>
           </CardHeader>
           <CardContent>
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground line-clamp-3">
               {getLocalizedString(blog.short_description ?? [])}
             </p>
           </CardContent>

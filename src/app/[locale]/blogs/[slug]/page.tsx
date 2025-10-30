@@ -1,9 +1,9 @@
+import { getClientUrl, getLocalizedString } from '@/lib/utils';
 import BlogsDetailsView from '@/modules/blogs/ui/views/blog-details-view';
 import { client } from '@/sanity/lib/client';
-import { Blogs } from '@/sanity/types';
-import { HydrateClient, trpc, serverClient } from '@/trpc/server';
-import { getClientUrl, getLocalizedString } from '@/lib/utils';
 import { urlFor } from '@/sanity/lib/image';
+import { Blogs } from '@/sanity/types';
+import { HydrateClient, serverClient, trpc } from '@/trpc/server';
 import { setRequestLocale } from 'next-intl/server';
 
 interface BlogDetailsPageParams {
@@ -13,13 +13,12 @@ interface BlogDetailsPageParams {
   }>;
 }
 
-export const revalidate = 30;
+// export const revalidate = 30;
+export const dynamic = 'force-dynamic';
 
 export async function generateStaticParams() {
   const blogs = await client.fetch<Blogs[]>(
-    `*[_type == "blogs"][0...20].slug.current`,
-    {},
-    { next: { revalidate: 30 } }
+    `*[_type == "blogs"][0...20].slug.current`
   );
   return blogs.map(slug => ({
     slug: slug
@@ -32,11 +31,15 @@ export default async function BlogDetailsPage({
   const { slug, locale } = await params;
   setRequestLocale(locale);
 
+  const decodedSlug = slug ? decodeURIComponent(slug) : '';
+
   void trpc.blogs.getOneBlog.prefetch({
-    slug
+    slug: decodedSlug
   });
 
-  const post = await serverClient.blogs.getOneBlog({ slug });
+  const post = await serverClient.blogs.getOneBlog({
+    slug: decodedSlug
+  });
   const baseUrl = getClientUrl();
 
   if (post) {

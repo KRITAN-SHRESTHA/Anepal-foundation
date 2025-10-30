@@ -28,7 +28,7 @@ function BlogsDetailsViewSuspense() {
   const { getLocalizedString } = useGetLocale();
 
   const [data] = trpc.blogs.getOneBlog.useSuspenseQuery({
-    slug: params.slug as string
+    slug: decodeURIComponent(params.slug as string)
   });
 
   if (!data) return notFound();

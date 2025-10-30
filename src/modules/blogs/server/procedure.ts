@@ -19,7 +19,7 @@ const GET_EVENT_DETAILS_QUERY = `*[_type == "blogs" && slug.current == $slug][0]
   tag->
 }`;
 // will revalidate after every 30 seconds
-const options = { next: { revalidate: 0 } };
+const options = { next: { revalidate: 30 } };
 
 export const blogsRouter = createTRPCRouter({
   getBlogPage: publicProcedure.query(async () => {

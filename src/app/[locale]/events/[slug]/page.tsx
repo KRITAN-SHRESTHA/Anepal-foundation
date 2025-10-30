@@ -13,13 +13,12 @@ interface EventsDetailsPageParams {
   }>;
 }
 
-export const revalidate = 30;
+export const dynamic = 'force-dynamic';
+// export const revalidate = 30;
 
 export async function generateStaticParams() {
   const events = await client.fetch<Events[]>(
-    `*[_type == "events"][0...20].slug.current`,
-    {},
-    { next: { revalidate: 30 } }
+    `*[_type == "events"][0...20].slug.current`
   );
   return events.map(slug => ({
     slug: slug
@@ -33,11 +32,13 @@ export default async function EventsDetailsPage({
   const locale = (await params).locale;
   setRequestLocale(locale);
 
+  const decodedSlug = slug ? decodeURIComponent(slug) : '';
+
   void trpc.events.getOneEvent.prefetch({
-    slug
+    slug: decodedSlug
   });
 
-  const event = await serverClient.events.getOneEvent({ slug });
+  const event = await serverClient.events.getOneEvent({ slug: decodedSlug });
   const baseUrl = getClientUrl();
 
   if (event) {

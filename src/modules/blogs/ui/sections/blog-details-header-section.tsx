@@ -23,7 +23,7 @@ export default function BlogDetailsHeaderSection({
         {data.mainImage && (
           <CustomImage
             src={data.mainImage}
-            alt={`${getLocalizedString(data.title ?? [])}-img`}
+            alt={`${getLocalizedString(data.title ?? [])} image`}
             sizes="100vw"
             fill
             className="rounded-lg border object-cover"

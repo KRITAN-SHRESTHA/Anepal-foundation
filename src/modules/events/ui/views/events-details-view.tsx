@@ -27,7 +27,7 @@ function EventsDetailsViewSuspense() {
   const { locale } = useGetLocale();
 
   const [data] = trpc.events.getOneEvent.useSuspenseQuery({
-    slug: params.slug as string
+    slug: decodeURIComponent(params.slug as string)
   });
 
   if (!data) return notFound();
