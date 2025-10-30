@@ -17,6 +17,7 @@ import {
 import useGetLocale from '@/hooks/use-get-locale';
 import { cn } from '@/lib/utils';
 import { trpc } from '@/trpc/client';
+import NavigationLink from '../navigation-link';
 
 export const NavMenu = (props: NavigationMenuProps) => {
   const [navData] = trpc.header.getHeader.useSuspenseQuery();
@@ -62,14 +63,14 @@ export const NavMenu = (props: NavigationMenuProps) => {
                 asChild
               >
                 {link.link ? (
-                  <Link
+                  <NavigationLink
                     href={link.link}
                     className={cn('', {
                       'font-bold! text-purple-700': pathname.includes(link.link)
                     })}
                   >
                     {getLocalizedString(link.name ?? [])}
-                  </Link>
+                  </NavigationLink>
                 ) : (
                   getLocalizedString(link.name ?? [])
                 )}

@@ -11,7 +11,7 @@ const config: NextConfig = {
     },
   },
   compiler: {
-    removeConsole: true
+    removeConsole: process.env.NODE_ENV === 'production' ? true : false
   },
   eslint: {
     // Warning: This allows production builds to successfully complete even if
@@ -21,6 +21,7 @@ const config: NextConfig = {
   },
   transpilePackages: ['@t3-oss/env-nextjs', '@t3-oss/env-core'],
   images:{
+    // qualities: [25, 50, 75, 100],
     remotePatterns: [{
         protocol: 'https',
         hostname: 'cdn.sanity.io',

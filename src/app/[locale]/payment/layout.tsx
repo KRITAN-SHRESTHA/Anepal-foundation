@@ -1,4 +1,9 @@
-import { generateAlternates, generateFullPath } from '@/lib/metadata';
+import {
+  generateAlternates,
+  generateFullPath,
+  getOpenGraphAlternateLocales,
+  getOpenGraphLocale
+} from '@/lib/metadata';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 
@@ -15,38 +20,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = (await params).locale;
 
   return {
-    title: 'Donate',
+    title: 'Donate to Anepal Foundation - Support Community Development',
     description:
-      'Support our cause by making a donation to Anepal Foundation. Every contribution makes a difference.',
+      'Make a secure donation to Anepal Foundation and support our mission to create sustainable change through education, community development, and humanitarian initiatives in Nepal.',
+    robots: {
+      index: false, // Don't index payment pages
+      follow: true
+    },
     alternates: generateAlternates('/payment', locale),
     openGraph: {
       type: 'website',
       siteName: 'Anepal Foundation',
-      title: 'Donate',
+      title: 'Donate to Anepal Foundation - Support Community Development',
       description:
-        'Support our cause by making a donation to Anepal Foundation. Every contribution makes a difference.',
+        'Make a secure donation to Anepal Foundation and support our mission to create sustainable change through education, community development, and humanitarian initiatives in Nepal.',
       url: generateFullPath('/payment', locale),
-      images: [
-        {
-          url: '/assets/logo.png',
-          width: 800,
-          height: 450,
-          alt: 'Anepal Foundation - Empowering Communities in Nepal',
-          type: 'image/png'
-        },
-        {
-          url: '/assets/logo-transparent.png',
-          width: 800,
-          height: 450,
-          alt: 'Anepal Foundation Logo',
-          type: 'image/png'
-        }
-      ]
+      locale: getOpenGraphLocale(locale),
+      alternateLocale: getOpenGraphAlternateLocales(locale)
     }
   };
 }
 
-export default async function PaymentLayout({
+export default async function Layout({
   children,
   params
 }: Readonly<{

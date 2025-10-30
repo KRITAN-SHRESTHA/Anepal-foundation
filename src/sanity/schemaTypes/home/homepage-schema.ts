@@ -1,6 +1,6 @@
-import { defineArrayMember, defineField, defineType, Reference } from 'sanity';
-import { Home } from 'lucide-react';
 import { validationLang } from '@/sanity/lib/validation-lang';
+import { Home } from 'lucide-react';
+import { defineArrayMember, defineType, Reference } from 'sanity';
 
 export const homePageSchema = defineType({
   name: 'homepage_anepal',
@@ -16,16 +16,16 @@ export const homePageSchema = defineType({
         {
           name: 'title',
           title: 'Title',
-          type: 'internationalizedArrayString',
-          validation: rule =>
-            rule.custom<{ value: string; _type: string; _key: string }[]>(
-              value => {
-                return validationLang(
-                  value,
-                  'Please add title in all languages'
-                );
-              }
-            )
+          type: 'internationalizedArrayString'
+          // validation: rule =>
+          //   rule.custom<{ value: string; _type: string; _key: string }[]>(
+          //     value => {
+          //       return validationLang(
+          //         value,
+          //         'Please add title in all languages'
+          //       );
+          //     }
+          //   )
         },
         {
           name: 'subtitle',
@@ -47,15 +47,15 @@ export const homePageSchema = defineType({
           type: 'image',
           options: { hotspot: true },
           description: 'Hero image (recommended size: 1440 × 687px)',
-          validation: rule => rule.required().error('Image is required'),
-          fields: [
-            defineField({
-              name: 'alt',
-              type: 'string',
-              title: 'Alternative Text (about donors and partners)',
-              validation: rule => rule.required().error('Image alt is required')
-            })
-          ]
+          validation: rule => rule.required().error('Image is required')
+          // fields: [
+          //   defineField({
+          //     name: 'alt',
+          //     type: 'string',
+          //     title: 'Alternative Text (about donors and partners)',
+          //     validation: rule => rule.required().error('Image alt is required')
+          //   })
+          // ]
         }
         // { name: 'highlightText', title: 'Highlight Text', type: 'string' } // "Mercy"
       ]

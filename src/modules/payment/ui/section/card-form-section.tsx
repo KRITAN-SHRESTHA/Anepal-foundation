@@ -14,6 +14,7 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 
 import { usePaymentAmountStore } from '../store/payment-amount-store';
+import { useTranslations } from 'next-intl';
 
 const INVALID_COLOR = {
   color: '#dc3545'
@@ -31,6 +32,7 @@ export default function CardFormSection({
   onCreateOrder
 }: CardFormSectionProps) {
   const setIsPaying = usePaymentAmountStore(state => state.setIsPaying);
+  const t = useTranslations('Default');
 
   return (
     <div className="pb-15">
@@ -56,13 +58,16 @@ export default function CardFormSection({
         }}
       >
         <div>
-          <Label className="gap-0.5 pl-[0.375rem]">Cardholder name</Label>
+          <Label className="gap-0.5 pl-[0.375rem]">
+            {t('Cardholder_name')}
+          </Label>
           <PayPalNameField />
         </div>
 
         <div>
           <Label className="gap-0.5 pl-[0.375rem]">
-            Card number<span style={INVALID_COLOR}>*</span>
+            {t('Card_number')}
+            <span style={INVALID_COLOR}>*</span>
           </Label>
           <PayPalNumberField />
         </div>
@@ -70,7 +75,8 @@ export default function CardFormSection({
         <div className="flex">
           <div className="w-1/2">
             <Label className="gap-0.5 pl-[0.375rem]">
-              Expiry date<span style={INVALID_COLOR}>*</span>
+              {t('Expiry_date')}
+              <span style={INVALID_COLOR}>*</span>
             </Label>
             <PayPalExpiryField />
           </div>
@@ -93,6 +99,7 @@ const SubmitPayment = () => {
   const amount = usePaymentAmountStore(state => state.amount);
   const setAmountError = usePaymentAmountStore(state => state.setAmountError);
   const isPaying = usePaymentAmountStore(state => state.isPaying);
+  const t = useTranslations('Default');
 
   const handleClick = async () => {
     if (!cardFieldsForm) {
@@ -118,7 +125,7 @@ const SubmitPayment = () => {
         onClick={handleClick}
         disabled={isPaying}
       >
-        {isPaying ? <Loader /> : 'Donate'}
+        {isPaying ? <Loader /> : t('Donate')}
       </Button>
     </div>
   );

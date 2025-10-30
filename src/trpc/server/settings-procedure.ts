@@ -2,7 +2,7 @@ import { client } from '@/sanity/lib/client';
 import { Settings } from '@/sanity/types';
 import { createTRPCRouter, publicProcedure } from '@/trpc/init';
 
-const POSTS_QUERY = `*[
+const SETTINGS_QUERY = `*[
   _type == "settings"
 ][0]`;
 
@@ -11,6 +11,6 @@ const options = { next: { revalidate: 30 } };
 
 export const settingsRouter = createTRPCRouter({
   getSettings: publicProcedure.query(async () => {
-    return await client.fetch<Settings>(POSTS_QUERY, {}, options);
+    return await client.fetch<Settings>(SETTINGS_QUERY, {}, options);
   })
 });

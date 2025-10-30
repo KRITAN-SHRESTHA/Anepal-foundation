@@ -1,6 +1,6 @@
 import { defineField, defineType } from 'sanity';
 
-import { validationLang } from '../../lib/validation-lang';
+// import { validationLang } from '../../lib/validation-lang';
 import { PuzzleIcon } from 'lucide-react';
 
 export const whatmakesUsUniqueSchema = defineType({
@@ -12,11 +12,11 @@ export const whatmakesUsUniqueSchema = defineType({
     {
       name: 'title',
       title: 'Title',
-      type: 'internationalizedArrayString',
-      validation: rule =>
-        rule.custom<{ value: string; _type: string; _key: string }[]>(value => {
-          return validationLang(value, 'Please add title in all languages');
-        })
+      type: 'internationalizedArrayString'
+      // validation: rule =>
+      //   rule.custom<{ value: string; _type: string; _key: string }[]>(value => {
+      //     return validationLang(value, 'Please add title in all languages');
+      //   })
     },
 
     {

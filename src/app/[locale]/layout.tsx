@@ -16,7 +16,14 @@ import { Toaster } from '@/components/ui/sonner';
 import { TRPCProvider } from '@/trpc/client';
 import { routing } from '@/i18n/routing';
 import { getClientUrl } from '@/lib/utils';
-import { generateAlternates } from '@/lib/metadata';
+import {
+  generateAlternates,
+  generateFullPath,
+  getOpenGraphLocale,
+  getOpenGraphAlternateLocales
+} from '@/lib/metadata';
+import { urlFor } from '@/sanity/lib/image';
+import { serverClient } from '@/trpc/server';
 
 // import '../globals.css';
 
@@ -60,6 +67,8 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = (await params).locale;
   const baseUrl = getClientUrl();
+
+  const settingsData = await serverClient.settings.getSettings();
 
   return {
     // Base URL for all relative URLs in metadata
@@ -133,7 +142,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         { url: '/assets/favicon-for-app/icon0.svg', type: 'image/svg+xml' } // SVG for modern browsers
       ],
       apple: {
-        url: '/assets/favicon-for-app/apple-icon.png', // Icon for iOS devices
+        url: '/assets/favicon_io/apple-touch-icon.png', // Icon for iOS devices
         sizes: '180x180',
         type: 'image/png'
       },
@@ -152,11 +161,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         'Anepal Foundation - Leading NGO for Community Development in Nepal',
       description:
         'Transform lives in Nepal through sustainable development, education, and humanitarian initiatives. Join Anepal Foundation in creating lasting change. Donate or volunteer today.',
-      url: getClientUrl(),
-      locale: 'en_US',
+      url: generateFullPath('/', locale),
+      locale: getOpenGraphLocale(locale),
+      alternateLocale: getOpenGraphAlternateLocales(locale),
       images: [
         {
-          url: '/assets/logo-og.png',
+          url: settingsData.foundation_logo
+            ? urlFor(settingsData.foundation_logo).quality(100).url()
+            : '/assets/logo.jpeg',
           width: 1200,
           height: 630,
           alt: 'Anepal Foundation - Transforming Lives in Nepal'
@@ -172,7 +184,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description:
         'Join Anepal Foundation in our mission to create sustainable change through community development, education, and humanitarian initiatives in Nepal.',
       images: {
-        url: '/assets/logo.png',
+        url: settingsData.foundation_logo
+          ? urlFor(settingsData.foundation_logo).quality(100).url()
+          : '/assets/logo.jpeg',
         alt: 'Anepal Foundation - Empowering Communities in Nepal',
         width: 1200,
         height: 630,
@@ -202,8 +216,54 @@ export default async function RootLayout({ children, params }: Props) {
   // Enable static rendering
   setRequestLocale(locale);
 
+  const baseUrl = getClientUrl();
+  const settingsData = await serverClient.settings.getSettings();
+
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Anepal Foundation',
+    alternateName: 'Anepal',
+    url: baseUrl,
+    logo: settingsData.foundation_logo
+      ? urlFor(settingsData.foundation_logo).quality(100).url()
+      : `${baseUrl}/assets/logo.jpeg`,
+    description:
+      'Leading NGO for community development, sustainable development, education, and humanitarian initiatives in Nepal.',
+    // foundingDate: '2010',
+    // address: {
+    //   '@type': 'PostalAddress',
+    //   addressCountry: 'NP',
+    //   addressRegion: 'Kathmandu',
+    //   addressLocality: 'Nepal'
+    // },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'Customer Service',
+      availableLanguage: ['English', 'Spanish']
+    }
+    // sameAs: [
+    //   'https://www.facebook.com/anepalfoundation',
+    //   'https://twitter.com/anepalfoundation',
+    //   'https://www.instagram.com/anepalfoundation',
+    //   'https://www.linkedin.com/company/anepalfoundation'
+    // ],
+    // areaServed: {
+    //   '@type': 'Country',
+    //   name: 'Nepal'
+    // }
+  };
+
   return (
     <html lang={locale}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema)
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${quickSand.variable} ${permanentMarker.variable} antialiased`}
       >

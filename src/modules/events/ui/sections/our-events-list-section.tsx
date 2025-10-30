@@ -2,17 +2,17 @@
 
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { Suspense } from 'react';
 
 import { Card } from '@/components/ui/card';
 import useGetLocale from '@/hooks/use-get-locale';
-import { urlFor } from '@/sanity/lib/image';
 import { formatDateByCountry } from '@/lib/date-format';
+import { urlFor } from '@/sanity/lib/image';
 
+import NavigationLink from '@/components/navigation-link';
+import { ErrorBoundary } from 'react-error-boundary';
 import EventsListSkeleton from '../components/events-list-skeleton';
 import useGetAllEvents from '../hooks/use-get-all-events';
-import { ErrorBoundary } from 'react-error-boundary';
 
 export default function OurEventsListSection() {
   return (
@@ -43,14 +43,14 @@ function OurEventsListSectionSuspense() {
           >
             <div className="grid gap-y-6 sm:grid-cols-10 sm:gap-x-5 sm:gap-y-0 md:items-center md:gap-x-8 lg:gap-x-12">
               <div className="sm:col-span-5">
-                <Link
+                <NavigationLink
                   href={`/events/${event.slug?.current}`}
                   className="hover:underline"
                 >
                   <h3 className="text-primary text-xl font-semibold md:text-2xl lg:text-3xl">
                     {getLocalizedString(event.title ?? [])}
                   </h3>
-                </Link>
+                </NavigationLink>
                 <p className="text-muted-foreground mt-4 line-clamp-3 md:mt-5">
                   {getLocalizedString(event.short_description ?? [])}
                 </p>
@@ -68,28 +68,31 @@ function OurEventsListSectionSuspense() {
                   </span>
                 </div>
                 <div className="mt-6 flex items-center space-x-2 md:mt-8">
-                  <Link
+                  <NavigationLink
                     href={`/events/${event.slug?.current}`}
                     className="inline-flex items-center font-semibold hover:underline md:text-base"
                   >
                     <span>Read more</span>
                     <ArrowRight className="ml-2 size-4 transition-transform" />
-                  </Link>
+                  </NavigationLink>
                 </div>
               </div>
               <div className="order-first sm:order-last sm:col-span-5">
-                <Link href={`/events/${event.slug?.current}`} className="block">
+                <NavigationLink
+                  href={`/events/${event.slug?.current}`}
+                  className="block"
+                >
                   <div className="border-border relative aspect-16/9 overflow-clip rounded-lg border">
                     {event.mainImage && (
                       <Image
                         src={urlFor(event.mainImage).quality(100).url()}
-                        alt={event.mainImage.alt ?? ''}
+                        alt={getLocalizedString(event.title ?? []) ?? ''}
                         fill
                         className="fade-in h-full w-full object-cover transition-opacity duration-200 hover:opacity-70"
                       />
                     )}
                   </div>
-                </Link>
+                </NavigationLink>
               </div>
             </div>
           </Card>

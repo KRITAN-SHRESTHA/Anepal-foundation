@@ -2,7 +2,13 @@ import { getLocalizedString } from '@/lib/utils';
 import type { Metadata } from 'next';
 import { serverClient } from '@/trpc/server';
 import { urlFor } from '@/sanity/lib/image';
-import { generateAlternates, generateFullPath } from '@/lib/metadata';
+import {
+  generateAlternates,
+  generateFullPath,
+  getOpenGraphLocale,
+  getOpenGraphAlternateLocales
+} from '@/lib/metadata';
+import { setRequestLocale } from 'next-intl/server';
 
 type Props = {
   params: Promise<{
@@ -37,7 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // Use logo as the default image
   const imageUrl = post.mainImage
     ? urlFor(post.mainImage).quality(100).url()
-    : '/assets/logo.png';
+    : '/assets/logo.jpeg';
 
   return {
     title,
@@ -49,15 +55,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description,
       url: generateFullPath(`/blogs/${slug}`, locale),
+      locale: getOpenGraphLocale(locale),
+      alternateLocale: getOpenGraphAlternateLocales(locale),
       authors: ['Anepal Foundation'],
       images: [
-        {
-          url: imageUrl,
-          width: 1200,
-          height: 630,
-          alt: title,
-          type: 'image/png'
-        },
         {
           url: imageUrl,
           width: 1200,
@@ -70,10 +71,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function RootLayout({
-  children
+export default async function Layout({
+  children,
+  params
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{
+    locale: string;
+  }>;
 }>) {
+  const locale = (await params).locale;
+  setRequestLocale(locale);
   return <div>{children}</div>;
 }

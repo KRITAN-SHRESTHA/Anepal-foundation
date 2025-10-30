@@ -9,9 +9,11 @@ import CardFormSection from './card-form-section';
 import { usePaymentAmountStore } from '../store/payment-amount-store';
 import PaymentSkeleton from '../components/payment-skeleton';
 import SelectAmountSection from './select-amount-section';
+import { useTranslations } from 'next-intl';
 
 export default function PaymentFormSection() {
   const router = useRouter();
+  const t = useTranslations('Default');
 
   const [{ options, isPending: isPaypalLoading }] = usePayPalScriptReducer();
 
@@ -109,7 +111,7 @@ export default function PaymentFormSection() {
       <div className="my-6 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
         <hr className="border-dashed" />
         <span className="text-muted-foreground text-xs">
-          Or donate with Credit/Debit Card
+          {t('Or_donate_with_Credit_Debit_Card')}
         </span>
         <hr className="border-dashed" />
       </div>

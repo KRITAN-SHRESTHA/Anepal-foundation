@@ -32,7 +32,6 @@ function TeamMemberViewSuspense() {
           subtitle={teamMembers.heroSection.subtitle}
           highlightTitleText={teamMembers.heroSection.highlightTitle}
           title={teamMembers.heroSection.title}
-          alt={teamMembers.heroSection?.backgroundImage.alt ?? ''}
         />
       )}
 

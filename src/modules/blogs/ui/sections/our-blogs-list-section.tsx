@@ -2,7 +2,6 @@
 
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { Suspense } from 'react';
 
 import {
@@ -14,10 +13,11 @@ import {
 import useGetLocale from '@/hooks/use-get-locale';
 import { urlFor } from '@/sanity/lib/image';
 
+import NavigationLink from '@/components/navigation-link';
+import { Badge } from '@/components/ui/badge';
 import { ErrorBoundary } from 'react-error-boundary';
 import BlogsListSkeleton from '../components/blogs-list-skeleton';
 import useGetAllBlogs from '../hooks/use-get-all-blogs';
-import { Badge } from '@/components/ui/badge';
 
 export default function OurBlogsListSection() {
   return (
@@ -46,19 +46,19 @@ function OurBlogsListSectionSuspense() {
           className="grid grid-rows-[auto_auto_1fr_auto] pt-0"
         >
           <div className="relative aspect-16/9 w-full overflow-clip">
-            <Link
+            <NavigationLink
               href={`/blogs/${blog.slug?.current}`}
               className="fade-in transition-opacity duration-200 hover:opacity-70"
             >
               {blog.mainImage && (
                 <Image
                   src={urlFor(blog.mainImage).quality(100).url()}
-                  alt={blog.mainImage.alt ?? ''}
+                  alt={getLocalizedString(blog.title ?? [])!}
                   fill
                   className="fade-in h-full w-full overflow-hidden rounded-t-lg object-cover transition-opacity duration-200 hover:opacity-70"
                 />
               )}
-            </Link>
+            </NavigationLink>
 
             <Badge className="absolute top-3 right-3">
               {getLocalizedString(blog?.tag.name ?? [])}
@@ -66,9 +66,9 @@ function OurBlogsListSectionSuspense() {
           </div>
           <CardHeader>
             <h3 className="text-lg font-semibold hover:underline md:text-xl">
-              <Link href={`/blogs/${blog.slug?.current}`}>
+              <NavigationLink href={`/blogs/${blog.slug?.current}`}>
                 {getLocalizedString(blog.title ?? [])}
-              </Link>
+              </NavigationLink>
             </h3>
           </CardHeader>
           <CardContent>
@@ -77,13 +77,13 @@ function OurBlogsListSectionSuspense() {
             </p>
           </CardContent>
           <CardFooter>
-            <Link
+            <NavigationLink
               href={`/blogs/${blog.slug?.current}`}
               className="text-foreground flex items-center hover:underline"
             >
               Read more
               <ArrowRight className="ml-2 size-4" />
-            </Link>
+            </NavigationLink>
           </CardFooter>
         </Card>
       ))}

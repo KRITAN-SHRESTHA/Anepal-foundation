@@ -1,13 +1,12 @@
-import * as React from 'react';
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
   MoreHorizontalIcon
 } from 'lucide-react';
+import * as React from 'react';
 
-import { cn } from '@/lib/utils';
 import { Button, buttonVariants } from '@/components/ui/button';
-import Link from 'next/link';
+import { cn } from '@/lib/utils';
 
 function Pagination({ className, ...props }: React.ComponentProps<'nav'>) {
   return (
@@ -42,6 +41,7 @@ function PaginationItem({ ...props }: React.ComponentProps<'li'>) {
 }
 
 import type { LinkProps } from 'next/link';
+import NavigationLink from '../navigation-link';
 
 type PaginationLinkProps = {
   isActive?: boolean;
@@ -61,7 +61,7 @@ function PaginationLink({
   return (
     <>
       {href && (
-        <Link
+        <NavigationLink
           href={href}
           aria-current={isActive ? 'page' : undefined}
           data-slot="pagination-link"
@@ -77,7 +77,7 @@ function PaginationLink({
           {...props}
         >
           {children}
-        </Link>
+        </NavigationLink>
       )}
     </>
   );

@@ -1,6 +1,6 @@
 import { validationLang } from '@/sanity/lib/validation-lang';
 import { BinaryDocumentIcon } from '@sanity/icons';
-import { defineArrayMember, defineField, defineType, Reference } from 'sanity';
+import { defineArrayMember, defineType, Reference } from 'sanity';
 
 export const donorsPartnersPageSchema = defineType({
   name: 'donorsAndPartnersPage',
@@ -62,15 +62,15 @@ export const donorsPartnersPageSchema = defineType({
           title: 'Background Image',
           type: 'image',
           options: { hotspot: true },
-          validation: rule => rule.required().error('Image is required'),
-          fields: [
-            defineField({
-              name: 'alt',
-              type: 'string',
-              title: 'Alternative Text (about donors and partners)',
-              validation: rule => rule.required().error('Image alt is required')
-            })
-          ]
+          validation: rule => rule.required().error('Image is required')
+          // fields: [
+          //   defineField({
+          //     name: 'alt',
+          //     type: 'string',
+          //     title: 'Alternative Text (about donors and partners)',
+          //     validation: rule => rule.required().error('Image alt is required')
+          //   })
+          // ]
         }
         // { name: 'highlightText', title: 'Highlight Text', type: 'string' } // "Mercy"
       ]

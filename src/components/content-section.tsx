@@ -3,7 +3,6 @@
 import { SanityAsset } from '@sanity/image-url/lib/types/types';
 import { BookOpen } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { HTMLAttributes } from 'react';
 
 import useGetLocale from '@/hooks/use-get-locale';
@@ -11,7 +10,9 @@ import { cn, LocalisedDataType } from '@/lib/utils';
 import { InternalizedArrayTextValueType } from '@/types';
 import ContentTitle from './content-title';
 import CustomImage from './custom-image';
+import NavigationLink from './navigation-link';
 import { Button } from './ui/button';
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from './ui/dialog';
 
 interface ContentSectionProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
@@ -24,7 +25,6 @@ interface ContentSectionProps
   readmoreLink?: string;
   titleClassname?: string;
   subtitleClassname?: string;
-  imageAlt?: string;
 }
 
 export default function ContentSection({
@@ -37,10 +37,27 @@ export default function ContentSection({
   titleClassname,
   subtitleClassname,
   className,
-  imageAlt,
   highlightTitleText
 }: ContentSectionProps) {
   const { getLocalizedString } = useGetLocale();
+
+  const convertedTitle =
+    typeof title === 'string' ? title : getLocalizedString(title ?? []);
+
+  const convertedSubtitle =
+    typeof subtitle === 'string'
+      ? subtitle
+      : getLocalizedString(subtitle ?? []);
+
+  const convertedDescription =
+    typeof description === 'string'
+      ? description
+      : getLocalizedString(description ?? []);
+
+  const convertedHighlightTitleText =
+    typeof highlightTitleText === 'string'
+      ? highlightTitleText
+      : getLocalizedString(highlightTitleText ?? []);
 
   return (
     <div
@@ -67,7 +84,7 @@ export default function ContentSection({
             <CustomImage
               className="laptop:p-[80px] tablet:p-[60px] xs:p-[60px] h-full w-full object-cover p-[40px] sm:p-[80px]"
               src={image}
-              alt={imageAlt ?? ''}
+              alt={convertedTitle ?? convertedSubtitle!}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
@@ -75,7 +92,7 @@ export default function ContentSection({
             <Image
               className="laptop:p-[80px] tablet:p-[60px] xs:p-[60px] h-full w-full object-cover p-[40px] sm:p-[80px]"
               src={'/assets/our_story/dharmajit_budha.jpg'}
-              alt={imageAlt ?? ''}
+              alt={convertedTitle ?? convertedSubtitle!}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
@@ -95,15 +112,46 @@ export default function ContentSection({
           highlightTitleText={highlightTitleText}
         />
 
-        <p className="tablet:max-w-[60ch] text-muted-foreground pt-7 text-lg leading-[135%]">
-          {typeof description === 'string'
-            ? description
-            : getLocalizedString(description ?? [])}
-        </p>
+        {convertedDescription ? (
+          <p className="text-muted-foreground pt-7 text-lg leading-[135%]">
+            <span className="whitespace-pre-line">
+              {convertedDescription.slice(0, 400)}
+            </span>
+
+            {convertedDescription?.length > 400 && (
+              <>
+                ... &nbsp;
+                <Dialog>
+                  <DialogTrigger>
+                    <button className="cursor-pointer font-medium text-purple-700 underline-offset-1 hover:underline">
+                      see more
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="max-h-[90vh] w-full max-w-[800px]! overflow-y-auto px-[25px] py-[50px] sm:p-[50px]">
+                    <DialogTitle className="text-3xl">
+                      <b>
+                        {convertedHighlightTitleText && convertedTitle
+                          ? convertedHighlightTitleText + ' ' + convertedTitle
+                          : convertedHighlightTitleText
+                            ? convertedHighlightTitleText
+                            : convertedTitle
+                              ? convertedTitle
+                              : convertedSubtitle}
+                      </b>
+                    </DialogTitle>
+                    <p className="whitespace-pre-line">
+                      {convertedDescription}
+                    </p>
+                  </DialogContent>
+                </Dialog>
+              </>
+            )}
+          </p>
+        ) : null}
 
         {!!readmoreLink ? (
           <div className="tablet:mt-12 mt-6 flex items-center gap-4">
-            <Link href={'/about-us'}>
+            <NavigationLink href={'/about-us'}>
               <Button
                 variant="outline"
                 className="rounded-full !px-5 text-base shadow-none [&_svg]:!size-4"
@@ -111,7 +159,7 @@ export default function ContentSection({
               >
                 <BookOpen className="!h-5 !w-5" /> Read more
               </Button>
-            </Link>
+            </NavigationLink>
           </div>
         ) : null}
       </div>

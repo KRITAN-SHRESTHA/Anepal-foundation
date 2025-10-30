@@ -49,7 +49,6 @@ export type PrivacyPolicy = {
           media?: unknown;
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
-          alt?: string;
           _type: 'image';
           _key: string;
         }
@@ -83,7 +82,6 @@ export type PrivacyPolicy = {
           media?: unknown;
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
-          alt?: string;
           _type: 'image';
           _key: string;
         }
@@ -127,7 +125,6 @@ export type TermsAndConditions = {
           media?: unknown;
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
-          alt?: string;
           _type: 'image';
           _key: string;
         }
@@ -161,7 +158,6 @@ export type TermsAndConditions = {
           media?: unknown;
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
-          alt?: string;
           _type: 'image';
           _key: string;
         }
@@ -251,7 +247,6 @@ export type Blogs = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
-    alt?: string;
     _type: 'image';
   };
   content?: {
@@ -284,7 +279,6 @@ export type Blogs = {
           media?: unknown;
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
-          alt?: string;
           _type: 'image';
           _key: string;
         }
@@ -318,7 +312,6 @@ export type Blogs = {
           media?: unknown;
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
-          alt?: string;
           _type: 'image';
           _key: string;
         }
@@ -623,7 +616,6 @@ export type Homepage_anepal = {
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
-      alt?: string;
       _type: 'image';
     };
   };
@@ -751,7 +743,6 @@ export type StoriesPageContent = {
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
-      alt?: string;
       _type: 'image';
     };
   };
@@ -812,7 +803,6 @@ export type StoriesList = {
           media?: unknown;
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
-          alt?: string;
           _type: 'image';
           _key: string;
         }
@@ -846,7 +836,6 @@ export type StoriesList = {
           media?: unknown;
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
-          alt?: string;
           _type: 'image';
           _key: string;
         }
@@ -930,7 +919,6 @@ export type DonorsAndPartnersPage = {
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
-      alt?: string;
       _type: 'image';
     };
   };
@@ -1045,7 +1033,6 @@ export type Team_members_page = {
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
-      alt?: string;
       _type: 'image';
     };
   };
@@ -1096,7 +1083,6 @@ export type Team_members = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
-    alt?: string;
     _type: 'image';
   };
   name?: string;
@@ -1159,7 +1145,6 @@ export type Aboutus = {
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
-      alt?: string;
       _type: 'image';
     };
   };
@@ -1204,7 +1189,6 @@ export type Aboutus = {
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
-      alt?: string;
       _type: 'image';
     };
     title?: Array<
@@ -1321,7 +1305,6 @@ export type BlockContent = Array<
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
-      alt?: string;
       _type: 'image';
       _key: string;
     }
@@ -1355,7 +1338,6 @@ export type Events = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
-    alt?: string;
     _type: 'image';
   };
   organizer_info?: {
@@ -1441,7 +1423,6 @@ export type AboutAnepal = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
-    alt?: string;
     _type: 'image';
   };
 };
@@ -1535,11 +1516,6 @@ export type HomeBanner = {
   _updatedAt: string;
   _rev: string;
   title?: Array<
-    {
-      _key: string;
-    } & InternationalizedArrayStringValue
-  >;
-  highlightTitle?: Array<
     {
       _key: string;
     } & InternationalizedArrayStringValue

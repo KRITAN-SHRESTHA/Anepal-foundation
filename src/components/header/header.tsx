@@ -1,6 +1,5 @@
 import { ArrowUpRight } from 'lucide-react';
 import dynamic from 'next/dynamic';
-import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 
@@ -9,6 +8,7 @@ import { useTranslations } from 'next-intl';
 import { Suspense } from 'react';
 import MobileNav from './mobile-nav';
 import Logo from './logo';
+import NavigationLink from '../navigation-link';
 
 const NavMenu = dynamic(() => import('./nav-menu').then(mod => mod.NavMenu), {
   ssr: false
@@ -21,20 +21,20 @@ export default function HeaderClient() {
     <header className="sticky top-0 z-[50]">
       <nav className="bg-background border-b">
         <div className="mx-auto flex h-19 max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Link href={'/'} className="cursor-pointer">
+          <NavigationLink href={'/'} className="cursor-pointer">
             <Logo />
-          </Link>
+          </NavigationLink>
           {/* Desktop Menu */}
           <Suspense fallback="Loading.....">
             <NavMenu className="laptop:block hidden" />
           </Suspense>
 
           <div className="flex items-center gap-3">
-            <Link href={'/payment'}>
+            <NavigationLink href={'/payment'}>
               <Button className="h-[40px] w-[130px] rounded-full bg-purple-700 hover:bg-purple-900">
                 {t('Donate_us')} <ArrowUpRight />
               </Button>
-            </Link>
+            </NavigationLink>
 
             <LocaleSwitcher />
 

@@ -1,4 +1,11 @@
-import { generateAlternates, generateFullPath } from '@/lib/metadata';
+import {
+  generateAlternates,
+  generateFullPath,
+  getOpenGraphAlternateLocales,
+  getOpenGraphLocale
+} from '@/lib/metadata';
+import { urlFor } from '@/sanity/lib/image';
+import { serverClient } from '@/trpc/server';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 
@@ -10,40 +17,38 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = (await params).locale;
+  const settingsData = await serverClient.settings.getSettings();
 
   return {
-    title: 'Donors & Partners',
+    title: 'Our Donors & Partners - Supporting Community Development in Nepal',
     description:
-      'Meet our valuable donors and partners who help make our mission possible at Anepal Foundation.',
+      'Meet our valued donors and partners who make our mission possible at Anepal Foundation. Discover the organizations and individuals supporting sustainable development, education, and humanitarian initiatives in Nepal.',
     alternates: generateAlternates('/donors-partners', locale),
     openGraph: {
       type: 'website',
       siteName: 'Anepal Foundation',
-      title: 'Donors & Partners',
+      title:
+        'Our Donors & Partners - Supporting Community Development in Nepal',
       description:
-        'Meet our valuable donors and partners who help make our mission possible at Anepal Foundation.',
+        'Meet our valued donors and partners who make our mission possible at Anepal Foundation. Discover the organizations and individuals supporting sustainable development, education, and humanitarian initiatives in Nepal.',
       url: generateFullPath('/donors-partners', locale),
+      locale: getOpenGraphLocale(locale),
+      alternateLocale: getOpenGraphAlternateLocales(locale),
       images: [
         {
-          url: '/assets/logo.png',
-          width: 800,
-          height: 450,
-          alt: 'Anepal Foundation - Empowering Communities in Nepal',
-          type: 'image/png'
-        },
-        {
-          url: '/assets/logo-transparent.png',
-          width: 800,
-          height: 450,
-          alt: 'Anepal Foundation Logo',
-          type: 'image/png'
+          url: settingsData.foundation_logo
+            ? urlFor(settingsData.foundation_logo).quality(100).url()
+            : '/assets/logo.jpeg',
+          width: 1200,
+          height: 630,
+          alt: 'Anepal Foundation Donors and Partners'
         }
       ]
     }
   };
 }
 
-export default async function DonorsPartnersLayout({
+export default async function Layout({
   children,
   params
 }: Readonly<{
