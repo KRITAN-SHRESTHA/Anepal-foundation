@@ -41,7 +41,7 @@ function PaginationItem({ ...props }: React.ComponentProps<'li'>) {
 }
 
 import type { LinkProps } from 'next/link';
-import NavigationLink from '../navigation-link';
+import Link from 'next/link';
 
 type PaginationLinkProps = {
   isActive?: boolean;
@@ -61,7 +61,7 @@ function PaginationLink({
   return (
     <>
       {href && (
-        <NavigationLink
+        <Link
           href={href}
           aria-current={isActive ? 'page' : undefined}
           data-slot="pagination-link"
@@ -77,7 +77,7 @@ function PaginationLink({
           {...props}
         >
           {children}
-        </NavigationLink>
+        </Link>
       )}
     </>
   );
