@@ -71,17 +71,17 @@ const NavigationSheetSuspense = () => {
                 <NavigationLink href={nav.link}>
                   <div
                     className={cn(
-                      `text-secondary-foreground hover:underline' underline-offset-2 ${(() => {
+                      `text-secondary-foreground hover:text-primary underline-offset-2 hover:font-bold hover:underline ${(() => {
                         const fullPath = `/${locale}${nav.link === '/' ? '' : nav.link}`;
                         // For home route, use exact match
                         if (nav.link === '/') {
                           return pathname === fullPath
-                            ? 'font-bold! text-purple-700'
+                            ? 'text-primary font-bold!'
                             : '';
                         }
                         // For other routes, check if pathname starts with the link path
                         return pathname.startsWith(fullPath)
-                          ? 'font-bold! text-purple-700'
+                          ? 'text-primary font-bold!'
                           : '';
                       })()}`
                     )}
@@ -109,12 +109,12 @@ const NavigationSheetSuspense = () => {
                               // For home route, use exact match
                               if (sub.link === '/') {
                                 return pathname === fullPath
-                                  ? 'font-bold! text-purple-700'
+                                  ? 'text-primary font-bold!'
                                   : '';
                               }
                               // For other routes, check if pathname starts with the link path
                               return pathname.startsWith(fullPath)
-                                ? 'font-bold! text-purple-700'
+                                ? 'text-primary font-bold!'
                                 : '';
                             })()}`
                           )}
@@ -189,7 +189,7 @@ const NavigationSheetSuspense = () => {
   //                     className={cn(
   //                       'text-muted-foreground underline-offset-2 hover:underline',
   //                       {
-  //                         'font-bold! text-purple-700!': pathname === nav.link
+  //                         'font-bold! text-primary!': pathname === nav.link
   //                       }
   //                     )}
   //                   >
@@ -213,7 +213,7 @@ const NavigationSheetSuspense = () => {
   //                           className={cn(
   //                             'text-muted-foreground underline-offset-2 hover:underline',
   //                             {
-  //                               'font-bold! text-purple-700!':
+  //                               'font-bold! text-primary!':
   //                                 pathname === sub.link
   //                             }
   //                           )}

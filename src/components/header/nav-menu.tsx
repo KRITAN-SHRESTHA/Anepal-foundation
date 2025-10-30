@@ -60,7 +60,7 @@ export const NavMenu = (props: NavigationMenuProps) => {
               ) : (
                 <Button
                   variant="ghost"
-                  className="hover:text-primary text-[15px] font-normal capitalize"
+                  className="hover:text-primary text-[15px] font-normal capitalize hover:bg-transparent hover:font-bold"
                   asChild
                 >
                   {link.link ? (
