@@ -21,7 +21,7 @@ import NavigationLink from '../navigation-link';
 
 export const NavMenu = (props: NavigationMenuProps) => {
   const [navData] = trpc.header.getHeader.useSuspenseQuery();
-  const { getLocalizedString } = useGetLocale();
+  const { getLocalizedString, locale } = useGetLocale();
   const pathname = usePathname();
 
   if (navData.length === 0) {
@@ -31,53 +31,67 @@ export const NavMenu = (props: NavigationMenuProps) => {
   return (
     <NavigationMenu viewport={false} {...props}>
       <NavigationMenuList className="gap-0 space-x-0 text-sm">
-        {navData.map(link => (
-          <NavigationMenuItem key={link._id}>
-            {link.subLinks && link.subLinks?.length > 0 ? (
-              <>
-                <NavigationMenuTrigger
-                  className={cn('text-[15px] font-normal capitalize')}
-                >
-                  {getLocalizedString(link.name ?? [])}
-                </NavigationMenuTrigger>
-                <NavigationMenuContent className="z-50">
-                  <ul className="grid w-[200px] gap-1">
-                    {link.subLinks.map(menu => {
-                      if (!menu.link) return null;
-
-                      return (
-                        <ListItem
-                          key={menu._key}
-                          titleTxt={getLocalizedString(menu.name ?? [])}
-                          href={menu.link}
-                        />
-                      );
-                    })}
-                  </ul>
-                </NavigationMenuContent>
-              </>
-            ) : (
-              <Button
-                variant="ghost"
-                className="text-[15px] font-normal capitalize hover:text-purple-700"
-                asChild
-              >
-                {link.link ? (
-                  <NavigationLink
-                    href={link.link}
-                    className={cn('', {
-                      'font-bold! text-purple-700': pathname.includes(link.link)
-                    })}
+        {navData.map(link => {
+          return (
+            <NavigationMenuItem key={link._id}>
+              {link.subLinks && link.subLinks?.length > 0 ? (
+                <>
+                  <NavigationMenuTrigger
+                    className={cn('text-[15px] font-normal capitalize')}
                   >
                     {getLocalizedString(link.name ?? [])}
-                  </NavigationLink>
-                ) : (
-                  getLocalizedString(link.name ?? [])
-                )}
-              </Button>
-            )}
-          </NavigationMenuItem>
-        ))}
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent className="z-50">
+                    <ul className="grid w-[200px] gap-1">
+                      {link.subLinks.map(menu => {
+                        if (!menu.link) return null;
+
+                        return (
+                          <ListItem
+                            key={menu._key}
+                            titleTxt={getLocalizedString(menu.name ?? [])}
+                            href={menu.link}
+                          />
+                        );
+                      })}
+                    </ul>
+                  </NavigationMenuContent>
+                </>
+              ) : (
+                <Button
+                  variant="ghost"
+                  className="text-[15px] font-normal capitalize hover:text-purple-700"
+                  asChild
+                >
+                  {link.link ? (
+                    <NavigationLink
+                      href={link.link}
+                      className={cn(
+                        `${(() => {
+                          const fullPath = `/${locale}${link.link === '/' ? '' : link.link}`;
+                          // For home route, use exact match
+                          if (link.link === '/') {
+                            return pathname === fullPath
+                              ? 'font-bold! text-purple-700'
+                              : '';
+                          }
+                          // For other routes, check if pathname starts with the link path
+                          return pathname.startsWith(fullPath)
+                            ? 'font-bold! text-purple-700'
+                            : '';
+                        })()}`
+                      )}
+                    >
+                      {getLocalizedString(link.name ?? [])}
+                    </NavigationLink>
+                  ) : (
+                    getLocalizedString(link.name ?? [])
+                  )}
+                </Button>
+              )}
+            </NavigationMenuItem>
+          );
+        })}
       </NavigationMenuList>
     </NavigationMenu>
   );

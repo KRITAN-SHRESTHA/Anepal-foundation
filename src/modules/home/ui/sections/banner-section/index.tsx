@@ -53,7 +53,7 @@ function BannerSectionSuspense() {
           {bannerData.map((data, idx) => (
             <CarouselItem key={data._id}>
               <div className="relative h-[65vh] w-full lg:h-[85vh]">
-                <div className="absolute z-20 h-full w-full bg-red-400/25" />
+                {/* <div className="absolute z-20 h-full w-full bg-black/60" /> */}
                 <VideoSection />
 
                 <BannerImg

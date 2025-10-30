@@ -15,7 +15,7 @@ export default function VideoSection() {
     <div className="absolute bottom-0 left-0 z-40">
       <Dialog>
         <DialogTrigger>
-          <div className="group relative flex h-[130px] w-[230px] cursor-pointer items-center justify-center overflow-hidden bg-purple-400">
+          <div className="group relative flex h-[130px] w-[230px] cursor-pointer items-center justify-center overflow-hidden bg-black/70">
             <Image
               src={'/assets/brother_sister.jpg'}
               fill

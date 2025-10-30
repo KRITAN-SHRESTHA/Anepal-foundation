@@ -37,6 +37,7 @@ export default function HeroSection({
 
   return (
     <div className="font-permanentMaker relative h-[50vh] w-full md:h-[60vh] lg:h-[70vh]">
+      <div className="absolute z-20 h-full w-full" />
       {image && (
         <CustomImage
           src={image}
@@ -49,7 +50,7 @@ export default function HeroSection({
         />
       )}
 
-      <section className="mx-auto flex h-full max-w-[1200px] items-center px-4 sm:px-6 lg:px-8">
+      <section className="relative z-30 mx-auto flex h-full max-w-[1200px] items-center px-4 sm:px-6 lg:px-8">
         <div className="relative">
           <div className="max-w-2xl">
             <p className="font-permanentMaker text-2xl text-white md:text-3xl">
