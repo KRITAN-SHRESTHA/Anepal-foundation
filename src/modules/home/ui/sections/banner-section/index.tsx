@@ -65,14 +65,12 @@ function BannerSectionSuspense() {
                 <section className="relative z-30 mx-auto flex h-full max-w-[1200px] items-center px-4 sm:px-6 lg:px-8">
                   <div className="relative">
                     <div className="max-w-2xl">
-                      <h1 className="text-[40px] leading-[110%] text-balance text-white first-letter:capitalize md:text-5xl lg:text-6xl">
-                        {/* <b>{getLocalizedString(data?.highlightTitle ?? [])}</b> */}
-                        {/* <br /> */}
+                      <h1 className="text-shadow-accent-foreground text-secondary text-[40px] leading-[110%] font-bold text-shadow-lg first-letter:capitalize md:text-5xl lg:text-6xl">
                         {getLocalizedString(data?.title ?? [])}
                       </h1>
-                      <p className="my-6 line-clamp-2 text-base leading-[110%] text-balance text-white first-letter:capitalize md:text-xl lg:text-2xl">
+                      <h4 className="text-secondary text-shadow-accent-foreground my-6 line-clamp-2 text-base leading-[110%] text-balance text-shadow-md first-letter:capitalize md:text-xl lg:text-2xl">
                         {getLocalizedString(data?.description ?? [])}
-                      </p>
+                      </h4>
                     </div>
                     {/* {data.link && (
                       <Button
@@ -94,8 +92,8 @@ function BannerSectionSuspense() {
         </CarouselContent>
         {bannerData.length === 1 ? null : (
           <>
-            <CarouselPrevious className="top-[calc(100%-4.5rem)] right-18 left-auto z-50 size-10 translate-y-0" />
-            <CarouselNext className="top-[calc(100%-4.5rem)] right-15 z-50 size-10 translate-x-full translate-y-0" />
+            <CarouselPrevious className="top-[calc(100%-4.5rem)] right-18 left-auto z-40 size-14 translate-y-0 [&_svg]:size-6!" />
+            <CarouselNext className="top-[calc(100%-4.5rem)] right-15 z-40 size-14 translate-x-full translate-y-0 [&_svg]:size-6!" />
           </>
         )}
       </Carousel>

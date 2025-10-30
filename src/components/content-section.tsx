@@ -113,8 +113,8 @@ export default function ContentSection({
         />
 
         {convertedDescription ? (
-          <p className="text-muted-foreground pt-7 text-lg leading-[135%]">
-            <span className="whitespace-pre-line">
+          <p className="pt-7 text-lg leading-[135%]">
+            <span className="text-secondary-foreground whitespace-pre-line">
               {convertedDescription.slice(0, 400)}
             </span>
 
@@ -123,7 +123,7 @@ export default function ContentSection({
                 ... &nbsp;
                 <Dialog>
                   <DialogTrigger>
-                    <button className="cursor-pointer font-medium text-purple-700 underline-offset-1 hover:underline">
+                    <button className="text-secondary-foreground cursor-pointer font-medium underline-offset-1 hover:underline">
                       see more
                     </button>
                   </DialogTrigger>
@@ -139,7 +139,7 @@ export default function ContentSection({
                               : convertedSubtitle}
                       </b>
                     </DialogTitle>
-                    <p className="whitespace-pre-line">
+                    <p className="text-secondary-foreground whitespace-pre-line">
                       {convertedDescription}
                     </p>
                   </DialogContent>
@@ -155,7 +155,7 @@ export default function ContentSection({
               <Button
                 variant="outline"
                 className="rounded-full !px-5 text-base shadow-none [&_svg]:!size-4"
-                border={'purple'}
+                // border={'purple'}
               >
                 <BookOpen className="!h-5 !w-5" /> Read more
               </Button>

@@ -2,6 +2,7 @@
 
 import ContentTitle from '@/components/content-title';
 import CustomImage from '@/components/custom-image';
+import { Card } from '@/components/ui/card';
 import useGetLocale from '@/hooks/use-get-locale';
 import { trpc } from '@/trpc/client';
 import { Suspense } from 'react';
@@ -35,9 +36,9 @@ function HelpSectionSuspense() {
         />
         <div className="mx-auto mt-10 grid max-w-screen-xl gap-6 px-4 sm:mt-16 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
           {data?.content?.map(feature => (
-            <div
+            <Card
               key={feature._key}
-              className="flex h-auto flex-col rounded-xl border border-gray-300 px-5 py-6"
+              className="shadow-accent-foreground h-auto rounded-xl border-none bg-transparent px-5 py-6 shadow-lg/20"
             >
               <div className="relative mb-3 flex size-[80px] items-center justify-center rounded-full">
                 <CustomImage
@@ -48,13 +49,15 @@ function HelpSectionSuspense() {
                   sizes="20vw"
                 />
               </div>
-              <span className="text-lg font-semibold">
-                {getLocalizedString(feature.title ?? [])}
-              </span>
-              <p className="text-muted-foreground mt-1 text-[15px]">
-                {getLocalizedString(feature.description ?? [])}
-              </p>
-            </div>
+              <div>
+                <span className="text-primary text-lg font-semibold">
+                  {getLocalizedString(feature.title ?? [])}
+                </span>
+                <p className="text-secondary-foreground mt-1 text-[15px]">
+                  {getLocalizedString(feature.description ?? [])}
+                </p>
+              </div>
+            </Card>
           ))}
         </div>
       </div>

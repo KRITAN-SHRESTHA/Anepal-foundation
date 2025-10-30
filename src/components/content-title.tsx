@@ -60,7 +60,7 @@ export default function ContentTitle({
       {!!subtitle ? (
         <h2
           className={cn(
-            '!leading-[1.2] font-extrabold text-[#9e9e9e]',
+            'text-accent-foreground !leading-[1.2] font-extrabold',
             subtitleClassname
           )}
         >
@@ -72,7 +72,7 @@ export default function ContentTitle({
       {title || highlightTitleText ? (
         <h3
           className={cn(
-            'text-[32px] leading-[110%] tracking-tight text-[#515266] md:text-[40px] lg:text-[50px]',
+            'text-primary text-[32px] leading-[110%] tracking-tight md:text-[40px] lg:text-[50px]',
             {
               'pt-4': !!subtitle
             },
@@ -87,7 +87,7 @@ export default function ContentTitle({
       {description ? (
         <p
           className={cn(
-            'text-muted-foreground mx-auto mb-8 pt-7 sm:text-lg md:text-base lg:max-w-2xl',
+            'text-secondary-foreground mx-auto mb-8 pt-7 sm:text-lg md:text-base lg:max-w-2xl',
             {
               '': align === 'left',
               'text-center': align === 'center'

@@ -30,7 +30,7 @@ export const NavMenu = (props: NavigationMenuProps) => {
 
   return (
     <NavigationMenu viewport={false} {...props}>
-      <NavigationMenuList className="gap-0 space-x-0 text-sm">
+      <NavigationMenuList className="text-secondary-foreground gap-0 space-x-0 text-sm">
         {navData.map(link => {
           return (
             <NavigationMenuItem key={link._id}>
@@ -60,7 +60,7 @@ export const NavMenu = (props: NavigationMenuProps) => {
               ) : (
                 <Button
                   variant="ghost"
-                  className="text-[15px] font-normal capitalize hover:text-purple-700"
+                  className="hover:text-primary text-[15px] font-normal capitalize"
                   asChild
                 >
                   {link.link ? (
@@ -72,12 +72,12 @@ export const NavMenu = (props: NavigationMenuProps) => {
                           // For home route, use exact match
                           if (link.link === '/') {
                             return pathname === fullPath
-                              ? 'font-bold! text-purple-700'
+                              ? 'text-primary font-bold!'
                               : '';
                           }
                           // For other routes, check if pathname starts with the link path
                           return pathname.startsWith(fullPath)
-                            ? 'font-bold! text-purple-700'
+                            ? 'text-primary font-bold!'
                             : '';
                         })()}`
                       )}

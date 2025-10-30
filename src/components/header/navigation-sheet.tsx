@@ -39,7 +39,7 @@ const NavigationSheetSuspense = () => {
           <span className="text-xs">{t('Phone')}:</span>
           <a
             href={`tel:${settingsData.contact?.phone}`}
-            className="text-[13px] leading-[100%] font-medium"
+            className="text-secondary-foreground text-[13px] leading-[100%] font-medium"
           >
             {settingsData.contact?.phone}
           </a>
@@ -47,7 +47,7 @@ const NavigationSheetSuspense = () => {
         {/* address */}
         <div className="flex flex-col">
           <span className="text-xs">{t('Address')}:</span>
-          <p className="text-[13px] leading-[115%] font-medium">
+          <p className="text-secondary-foreground text-[13px] leading-[115%] font-medium">
             {settingsData.contact?.address}
           </p>
         </div>
@@ -56,7 +56,7 @@ const NavigationSheetSuspense = () => {
           <span className="text-xs">{t('Email')}:</span>
           <a
             href={`mailto:${settingsData.contact?.email}`}
-            className="text-[13px] leading-[100%] font-medium"
+            className="text-secondary-foreground text-[13px] leading-[100%] font-medium"
           >
             {settingsData.contact?.email}
           </a>
@@ -70,16 +70,8 @@ const NavigationSheetSuspense = () => {
               <SheetTrigger asChild>
                 <NavigationLink href={nav.link}>
                   <div
-                    // className={cn(
-                    //   'text-muted-foreground underline-offset-2 hover:underline',
-                    //   {
-                    //     'font-bold! text-purple-700!': pathname.includes(
-                    //       nav.link
-                    //     )
-                    //   }
-                    // )}
                     className={cn(
-                      `'text-muted-foreground hover:underline' underline-offset-2 ${(() => {
+                      `text-secondary-foreground hover:underline' underline-offset-2 ${(() => {
                         const fullPath = `/${locale}${nav.link === '/' ? '' : nav.link}`;
                         // For home route, use exact match
                         if (nav.link === '/') {

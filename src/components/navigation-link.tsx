@@ -18,7 +18,7 @@ export default function NavigationLink({
       aria-current={isActive ? 'page' : undefined}
       href={href}
       className={cn('', {
-        'font-bold! text-purple-700': isActive
+        'text-primary font-bold!': isActive
       })}
       {...rest}
     />

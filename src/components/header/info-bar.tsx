@@ -18,7 +18,7 @@ function InfoBarSuspense() {
   if (!settingsData) return null;
 
   return (
-    <div className="bg-accent hidden lg:block">
+    <div className="hidden lg:block">
       <div className="mx-auto flex h-full max-w-[1440px] items-center gap-x-9 px-4 py-2 sm:px-6 lg:px-8">
         {/* phone number */}
         <div className="flex items-center">
