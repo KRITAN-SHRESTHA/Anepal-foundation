@@ -13,13 +13,13 @@ export default function WhoDoWeHelpSection() {
 
   return (
     <div className="bg-accent mt-10">
-      <div className="mx-auto max-w-6xl py-12 text-center">
+      <div className="mx-auto max-w-6xl px-4 py-12 text-center sm:px-6 lg:px-8">
         <ContentTitle
           title={data?.statisticsSection.statsTitle}
           subtitle={data?.statisticsSection.statsSubtitle}
           highlightTitleText={data?.statisticsSection?.highlightTitle}
         />
-        <div className="mt-10 grid justify-center gap-x-8 gap-y-16 sm:mt-14 sm:grid-cols-4">
+        <div className="mt-10 flex flex-col justify-center gap-x-[100px] gap-y-[50px] sm:mt-14 sm:flex-row sm:flex-wrap">
           {data?.statisticsSection.statistics.map(stat => (
             <HelpItem
               key={stat._id}

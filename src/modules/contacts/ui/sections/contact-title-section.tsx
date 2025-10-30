@@ -4,20 +4,20 @@ import HeroSectionTwo from '@/components/hero-section-2';
 import { trpc } from '@/trpc/client';
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import BlogsPageTitleSkeleton from './blogs-page-title-skeleton';
 
-export default function BlogListPageTitleSection() {
+export default function ContactTitleSection() {
   return (
     <ErrorBoundary fallback={<div>Something went wrong</div>}>
-      <Suspense fallback={<BlogsPageTitleSkeleton />}>
-        <BlogListPageTitleSectionSuspense />
+      <Suspense fallback={<>Loading....</>}>
+        <ContactTitleSectionSuspense />
       </Suspense>
     </ErrorBoundary>
   );
 }
 
-function BlogListPageTitleSectionSuspense() {
-  const [data] = trpc.blogs.getBlogPage.useSuspenseQuery();
+function ContactTitleSectionSuspense() {
+  const [data] = trpc.contact.getContactPage.useSuspenseQuery();
+
   if (!data?.heroSection) return null;
 
   return (

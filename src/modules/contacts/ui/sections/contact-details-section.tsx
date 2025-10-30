@@ -24,7 +24,7 @@ function ContactDetailsSectionSuspense() {
     <div className="mx-auto flex max-w-sm flex-col justify-between gap-10 md:max-w-xs lg:max-w-sm">
       {data && (
         <div className="text-center md:text-left">
-          <h1 className="mb-2 text-5xl font-semibold lg:mb-1 lg:text-6xl">
+          <h1 className="mb-2 text-4xl font-semibold lg:mb-1 lg:text-5xl">
             {getLocalizedString(data.title ?? [])}
           </h1>
           <p className="text-muted-foreground">
