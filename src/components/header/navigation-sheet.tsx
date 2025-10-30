@@ -21,7 +21,7 @@ export default function NavigationSheet() {
 const NavigationSheetSuspense = () => {
   const [settingsData] = trpc.settings.getSettings.useSuspenseQuery();
   const [navData] = trpc.header.getHeader.useSuspenseQuery();
-  const { getLocalizedString } = useGetLocale();
+  const { getLocalizedString, locale } = useGetLocale();
   const pathname = usePathname();
   const t = useTranslations('ContactPage');
 
@@ -70,13 +70,28 @@ const NavigationSheetSuspense = () => {
               <SheetTrigger asChild>
                 <NavigationLink href={nav.link}>
                   <div
+                    // className={cn(
+                    //   'text-muted-foreground underline-offset-2 hover:underline',
+                    //   {
+                    //     'font-bold! text-purple-700!': pathname.includes(
+                    //       nav.link
+                    //     )
+                    //   }
+                    // )}
                     className={cn(
-                      'text-muted-foreground underline-offset-2 hover:underline',
-                      {
-                        'font-bold! text-purple-700!': pathname.includes(
-                          nav.link
-                        )
-                      }
+                      `'text-muted-foreground hover:underline' underline-offset-2 ${(() => {
+                        const fullPath = `/${locale}${nav.link === '/' ? '' : nav.link}`;
+                        // For home route, use exact match
+                        if (nav.link === '/') {
+                          return pathname === fullPath
+                            ? 'font-bold! text-purple-700'
+                            : '';
+                        }
+                        // For other routes, check if pathname starts with the link path
+                        return pathname.startsWith(fullPath)
+                          ? 'font-bold! text-purple-700'
+                          : '';
+                      })()}`
                     )}
                   >
                     {getLocalizedString(nav.name ?? [])}
@@ -97,11 +112,19 @@ const NavigationSheetSuspense = () => {
                         <NavigationLink
                           href={sub.link}
                           className={cn(
-                            'text-muted-foreground underline-offset-2 hover:underline',
-                            {
-                              'font-bold! text-purple-700!':
-                                pathname === sub.link
-                            }
+                            `${(() => {
+                              const fullPath = `/${locale}${sub.link === '/' ? '' : sub.link}`;
+                              // For home route, use exact match
+                              if (sub.link === '/') {
+                                return pathname === fullPath
+                                  ? 'font-bold! text-purple-700'
+                                  : '';
+                              }
+                              // For other routes, check if pathname starts with the link path
+                              return pathname.startsWith(fullPath)
+                                ? 'font-bold! text-purple-700'
+                                : '';
+                            })()}`
                           )}
                         >
                           {getLocalizedString(nav.name ?? [])}
