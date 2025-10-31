@@ -42,8 +42,10 @@ function HelpItem({
 }) {
   return (
     <div className="grid justify-center">
-      <span className="text-[80px] font-extrabold text-[#4a4c70]">{value}</span>
-      <p className="text-lg font-black text-[#515266]">{text}</p>
+      <span className="text-[80px] font-extrabold text-yellow-600">
+        {value}
+      </span>
+      <p className="text-muted-foreground text-lg font-black">{text}</p>
     </div>
   );
 }

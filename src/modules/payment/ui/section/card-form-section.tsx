@@ -120,8 +120,8 @@ const SubmitPayment = () => {
   return (
     <div className="p-1.5">
       <Button
-        variant={'outline'}
-        className="group mt-3 h-[50px] w-full bg-purple-700 text-base text-white hover:bg-purple-900 hover:text-white"
+        // variant={'outline'}
+        className="group mt-3 h-[50px] w-full text-base"
         onClick={handleClick}
         disabled={isPaying}
       >

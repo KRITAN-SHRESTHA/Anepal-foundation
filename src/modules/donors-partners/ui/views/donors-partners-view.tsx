@@ -3,8 +3,8 @@
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
-import HeroSection from '@/components/hero-section';
 import { trpc } from '@/trpc/client';
+import HeroSectionTwo from '@/components/hero-section-2';
 
 import StatsSection from '../sections/stats-section';
 import ThankyouSection from '../sections/thankyou-section';
@@ -28,10 +28,8 @@ function DonorsPartnersViewSuspense() {
   return (
     <div>
       {data?.heroSection?.backgroundImage && (
-        <HeroSection
+        <HeroSectionTwo
           image={data.heroSection?.backgroundImage}
-          subtitle={data.heroSection.subtitle ?? []}
-          highlightTitleText={data.heroSection.highlightTitle}
           title={data.heroSection.title ?? []}
         />
       )}

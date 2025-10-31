@@ -61,7 +61,10 @@ function TestimonialsSectionSuspense() {
             {testimonialChunks.map((chunk, chunkIndex) => (
               <div key={chunkIndex} className="relative space-y-3">
                 {chunk.map(({ role, user_name, content }, index) => (
-                  <Card key={index} className="bg-white">
+                  <Card
+                    key={index}
+                    className="shadow-accent-foreground border-none bg-white shadow-lg/20"
+                  >
                     <CardContent className="grid grid-cols-[auto_1fr] gap-3">
                       <Avatar className="size-9">
                         <AvatarFallback className="bg-secondary/50">

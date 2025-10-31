@@ -43,7 +43,7 @@ function OurBlogsListSectionSuspense() {
       {blogs.map(blog => (
         <Card
           key={blog._id}
-          className="grid grid-rows-[auto_auto_1fr_auto] pt-0"
+          className="shadow-accent-foreground grid grid-rows-[auto_auto_1fr_auto] bg-white pt-0 shadow-lg/20"
         >
           <div className="relative aspect-16/9 w-full overflow-clip">
             <NavigationLink
@@ -65,7 +65,7 @@ function OurBlogsListSectionSuspense() {
             </Badge>
           </div>
           <CardHeader>
-            <h3 className="text-lg font-semibold hover:underline md:text-xl">
+            <h3 className="line-clamp-1 text-lg font-semibold hover:underline md:text-xl">
               <NavigationLink href={`/blogs/${blog.slug?.current}`}>
                 {getLocalizedString(blog.title ?? [])}
               </NavigationLink>

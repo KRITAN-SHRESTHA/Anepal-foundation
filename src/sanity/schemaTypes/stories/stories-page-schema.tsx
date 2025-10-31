@@ -28,51 +28,12 @@ export const storiesPageSchema = defineType({
             )
         },
         {
-          name: 'highlightTitle',
-          title: 'Highlight Title',
-          type: 'internationalizedArrayString',
-          validation: rule =>
-            rule
-              .required()
-              .custom<
-                { value: string; _type: string; _key: string }[]
-              >(value => {
-                return validationLang(
-                  value,
-                  'Please add highlight title in all languages'
-                );
-              })
-        },
-        {
-          name: 'subtitle',
-          title: 'Subtitle',
-          type: 'internationalizedArrayString',
-          validation: rule =>
-            rule.custom<{ value: string; _type: string; _key: string }[]>(
-              value => {
-                return validationLang(
-                  value,
-                  'Please add subtitle in all languages'
-                );
-              }
-            )
-        },
-        {
           name: 'backgroundImage',
           title: 'Background Image',
           type: 'image',
           options: { hotspot: true },
           validation: rule => rule.required().error('Image is required')
-          // fields: [
-          //   defineField({
-          //     name: 'alt',
-          //     type: 'string',
-          //     title: 'Alternative Text (about donors and partners)',
-          //     validation: rule => rule.required().error('Image alt is required')
-          //   })
-          // ]
         }
-        // { name: 'highlightText', title: 'Highlight Text', type: 'string' } // "Mercy"
       ]
     }
     // {

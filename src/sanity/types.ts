@@ -780,16 +780,6 @@ export type StoriesPageContent = {
         _key: string;
       } & InternationalizedArrayStringValue
     >;
-    highlightTitle?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
-    subtitle?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
     backgroundImage?: {
       asset?: {
         _ref: string;
@@ -952,16 +942,6 @@ export type DonorsAndPartnersPage = {
   _rev: string;
   heroSection?: {
     title?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
-    highlightTitle?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
-    subtitle?: Array<
       {
         _key: string;
       } & InternationalizedArrayStringValue
@@ -1168,16 +1148,6 @@ export type Aboutus = {
   _rev: string;
   heroSection?: {
     title?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
-    highlightTitle?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
-    subtitle?: Array<
       {
         _key: string;
       } & InternationalizedArrayStringValue

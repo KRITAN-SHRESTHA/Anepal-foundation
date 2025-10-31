@@ -69,14 +69,15 @@ export default function StoriesListSection() {
                 'order-1': (idx + 1) % 2 !== 0 // odd
               })}
             >
-              <strong className="text-muted-foreground/60">
+              {/* <strong className="text-muted-foreground/60"> */}
+              <strong className="text-secondary-foreground">
                 {pagination.page == 1
                   ? numbering == 10
                     ? numbering
                     : `0${numbering}`
                   : numbering}
               </strong>
-              <h4 className="text-[32px] md:text-[50px]">
+              <h4 className="text-primary text-[32px] md:text-[50px]">
                 <b>{firstName}</b>&nbsp;
                 {lastname}
               </h4>
@@ -91,12 +92,12 @@ export default function StoriesListSection() {
                       ... &nbsp;
                       <Dialog>
                         <DialogTrigger>
-                          <button className="cursor-pointer font-medium text-purple-700 underline-offset-1 hover:underline">
+                          <button className="cursor-pointer font-medium underline-offset-1 hover:underline">
                             see more
                           </button>
                         </DialogTrigger>
                         <DialogContent className="max-h-[90vh] w-full max-w-[800px]! overflow-y-auto px-[25px] py-[50px] sm:p-[50px]">
-                          <DialogTitle className="text-[30px]">
+                          <DialogTitle className="text-primary text-[30px]">
                             <b>
                               {firstName}&nbsp;
                               {lastname}
@@ -107,6 +108,7 @@ export default function StoriesListSection() {
                               __html:
                                 description?.replaceAll('\n', '<br/>') || ''
                             }}
+                            className="text-muted-foreground"
                           ></p>
                         </DialogContent>
                       </Dialog>

@@ -121,11 +121,7 @@ export default function ContactFormSection() {
           onChange={handleChange}
         />
       </div>
-      <Button
-        type="submit"
-        className="w-full bg-purple-700"
-        disabled={isPending}
-      >
+      <Button type="submit" className="w-full" disabled={isPending}>
         {isPending ? `${t('Sending')}` : `${t('Send_Message')}`}
       </Button>
     </form>

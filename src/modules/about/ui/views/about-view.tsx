@@ -4,13 +4,13 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { Suspense } from 'react';
 
 import ContentSection from '@/components/content-section';
-import HeroSection from '@/components/hero-section';
 import { trpc } from '@/trpc/client';
 
 import AboutUsTeamSection from '../sections/about-us-team-section';
 import WhoDoWeHelpSection from '../sections/who-do-we-help-section';
 import PartnersSection from '../sections/partners-sections';
 import AboutUsPageSkeleton from '../components/about-us-page-skeleton';
+import HeroSectionTwo from '@/components/hero-section-2';
 
 export default function AboutView() {
   return (
@@ -28,10 +28,8 @@ function AboutViewSuspense() {
   return (
     <>
       {data?.heroSection?.backgroundImage && (
-        <HeroSection
+        <HeroSectionTwo
           image={data.heroSection?.backgroundImage}
-          subtitle={data.heroSection?.subtitle}
-          highlightTitleText={data.heroSection.highlightTitle}
           title={data.heroSection?.title}
         />
       )}
@@ -39,7 +37,6 @@ function AboutViewSuspense() {
       {data?.firstcontent && (
         <ContentSection
           description={data.firstcontent?.description}
-          // title={data.firstcontent.title}
           subtitle={data.firstcontent?.subtitle}
           highlightTitleText={data.firstcontent?.title}
           orientation="rtl"

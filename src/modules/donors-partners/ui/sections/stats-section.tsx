@@ -29,7 +29,7 @@ export default function StatsSection() {
             <h3 className="text-center text-xl font-extrabold whitespace-nowrap">
               {getLocalizedString(stat.label ?? [])}
             </h3>
-            <span className="xs:text-[80px] text-[70px] font-extrabold lg:text-[100px]">
+            <span className="xs:text-[80px] text-[70px] font-extrabold text-yellow-600 lg:text-[100px]">
               {stat.value}
             </span>
           </div>

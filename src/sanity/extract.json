@@ -4344,50 +4344,6 @@
               },
               "optional": true
             },
-            "highlightTitle": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "array",
-                "of": {
-                  "type": "object",
-                  "attributes": {
-                    "_key": {
-                      "type": "objectAttribute",
-                      "value": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "rest": {
-                    "type": "inline",
-                    "name": "internationalizedArrayStringValue"
-                  }
-                }
-              },
-              "optional": true
-            },
-            "subtitle": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "array",
-                "of": {
-                  "type": "object",
-                  "attributes": {
-                    "_key": {
-                      "type": "objectAttribute",
-                      "value": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "rest": {
-                    "type": "inline",
-                    "name": "internationalizedArrayStringValue"
-                  }
-                }
-              },
-              "optional": true
-            },
             "backgroundImage": {
               "type": "objectAttribute",
               "value": {
@@ -5399,50 +5355,6 @@
           "type": "object",
           "attributes": {
             "title": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "array",
-                "of": {
-                  "type": "object",
-                  "attributes": {
-                    "_key": {
-                      "type": "objectAttribute",
-                      "value": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "rest": {
-                    "type": "inline",
-                    "name": "internationalizedArrayStringValue"
-                  }
-                }
-              },
-              "optional": true
-            },
-            "highlightTitle": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "array",
-                "of": {
-                  "type": "object",
-                  "attributes": {
-                    "_key": {
-                      "type": "objectAttribute",
-                      "value": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "rest": {
-                    "type": "inline",
-                    "name": "internationalizedArrayStringValue"
-                  }
-                }
-              },
-              "optional": true
-            },
-            "subtitle": {
               "type": "objectAttribute",
               "value": {
                 "type": "array",
@@ -6476,50 +6388,6 @@
           "type": "object",
           "attributes": {
             "title": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "array",
-                "of": {
-                  "type": "object",
-                  "attributes": {
-                    "_key": {
-                      "type": "objectAttribute",
-                      "value": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "rest": {
-                    "type": "inline",
-                    "name": "internationalizedArrayStringValue"
-                  }
-                }
-              },
-              "optional": true
-            },
-            "highlightTitle": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "array",
-                "of": {
-                  "type": "object",
-                  "attributes": {
-                    "_key": {
-                      "type": "objectAttribute",
-                      "value": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "rest": {
-                    "type": "inline",
-                    "name": "internationalizedArrayStringValue"
-                  }
-                }
-              },
-              "optional": true
-            },
-            "subtitle": {
               "type": "objectAttribute",
               "value": {
                 "type": "array",

@@ -42,7 +42,7 @@ function ContactDetailsSectionSuspense() {
               <span className="font-bold">{t('Phone')}: </span>
               <a
                 href={`tel:${settingsData.contact?.phone}`}
-                className="underline-offset-2 hover:underline"
+                className="text-muted-foreground font-semibold underline-offset-2 hover:underline"
                 aria-label={`Call us at ${settingsData?.contact?.phone}`}
               >
                 {settingsData?.contact?.phone}
@@ -53,14 +53,16 @@ function ContactDetailsSectionSuspense() {
               <a
                 href={`mailto:${settingsData?.contact?.email}`}
                 // className="underline"
-                className="underline-offset-2 hover:underline"
+                className="text-muted-foreground font-semibold underline-offset-2 hover:underline"
               >
                 {settingsData?.contact?.email}
               </a>
             </li>
             <li>
               <span className="font-bold">{t('Address')}: </span>
-              {settingsData.contact?.address}
+              <span className="text-muted-foreground font-semibold">
+                {settingsData.contact?.address}
+              </span>
             </li>
           </ul>
         </div>

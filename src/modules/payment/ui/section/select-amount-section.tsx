@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 import { usePaymentAmountStore } from '../store/payment-amount-store';
 
 const radioClassname =
-  'border-input has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border-2 px-2 py-3 text-center shadow-xs transition-[color,box-shadow] delay-300 outline-none has-focus-visible:ring-[3px] has-data-[state=checked]:border-purple-800';
+  'has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border-2 px-2 py-3 text-center shadow-lg/20 shadow-accent-foreground transition-[color,box-shadow] delay-300 outline-none has-focus-visible:ring-[3px] has-data-[state=checked]:border-primary has-data-[state=checked]:[&_label]:text-primary';
 
 export default function SelectAmountSection() {
   const amountList = usePaymentAmountStore(state => state.amountList);
@@ -35,7 +35,7 @@ export default function SelectAmountSection() {
   return (
     <>
       <RadioGroup
-        className="xs:grid-cols-3 grid-cols-3 p-1.5"
+        className="xs:grid-cols-3 mb-3 grid-cols-3 p-1.5"
         defaultValue="1"
         onValueChange={handleChange}
         disabled={isPaying}

@@ -29,7 +29,7 @@ export default function PaymentView() {
     <PayPalScriptProvider options={initialOptions}>
       <div className="relative z-10 mx-auto max-w-[500px] px-4 pt-[40px] pb-[100px]">
         <ContentTitle
-          title={t('Donate_us')}
+          highlightTitleText={t('Donate_us')}
           align="center"
           subtitle={t('Make_a_difference_today')}
           subtitleClassname="text-[30px]!"
