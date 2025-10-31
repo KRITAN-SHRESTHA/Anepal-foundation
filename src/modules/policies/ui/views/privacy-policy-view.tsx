@@ -6,6 +6,7 @@ import { trpc } from '@/trpc/client';
 import React, { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import PrivacyLoading from '../components/privacy-loading';
+import { useTranslations } from 'next-intl';
 
 export default function PrivacyPolicyView() {
   return (
@@ -21,12 +22,13 @@ function PrivacyPolicyViewSuspense() {
   const [data] = trpc.policies.getPrivacyPolicies.useSuspenseQuery();
 
   const { locale } = useGetLocale();
+  const t = useTranslations('Default');
 
   return (
     <section className="py-12">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-16 px-4 sm:px-6 lg:px-16">
         <h1 className="max-w-3xl text-[40px] font-semibold text-pretty md:text-6xl">
-          Privacy Policy
+          {t('Privacy_Policy')}
         </h1>
         <div>
           {locale === 'en' && data?.content?.content_en && (

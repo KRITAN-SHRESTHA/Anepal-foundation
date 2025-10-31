@@ -27,6 +27,10 @@
     "Email": "Correo electrónico",
     "Cardholder_name": "Nombre del titular de la tarjeta",
     "Card_number": "Número de tarjeta",
-    "Expiry_date": "Fecha de caducidad"
+    "Expiry_date": "Fecha de caducidad",
+    "Custom": "Costumbre",
+    "Amount":"Cantidad",
+    "Enter_amount": "Ingrese la cantidad"
+
   }
 }

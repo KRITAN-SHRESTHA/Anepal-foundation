@@ -27,6 +27,9 @@
     "Email": "Email",
     "Cardholder_name": "Cardholder name",
     "Card_number": "Card number",
-    "Expiry_date": "Expiry date"
+    "Expiry_date": "Expiry date",
+    "Custom": "Custom",
+    "Amount":"Amount",
+    "Enter_amount": "Enter amount"
   }
 }

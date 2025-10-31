@@ -123,9 +123,9 @@ export default function ContentSection({
                 ... &nbsp;
                 <Dialog>
                   <DialogTrigger>
-                    <button className="cursor-pointer font-medium underline-offset-1 hover:underline">
+                    <span className="cursor-pointer font-medium underline-offset-1 hover:underline">
                       see more
-                    </button>
+                    </span>
                   </DialogTrigger>
                   <DialogContent className="max-h-[90vh] w-full max-w-[800px]! overflow-y-auto px-[25px] py-[50px] sm:p-[50px]">
                     <DialogTitle className="text-primary text-3xl">

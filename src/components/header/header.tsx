@@ -20,9 +20,9 @@ export default function HeaderClient() {
   return (
     <header className="sticky top-0 z-50">
       <nav className="shadow-accent-foreground bg-white shadow-lg/20">
-        <div className="mx-auto flex h-19 max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex h-24 max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-8">
           <NavigationLink href={'/'} className="cursor-pointer">
-            <Logo />
+            <Logo className="h-[90px] w-[150px]" />
           </NavigationLink>
           {/* Desktop Menu */}
           <Suspense fallback="Loading.....">

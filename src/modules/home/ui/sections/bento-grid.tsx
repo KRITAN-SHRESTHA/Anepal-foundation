@@ -51,11 +51,11 @@ export const BentoGridItem = ({
 
       <div className="relative z-10 mt-auto p-6">
         <div className="translate-y-8 transform opacity-0 transition-all duration-700 group-hover/bento:translate-y-0 group-hover/bento:opacity-100">
-          <h3 className="text-shadow-accent-foreground/20 text-secondary mb-2 font-sans text-3xl font-bold text-shadow-sm">
+          <h3 className="text-shadow-accent-foreground/20 text-secondary mb-2 text-3xl font-bold text-shadow-sm">
             {title}
           </h3>
           {description && (
-            <p className="text-secondary text-shadow-accent-foreground/20 translate-y-4 transform font-sans text-sm font-normal opacity-0 transition-all delay-100 duration-700 text-shadow-sm group-hover/bento:translate-y-0 group-hover/bento:opacity-100">
+            <p className="text-secondary text-shadow-accent-foreground/20 translate-y-4 transform text-sm font-normal opacity-0 transition-all delay-100 duration-700 text-shadow-sm group-hover/bento:translate-y-0 group-hover/bento:opacity-100">
               {description}
             </p>
           )}

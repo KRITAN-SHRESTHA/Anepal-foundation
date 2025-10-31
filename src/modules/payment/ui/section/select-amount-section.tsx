@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 
 import { usePaymentAmountStore } from '../store/payment-amount-store';
+import { useTranslations } from 'next-intl';
 
 const radioClassname =
   'has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative flex cursor-pointer flex-col items-center gap-3 rounded-md border-2 px-2 py-3 text-center shadow-lg/20 shadow-accent-foreground transition-[color,box-shadow] delay-300 outline-none has-focus-visible:ring-[3px] has-data-[state=checked]:border-primary has-data-[state=checked]:[&_label]:text-primary';
@@ -20,6 +21,8 @@ export default function SelectAmountSection() {
   const amountError = usePaymentAmountStore(state => state.amountError);
   const setAmountError = usePaymentAmountStore(state => state.setAmountError);
   const isPaying = usePaymentAmountStore(state => state.isPaying);
+
+  const t = useTranslations('Default');
 
   function handleChange(val: string) {
     setAmountError(null);
@@ -61,20 +64,20 @@ export default function SelectAmountSection() {
             htmlFor={`custom`}
             className="text-foreground cursor-pointer leading-none font-medium after:absolute after:inset-0"
           >
-            Custom
+            {t('Custom')}
           </label>
         </div>
       </RadioGroup>
       {selectOtherField === 'custom' && (
         <div className="mb-4 p-1.5">
-          <Label className="gap-0.5">Amount</Label>
+          <Label className="gap-0.5">{t('Amount')}</Label>
           <div className="py-1.5">
             <Input
               className={cn('input-custom-focus', {
                 'shadow-payment-input-error! focus:shadow-payment-input-focus! border-[#d9360b]! outline-none focus:border-[#000000]! focus:outline-none! focus-visible:ring-0':
                   !!amountError
               })}
-              placeholder="Enter amount"
+              placeholder={t('Enter_amount')}
               required
               type="number"
               onChange={e => {
