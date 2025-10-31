@@ -63,7 +63,7 @@ function TestimonialsSectionSuspense() {
                 {chunk.map(({ role, user_name, content }, index) => (
                   <Card
                     key={index}
-                    className="shadow-accent-foreground border-none bg-white shadow-lg/20"
+                    className="shadow-accent-foreground border-none bg-white/90 shadow-lg/20"
                   >
                     <CardContent className="grid grid-cols-[auto_1fr] gap-3">
                       <Avatar className="size-9">
