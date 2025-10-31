@@ -19,7 +19,7 @@ export default function HeaderClient() {
 
   return (
     <header className="sticky top-0 z-50">
-      <nav className="bg-background border-b">
+      <nav className="shadow-secondary-foreground/20 bg-white shadow-lg">
         <div className="mx-auto flex h-19 max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-8">
           <NavigationLink href={'/'} className="cursor-pointer">
             <Logo />
@@ -31,7 +31,7 @@ export default function HeaderClient() {
 
           <div className="flex items-center gap-3">
             <NavigationLink href={'/payment'}>
-              <Button className="bg-primary h-[40px] w-[130px] rounded-full hover:bg-purple-900">
+              <Button className="h-[40px] w-[130px] rounded-full">
                 {t('Donate_us')} <ArrowUpRight />
               </Button>
             </NavigationLink>

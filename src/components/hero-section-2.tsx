@@ -33,14 +33,14 @@ export default function HeroSectionTwo({ title, image }: HeroSectionProps) {
       <section className="relative z-30 mx-auto flex h-full max-w-[1200px] items-center px-4 sm:px-6 lg:px-8">
         <div className="relative">
           <div className="max-w-3xl">
-            <div className="flex items-center gap-1 text-lg text-white capitalize">
+            <div className="text-shadow-accent-foreground/30 flex items-center gap-1 text-lg text-white capitalize text-shadow-md">
               <NavigationLink href={'/'} className="text-white">
                 Home
               </NavigationLink>
               <ArrowRight className="size-4" />{' '}
-              <b className="text-white capitalize">{convertedTitle}</b>
+              <b className="capitalize">{convertedTitle}</b>
             </div>
-            <h1 className="font-quicksand text-[40px] leading-[130%] text-balance text-white first-letter:capitalize md:text-5xl lg:text-6xl">
+            <h1 className="font-quicksand text-shadow-accent-foreground/30 text-[40px] leading-[130%] text-balance text-white capitalize text-shadow-md md:text-5xl lg:text-6xl">
               <b>{convertedTitle}</b>
             </h1>
           </div>

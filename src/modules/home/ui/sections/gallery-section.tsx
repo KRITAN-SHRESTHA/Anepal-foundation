@@ -62,8 +62,8 @@ function GallerySectionSuspense() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="top-[calc(100%+1rem)] right-18 left-auto size-10 translate-y-0" />
-        <CarouselNext className="top-[calc(100%+1rem)] right-15 size-10 translate-x-full translate-y-0" />
+        <CarouselPrevious className="top-[calc(100%+1rem)] right-18 left-auto size-14 translate-y-0 [&_svg]:size-6!" />
+        <CarouselNext className="top-[calc(100%+1rem)] right-15 size-14 translate-x-full translate-y-0 [&_svg]:size-6!" />
       </Carousel>
     </div>
   );

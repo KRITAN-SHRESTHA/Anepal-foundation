@@ -24,7 +24,7 @@ function StatsSectionSuspense() {
   if (!data) return null;
 
   return (
-    <div className="bg-accent">
+    <div className="bg-background/50">
       <div className="mx-auto max-w-6xl px-4 py-20 text-center sm:px-6 lg:px-8">
         <ContentTitle
           title={data.title}
@@ -55,8 +55,10 @@ function HelpItem({
 }) {
   return (
     <div className="grid justify-center">
-      <span className="text-[80px] font-extrabold text-[#4a4c70]">{value}</span>
-      <p className="text-lg font-black text-[#515266]">{text}</p>
+      <span className="text-[80px] font-extrabold text-yellow-600">
+        {value}
+      </span>
+      <p className="text-muted-foreground text-lg font-bold">{text}</p>
     </div>
   );
 }

@@ -61,30 +61,23 @@ function TestimonialsSectionSuspense() {
             {testimonialChunks.map((chunk, chunkIndex) => (
               <div key={chunkIndex} className="relative space-y-3">
                 {chunk.map(({ role, user_name, content }, index) => (
-                  <Card key={index} className="">
+                  <Card key={index} className="bg-white">
                     <CardContent className="grid grid-cols-[auto_1fr] gap-3">
                       <Avatar className="size-9">
-                        {/* <AvatarImage
-                          alt={name}
-                          src={image}
-                          loading="lazy"
-                          width="120"
-                          height="120"
-                        /> */}
-                        <AvatarFallback>{user_name?.charAt(0)}</AvatarFallback>
+                        <AvatarFallback className="bg-secondary/50">
+                          {user_name?.charAt(0)}
+                        </AvatarFallback>
                       </Avatar>
 
                       <div>
-                        <h3 className="text-primary font-medium">
-                          {user_name}
-                        </h3>
+                        <h3 className="font-medium">{user_name}</h3>
 
                         <span className="text-muted-foreground block text-sm tracking-wide">
                           {role.name}
                         </span>
 
                         <blockquote className="mt-3">
-                          <p className="text-gray-700 dark:text-gray-300">
+                          <p className="text-muted-foreground dark:text-gray-300">
                             {getLocalizedString(content ?? [])}
                           </p>
                         </blockquote>

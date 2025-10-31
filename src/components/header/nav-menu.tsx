@@ -34,6 +34,7 @@ export const NavMenu = (props: NavigationMenuProps) => {
         {navData.map(link => {
           return (
             <NavigationMenuItem key={link._id}>
+              {/* sublinks */}
               {link.subLinks && link.subLinks?.length > 0 ? (
                 <>
                   <NavigationMenuTrigger
@@ -58,6 +59,7 @@ export const NavMenu = (props: NavigationMenuProps) => {
                   </NavigationMenuContent>
                 </>
               ) : (
+                // main links
                 <Button
                   variant="ghost"
                   className="hover:text-primary text-[15px] font-normal capitalize hover:bg-transparent hover:font-bold"
@@ -67,7 +69,7 @@ export const NavMenu = (props: NavigationMenuProps) => {
                     <NavigationLink
                       href={link.link}
                       className={cn(
-                        `${(() => {
+                        `text-black ${(() => {
                           const fullPath = `/${locale}${link.link === '/' ? '' : link.link}`;
                           // For home route, use exact match
                           if (link.link === '/') {

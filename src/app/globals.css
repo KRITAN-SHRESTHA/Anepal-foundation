@@ -186,7 +186,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-primary font-quicksand;
+    @apply font-quicksand bg-white text-black;
   }
 
   /* Chrome, Safari, Edge, Opera */

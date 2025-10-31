@@ -3,11 +3,11 @@
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
-import HeroSection from '@/components/hero-section';
 import { trpc } from '@/trpc/client';
 
 import MembersListSection from '../sections/members-list-section';
 import TeamMemberPageSkeleton from '../components/team-member-page-skeleton';
+import HeroSectionTwo from '@/components/hero-section-2';
 
 export default function TeamMemberView() {
   return (
@@ -27,10 +27,8 @@ function TeamMemberViewSuspense() {
   return (
     <div>
       {teamMembers.heroSection?.backgroundImage && (
-        <HeroSection
+        <HeroSectionTwo
           image={teamMembers.heroSection?.backgroundImage}
-          subtitle={teamMembers.heroSection.subtitle}
-          highlightTitleText={teamMembers.heroSection.highlightTitle}
           title={teamMembers.heroSection.title}
         />
       )}

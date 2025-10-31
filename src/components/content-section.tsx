@@ -113,8 +113,8 @@ export default function ContentSection({
         />
 
         {convertedDescription ? (
-          <p className="pt-7 text-lg leading-[135%]">
-            <span className="text-secondary-foreground whitespace-pre-line">
+          <p className="text-muted-foreground pt-7 text-lg leading-[135%]">
+            <span className="whitespace-pre-line">
               {convertedDescription.slice(0, 400)}
             </span>
 
@@ -123,12 +123,12 @@ export default function ContentSection({
                 ... &nbsp;
                 <Dialog>
                   <DialogTrigger>
-                    <button className="text-secondary-foreground cursor-pointer font-medium underline-offset-1 hover:underline">
+                    <button className="cursor-pointer font-medium underline-offset-1 hover:underline">
                       see more
                     </button>
                   </DialogTrigger>
                   <DialogContent className="max-h-[90vh] w-full max-w-[800px]! overflow-y-auto px-[25px] py-[50px] sm:p-[50px]">
-                    <DialogTitle className="text-3xl">
+                    <DialogTitle className="text-primary text-3xl">
                       <b>
                         {convertedHighlightTitleText && convertedTitle
                           ? convertedHighlightTitleText + ' ' + convertedTitle
@@ -139,7 +139,7 @@ export default function ContentSection({
                               : convertedSubtitle}
                       </b>
                     </DialogTitle>
-                    <p className="text-secondary-foreground whitespace-pre-line">
+                    <p className="text-muted-foreground whitespace-pre-line">
                       {convertedDescription}
                     </p>
                   </DialogContent>

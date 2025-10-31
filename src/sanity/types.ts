@@ -1070,16 +1070,6 @@ export type Team_members_page = {
         _key: string;
       } & InternationalizedArrayStringValue
     >;
-    highlightTitle?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
-    subtitle?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
     backgroundImage?: {
       asset?: {
         _ref: string;

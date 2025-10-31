@@ -14,8 +14,6 @@ export default function TeamMemberCard(member: PopulatedTeamMember) {
         className="bg-secondary mx-auto h-40 w-40 rounded-full object-cover"
         width={160}
         height={160}
-        // width={120}
-        // height={120}
       />
       <h3 className="mt-4 text-lg font-semibold">{member.name}</h3>
       <p className="text-muted-foreground">{member.role?.name}</p>

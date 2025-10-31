@@ -9,6 +9,8 @@ import { cn } from '@/lib/utils';
 import NavigationLink from '../navigation-link';
 import Logo from './logo';
 import { useTranslations } from 'next-intl';
+import { ContactItem } from './info-bar-item';
+import { Mail, MapPin, PhoneCall } from 'lucide-react';
 
 export default function NavigationSheet() {
   return (
@@ -35,24 +37,28 @@ const NavigationSheetSuspense = () => {
 
       <div className="bg-accent space-y-1.5 rounded-md px-4 py-3">
         {/* phone number */}
-        <div className="flex flex-col">
-          <span className="text-xs">{t('Phone')}:</span>
-          <a
-            href={`tel:${settingsData.contact?.phone}`}
-            className="text-secondary-foreground text-[13px] leading-[100%] font-medium"
-          >
-            {settingsData.contact?.phone}
-          </a>
-        </div>
+        <ContactItem
+          icon={<PhoneCall className="size-7 shrink-0" />}
+          arialabel={`Call us at ${settingsData?.contact?.phone}`}
+          title={t('Phone')}
+          href={`tel:${settingsData?.contact?.phone}`}
+          value={settingsData?.contact?.phone as string}
+        />
         {/* address */}
-        <div className="flex flex-col">
-          <span className="text-xs">{t('Address')}:</span>
-          <p className="text-secondary-foreground text-[13px] leading-[115%] font-medium">
-            {settingsData.contact?.address}
-          </p>
-        </div>
+        <ContactItem
+          icon={<MapPin className="size-7 shrink-0" />}
+          title={t('Address')}
+          value={settingsData?.contact?.address as string}
+        />
         {/* email */}
-        <div className="flex flex-col">
+        <ContactItem
+          icon={<Mail className="size-7 shrink-0" />}
+          arialabel={`Mail us at ${settingsData?.contact?.email}`}
+          title={t('Email')}
+          href={`mailto:${settingsData?.contact?.email}`}
+          value={settingsData?.contact?.email as string}
+        />
+        {/* <div className="flex flex-col">
           <span className="text-xs">{t('Email')}:</span>
           <a
             href={`mailto:${settingsData.contact?.email}`}
@@ -60,7 +66,7 @@ const NavigationSheetSuspense = () => {
           >
             {settingsData.contact?.email}
           </a>
-        </div>
+        </div> */}
       </div>
 
       <div className="mt-5 space-y-3 text-base">

@@ -26,7 +26,7 @@ function HelpSectionSuspense() {
   if (!data) return null;
 
   return (
-    <div className="bg-accent mt-10 flex items-center justify-center py-12">
+    <div className="bg-background/50 mt-10 flex items-center justify-center py-12">
       <div>
         <ContentTitle
           subtitle={data.subtitle}
@@ -50,10 +50,10 @@ function HelpSectionSuspense() {
                 />
               </div>
               <div>
-                <span className="text-primary text-lg font-semibold">
+                <span className="text-lg font-semibold">
                   {getLocalizedString(feature.title ?? [])}
                 </span>
-                <p className="text-secondary-foreground mt-1 text-[15px]">
+                <p className="text-muted-foreground mt-1 text-[15px]">
                   {getLocalizedString(feature.description ?? [])}
                 </p>
               </div>

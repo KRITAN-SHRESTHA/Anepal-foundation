@@ -47,12 +47,12 @@ function HomeTeamMembersSectionSuspense() {
         <Button
           asChild
           variant="outline"
-          className="mt-4 rounded-full !px-5 pr-2"
-          border={'purple'}
+          className="group mt-4 rounded-full !px-5 pr-2"
+          // border={'purple'}
         >
           <NavigationLink href="/our-team">
             Read more
-            <ChevronRight className="opacity-50" />
+            <ChevronRight className="opacity-50 group-hover:opacity-100" />
           </NavigationLink>
         </Button>
       </div>

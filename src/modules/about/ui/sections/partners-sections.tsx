@@ -23,7 +23,7 @@ export default function PartnersSection({
   highlightTitleText
 }: PartnerSectionProps) {
   return (
-    <section className={cn('bg-accent px-6 py-12', className)}>
+    <section className={cn('bg-background/50 px-6 py-12', className)}>
       <div className="mx-auto max-w-5xl">
         <div>
           <ContentTitle
