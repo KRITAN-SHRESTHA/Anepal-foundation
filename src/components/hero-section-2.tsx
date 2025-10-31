@@ -4,6 +4,7 @@ import { LocalisedDataType } from '@/lib/utils';
 import useGetLocale from '@/hooks/use-get-locale';
 import { ArrowRight } from 'lucide-react';
 import NavigationLink from './navigation-link';
+import { useTranslations } from 'next-intl';
 
 interface HeroSectionProps {
   image: SanityImageSource;
@@ -12,6 +13,7 @@ interface HeroSectionProps {
 
 export default function HeroSectionTwo({ title, image }: HeroSectionProps) {
   const { getLocalizedString } = useGetLocale();
+  const t = useTranslations('Default');
 
   const convertedTitle =
     typeof title === 'string' ? title : getLocalizedString(title ?? []);
@@ -35,7 +37,7 @@ export default function HeroSectionTwo({ title, image }: HeroSectionProps) {
           <div className="max-w-3xl">
             <div className="text-shadow-accent-foreground/30 flex items-center gap-1 text-lg text-white capitalize text-shadow-md">
               <NavigationLink href={'/'} className="text-white">
-                Home
+                {t('Home')}
               </NavigationLink>
               <ArrowRight className="size-4" />{' '}
               <b className="capitalize">{convertedTitle}</b>

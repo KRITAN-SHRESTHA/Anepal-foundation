@@ -29,8 +29,13 @@
     "Card_number": "Número de tarjeta",
     "Expiry_date": "Fecha de caducidad",
     "Custom": "Costumbre",
-    "Amount":"Cantidad",
-    "Enter_amount": "Ingrese la cantidad"
+    "Amount": "Cantidad",
+    "Enter_amount": "Ingrese la cantidad",
+    "Read_more":"leer más",
+    "View_all_events":"Ver todos los eventos",
+    "Home":"Hogar"
+
+
 
   }
 }

@@ -1,3 +1,5 @@
+'use client';
+
 import { ArrowRight } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -11,8 +13,11 @@ import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import ContentTitle from '@/components/content-title';
 import NavigationLink from '@/components/navigation-link';
+import { useTranslations } from 'next-intl';
 
 export default function BlogSection() {
+  const t = useTranslations('Default');
+
   return (
     <section className="bg-accent py-14">
       <div className="mx-auto flex max-w-screen-xl flex-col items-center gap-16 px-4 sm:px-6 lg:px-8">
@@ -69,7 +74,7 @@ export default function BlogSection() {
                   target="_blank"
                   className="text-foreground flex items-center hover:underline"
                 >
-                  Read more
+                  {t('Read_more')}
                   <ArrowRight className="ml-2 size-4" />
                 </NavigationLink>
               </CardFooter>

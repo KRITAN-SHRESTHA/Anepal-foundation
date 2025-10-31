@@ -35,10 +35,10 @@ const NavigationSheetSuspense = () => {
         </NavigationLink>
       </SheetTrigger>
 
-      <div className="bg-accent space-y-1.5 rounded-md px-4 py-3">
+      <div className="bg-primary-foreground space-y-1.5 rounded-md px-4 py-3">
         {/* phone number */}
         <ContactItem
-          icon={<PhoneCall className="size-7 shrink-0" />}
+          icon={<PhoneCall className="size-5 shrink-0" />}
           arialabel={`Call us at ${settingsData?.contact?.phone}`}
           title={t('Phone')}
           href={`tel:${settingsData?.contact?.phone}`}
@@ -46,27 +46,18 @@ const NavigationSheetSuspense = () => {
         />
         {/* address */}
         <ContactItem
-          icon={<MapPin className="size-7 shrink-0" />}
+          icon={<MapPin className="size-5 shrink-0" />}
           title={t('Address')}
           value={settingsData?.contact?.address as string}
         />
         {/* email */}
         <ContactItem
-          icon={<Mail className="size-7 shrink-0" />}
+          icon={<Mail className="size-5 shrink-0" />}
           arialabel={`Mail us at ${settingsData?.contact?.email}`}
           title={t('Email')}
           href={`mailto:${settingsData?.contact?.email}`}
           value={settingsData?.contact?.email as string}
         />
-        {/* <div className="flex flex-col">
-          <span className="text-xs">{t('Email')}:</span>
-          <a
-            href={`mailto:${settingsData.contact?.email}`}
-            className="text-secondary-foreground text-[13px] leading-[100%] font-medium"
-          >
-            {settingsData.contact?.email}
-          </a>
-        </div> */}
       </div>
 
       <div className="mt-5 space-y-3 text-base">
@@ -77,7 +68,7 @@ const NavigationSheetSuspense = () => {
                 <NavigationLink href={nav.link}>
                   <div
                     className={cn(
-                      `text-secondary-foreground hover:text-primary underline-offset-2 hover:font-bold hover:underline ${(() => {
+                      `hover:text-primary underline-offset-2 hover:font-bold hover:underline ${(() => {
                         const fullPath = `/${locale}${nav.link === '/' ? '' : nav.link}`;
                         // For home route, use exact match
                         if (nav.link === '/') {

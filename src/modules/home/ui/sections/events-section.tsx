@@ -18,6 +18,7 @@ import { formatMDY } from '@/lib/date-format';
 import { trpc } from '@/trpc/client';
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
+import { useTranslations } from 'next-intl';
 
 export default function EventsSection() {
   return (
@@ -33,6 +34,7 @@ function EventsSectionSuspense() {
   const [eventsList] = trpc.events.getFeaturedHomeEvents.useSuspenseQuery();
   const [events] = trpc.home.getHomeEventsTitle.useSuspenseQuery();
   const { getLocalizedString } = useGetLocale();
+  const t = useTranslations('Default');
 
   if (!events) return null;
 
@@ -62,7 +64,7 @@ function EventsSectionSuspense() {
             asChild
           >
             <NavigationLink href={'/events'}>
-              View all events
+              {t('View_all_events')}
               <ArrowRight className="ml-2 size-4" />
             </NavigationLink>
           </Button>
@@ -116,7 +118,7 @@ function EventsSectionSuspense() {
                     href={`/events/${event.slug?.current}`}
                     className="text-foreground flex cursor-pointer items-center hover:underline"
                   >
-                    Read more
+                    {t('Read_more')}
                     <ArrowRight className="ml-2 size-4" />
                   </NavigationLink>
                 </CardFooter>

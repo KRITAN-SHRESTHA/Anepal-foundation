@@ -30,7 +30,9 @@ export const NavMenu = (props: NavigationMenuProps) => {
 
   return (
     <NavigationMenu viewport={false} {...props}>
-      <NavigationMenuList className="text-secondary-foreground gap-0 space-x-0 text-sm">
+      <NavigationMenuList
+        className={`text-secondary-foreground ${locale === 'en' ? 'gap-7' : 'gap-4'} space-x-0 text-sm`}
+      >
         {navData.map(link => {
           return (
             <NavigationMenuItem key={link._id}>
@@ -62,7 +64,7 @@ export const NavMenu = (props: NavigationMenuProps) => {
                 // main links
                 <Button
                   variant="ghost"
-                  className="hover:text-primary text-[15px] font-normal capitalize hover:bg-transparent hover:font-bold"
+                  className="hover:text-primary p-0 text-[15px] font-normal capitalize hover:bg-transparent hover:font-bold"
                   asChild
                 >
                   {link.link ? (

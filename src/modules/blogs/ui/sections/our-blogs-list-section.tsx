@@ -18,6 +18,7 @@ import { Badge } from '@/components/ui/badge';
 import { ErrorBoundary } from 'react-error-boundary';
 import BlogsListSkeleton from '../components/blogs-list-skeleton';
 import useGetAllBlogs from '../hooks/use-get-all-blogs';
+import { useTranslations } from 'next-intl';
 
 export default function OurBlogsListSection() {
   return (
@@ -33,6 +34,7 @@ function OurBlogsListSectionSuspense() {
   const { getLocalizedString } = useGetLocale();
 
   const { blogs } = useGetAllBlogs();
+  const t = useTranslations('Default');
 
   if (blogs.length === 0) {
     return <h1>No blogs found</h1>;
@@ -81,7 +83,7 @@ function OurBlogsListSectionSuspense() {
               href={`/blogs/${blog.slug?.current}`}
               className="text-foreground flex items-center hover:underline"
             >
-              Read more
+              {t('Read_more')}
               <ArrowRight className="ml-2 size-4" />
             </NavigationLink>
           </CardFooter>

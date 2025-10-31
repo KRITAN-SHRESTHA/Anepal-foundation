@@ -29,7 +29,10 @@
     "Card_number": "Card number",
     "Expiry_date": "Expiry date",
     "Custom": "Custom",
-    "Amount":"Amount",
-    "Enter_amount": "Enter amount"
+    "Amount": "Amount",
+    "Enter_amount": "Enter amount",
+    "Read_more":"Read more",
+    "View_all_events":"View all events",
+    "Home":"Home"
   }
 }

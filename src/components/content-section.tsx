@@ -13,6 +13,7 @@ import CustomImage from './custom-image';
 import NavigationLink from './navigation-link';
 import { Button } from './ui/button';
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from './ui/dialog';
+import { useTranslations } from 'next-intl';
 
 interface ContentSectionProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
@@ -40,6 +41,7 @@ export default function ContentSection({
   highlightTitleText
 }: ContentSectionProps) {
   const { getLocalizedString } = useGetLocale();
+  const t = useTranslations('Default');
 
   const convertedTitle =
     typeof title === 'string' ? title : getLocalizedString(title ?? []);
@@ -157,7 +159,7 @@ export default function ContentSection({
                 className="rounded-full !px-5 text-base shadow-none [&_svg]:!size-4"
                 // border={'purple'}
               >
-                <BookOpen className="!h-5 !w-5" /> Read more
+                <BookOpen className="!h-5 !w-5" /> {t('Read_more')}
               </Button>
             </NavigationLink>
           </div>

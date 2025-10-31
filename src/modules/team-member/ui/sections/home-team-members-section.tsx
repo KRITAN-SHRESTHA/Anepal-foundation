@@ -10,6 +10,7 @@ import TeamMemberCard from '@/components/team-member-card';
 import { Button } from '@/components/ui/button';
 import { trpc } from '@/trpc/client';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 export default function HomeTeamMembersSection() {
   return (
@@ -23,6 +24,8 @@ export default function HomeTeamMembersSection() {
 
 function HomeTeamMembersSectionSuspense() {
   const [teamMember] = trpc.home.getHomeTeamMembers.useSuspenseQuery();
+
+  const t = useTranslations('Default');
 
   if (!teamMember) return null;
 
@@ -51,7 +54,7 @@ function HomeTeamMembersSectionSuspense() {
           // border={'purple'}
         >
           <NavigationLink href="/our-team">
-            Read more
+            {t('Read_more')}
             <ChevronRight className="opacity-50 group-hover:opacity-100" />
           </NavigationLink>
         </Button>
