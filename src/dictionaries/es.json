@@ -31,11 +31,8 @@
     "Custom": "Costumbre",
     "Amount": "Cantidad",
     "Enter_amount": "Ingrese la cantidad",
-    "Read_more":"leer más",
-    "View_all_events":"Ver todos los eventos",
-    "Home":"Hogar"
-
-
-
+    "Read_more": "leer más",
+    "View_all_events": "Ver todos los eventos",
+    "Home": "Hogar"
   }
 }

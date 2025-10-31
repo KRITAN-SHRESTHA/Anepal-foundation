@@ -4,12 +4,12 @@ import HeroSectionTwo from '@/components/hero-section-2';
 import { trpc } from '@/trpc/client';
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import BlogsPageTitleSkeleton from './blogs-page-title-skeleton';
+import PageSkeleton from '@/components/page-skeleton';
 
 export default function BlogListPageTitleSection() {
   return (
     <ErrorBoundary fallback={<div>Something went wrong</div>}>
-      <Suspense fallback={<BlogsPageTitleSkeleton />}>
+      <Suspense fallback={<PageSkeleton />}>
         <BlogListPageTitleSectionSuspense />
       </Suspense>
     </ErrorBoundary>
@@ -28,10 +28,6 @@ function BlogListPageTitleSectionSuspense() {
           title={data.heroSection.title ?? []}
         />
       )}
-
-      {/* <p className="text-muted-foreground mx-auto max-w-3xl pt-20 pb-15 text-center md:text-lg">
-        {getLocalizedString(data.subtitle ?? [])}
-      </p> */}
     </>
   );
 }

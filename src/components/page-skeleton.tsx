@@ -1,6 +1,7 @@
 import { Skeleton } from '@/components/ui/skeleton';
+import React from 'react';
 
-export default function EventsPageTitleSkeleton() {
+export default function PageSkeleton() {
   return (
     <div className="relative h-[50vh] w-full md:h-[60vh] lg:h-[70vh]">
       <Skeleton className="bg-accent absolute h-full w-full" />
