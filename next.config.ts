@@ -27,7 +27,13 @@ const config: NextConfig = {
         hostname: 'cdn.sanity.io',
         port: '',
         pathname: '/images/**', // allow all image paths under /images/
-      },],
+      },{
+        protocol: 'https',
+        hostname: 'images.unsplash.com'
+      },{
+        protocol: 'https',
+        hostname: 'demo2.wpopal.com'
+      }],
   }
 
 };

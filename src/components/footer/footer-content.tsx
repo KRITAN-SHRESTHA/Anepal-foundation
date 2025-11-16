@@ -29,7 +29,7 @@ export default function FooterContent() {
 
   return (
     <>
-      <section className="bg-accent/30 pt-10 pb-10 md:pt-20">
+      <section className="bg-white pt-10 pb-10 md:pt-20">
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <footer>
             <div className="grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">

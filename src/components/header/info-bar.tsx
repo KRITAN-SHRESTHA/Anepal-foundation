@@ -21,11 +21,11 @@ function InfoBarSuspense() {
   if (!settingsData) return null;
 
   return (
-    <div className="hidden lg:block">
-      <div className="mx-auto flex h-full max-w-[1440px] items-center gap-x-9 px-4 py-2 sm:px-6 lg:px-8">
+    <div className="hidden border-b border-gray-100 bg-gray-50 lg:block">
+      <div className="mx-auto flex h-full max-w-[1440px] items-center gap-x-8 px-4 py-3 sm:px-6 lg:px-8">
         {/* phone number */}
         <ContactItem
-          icon={<PhoneCall className="size-7" />}
+          icon={<PhoneCall className="size-4" />}
           arialabel={`Call us at ${settingsData?.contact?.phone}`}
           title={t('Phone')}
           href={`tel:${settingsData?.contact?.phone}`}
@@ -34,14 +34,14 @@ function InfoBarSuspense() {
 
         {/* address */}
         <ContactItem
-          icon={<MapPin className="size-7" />}
+          icon={<MapPin className="size-4" />}
           title={t('Address')}
           value={settingsData?.contact?.address as string}
         />
 
         {/* email */}
         <ContactItem
-          icon={<Mail className="size-7" />}
+          icon={<Mail className="size-4" />}
           arialabel={`Mail us at ${settingsData?.contact?.email}`}
           title={t('Email')}
           href={`mailto:${settingsData?.contact?.email}`}

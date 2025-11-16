@@ -43,15 +43,15 @@ export const orgHelpsInFieldsSchema = defineType({
     {
       name: 'title',
       title: 'Title',
-      type: 'internationalizedArrayString'
-      // validation: rule =>
-      //   rule.custom<{ value: string; _type: string; _key: string }[]>(value => {
-      //     return validationLang(value, 'Please add name in all languages');
-      //   })
+      type: 'internationalizedArrayString',
+      validation: rule =>
+        rule.custom<{ value: string; _type: string; _key: string }[]>(value => {
+          return validationLang(value, 'Please add title in all languages');
+        })
     },
     {
-      name: 'highlightTitle',
-      title: 'Highlight Title',
+      name: 'badge_text',
+      title: 'Badge text',
       type: 'internationalizedArrayString',
       validation: rule =>
         rule
@@ -59,19 +59,33 @@ export const orgHelpsInFieldsSchema = defineType({
           .custom<{ value: string; _type: string; _key: string }[]>(value => {
             return validationLang(
               value,
-              'Please add highlight title in all languages'
+              'Please add badge text in all languages'
             );
           })
     },
     {
-      name: 'subtitle',
-      title: 'Subtitle',
+      name: 'description',
+      title: 'Description',
       type: 'internationalizedArrayString',
       validation: rule =>
         rule.custom<{ value: string; _type: string; _key: string }[]>(value => {
-          return validationLang(value, 'Please add subtitle in all languages');
+          return validationLang(
+            value,
+            'Please add description in all languages'
+          );
         })
     },
+    {
+      name: 'background_img',
+      title: 'background Image',
+      type: 'image',
+      description: 'Recommended size: 580x430px',
+      options: {
+        hotspot: true
+      },
+      validation: rule => rule.required().error('Image is required')
+    },
+
     {
       name: 'content',
       title: 'Add content',
@@ -80,7 +94,7 @@ export const orgHelpsInFieldsSchema = defineType({
       validation: rule =>
         rule.custom((arr: ContentType[]) => {
           // arr will gives the array of selected fields
-          if (!arr) return 'Please select at least a partner';
+          if (!arr) return 'Please create at least one content';
 
           if (arr.length > 4) {
             return 'Only create upto 4 content';
@@ -101,6 +115,20 @@ export const orgHelpsInFieldsSchema = defineType({
                     return validationLang(
                       value,
                       'Please add name in all languages'
+                    );
+                  }
+                )
+            },
+            {
+              name: 'heading',
+              title: 'Heading',
+              type: 'internationalizedArrayString',
+              validation: rule =>
+                rule.custom<{ value: string; _type: string; _key: string }[]>(
+                  value => {
+                    return validationLang(
+                      value,
+                      'Please add heading in all languages'
                     );
                   }
                 )

@@ -1,18 +1,13 @@
 'use client';
 
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious
-} from '@/components/ui/carousel';
-import { Card } from '@/components/ui/card';
-import ContentTitle from '@/components/content-title';
 import { trpc } from '@/trpc/client';
 import CustomImage from '@/components/custom-image';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Suspense } from 'react';
+import { motion } from 'motion/react';
+import { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import EnhancedBadge from '@/components/enhanced-badge';
+import EnhancedTitle from '@/components/enhanced-title';
 
 export default function GallerySection() {
   return (
@@ -30,41 +25,58 @@ function GallerySectionSuspense() {
   if (!data) return null;
 
   return (
-    <div className="mt-10 mb-25 md:mt-14">
-      <ContentTitle
-        subtitle={data.subtitle}
-        title={data.title}
-        highlightTitleText={data.highlightTitle}
-        align="center"
-      />
+    <section className="relative overflow-hidden bg-transparent py-20 lg:py-25">
+      {/* Subtle Background Pattern */}
+      <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-30" />
 
-      <Carousel
-        opts={{
-          align: 'start',
-          loop: true
-        }}
-        className="mx-auto mt-8 w-full md:mt-14"
-      >
-        <CarouselContent className="">
-          {data.images?.map(d => (
-            <CarouselItem
-              key={d._key}
-              className="relative basis-1/2 overflow-hidden pl-0 sm:basis-1/3 md:basis-1/4 lg:basis-1/6"
-            >
-              <Card className="aspect-square border-none shadow-none">
-                <CustomImage
-                  src={d.image}
-                  fill
-                  alt="img"
-                  className="object-cover transition-all duration-700 hover:scale-110"
-                />
-              </Card>
-            </CarouselItem>
+      <div className="relative mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="mx-auto mb-16 max-w-3xl text-center lg:mb-20">
+          {/* Badge */}
+          <EnhancedBadge text={data.subtitle} variant="blue" />
+          <EnhancedTitle text={data.title} />
+        </div>
+
+        {/* Gallery Grid */}
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 lg:gap-6">
+          {data.images?.map((image, index) => (
+            <GalleryItem key={image._key} image={image.image!} index={index} />
           ))}
-        </CarouselContent>
-        <CarouselPrevious className="top-[calc(100%+1rem)] right-20 left-auto size-14 translate-y-0 [&_svg]:size-6!" />
-        <CarouselNext className="top-[calc(100%+1rem)] right-18 size-14 translate-x-full translate-y-0 [&_svg]:size-6!" />
-      </Carousel>
-    </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function GalleryItem({
+  image,
+  index
+}: {
+  image: SanityImageSource;
+  index: number;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.05, duration: 0.4 }}
+      className="group relative aspect-square overflow-hidden rounded-lg"
+    >
+      <div className="relative h-full w-full">
+        <CustomImage
+          src={image}
+          fill
+          alt="Gallery image"
+          className="h-full w-full object-cover transition-all duration-500 group-hover:scale-110"
+        />
+
+        {/* Subtle overlay on hover */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      </div>
+
+      {/* Border effect on hover */}
+      <div className="border-accent-foreground absolute inset-0 rounded-lg border-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+    </motion.div>
   );
 }
