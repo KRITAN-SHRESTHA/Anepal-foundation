@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Suspense, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import EnhancedBadge from '@/components/enhanced-badge';
 
 export default function TestimonialsSection() {
   return (
@@ -39,23 +40,15 @@ function TestimonialsSectionSuspense() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-gray-50 via-white to-gray-50 py-20 lg:py-32">
+    <section className="relative overflow-hidden bg-transparent py-20 lg:py-32">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:20px_20px] opacity-30" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-12 flex justify-center lg:mb-16"
-        >
-          <span className="inline-block rounded-md bg-green-400 px-6 py-2.5 text-xs font-black tracking-widest text-gray-900 uppercase shadow-lg">
-            {getLocalizedString(data.subtitle ?? []) || 'Our Partners'}
-          </span>
-        </motion.div>
+        <div className="mb-8 flex justify-center">
+          <EnhancedBadge text={'What people say'} variant="green" />
+        </div>
 
         {/* Main Testimonial Card */}
         <div className="relative mx-auto max-w-6xl">
@@ -68,7 +61,7 @@ function TestimonialsSectionSuspense() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative z-10 sm:-mb-4 lg:-mr-12 lg:mb-0"
             >
-              <div className="relative rotate-[-6deg] transform bg-white p-4 shadow-2xl transition-transform duration-300 hover:rotate-[-3deg]">
+              <div className="relative rotate-[-6deg] transform bg-white p-4 shadow-xl transition-transform duration-300 hover:rotate-[-3deg]">
                 <div className="relative h-50 w-40 overflow-hidden bg-gray-100 sm:h-64 sm:w-52">
                   <AnimatePresence mode="wait">
                     <motion.div
@@ -105,7 +98,7 @@ function TestimonialsSectionSuspense() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="relative w-full overflow-hidden rounded-3xl bg-white shadow-2xl"
+              className="relative w-full overflow-hidden rounded-3xl bg-white shadow-xl"
             >
               {/* Watercolor Gradient Effect - Right Side */}
               <div className="absolute right-0 bottom-0 h-96 w-96 opacity-40">

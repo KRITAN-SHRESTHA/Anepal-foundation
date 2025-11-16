@@ -28,7 +28,7 @@ function HomeAboutUsSectionSuspense() {
   const description = getLocalizedString(data?.description ?? []);
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white via-gray-50/50 to-white py-16 lg:py-24">
+    <section className="relative overflow-hidden py-16 lg:py-24">
       {/* Decorative Background Elements */}
       <div className="bg-accent-foreground/5 absolute top-20 left-0 size-96 rounded-full blur-3xl" />
       <div className="absolute right-0 bottom-20 size-96 rounded-full bg-blue-500/5 blur-3xl" />

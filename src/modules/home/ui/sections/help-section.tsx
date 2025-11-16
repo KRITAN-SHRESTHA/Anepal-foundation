@@ -6,6 +6,8 @@ import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { useRef } from 'react';
 import { cn } from '@/lib/utils';
+import EnhancedBadge from '@/components/enhanced-badge';
+import EnhancedTitle from '@/components/enhanced-title';
 
 const OverlappingCard = ({
   children,
@@ -83,13 +85,13 @@ export default function HelpSection() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="relative min-h-[150vh] bg-gradient-to-b from-gray-50 to-white py-20">
+    <div className="relative min-h-[150vh] bg-white py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Left Content - Enhanced */}
           <div className="relative flex flex-col justify-center lg:sticky lg:top-32 lg:h-fit">
             {/* Decorative Background Element */}
-            <motion.div
+            {/* <motion.div
               animate={{
                 scale: [1, 1.2, 1],
                 rotate: [0, 90, 0]
@@ -100,73 +102,12 @@ export default function HelpSection() {
                 ease: 'easeInOut'
               }}
               className="from-accent-foreground/10 absolute top-0 -left-20 size-40 rounded-full bg-gradient-to-br to-purple-500/10 blur-3xl lg:-left-32 lg:size-64"
-            />
+            /> */}
 
-            {/* Section Badge - Enhanced */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="relative mb-6 inline-flex"
-            >
-              <div className="group relative overflow-hidden">
-                {/* Animated Background */}
-                <motion.div
-                  animate={{
-                    x: [-100, 200]
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: 'linear'
-                  }}
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
-                />
-
-                <span className="from-accent-foreground/10 text-accent-foreground relative inline-flex items-center gap-2 rounded-full bg-gradient-to-r to-purple-500/10 px-5 py-2.5 text-sm font-bold tracking-wide uppercase backdrop-blur-sm transition-all duration-300 lg:px-6 lg:py-3">
-                  <motion.div
-                    animate={{
-                      scale: [1, 1.2, 1]
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: 'easeInOut'
-                    }}
-                  >
-                    <Heart className="fill-accent-foreground/20 size-4 lg:size-5" />
-                  </motion.div>
-                  HOW YOU CAN HELP
-                </span>
-              </div>
-            </motion.div>
-
-            {/* Title - Enhanced */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="relative mb-6"
-            >
-              <h2 className="relative text-4xl leading-[1.1] font-extrabold text-gray-900 md:text-5xl lg:text-6xl">
-                <span className="relative">
-                  <span className="relative z-10 bg-clip-text">
-                    Give a helping hand{' '}
-                  </span>
-                  {/* Underline decoration */}
-                  <motion.span
-                    initial={{ scaleX: 0 }}
-                    whileInView={{ scaleX: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.5, duration: 0.6 }}
-                    className="from-accent-foreground/20 absolute -bottom-1 left-0 h-3 w-full origin-left bg-gradient-to-r to-purple-500/20 lg:h-4"
-                  />
-                </span>
-                for needy people
-              </h2>
-            </motion.div>
+            {/* Section Badge */}
+            <EnhancedBadge variant="pink" text={'HOW YOU CAN HELP'} />
+            {/* Title */}
+            <EnhancedTitle text={'Give a helping hand for needy people'} />
 
             {/* Description - Enhanced */}
             <motion.div
@@ -186,15 +127,6 @@ export default function HelpSection() {
                 around the world, delivering essential humanitarian aid. Your
                 donation today helps this life-saving work.
               </p>
-
-              {/* Decorative gradient underline */}
-              <motion.div
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.8, duration: 0.8 }}
-                className="from-accent-foreground/50 mt-4 h-px w-24 origin-left bg-gradient-to-r to-transparent"
-              />
             </motion.div>
 
             {/* CTA Button - Enhanced */}
@@ -207,21 +139,8 @@ export default function HelpSection() {
             >
               <Button
                 size="lg"
-                className="group from-accent-foreground to-accent-foreground/90 hover:shadow-accent-foreground/30 relative h-14 overflow-hidden bg-gradient-to-r px-10 text-base font-bold shadow-xl transition-all duration-300 hover:shadow-2xl lg:h-16 lg:px-12 lg:text-lg"
+                className="group from-accent-foreground to-accent-foreground/90 hover:shadow-accent-foreground/30 relative h-14 overflow-hidden bg-gradient-to-r text-base font-bold transition-all duration-300 md:px-8 lg:text-lg"
               >
-                {/* Animated shine effect */}
-                <motion.div
-                  animate={{
-                    x: [-200, 200]
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    repeatDelay: 3,
-                    ease: 'easeInOut'
-                  }}
-                />
-
                 <span className="relative flex items-center gap-3">
                   CONTACT US
                   <motion.div

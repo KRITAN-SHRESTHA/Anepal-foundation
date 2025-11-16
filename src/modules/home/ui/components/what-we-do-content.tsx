@@ -56,7 +56,6 @@ export default function WhatWeDoContent() {
 function WhatWeDoContentSuspense() {
   const [data] = trpc.home.getOrgHelpsInFields.useSuspenseQuery();
   const [activeCategory, setActiveCategory] = useState<ContentType>();
-  console.log('🚀 ~ WhatWeDoContentSuspense ~ activeCategory:', activeCategory);
   const { getLocalizedString } = useGetLocale();
 
   useEffect(() => {
@@ -67,13 +66,13 @@ function WhatWeDoContentSuspense() {
 
   return (
     <div className="grid grid-cols-1 items-end gap-8 md:grid-cols-2 lg:grid-cols-12 lg:gap-12">
-      {/* Left - Categories List */}
+      {/* Left  */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.4, duration: 0.6 }}
-        className="space-y-3 md:space-y-6 lg:col-span-4"
+        className="space-y-3 lg:col-span-4"
       >
         {data.content?.map((content, index) => (
           <motion.button
@@ -102,7 +101,7 @@ function WhatWeDoContentSuspense() {
                 className={`text-3xl font-semibold tracking-tight transition-all duration-300 lg:text-4xl ${
                   activeCategory?._key === content._key
                     ? 'text-gray-900'
-                    : 'text-gray-300'
+                    : 'text-gray-400'
                 }`}
               >
                 {getLocalizedString(content.title ?? [])}
@@ -114,7 +113,7 @@ function WhatWeDoContentSuspense() {
 
       {/* Middle - Dynamic Content Card */}
       <div className="relative z-1 flex md:h-[380px] lg:col-start-6 lg:col-end-10">
-        <div className="relative h-full w-full rounded-xl bg-white p-6 shadow-xl md:p-12">
+        <div className="relative h-full w-full rounded-xl bg-white p-6 md:p-12">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeCategory?._key}

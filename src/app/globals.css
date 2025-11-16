@@ -187,7 +187,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply font-poppins bg-white text-black;
+    @apply font-poppins min-h-screen bg-white bg-[url('/assets/bg_body_img.jpg')] bg-cover bg-fixed bg-center bg-no-repeat text-black;
   }
 
   /* Chrome, Safari, Edge, Opera */
@@ -220,4 +220,13 @@
     0 0 0 0.125rem #000000 inset,
     0 0 0 0.375rem rgb(0 0 0 / 16%);
   /* color: #8200db; */
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }

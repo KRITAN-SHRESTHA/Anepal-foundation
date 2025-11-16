@@ -5,8 +5,9 @@ import CustomImage from '@/components/custom-image';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Suspense } from 'react';
 import { motion } from 'motion/react';
-import useGetLocale from '@/hooks/use-get-locale';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import EnhancedBadge from '@/components/enhanced-badge';
+import EnhancedTitle from '@/components/enhanced-title';
 
 export default function GallerySection() {
   return (
@@ -20,16 +21,11 @@ export default function GallerySection() {
 
 function GallerySectionSuspense() {
   const [data] = trpc.home.getHomeGallery.useSuspenseQuery();
-  const { getLocalizedString } = useGetLocale();
 
   if (!data) return null;
 
-  const subtitle = getLocalizedString(data?.subtitle ?? []);
-  const highlightTitle = getLocalizedString(data?.highlightTitle ?? []);
-  const title = getLocalizedString(data?.title ?? []);
-
   return (
-    <section className="relative overflow-hidden bg-white py-20 lg:py-32">
+    <section className="relative overflow-hidden bg-transparent py-20 lg:py-25">
       {/* Subtle Background Pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-30" />
 
@@ -37,33 +33,8 @@ function GallerySectionSuspense() {
         {/* Header */}
         <div className="mx-auto mb-16 max-w-3xl text-center lg:mb-20">
           {/* Badge */}
-          {subtitle && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="mb-4 inline-block"
-            >
-              <span className="border-accent-foreground/20 bg-accent-foreground/5 text-accent-foreground inline-flex items-center rounded-full border px-4 py-1.5 text-xs font-semibold tracking-widest uppercase">
-                {subtitle}
-              </span>
-            </motion.div>
-          )}
-
-          {/* Title */}
-          <motion.h2
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1, duration: 0.5 }}
-            className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl"
-          >
-            {highlightTitle && (
-              <span className="text-accent-foreground">{highlightTitle} </span>
-            )}
-            {title}
-          </motion.h2>
+          <EnhancedBadge text={data.subtitle} variant="blue" />
+          <EnhancedTitle text={data.title} />
         </div>
 
         {/* Gallery Grid */}

@@ -3,16 +3,15 @@
 import React, { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { motion } from 'motion/react';
-import { Sparkles } from 'lucide-react';
 
 import { urlFor } from '@/sanity/lib/image';
-
 import { trpc } from '@/trpc/client';
 import { cn } from '@/lib/utils';
 import useGetLocale from '@/hooks/use-get-locale';
-
-import { BentoGrid, BentoGridItem } from './bento-grid';
 import ContainerLayout from '@/components/container-layout';
+import EnhancedBadge from '@/components/enhanced-badge';
+import EnhancedTitle from '@/components/enhanced-title';
+import { BentoGrid, BentoGridItem } from './bento-grid';
 
 export default function FeaturedProjectSection() {
   return (
@@ -37,8 +36,8 @@ function FeaturedProjectSectionSuspense() {
   const description = getLocalizedString(data?.description ?? []);
 
   return (
-    <ContainerLayout>
-      <section className="relative bg-gradient-to-b from-white via-gray-50/30 to-white py-16 lg:py-24">
+    <ContainerLayout className="">
+      <section className="relative py-16 lg:py-24">
         {/* Decorative Background Elements */}
         <div className="bg-accent-foreground/5 absolute top-20 left-1/4 size-96 rounded-full blur-3xl" />
         <div className="absolute right-1/4 bottom-40 size-96 rounded-full bg-purple-500/5 blur-3xl" />
@@ -47,72 +46,10 @@ function FeaturedProjectSectionSuspense() {
           {/* Section Header - Enhanced */}
           <div className="mx-auto max-w-3xl text-center">
             {/* Section Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="mb-6 inline-flex"
-            >
-              <div className="group relative overflow-hidden">
-                {/* Animated Background */}
-                <motion.div
-                  animate={{
-                    x: [-100, 200]
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: 'linear'
-                  }}
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
-                />
-
-                <span className="from-accent-foreground/10 text-accent-foreground relative inline-flex items-center gap-2 rounded-full bg-gradient-to-r to-purple-500/10 px-5 py-2.5 text-sm font-bold tracking-wide uppercase backdrop-blur-sm transition-all duration-300 lg:px-6 lg:py-3">
-                  <motion.div
-                    animate={{
-                      rotate: [0, 360]
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: 'linear'
-                    }}
-                  >
-                    <Sparkles className="size-4 lg:size-5" />
-                  </motion.div>
-                  {subtitle}
-                </span>
-              </div>
-            </motion.div>
+            <EnhancedBadge variant="green" text={subtitle} />
 
             {/* Title */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="mb-6"
-            >
-              <h2 className="text-4xl leading-[1.1] font-extrabold text-gray-900 md:text-5xl lg:text-6xl">
-                {highlightTitle && (
-                  <span className="relative inline-block">
-                    <span className="relative z-10 bg-clip-text">
-                      {highlightTitle}&nbsp;
-                    </span>
-                    {/* Underline decoration */}
-                    <motion.span
-                      initial={{ scaleX: 0 }}
-                      whileInView={{ scaleX: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.5, duration: 0.6 }}
-                      className="from-accent-foreground/20 absolute -bottom-1 left-0 h-3 w-full origin-left bg-gradient-to-r to-purple-500/20 lg:h-4"
-                    />
-                  </span>
-                )}
-                {title}
-              </h2>
-            </motion.div>
+            <EnhancedTitle text={`${highlightTitle} ${title}`} />
 
             {/* Description */}
             {description && (

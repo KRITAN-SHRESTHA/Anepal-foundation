@@ -1,14 +1,19 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { cn } from '@/lib/utils';
+import { cn, LocalisedDataType } from '@/lib/utils';
+import useGetLocale from '@/hooks/use-get-locale';
 
 export default function EnhancedBadge({
   text,
   variant
 }: {
-  text?: string | null;
+  text?: LocalisedDataType[] | string | null;
   variant: 'yellow' | 'green' | 'pink' | 'blue';
 }) {
+  const { getLocalizedString } = useGetLocale();
+  const convertedText =
+    typeof text === 'string' ? text : getLocalizedString(text ?? []);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
@@ -28,7 +33,7 @@ export default function EnhancedBadge({
           }
         )}
       >
-        {text}
+        {convertedText}
       </span>
     </motion.div>
   );

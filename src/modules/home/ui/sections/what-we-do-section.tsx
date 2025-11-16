@@ -5,8 +5,8 @@ import WhatWeDoBgImage from './what-we-do-bg-image';
 
 export default function WhatWeDoSection() {
   return (
-    <ContainerLayout className="max-w-7xl">
-      <section className="relative overflow-hidden bg-gradient-to-b from-white via-gray-50/30 to-white py-16 lg:py-24">
+    <ContainerLayout>
+      <section className="relative overflow-hidden py-16 lg:py-24">
         {/* Decorative Background Elements */}
         <div className="bg-accent-foreground/5 absolute top-20 left-1/4 size-96 rounded-full blur-3xl" />
         <div className="absolute right-1/4 bottom-40 size-96 rounded-full bg-yellow-500/5 blur-3xl" />

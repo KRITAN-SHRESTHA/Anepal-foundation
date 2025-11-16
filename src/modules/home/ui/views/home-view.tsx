@@ -1,6 +1,7 @@
 'use client';
 
 import BannerSection from '../sections/banner-section';
+import BlogSection from '../sections/blog-section';
 import EventsSection from '../sections/events-section';
 import FeaturedProjectSection from '../sections/featured-project-section';
 import GallerySection from '../sections/gallery-section';
@@ -17,18 +18,18 @@ export default function HomeView() {
     <>
       <BannerSection />
       <HomeAboutUsSection />
+      <ImpactSection />
       <WhatWeDoSection />
       <HelpSection />
       <FeaturedProjectSection />
       {/* <StatsSection /> */}
-      <ImpactSection />
       {/* <WorkHistorySection /> */}
       <EventsSection />
-      <TestimonialsSection />
-      {/* <BlogSection /> */}
       {/* <VolunteerSection /> */}
       <HomeTeamMembersSection />
+      <TestimonialsSection />
       <HomePartnersSection />
+      <BlogSection />
       <GallerySection />
     </>
   );

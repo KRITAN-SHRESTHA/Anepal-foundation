@@ -1,14 +1,19 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { cn } from '@/lib/utils';
+import { cn, LocalisedDataType } from '@/lib/utils';
+import useGetLocale from '@/hooks/use-get-locale';
 
 export default function EnhancedTitle({
   text,
   className
 }: {
-  text?: string | null;
+  text?: LocalisedDataType[] | string | null;
   className?: string;
 }) {
+  const { getLocalizedString } = useGetLocale();
+  const convertedText =
+    typeof text === 'string' ? text : getLocalizedString(text ?? []);
+
   return (
     <motion.h2
       initial={{ opacity: 0, y: 20 }}
@@ -20,7 +25,7 @@ export default function EnhancedTitle({
         className
       )}
     >
-      {text}
+      {convertedText}
     </motion.h2>
   );
 }
