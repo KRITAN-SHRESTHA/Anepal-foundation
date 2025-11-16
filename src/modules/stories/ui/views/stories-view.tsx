@@ -3,12 +3,12 @@
 import { ErrorBoundary } from 'react-error-boundary';
 import { Suspense } from 'react';
 
-import HeroSection from '@/components/hero-section';
 import { trpc } from '@/trpc/client';
 
 import StoriesListSection from '../sections/stories-list-section';
 import StoriesPageSkeleton from '../components/stories-page-skeleton';
 import StoriesListPagination from '../components/stories-list-pagination';
+import HeroSectionTwo from '@/components/hero-section-2';
 
 export default function StoriesView() {
   return (
@@ -26,11 +26,9 @@ function StoriesViewSuspnse() {
   return (
     <div>
       {storiesData?.heroSection?.backgroundImage && (
-        <HeroSection
+        <HeroSectionTwo
           image={storiesData.heroSection?.backgroundImage}
           title={storiesData.heroSection.title}
-          subtitle={storiesData.heroSection.subtitle}
-          highlightTitleText={storiesData.heroSection.highlightTitle}
         />
       )}
 

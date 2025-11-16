@@ -10,6 +10,34 @@ export const contactPageSchema = defineType({
   icon: Calendar,
   fields: [
     {
+      name: 'heroSection',
+      title: 'Hero Section',
+      type: 'object',
+      fields: [
+        {
+          name: 'title',
+          title: 'Title',
+          type: 'internationalizedArrayString',
+          validation: rule =>
+            rule.custom<{ value: string; _type: string; _key: string }[]>(
+              value => {
+                return validationLang(
+                  value,
+                  'Please add title in all languages'
+                );
+              }
+            )
+        },
+        {
+          name: 'backgroundImage',
+          title: 'Background Image',
+          type: 'image',
+          options: { hotspot: true },
+          validation: rule => rule.required().error('Image is required')
+        }
+      ]
+    },
+    {
       name: 'title',
       type: 'internationalizedArrayString',
       validation: rule =>

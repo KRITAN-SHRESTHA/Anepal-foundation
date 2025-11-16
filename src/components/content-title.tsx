@@ -60,7 +60,7 @@ export default function ContentTitle({
       {!!subtitle ? (
         <h2
           className={cn(
-            '!leading-[1.2] font-extrabold text-[#9e9e9e]',
+            'text-secondary-foreground !leading-[1.2] font-extrabold',
             subtitleClassname
           )}
         >
@@ -72,14 +72,18 @@ export default function ContentTitle({
       {title || highlightTitleText ? (
         <h3
           className={cn(
-            'text-[32px] leading-[110%] tracking-tight text-[#515266] md:text-[40px] lg:text-[50px]',
+            'text-primary text-[32px] leading-[110%] tracking-tight md:text-[40px] lg:text-[50px]',
             {
               'pt-4': !!subtitle
             },
             titleClassname
           )}
         >
-          {highlightTitleText && <b>{convertedHighlightTitleText}&nbsp;</b>}
+          {highlightTitleText && (
+            <b className="text-accent-foreground">
+              {convertedHighlightTitleText}&nbsp;
+            </b>
+          )}
           {convertedTitle}
         </h3>
       ) : null}

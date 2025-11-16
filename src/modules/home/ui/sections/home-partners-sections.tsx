@@ -29,51 +29,8 @@ function HomePartnersSectionSuspense(props: PartnerSectionProps) {
       title={data?.title}
       subtitle={data?.subtitle}
       highlightTitleText={data?.highlightTitle}
+      className="bg-transparent pt-0"
       {...props}
     />
   );
-  // return (
-  //   <section className={cn('bg-accent px-6 py-12', className)}>
-  //     <div className="mx-auto max-w-5xl">
-  //       <div>
-  //         <ContentTitle
-  //           title={'Our Partners & Donors'}
-  //           subtitle={'Who help us'}
-  //           align="center"
-  //         />
-
-  //         <div className="mx-auto mt-14 flex max-w-2xl flex-wrap items-center justify-center gap-8">
-  //           <Image
-  //             className="mx-auto h-6 w-fit"
-  //             src="https://html.tailus.io/blocks/customers/nvidia.svg"
-  //             alt="Nvidia Logo"
-  //             height={200}
-  //             width={200}
-  //           />
-  //           <Image
-  //             className="mx-auto h-6 w-fit"
-  //             src="https://html.tailus.io/blocks/customers/column.svg"
-  //             alt="Column Logo"
-  //             height="16"
-  //             width={200}
-  //           />
-  //           <Image
-  //             className="mx-auto h-6 w-fit"
-  //             src="https://html.tailus.io/blocks/customers/github.svg"
-  //             alt="GitHub Logo"
-  //             height="16"
-  //             width={200}
-  //           />
-  //           <Image
-  //             className="mx-auto h-6 w-fit"
-  //             src="https://html.tailus.io/blocks/customers/nike.svg"
-  //             alt="Nike Logo"
-  //             height="20"
-  //             width={200}
-  //           />
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </section>
-  // );
 }

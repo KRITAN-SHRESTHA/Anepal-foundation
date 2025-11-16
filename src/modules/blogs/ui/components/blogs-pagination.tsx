@@ -1,19 +1,9 @@
 'use client';
 
-import React, { Suspense } from 'react';
-
 import PaginationComponent from '@/components/pagination-component';
 import useGetAllBlogs from '../hooks/use-get-all-blogs';
 
 export default function BlogsPagination() {
-  return (
-    <Suspense fallback={<h1>Loading....</h1>}>
-      <BlogsPaginationSuspense />
-    </Suspense>
-  );
-}
-
-function BlogsPaginationSuspense() {
   const {
     pagination: { page: currentPage, total, totalPages },
     blogs

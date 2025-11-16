@@ -29,7 +29,7 @@ export default function FooterContent() {
 
   return (
     <>
-      <section className="bg-accent pt-10 pb-10 md:pt-20">
+      <section className="bg-white pt-10 pb-10 md:pt-20">
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <footer>
             <div className="grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -70,10 +70,8 @@ export default function FooterContent() {
               {/* address, phone, email */}
               <div>
                 <h3 className="mb-4 font-bold">{t('Contacts')}</h3>
-                <div className="text-muted-foreground grid space-y-2">
-                  <p className="hover:text-primary font-medium">
-                    {footerData?.contact?.address}
-                  </p>
+                <div className="grid space-y-2">
+                  <p className="font-medium">{footerData?.contact?.address}</p>
                   <a
                     href={`tel:${footerData?.contact?.phone}`}
                     className="hover:text-primary font-medium"
@@ -93,11 +91,11 @@ export default function FooterContent() {
               {/* navigations links */}
               <div>
                 <h3 className="mb-4 font-bold">{t('Links')}</h3>
-                <ul className="text-muted-foreground space-y-2">
+                <ul className="space-y-2">
                   {navData.map((link, linkIdx) => (
                     <li
                       key={linkIdx}
-                      className="hover:text-primary font-medium"
+                      className="hover:text-primary font-medium hover:font-semibold"
                     >
                       <NavigationLink href={link.link!}>
                         {getLocalizedString(link.name ?? [])}
@@ -109,19 +107,19 @@ export default function FooterContent() {
 
               <div>
                 <h3 className="mb-4 font-bold">{t('Donate')}</h3>
-                <div className="text-muted-foreground space-y-4">
-                  <p className="hover:text-primary font-medium">
+                <div className="space-y-4">
+                  <p className="font-medium">
                     {t('Help_Us_Change_the_Lives_of_Children_in_World')}
                   </p>
                   <NavigationLink href={'/payment'}>
-                    <Button className="h-[50px] w-[150px] rounded-full bg-purple-700 text-base hover:bg-purple-900">
+                    <Button className="hover:bg-accent-foreground h-[50px] w-[150px] rounded-full text-base">
                       {t('Donate_us')} <ArrowUpRight />
                     </Button>
                   </NavigationLink>
                 </div>
               </div>
             </div>
-            <div className="text-muted-foreground mt-12 flex flex-col justify-between gap-4 border-t pt-8 text-sm font-medium md:flex-row md:items-center">
+            <div className="mt-12 flex flex-col justify-between gap-4 border-t pt-8 text-sm font-medium md:flex-row md:items-center">
               <p>
                 © {new Date().getFullYear()}{' '}
                 {t('Anepal_Organization_All_rights_reserved')}

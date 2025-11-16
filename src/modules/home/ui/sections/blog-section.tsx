@@ -1,43 +1,31 @@
-import { ArrowRight } from 'lucide-react';
+'use client';
 
-import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader
-} from '@/components/ui/card';
 import Image from 'next/image';
-import { Badge } from '@/components/ui/badge';
-import ContentTitle from '@/components/content-title';
+
+import ContainerLayout from '@/components/container-layout';
+import EnhancedBadge from '@/components/enhanced-badge';
+import EnhancedTitle from '@/components/enhanced-title';
 import NavigationLink from '@/components/navigation-link';
+import { Badge } from '@/components/ui/badge';
+import { Card, CardHeader } from '@/components/ui/card';
 
 export default function BlogSection() {
-  return (
-    <section className="bg-accent py-14">
-      <div className="mx-auto flex max-w-screen-xl flex-col items-center gap-16 px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <ContentTitle subtitle={'News & Updates'} />
+  // const t = useTranslations('Default');
 
-          <Button
-            variant="outline"
-            border={'purple'}
-            className="mt-7 w-[180px] rounded-full"
-            asChild
-          >
-            <NavigationLink href={'/'}>
-              View all news
-              <ArrowRight className="ml-2 size-4" />
-            </NavigationLink>
-          </Button>
+  return (
+    <section className="bg-white py-14">
+      <ContainerLayout className="space-y-10">
+        <div className="text-center">
+          <EnhancedBadge text={'from our blog'} variant="green" />
+          <EnhancedTitle text={'Recent news & updates'} className="mb-0" />
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
           {posts.map(post => (
             <Card
               key={post.id}
-              className="grid grid-rows-[auto_auto_1fr_auto] pt-0"
+              className="grid grid-rows-[auto_auto_1fr_auto] border-none bg-transparent pt-0 pb-0 shadow-none"
             >
-              <div className="relative aspect-16/9 w-full">
+              <div className="relative aspect-video w-full">
                 <NavigationLink
                   href={post.url}
                   className="fade-in transition-opacity duration-200 hover:opacity-70"
@@ -45,38 +33,43 @@ export default function BlogSection() {
                   <Image
                     src={post.image}
                     alt={post.title}
-                    className="h-full w-full object-cover object-center"
+                    className="h-full w-full rounded-xl object-cover object-center"
                     fill
                   />
                 </NavigationLink>
               </div>
-              <CardHeader className="gap-2.5">
-                <Badge variant={'secondary'}>Water</Badge>
+              <CardHeader className="gap-2.5 bg-transparent px-0">
+                <div className="flex items-center justify-between">
+                  <Badge
+                    variant={'secondary'}
+                    className="bg-[#f0dd8f] text-sm text-black"
+                  >
+                    Water
+                  </Badge>
+                  <p className="text-muted-foreground text-sm">Jan 30, 2020</p>
+                </div>
 
-                <h3 className="text-primary text-lg font-semibold hover:underline md:text-xl">
+                <h3 className="text-2xl font-semibold text-gray-900 hover:underline">
                   <a href={post.url} target="_blank">
                     {post.title}
                   </a>
                 </h3>
               </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">{post.summary}</p>
-              </CardContent>
-              <CardFooter className="justify-between">
-                <p className="text-muted-foreground text-sm">Jan 30, 2020</p>
-                <NavigationLink
-                  href={post.url}
-                  target="_blank"
-                  className="text-foreground flex items-center hover:underline"
-                >
-                  Read more
-                  <ArrowRight className="ml-2 size-4" />
-                </NavigationLink>
-              </CardFooter>
             </Card>
           ))}
         </div>
-      </div>
+        {/* <Button
+          variant="outline"
+          border={'purple'}
+          className="mt-7 w-[180px] rounded-full"
+          asChild
+        >
+          <NavigationLink href={'/'}>
+            View all news
+            <ArrowRight className="ml-2 size-4" />
+          </NavigationLink>
+        </Button> */}
+      </ContainerLayout>
     </section>
   );
 }

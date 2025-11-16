@@ -24,7 +24,7 @@ function ContactDetailsSectionSuspense() {
     <div className="mx-auto flex max-w-sm flex-col justify-between gap-10 md:max-w-xs lg:max-w-sm">
       {data && (
         <div className="text-center md:text-left">
-          <h1 className="mb-2 text-5xl font-semibold lg:mb-1 lg:text-6xl">
+          <h1 className="mb-2 text-4xl font-semibold lg:mb-1 lg:text-5xl">
             {getLocalizedString(data.title ?? [])}
           </h1>
           <p className="text-muted-foreground">
@@ -42,7 +42,7 @@ function ContactDetailsSectionSuspense() {
               <span className="font-bold">{t('Phone')}: </span>
               <a
                 href={`tel:${settingsData.contact?.phone}`}
-                className="underline-offset-2 hover:underline"
+                className="text-muted-foreground font-semibold underline-offset-2 hover:underline"
                 aria-label={`Call us at ${settingsData?.contact?.phone}`}
               >
                 {settingsData?.contact?.phone}
@@ -53,14 +53,16 @@ function ContactDetailsSectionSuspense() {
               <a
                 href={`mailto:${settingsData?.contact?.email}`}
                 // className="underline"
-                className="underline-offset-2 hover:underline"
+                className="text-muted-foreground font-semibold underline-offset-2 hover:underline"
               >
                 {settingsData?.contact?.email}
               </a>
             </li>
             <li>
               <span className="font-bold">{t('Address')}: </span>
-              {settingsData.contact?.address}
+              <span className="text-muted-foreground font-semibold">
+                {settingsData.contact?.address}
+              </span>
             </li>
           </ul>
         </div>

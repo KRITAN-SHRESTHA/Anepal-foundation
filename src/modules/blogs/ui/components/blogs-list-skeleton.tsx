@@ -13,7 +13,7 @@ export default function BlogsListSkeleton() {
       {Array.from({ length: 6 }).map((_, idx) => (
         <Card
           key={idx}
-          className="grid grid-rows-[auto_auto_1fr_auto] border-none pt-0"
+          className="grid grid-rows-[auto_auto_1fr_auto] border-none bg-white pt-0"
         >
           <div className="relative aspect-16/9 w-full overflow-clip">
             <Skeleton className="h-full w-full rounded-b-none" />

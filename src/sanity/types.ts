@@ -171,6 +171,25 @@ export type ContactPage = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  heroSection?: {
+    title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    backgroundImage?: {
+      asset?: {
+        _ref: string;
+        _type: 'reference';
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: 'image';
+    };
+  };
   title?: Array<
     {
       _key: string;
@@ -202,6 +221,25 @@ export type BlogListPage = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  heroSection?: {
+    title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    backgroundImage?: {
+      asset?: {
+        _ref: string;
+        _type: 'reference';
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: 'image';
+    };
+  };
   title?: Array<
     {
       _key: string;
@@ -656,18 +694,35 @@ export type Org_helps_in_fields = {
       _key: string;
     } & InternationalizedArrayStringValue
   >;
-  highlightTitle?: Array<
+  badge_text?: Array<
     {
       _key: string;
     } & InternationalizedArrayStringValue
   >;
-  subtitle?: Array<
+  description?: Array<
     {
       _key: string;
     } & InternationalizedArrayStringValue
   >;
+  background_img?: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
   content?: Array<{
     title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    heading?: Array<
       {
         _key: string;
       } & InternationalizedArrayStringValue
@@ -699,6 +754,25 @@ export type EventsPage = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  heroSection?: {
+    title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    backgroundImage?: {
+      asset?: {
+        _ref: string;
+        _type: 'reference';
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: 'image';
+    };
+  };
   title?: Array<
     {
       _key: string;
@@ -719,16 +793,6 @@ export type StoriesPageContent = {
   _rev: string;
   heroSection?: {
     title?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
-    highlightTitle?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
-    subtitle?: Array<
       {
         _key: string;
       } & InternationalizedArrayStringValue
@@ -899,16 +963,6 @@ export type DonorsAndPartnersPage = {
         _key: string;
       } & InternationalizedArrayStringValue
     >;
-    highlightTitle?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
-    subtitle?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
     backgroundImage?: {
       asset?: {
         _ref: string;
@@ -1013,16 +1067,6 @@ export type Team_members_page = {
         _key: string;
       } & InternationalizedArrayStringValue
     >;
-    highlightTitle?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
-    subtitle?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
     backgroundImage?: {
       asset?: {
         _ref: string;
@@ -1121,16 +1165,6 @@ export type Aboutus = {
   _rev: string;
   heroSection?: {
     title?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
-    highlightTitle?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
-    subtitle?: Array<
       {
         _key: string;
       } & InternationalizedArrayStringValue
@@ -1398,12 +1432,7 @@ export type AboutAnepal = {
       _key: string;
     } & InternationalizedArrayStringValue
   >;
-  highlightTitle?: Array<
-    {
-      _key: string;
-    } & InternationalizedArrayStringValue
-  >;
-  subtitle?: Array<
+  badge_text?: Array<
     {
       _key: string;
     } & InternationalizedArrayStringValue

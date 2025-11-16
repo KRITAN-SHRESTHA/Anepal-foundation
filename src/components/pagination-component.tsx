@@ -43,7 +43,7 @@ export default function PaginationComponent({
         {/* First page button */}
         <PaginationItem>
           <PaginationLink
-            className="bg-transparent hover:bg-white aria-disabled:pointer-events-none aria-disabled:opacity-50"
+            className="hover:bg-accent aria-disabled:pointer-events-none aria-disabled:opacity-50"
             href={currentPage === 1 ? undefined : `${pathname}?page=${1}`}
             aria-label="Go to first page"
             aria-disabled={currentPage === 1 ? true : undefined}
@@ -56,7 +56,7 @@ export default function PaginationComponent({
         {/* Previous page button */}
         <PaginationItem>
           <PaginationLink
-            className="bg-transparent hover:bg-white aria-disabled:pointer-events-none aria-disabled:opacity-50"
+            className="hover:bg-accent aria-disabled:pointer-events-none aria-disabled:opacity-50"
             href={
               currentPage === 1
                 ? undefined
@@ -101,7 +101,7 @@ export default function PaginationComponent({
         {/* Next page button */}
         <PaginationItem>
           <PaginationLink
-            className="bg-transparent hover:bg-white aria-disabled:pointer-events-none aria-disabled:opacity-50"
+            className="hover:bg-accent aria-disabled:pointer-events-none aria-disabled:opacity-50"
             href={
               currentPage === totalPages
                 ? undefined
@@ -118,7 +118,7 @@ export default function PaginationComponent({
         {/* Last page button */}
         <PaginationItem>
           <PaginationLink
-            className="bg-transparent hover:bg-white aria-disabled:pointer-events-none aria-disabled:opacity-50"
+            className="hover:bg-accent aria-disabled:pointer-events-none aria-disabled:opacity-50"
             href={
               currentPage === totalPages
                 ? undefined

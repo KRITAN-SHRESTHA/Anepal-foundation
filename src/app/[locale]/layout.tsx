@@ -1,51 +1,52 @@
-import { notFound } from 'next/navigation';
-import { setRequestLocale } from 'next-intl/server';
 import type { Metadata, Viewport } from 'next';
-import {
-  Geist,
-  Geist_Mono,
-  Permanent_Marker,
-  Quicksand
-} from 'next/font/google';
-import NextTopLoader from 'nextjs-toploader';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
+import { setRequestLocale } from 'next-intl/server';
+import { Exo_2 } from 'next/font/google';
+import { notFound } from 'next/navigation';
+import NextTopLoader from 'nextjs-toploader';
 
 import Footer from '@/components/footer';
 import Header from '@/components/header';
 import { Toaster } from '@/components/ui/sonner';
-import { TRPCProvider } from '@/trpc/client';
 import { routing } from '@/i18n/routing';
-import { getClientUrl } from '@/lib/utils';
 import {
   generateAlternates,
   generateFullPath,
-  getOpenGraphLocale,
-  getOpenGraphAlternateLocales
+  getOpenGraphAlternateLocales,
+  getOpenGraphLocale
 } from '@/lib/metadata';
+import { getClientUrl } from '@/lib/utils';
 import { urlFor } from '@/sanity/lib/image';
+import { TRPCProvider } from '@/trpc/client';
 import { serverClient } from '@/trpc/server';
 
 // import '../globals.css';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin']
-});
-const permanentMarker = Permanent_Marker({
-  variable: '--font-permanent-marker',
+const poppins = Exo_2({
+  variable: '--font-poppins',
   subsets: ['latin'],
-  weight: '400'
+  weight: ['400', '500', '600', '700', '800']
 });
 
-const quickSand = Quicksand({
-  variable: '--font-quicksand',
-  subsets: ['latin']
-});
+// const geistSans = Geist({
+//   variable: '--font-geist-sans',
+//   subsets: ['latin']
+// });
+// const permanentMarker = Permanent_Marker({
+//   variable: '--font-permanent-marker',
+//   subsets: ['latin'],
+//   weight: '400'
+// });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin']
-});
+// const quickSand = Quicksand({
+//   variable: '--font-quicksand',
+//   subsets: ['latin']
+// });
+
+// const geistMono = Geist_Mono({
+//   variable: '--font-geist-mono',
+//   subsets: ['latin']
+// });
 
 // Viewport settings for responsive design and accessibility
 export const viewport: Viewport = {
@@ -264,9 +265,7 @@ export default async function RootLayout({ children, params }: Props) {
           }}
         />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${quickSand.variable} ${permanentMarker.variable} antialiased`}
-      >
+      <body className={`${poppins.variable} antialiased`}>
         <NextIntlClientProvider>
           <TRPCProvider>
             <NextTopLoader color="#a6289f" />

@@ -1,7 +1,10 @@
-import { ErrorBoundary } from 'react-error-boundary';
 import { useTranslations } from 'next-intl';
+import { ErrorBoundary } from 'react-error-boundary';
 
 import { trpc } from '@/trpc/client';
+import { Mail, MapPin, PhoneCall } from 'lucide-react';
+import React from 'react';
+import { ContactItem } from './info-bar-item';
 
 export default function InfoBar() {
   return (
@@ -18,36 +21,32 @@ function InfoBarSuspense() {
   if (!settingsData) return null;
 
   return (
-    <div className="bg-accent hidden lg:block">
-      <div className="mx-auto flex h-full max-w-[1440px] items-center gap-x-9 px-4 py-2 sm:px-6 lg:px-8">
+    <div className="hidden border-b border-gray-100 bg-gray-50 lg:block">
+      <div className="mx-auto flex h-full max-w-[1440px] items-center gap-x-8 px-4 py-3 sm:px-6 lg:px-8">
         {/* phone number */}
-        <div className="flex items-center">
-          <span className="text-xs">{t('Phone')}:</span>
-          <a
-            href={`tel:${settingsData?.contact?.phone}`}
-            className="ml-1 text-sm leading-[100%] font-medium"
-            aria-label={`Call us at ${settingsData?.contact?.phone}`}
-          >
-            {settingsData?.contact?.phone}
-          </a>
-        </div>
+        <ContactItem
+          icon={<PhoneCall className="size-4" />}
+          arialabel={`Call us at ${settingsData?.contact?.phone}`}
+          title={t('Phone')}
+          href={`tel:${settingsData?.contact?.phone}`}
+          value={settingsData?.contact?.phone as string}
+        />
+
         {/* address */}
-        <div className="flex items-center">
-          <span className="text-xs">{t('Address')}:</span>
-          <p className="ml-1 text-sm leading-[100%] font-medium">
-            {settingsData?.contact?.address}
-          </p>
-        </div>
+        <ContactItem
+          icon={<MapPin className="size-4" />}
+          title={t('Address')}
+          value={settingsData?.contact?.address as string}
+        />
+
         {/* email */}
-        <div className="flex items-center">
-          <span className="text-xs">{t('Email')}:</span>
-          <a
-            href={`mailto:${settingsData?.contact?.email}`}
-            className="ml-1 text-sm leading-[100%] font-medium"
-          >
-            {settingsData?.contact?.email}
-          </a>
-        </div>
+        <ContactItem
+          icon={<Mail className="size-4" />}
+          arialabel={`Mail us at ${settingsData?.contact?.email}`}
+          title={t('Email')}
+          href={`mailto:${settingsData?.contact?.email}`}
+          value={settingsData?.contact?.email as string}
+        />
       </div>
     </div>
   );

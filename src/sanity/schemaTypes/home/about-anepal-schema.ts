@@ -12,33 +12,22 @@ export const aboutAnepalSchema = defineType({
     {
       name: 'title',
       title: 'Title',
-      type: 'internationalizedArrayString'
-      // validation: rule =>
-      //   rule.custom<{ value: string; _type: string; _key: string }[]>(value => {
-      //     return validationLang(value, 'Please add title in all languages');
-      //   })
-    },
-    {
-      name: 'highlightTitle',
-      title: 'Highlight Title',
-      type: 'internationalizedArrayString',
-      validation: rule =>
-        rule
-          .required()
-          .custom<{ value: string; _type: string; _key: string }[]>(value => {
-            return validationLang(
-              value,
-              'Please add highlight title in all languages'
-            );
-          })
-    },
-    {
-      name: 'subtitle',
-      title: 'Subtitle',
       type: 'internationalizedArrayString',
       validation: rule =>
         rule.custom<{ value: string; _type: string; _key: string }[]>(value => {
-          return validationLang(value, 'Please add subtitle in all languages');
+          return validationLang(value, 'Please add title in all languages');
+        })
+    },
+    {
+      name: 'badge_text',
+      title: 'Badge text',
+      type: 'internationalizedArrayString',
+      validation: rule =>
+        rule.custom<{ value: string; _type: string; _key: string }[]>(value => {
+          return validationLang(
+            value,
+            'Please add badge text in all languages'
+          );
         })
     },
     {

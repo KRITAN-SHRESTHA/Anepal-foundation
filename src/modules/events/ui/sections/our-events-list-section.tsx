@@ -13,6 +13,7 @@ import NavigationLink from '@/components/navigation-link';
 import { ErrorBoundary } from 'react-error-boundary';
 import EventsListSkeleton from '../components/events-list-skeleton';
 import useGetAllEvents from '../hooks/use-get-all-events';
+import { useTranslations } from 'next-intl';
 
 export default function OurEventsListSection() {
   return (
@@ -28,6 +29,8 @@ function OurEventsListSectionSuspense() {
   const { getLocalizedString } = useGetLocale();
 
   const { events } = useGetAllEvents();
+
+  const t = useTranslations('Default');
 
   if (events.length === 0) {
     return <h1>No events found</h1>;
@@ -72,7 +75,7 @@ function OurEventsListSectionSuspense() {
                     href={`/events/${event.slug?.current}`}
                     className="inline-flex items-center font-semibold hover:underline md:text-base"
                   >
-                    <span>Read more</span>
+                    <span>{t('Read_more')}</span>
                     <ArrowRight className="ml-2 size-4 transition-transform" />
                   </NavigationLink>
                 </div>

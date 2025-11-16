@@ -1,15 +1,15 @@
 'use client';
 
-import React, { Suspense } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
+import HeroSectionTwo from '@/components/hero-section-2';
 import { trpc } from '@/trpc/client';
-import useGetLocale from '@/hooks/use-get-locale';
-import BlogsPageTitleSkeleton from './blogs-page-title-skeleton';
+import { Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import PageSkeleton from '@/components/page-skeleton';
 
 export default function BlogListPageTitleSection() {
   return (
     <ErrorBoundary fallback={<div>Something went wrong</div>}>
-      <Suspense fallback={<BlogsPageTitleSkeleton />}>
+      <Suspense fallback={<PageSkeleton />}>
         <BlogListPageTitleSectionSuspense />
       </Suspense>
     </ErrorBoundary>
@@ -18,19 +18,16 @@ export default function BlogListPageTitleSection() {
 
 function BlogListPageTitleSectionSuspense() {
   const [data] = trpc.blogs.getBlogPage.useSuspenseQuery();
-
-  const { getLocalizedString } = useGetLocale();
-
-  if (!data) return null;
+  if (!data?.heroSection) return null;
 
   return (
-    <div className="text-center">
-      <h2 className="mx-auto mb-6 text-3xl font-semibold text-pretty md:text-4xl lg:max-w-3xl">
-        {getLocalizedString(data.title ?? [])}
-      </h2>
-      <p className="text-muted-foreground mx-auto max-w-3xl md:text-lg">
-        {getLocalizedString(data.subtitle ?? [])}
-      </p>
-    </div>
+    <>
+      {data?.heroSection?.backgroundImage && (
+        <HeroSectionTwo
+          image={data.heroSection?.backgroundImage}
+          title={data.heroSection.title ?? []}
+        />
+      )}
+    </>
   );
 }

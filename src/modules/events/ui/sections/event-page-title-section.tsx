@@ -3,8 +3,8 @@
 import React, { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { trpc } from '@/trpc/client';
-import useGetLocale from '@/hooks/use-get-locale';
 import EventsPageTitleSkeleton from '../components/events-page-title-skeleton';
+import HeroSectionTwo from '@/components/hero-section-2';
 
 export default function EventPageTitleSection() {
   return (
@@ -19,18 +19,27 @@ export default function EventPageTitleSection() {
 function EventPageTitleSectionSuspense() {
   const [data] = trpc.events.getEventPage.useSuspenseQuery();
 
-  const { getLocalizedString } = useGetLocale();
-
-  if (!data) return null;
+  if (!data?.heroSection) return null;
 
   return (
-    <div className="text-center">
-      <h2 className="mx-auto mb-6 text-3xl font-semibold text-pretty md:text-4xl lg:max-w-3xl">
-        {getLocalizedString(data.title ?? [])}
-      </h2>
-      <p className="text-muted-foreground mx-auto max-w-3xl md:text-lg">
-        {getLocalizedString(data.subtitle ?? [])}
-      </p>
-    </div>
+    <>
+      {data?.heroSection?.backgroundImage && (
+        <HeroSectionTwo
+          image={data.heroSection?.backgroundImage}
+          title={data.heroSection.title ?? []}
+        />
+      )}
+    </>
   );
+
+  // return (
+  //   <div className="text-center">
+  //     <h2 className="mx-auto mb-6 text-3xl font-semibold text-pretty md:text-4xl lg:max-w-3xl">
+  //       {getLocalizedString(data.title ?? [])}
+  //     </h2>
+  //     <p className="text-muted-foreground mx-auto max-w-3xl md:text-lg">
+  //       {getLocalizedString(data.subtitle ?? [])}
+  //     </p>
+  //   </div>
+  // );
 }

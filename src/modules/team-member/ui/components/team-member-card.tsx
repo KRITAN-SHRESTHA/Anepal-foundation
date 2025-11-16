@@ -9,7 +9,7 @@ import { PopulatedTeamMember } from '@/types/team-member-types';
 export default function TeamMemberCard(member: PopulatedTeamMember) {
   const { getLocalizedString } = useGetLocale();
   return (
-    <div key={member._id} className="flex flex-col items-start">
+    <div key={member._id} className="flex flex-col items-center">
       <Avatar className="mb-4 size-24 sm:size-30 md:mb-5">
         {member.image && (
           <AvatarImage
@@ -21,7 +21,7 @@ export default function TeamMemberCard(member: PopulatedTeamMember) {
       </Avatar>
       <p className="font-medium">{member.name}</p>
       <p className="text-muted-foreground">{member.role?.name}</p>
-      <p className="text-muted-foreground py-3 text-sm">
+      <p className="text-muted-foreground py-3 text-center text-sm text-balance">
         {getLocalizedString(member.short_intro ?? [])}
       </p>
       <div className="mt-2 flex gap-4">

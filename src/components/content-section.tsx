@@ -13,6 +13,7 @@ import CustomImage from './custom-image';
 import NavigationLink from './navigation-link';
 import { Button } from './ui/button';
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from './ui/dialog';
+import { useTranslations } from 'next-intl';
 
 interface ContentSectionProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
@@ -40,6 +41,7 @@ export default function ContentSection({
   highlightTitleText
 }: ContentSectionProps) {
   const { getLocalizedString } = useGetLocale();
+  const t = useTranslations('Default');
 
   const convertedTitle =
     typeof title === 'string' ? title : getLocalizedString(title ?? []);
@@ -123,12 +125,12 @@ export default function ContentSection({
                 ... &nbsp;
                 <Dialog>
                   <DialogTrigger>
-                    <button className="cursor-pointer font-medium text-purple-700 underline-offset-1 hover:underline">
+                    <span className="cursor-pointer font-medium underline-offset-1 hover:underline">
                       see more
-                    </button>
+                    </span>
                   </DialogTrigger>
                   <DialogContent className="max-h-[90vh] w-full max-w-[800px]! overflow-y-auto px-[25px] py-[50px] sm:p-[50px]">
-                    <DialogTitle className="text-3xl">
+                    <DialogTitle className="text-primary text-3xl">
                       <b>
                         {convertedHighlightTitleText && convertedTitle
                           ? convertedHighlightTitleText + ' ' + convertedTitle
@@ -139,7 +141,7 @@ export default function ContentSection({
                               : convertedSubtitle}
                       </b>
                     </DialogTitle>
-                    <p className="whitespace-pre-line">
+                    <p className="text-muted-foreground whitespace-pre-line">
                       {convertedDescription}
                     </p>
                   </DialogContent>
@@ -155,9 +157,9 @@ export default function ContentSection({
               <Button
                 variant="outline"
                 className="rounded-full !px-5 text-base shadow-none [&_svg]:!size-4"
-                border={'purple'}
+                // border={'purple'}
               >
-                <BookOpen className="!h-5 !w-5" /> Read more
+                <BookOpen className="!h-5 !w-5" /> {t('Read_more')}
               </Button>
             </NavigationLink>
           </div>

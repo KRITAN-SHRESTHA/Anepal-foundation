@@ -59,7 +59,7 @@ export default function ContactFormSection() {
   return (
     <form
       autoComplete="off"
-      className="mx-auto flex w-full max-w-[500px] flex-col gap-6 rounded-lg border p-10 md:max-w-[400px]"
+      className="mx-auto flex w-full max-w-[500px] flex-col gap-6 rounded-lg border p-4 sm:p-10 md:max-w-[400px]"
       onSubmit={handleSubmit}
     >
       <div className="flex flex-col gap-4 sm:flex-row">
@@ -121,11 +121,7 @@ export default function ContactFormSection() {
           onChange={handleChange}
         />
       </div>
-      <Button
-        type="submit"
-        className="w-full bg-purple-700"
-        disabled={isPending}
-      >
+      <Button type="submit" className="w-full" disabled={isPending}>
         {isPending ? `${t('Sending')}` : `${t('Send_Message')}`}
       </Button>
     </form>

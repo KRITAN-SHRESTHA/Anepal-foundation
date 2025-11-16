@@ -24,7 +24,7 @@ export default function MembersListSection() {
           {getLocalizedString(data?.membersDetails.description ?? [])}
         </p>
       </div>
-      <div className="mt-16 grid grid-cols-2 gap-x-8 gap-y-10 sm:gap-x-12 sm:gap-y-16 lg:grid-cols-5">
+      <div className="mt-16 grid grid-cols-1 gap-x-8 gap-y-10 sm:gap-x-12 sm:gap-y-16 md:grid-cols-2 lg:grid-cols-3">
         {data?.membersDetails?.membersList?.map(member => (
           <TeamMemberCard key={member._id} {...member} />
         ))}
