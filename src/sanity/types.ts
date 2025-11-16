@@ -694,18 +694,35 @@ export type Org_helps_in_fields = {
       _key: string;
     } & InternationalizedArrayStringValue
   >;
-  highlightTitle?: Array<
+  badge_text?: Array<
     {
       _key: string;
     } & InternationalizedArrayStringValue
   >;
-  subtitle?: Array<
+  description?: Array<
     {
       _key: string;
     } & InternationalizedArrayStringValue
   >;
+  background_img?: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
   content?: Array<{
     title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    heading?: Array<
       {
         _key: string;
       } & InternationalizedArrayStringValue
@@ -1415,12 +1432,7 @@ export type AboutAnepal = {
       _key: string;
     } & InternationalizedArrayStringValue
   >;
-  highlightTitle?: Array<
-    {
-      _key: string;
-    } & InternationalizedArrayStringValue
-  >;
-  subtitle?: Array<
+  badge_text?: Array<
     {
       _key: string;
     } & InternationalizedArrayStringValue

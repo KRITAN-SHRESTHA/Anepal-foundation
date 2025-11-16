@@ -3919,7 +3919,7 @@
         },
         "optional": true
       },
-      "highlightTitle": {
+      "badge_text": {
         "type": "objectAttribute",
         "value": {
           "type": "array",
@@ -3941,7 +3941,7 @@
         },
         "optional": true
       },
-      "subtitle": {
+      "description": {
         "type": "objectAttribute",
         "value": {
           "type": "array",
@@ -3958,6 +3958,75 @@
             "rest": {
               "type": "inline",
               "name": "internationalizedArrayStringValue"
+            }
+          }
+        },
+        "optional": true
+      },
+      "background_img": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "object",
+          "attributes": {
+            "asset": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "object",
+                "attributes": {
+                  "_ref": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  },
+                  "_type": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string",
+                      "value": "reference"
+                    }
+                  },
+                  "_weak": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "boolean"
+                    },
+                    "optional": true
+                  }
+                },
+                "dereferencesTo": "sanity.imageAsset"
+              },
+              "optional": true
+            },
+            "media": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "unknown"
+              },
+              "optional": true
+            },
+            "hotspot": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "inline",
+                "name": "sanity.imageHotspot"
+              },
+              "optional": true
+            },
+            "crop": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "inline",
+                "name": "sanity.imageCrop"
+              },
+              "optional": true
+            },
+            "_type": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string",
+                "value": "image"
+              }
             }
           }
         },
@@ -3971,6 +4040,28 @@
             "type": "object",
             "attributes": {
               "title": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "array",
+                  "of": {
+                    "type": "object",
+                    "attributes": {
+                      "_key": {
+                        "type": "objectAttribute",
+                        "value": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "rest": {
+                      "type": "inline",
+                      "name": "internationalizedArrayStringValue"
+                    }
+                  }
+                },
+                "optional": true
+              },
+              "heading": {
                 "type": "objectAttribute",
                 "value": {
                   "type": "array",
@@ -7833,29 +7924,7 @@
         },
         "optional": true
       },
-      "highlightTitle": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "array",
-          "of": {
-            "type": "object",
-            "attributes": {
-              "_key": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "string"
-                }
-              }
-            },
-            "rest": {
-              "type": "inline",
-              "name": "internationalizedArrayStringValue"
-            }
-          }
-        },
-        "optional": true
-      },
-      "subtitle": {
+      "badge_text": {
         "type": "objectAttribute",
         "value": {
           "type": "array",
