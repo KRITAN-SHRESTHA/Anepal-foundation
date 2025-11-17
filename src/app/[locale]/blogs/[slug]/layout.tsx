@@ -37,10 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // Get localized content based on current locale
   const title =
     (post.title && getLocalizedString(post.title ?? [], locale)) || 'Blog Post';
-  const description =
-    (post.short_description &&
-      getLocalizedString(post.short_description, locale)) ||
-    title;
+  const description = title;
 
   // Use logo as the default image
   const imageUrl = post.mainImage
