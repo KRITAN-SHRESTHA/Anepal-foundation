@@ -46,6 +46,7 @@
   --radius-xl: calc(var(--radius) + 4px);
 
   --breakpoint-laptop: 1280px;
+  --breakpoint-slaptop: 1170px;
   --breakpoint-tablet: 940px;
   --breakpoint-xs: 540px;
 

@@ -33,8 +33,8 @@ export default function HeaderClient() {
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/95 shadow-md backdrop-blur-xl'
-          : 'bg-white/80 shadow-sm backdrop-blur-md'
+          ? 'bg-white/100 shadow-md backdrop-blur-xl'
+          : 'bg-white/100 shadow-sm backdrop-blur-md'
       }`}
     >
       <nav className="border-b border-gray-100">
@@ -56,9 +56,9 @@ export default function HeaderClient() {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex-1"
+              className="flex flex-1 justify-center"
             >
-              <NavMenu className="laptop:flex hidden justify-center" />
+              <NavMenu className="slaptop:flex hidden justify-center" />
             </motion.div>
           </Suspense>
 
@@ -71,7 +71,7 @@ export default function HeaderClient() {
           >
             {/* Donate Button */}
             <NavigationLink href={'/payment'}>
-              <Button className="group from-accent-foreground to-accent-foreground/90 hover:shadow-accent-foreground/20 relative h-11 overflow-hidden rounded-full bg-gradient-to-r px-6 font-semibold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl lg:h-12 lg:px-8">
+              <Button className="group from-accent-foreground to-accent-foreground/90 hover:shadow-accent-foreground/20 relative h-11 overflow-hidden rounded-xs bg-gradient-to-r px-6 font-semibold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl lg:h-12 lg:px-8">
                 {/* Animated background shine */}
                 <motion.div
                   animate={{
@@ -109,7 +109,7 @@ export default function HeaderClient() {
             <LocaleSwitcher />
 
             {/* Mobile Menu */}
-            <div className="laptop:hidden">
+            <div className="slaptop:hidden">
               <MobileNav />
             </div>
           </motion.div>

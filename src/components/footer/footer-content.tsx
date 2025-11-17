@@ -92,15 +92,32 @@ export default function FooterContent() {
               <div>
                 <h3 className="mb-4 font-bold">{t('Links')}</h3>
                 <ul className="space-y-2">
-                  {navData.map((link, linkIdx) => (
-                    <li
-                      key={linkIdx}
-                      className="hover:text-primary font-medium hover:font-semibold"
-                    >
-                      <NavigationLink href={link.link!}>
-                        {getLocalizedString(link.name ?? [])}
-                      </NavigationLink>
-                    </li>
+                  {navData.map(link => (
+                    <>
+                      {link.link ? (
+                        <li
+                          key={link._id}
+                          className="hover:text-primary font-medium hover:font-semibold"
+                        >
+                          <NavigationLink href={link.link!}>
+                            {getLocalizedString(link.name ?? [])}
+                          </NavigationLink>
+                        </li>
+                      ) : (
+                        <>
+                          {link.subLinks?.map(l => (
+                            <li
+                              key={l._key}
+                              className="hover:text-primary font-medium hover:font-semibold"
+                            >
+                              <NavigationLink href={l.link!}>
+                                {getLocalizedString(l.name ?? [])}
+                              </NavigationLink>
+                            </li>
+                          ))}
+                        </>
+                      )}
+                    </>
                   ))}
                 </ul>
               </div>

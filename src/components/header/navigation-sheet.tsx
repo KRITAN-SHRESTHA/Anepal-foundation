@@ -68,7 +68,7 @@ const NavigationSheetSuspense = () => {
                 <NavigationLink href={nav.link}>
                   <div
                     className={cn(
-                      `hover:text-primary underline-offset-2 hover:font-bold hover:underline ${(() => {
+                      `hover:text-primary underline-offset-2 hover:underline ${(() => {
                         const fullPath = `/${locale}${nav.link === '/' ? '' : nav.link}`;
                         // For home route, use exact match
                         if (nav.link === '/') {
@@ -88,9 +88,7 @@ const NavigationSheetSuspense = () => {
                 </NavigationLink>
               </SheetTrigger>
             ) : (
-              <div className="font-bold">
-                {getLocalizedString(nav.name ?? [])}
-              </div>
+              <div className="">{getLocalizedString(nav.name ?? [])}</div>
             )}
             {nav.subLinks && (
               <ul className="mt-2 ml-1 space-y-2 border-l pl-4">
@@ -101,7 +99,7 @@ const NavigationSheetSuspense = () => {
                         <NavigationLink
                           href={sub.link}
                           className={cn(
-                            `${(() => {
+                            `hover:text-primary underline-offset-2 hover:underline ${(() => {
                               const fullPath = `/${locale}${sub.link === '/' ? '' : sub.link}`;
                               // For home route, use exact match
                               if (sub.link === '/') {
@@ -116,11 +114,11 @@ const NavigationSheetSuspense = () => {
                             })()}`
                           )}
                         >
-                          {getLocalizedString(nav.name ?? [])}
+                          {getLocalizedString(sub.name ?? [])}
                         </NavigationLink>
                       </SheetTrigger>
                     ) : (
-                      <p>{getLocalizedString(nav.name ?? [])}</p>
+                      <p>{getLocalizedString(sub.name ?? [])}</p>
                     )}
                   </li>
                 ))}
