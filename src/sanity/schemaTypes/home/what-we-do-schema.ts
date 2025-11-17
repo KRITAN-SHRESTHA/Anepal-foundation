@@ -34,9 +34,9 @@ type ContentType = Array<{
   _key: string;
 }>;
 
-export const orgHelpsInFieldsSchema = defineType({
-  title: 'Organization helps in different fields',
-  name: 'org_helps_in_fields',
+export const whatWeDoSchema = defineType({
+  title: 'What we do',
+  name: 'what_we_do',
   type: 'document',
   icon: ImageIcon,
   fields: [

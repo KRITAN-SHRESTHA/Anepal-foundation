@@ -13,30 +13,29 @@ import EnhancedBadge from '@/components/enhanced-badge';
 import EnhancedTitle from '@/components/enhanced-title';
 import { BentoGrid, BentoGridItem } from './bento-grid';
 
-export default function FeaturedProjectSection() {
+export default function WhatMakesUsUnique() {
   return (
     <ErrorBoundary fallback={<div>Something went wrong</div>}>
       <Suspense fallback={<div>Loading...</div>}>
-        <FeaturedProjectSectionSuspense />
+        <WhatMakesUsUniqueSuspense />
       </Suspense>
     </ErrorBoundary>
   );
 }
 
-function FeaturedProjectSectionSuspense() {
-  const [data] = trpc.home.getFeaturedProjects.useSuspenseQuery();
+function WhatMakesUsUniqueSuspense() {
+  const [data] = trpc.home.getWhatMakesUsUnique.useSuspenseQuery();
 
   const { getLocalizedString } = useGetLocale();
 
   if (!data) return null;
 
-  const subtitle = getLocalizedString(data?.subtitle ?? []);
-  const highlightTitle = getLocalizedString(data?.highlightTitle ?? []);
+  const badge_text = getLocalizedString(data?.badge_text ?? []);
   const title = getLocalizedString(data?.title ?? []);
   const description = getLocalizedString(data?.description ?? []);
 
   return (
-    <ContainerLayout className="">
+    <ContainerLayout className="max-w-[1440px]">
       <section className="relative py-16 lg:py-24">
         {/* Decorative Background Elements */}
         <div className="bg-accent-foreground/5 absolute top-20 left-1/4 size-96 rounded-full blur-3xl" />
@@ -46,10 +45,10 @@ function FeaturedProjectSectionSuspense() {
           {/* Section Header - Enhanced */}
           <div className="mx-auto max-w-3xl text-center">
             {/* Section Badge */}
-            <EnhancedBadge variant="green" text={subtitle} />
+            <EnhancedBadge variant="green" text={badge_text} />
 
             {/* Title */}
-            <EnhancedTitle text={`${highlightTitle} ${title}`} />
+            <EnhancedTitle text={title} />
 
             {/* Description */}
             {description && (

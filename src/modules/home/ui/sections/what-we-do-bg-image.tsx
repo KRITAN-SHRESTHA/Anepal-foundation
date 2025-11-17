@@ -17,7 +17,7 @@ export default function WhatWeDoBgImage() {
 }
 
 function WhatWeDoBgImageSuspense() {
-  const [data] = trpc.home.getOrgHelpsInFields.useSuspenseQuery();
+  const [data] = trpc.home.getWhatWeDoToHelp.useSuspenseQuery();
   console.log('data', data);
   return (
     <motion.div

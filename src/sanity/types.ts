@@ -376,17 +376,12 @@ export type Home_gallery = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  badge_text?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
   title?: Array<
-    {
-      _key: string;
-    } & InternationalizedArrayStringValue
-  >;
-  highlightTitle?: Array<
-    {
-      _key: string;
-    } & InternationalizedArrayStringValue
-  >;
-  subtitle?: Array<
     {
       _key: string;
     } & InternationalizedArrayStringValue
@@ -442,25 +437,15 @@ export type Home_team_member = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  badge_text?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
   title?: Array<
     {
       _key: string;
     } & InternationalizedArrayStringValue
-  >;
-  highlightTitle?: Array<
-    {
-      _key: string;
-    } & InternationalizedArrayStringValue
-  >;
-  subtitle?: Array<
-    {
-      _key: string;
-    } & InternationalizedArrayStringValue
-  >;
-  short_description?: Array<
-    {
-      _key: string;
-    } & InternationalizedArrayTextValue
   >;
   membersList?: Array<{
     _ref: string;
@@ -477,17 +462,7 @@ export type Home_partners = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: Array<
-    {
-      _key: string;
-    } & InternationalizedArrayStringValue
-  >;
-  highlightTitle?: Array<
-    {
-      _key: string;
-    } & InternationalizedArrayStringValue
-  >;
-  subtitle?: Array<
+  badge_text?: Array<
     {
       _key: string;
     } & InternationalizedArrayStringValue
@@ -500,17 +475,7 @@ export type Home_testimonial = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: Array<
-    {
-      _key: string;
-    } & InternationalizedArrayStringValue
-  >;
-  highlightTitle?: Array<
-    {
-      _key: string;
-    } & InternationalizedArrayStringValue
-  >;
-  subtitle?: Array<
+  badge_text?: Array<
     {
       _key: string;
     } & InternationalizedArrayStringValue
@@ -542,6 +507,18 @@ export type Testimonials_list = {
     _weak?: boolean;
     [internalGroqTypeReferenceTo]?: 'team_member_roles';
   };
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
 };
 
 export type Home_stats = {
@@ -550,17 +527,18 @@ export type Home_stats = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  badge_text?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
   title?: Array<
     {
       _key: string;
     } & InternationalizedArrayStringValue
   >;
-  highlightTitle?: Array<
-    {
-      _key: string;
-    } & InternationalizedArrayStringValue
-  >;
-  subtitle?: Array<
+  total_impacted_lives?: number;
+  short_description?: Array<
     {
       _key: string;
     } & InternationalizedArrayStringValue
@@ -571,59 +549,6 @@ export type Home_stats = {
     _weak?: boolean;
     _key: string;
     [internalGroqTypeReferenceTo]?: 'organizationStats';
-  }>;
-};
-
-export type Featured_projects = {
-  _id: string;
-  _type: 'featured_projects';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: Array<
-    {
-      _key: string;
-    } & InternationalizedArrayStringValue
-  >;
-  highlightTitle?: Array<
-    {
-      _key: string;
-    } & InternationalizedArrayStringValue
-  >;
-  subtitle?: Array<
-    {
-      _key: string;
-    } & InternationalizedArrayStringValue
-  >;
-  description?: Array<
-    {
-      _key: string;
-    } & InternationalizedArrayTextValue
-  >;
-  content?: Array<{
-    title?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
-    description?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayTextValue
-    >;
-    image?: {
-      asset?: {
-        _ref: string;
-        _type: 'reference';
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: 'image';
-    };
-    _key: string;
   }>;
 };
 
@@ -683,9 +608,9 @@ export type Homepage_anepal = {
   };
 };
 
-export type Org_helps_in_fields = {
+export type What_we_do = {
   _id: string;
-  _type: 'org_helps_in_fields';
+  _type: 'what_we_do';
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
@@ -1154,7 +1079,11 @@ export type Team_member_roles = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  name?: string;
+  name?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
 };
 
 export type Aboutus = {
@@ -1391,12 +1320,17 @@ export type Events = {
   };
 };
 
-export type WhatMakesUsUnique = {
+export type What_make_us_unique = {
   _id: string;
-  _type: 'what-makes-us-unique';
+  _type: 'what_make_us_unique';
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  badge_text?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
   title?: Array<
     {
       _key: string;
@@ -1407,18 +1341,31 @@ export type WhatMakesUsUnique = {
       _key: string;
     } & InternationalizedArrayTextValue
   >;
-  image?: {
-    asset?: {
-      _ref: string;
-      _type: 'reference';
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+  content?: Array<{
+    title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    description?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayTextValue
+    >;
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: 'reference';
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: 'image';
     };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: 'image';
-  };
+    _key: string;
+  }>;
 };
 
 export type AboutAnepal = {
@@ -1442,6 +1389,8 @@ export type AboutAnepal = {
       _key: string;
     } & InternationalizedArrayTextValue
   >;
+  lives_impact?: number;
+  years_of_service?: number;
   image?: {
     asset?: {
       _ref: string;
@@ -1724,9 +1673,8 @@ export type AllSanitySchemaTypes =
   | Home_testimonial
   | Testimonials_list
   | Home_stats
-  | Featured_projects
   | Homepage_anepal
-  | Org_helps_in_fields
+  | What_we_do
   | EventsPage
   | StoriesPageContent
   | StoriesList
@@ -1740,7 +1688,7 @@ export type AllSanitySchemaTypes =
   | Aboutus
   | BlockContent
   | Events
-  | WhatMakesUsUnique
+  | What_make_us_unique
   | AboutAnepal
   | HomeContent
   | Settings

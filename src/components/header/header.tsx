@@ -1,24 +1,20 @@
 'use client';
 
-import { ArrowUpRight, Heart } from 'lucide-react';
-import dynamic from 'next/dynamic';
 import { motion } from 'motion/react';
+import dynamic from 'next/dynamic';
 
-import { Button } from '@/components/ui/button';
-
-import LocaleSwitcher from './locale-switcher';
-import { useTranslations } from 'next-intl';
-import { Suspense, useState, useEffect } from 'react';
-import MobileNav from './mobile-nav';
-import Logo from './logo';
+import { Suspense, useEffect, useState } from 'react';
 import NavigationLink from '../navigation-link';
+import DonateBtn from './donate-btn';
+import LocaleSwitcher from './locale-switcher';
+import Logo from './logo';
+import MobileNav from './mobile-nav';
 
 const NavMenu = dynamic(() => import('./nav-menu').then(mod => mod.NavMenu), {
   ssr: false
 });
 
 export default function HeaderClient() {
-  const t = useTranslations('Default');
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -33,8 +29,8 @@ export default function HeaderClient() {
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/95 shadow-md backdrop-blur-xl'
-          : 'bg-white/80 shadow-sm backdrop-blur-md'
+          ? 'bg-white/100 shadow-md backdrop-blur-xl'
+          : 'bg-white/100 shadow-sm backdrop-blur-md'
       }`}
     >
       <nav className="border-b border-gray-100">
@@ -56,9 +52,9 @@ export default function HeaderClient() {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex-1"
+              className="flex flex-1 justify-center"
             >
-              <NavMenu className="laptop:flex hidden justify-center" />
+              <NavMenu className="slaptop:flex hidden justify-center" />
             </motion.div>
           </Suspense>
 
@@ -70,46 +66,15 @@ export default function HeaderClient() {
             className="flex items-center gap-3 lg:gap-4"
           >
             {/* Donate Button */}
-            <NavigationLink href={'/payment'}>
-              <Button className="group from-accent-foreground to-accent-foreground/90 hover:shadow-accent-foreground/20 relative h-11 overflow-hidden rounded-full bg-gradient-to-r px-6 font-semibold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl lg:h-12 lg:px-8">
-                {/* Animated background shine */}
-                <motion.div
-                  animate={{
-                    x: [-200, 200]
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    repeatDelay: 3,
-                    ease: 'easeInOut'
-                  }}
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                />
-
-                <span className="relative flex items-center gap-2">
-                  <Heart className="size-4 fill-current" />
-                  {t('Donate_us')}
-                  <motion.div
-                    animate={{
-                      x: [0, 3, 0]
-                    }}
-                    transition={{
-                      duration: 1.5,
-                      repeat: Infinity,
-                      ease: 'easeInOut'
-                    }}
-                  >
-                    <ArrowUpRight className="size-4" />
-                  </motion.div>
-                </span>
-              </Button>
-            </NavigationLink>
+            <div className="hidden sm:block">
+              <DonateBtn />
+            </div>
 
             {/* Language Switcher */}
             <LocaleSwitcher />
 
             {/* Mobile Menu */}
-            <div className="laptop:hidden">
+            <div className="slaptop:hidden">
               <MobileNav />
             </div>
           </motion.div>

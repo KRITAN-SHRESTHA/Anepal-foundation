@@ -75,8 +75,8 @@ export default async function Home({ params }: Props) {
     trpc.home.getBanner.prefetch(),
     trpc.header.getHeader.prefetch(),
     trpc.aboutus.getHomeAboutUs.prefetch(),
-    trpc.home.getOrgHelpsInFields.prefetch(),
-    trpc.home.getFeaturedProjects.prefetch(),
+    trpc.home.getWhatWeDoToHelp.prefetch(),
+    trpc.home.getWhatMakesUsUnique.prefetch(),
     trpc.home.getHomeStats.prefetch(),
     trpc.home.getHomeEventsTitle.prefetch(),
     trpc.home.getHomeTestimonials.prefetch(),
@@ -85,7 +85,8 @@ export default async function Home({ params }: Props) {
     trpc.home.getHomeGallery.prefetch(),
     trpc.settings.getSettings.prefetch(),
     trpc.events.getFeaturedHomeEvents.prefetch(),
-    trpc.teamMember.getAboutTeamMembers.prefetch()
+    trpc.teamMember.getAboutTeamMembers.prefetch(),
+    trpc.home.getHomeBlogsList.prefetch()
   ]);
 
   const baseUrl = getClientUrl();

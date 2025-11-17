@@ -52,32 +52,33 @@ const OverlappingCard = ({
 const data = [
   {
     id: 0,
-    name: 'volunteer',
+    name: 'Become a Volunteer',
     content:
-      'You can make a huge difference to our community and the young people in it.',
-    btnText: 'become a volunteer',
-    link: '/',
+      'Join our mission to transform lives. Share your skills, time, and passion to make a lasting impact on children and families in need across Nepal.',
+    btnText: 'Join as Volunteer',
+    link: '/volunteer',
     imageUrl:
       'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=400&fit=crop'
   },
   {
     id: 1,
-    name: 'work with us',
-    content: 'Support those who served us with a one-time or monthly donation.',
-    btnText: 'become a volunteer',
-    link: '/',
+    name: 'Make a Donation',
+    content:
+      'Your generous contribution provides essential medical care, education, food, and emergency relief to vulnerable children and families throughout Nepal.',
+    btnText: 'Donate Now',
+    link: '/donate',
     imageUrl:
-      'https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=400&h=400&fit=crop'
+      'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=400&h=400&fit=crop'
   },
   {
-    id: 3,
-    name: 'volunteer',
+    id: 2,
+    name: 'Partner With Us',
     content:
-      'You can make a huge difference to our community and the young people in it.',
-    btnText: 'become a volunteer',
-    link: '/',
+      'Collaborate with us to amplify our impact. Together we can create sustainable programs that empower communities and change lives for generations to come.',
+    btnText: 'Become a Partner',
+    link: '/get-involved/partner',
     imageUrl:
-      'https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=400&h=400&fit=crop'
+      'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=400&h=400&fit=crop'
   }
 ];
 

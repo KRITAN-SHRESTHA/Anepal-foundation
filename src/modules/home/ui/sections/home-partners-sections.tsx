@@ -26,9 +26,7 @@ function HomePartnersSectionSuspense(props: PartnerSectionProps) {
   return (
     <PartnersSection
       partners={data.partners ?? []}
-      title={data?.title}
-      subtitle={data?.subtitle}
-      highlightTitleText={data?.highlightTitle}
+      badge_text={data?.badge_text}
       className="bg-transparent pt-0"
       {...props}
     />

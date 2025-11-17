@@ -31,32 +31,44 @@ export const structure: StructureResolver = (S, context) =>
                     .schemaType('about-anepal')
                     .documentId('about-anepal')
                 ),
-              // S.documentTypeListItem('org_helps_in_fields'),
-
-              S.listItem()
-                .title('Organization helps in different fields')
-                .icon(InfoIcon)
-                .child(
-                  S.document()
-                    .schemaType('org_helps_in_fields')
-                    .documentId('org_helps_in_fields')
-                ),
-              S.listItem()
-                .title('Featured projects')
-                .icon(InfoIcon)
-                .child(
-                  S.document()
-                    .schemaType('featured_projects')
-                    .documentId('featured_projects')
-                ),
               S.listItem()
                 .title('Home stats')
                 .icon(InfoIcon)
                 .child(
                   S.document().schemaType('home_stats').documentId('home_stats')
                 ),
+              S.listItem()
+                .title('What we do to help')
+                .icon(InfoIcon)
+                .child(
+                  S.document().schemaType('what_we_do').documentId('what_we_do')
+                ),
+              // S.listItem()
+              //   .title('Featured projects')
+              //   .icon(InfoIcon)
+              //   .child(
+              //     S.document()
+              //       .schemaType('featured_projects')
+              //       .documentId('featured_projects')
+              //   ),
 
-              S.documentTypeListItem('what-makes-us-unique'),
+              // S.documentTypeListItem('what_makes_us_unique'),
+              S.listItem()
+                .title('What makes us unique')
+                .icon(InfoIcon)
+                .child(
+                  S.document()
+                    .schemaType('what_make_us_unique')
+                    .documentId('what_make_us_unique')
+                ),
+              S.listItem()
+                .title('Team members')
+                .icon(InfoIcon)
+                .child(
+                  S.document()
+                    .schemaType('home_team_member')
+                    .documentId('home_team_member')
+                ),
               S.listItem()
                 .title('Events')
                 .icon(InfoIcon)
@@ -72,14 +84,6 @@ export const structure: StructureResolver = (S, context) =>
                   S.document()
                     .schemaType('home_testimonial')
                     .documentId('home_testimonial')
-                ),
-              S.listItem()
-                .title('Team members')
-                .icon(InfoIcon)
-                .child(
-                  S.document()
-                    .schemaType('home_team_member')
-                    .documentId('home_team_member')
                 ),
               S.listItem()
                 .title('Partners')

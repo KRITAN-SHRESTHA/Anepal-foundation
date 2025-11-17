@@ -17,8 +17,8 @@ import {
 } from '@/components/ui/carousel';
 import useGetLocale from '@/hooks/use-get-locale';
 import { trpc } from '@/trpc/client';
+import NavigationLink from '@/components/navigation-link';
 
-import Link from 'next/link';
 import BannerImg from './banner-img';
 import BannerSkeletion from './banner-skeletion';
 import VideoSection from './video-section';
@@ -122,22 +122,24 @@ function BannerSectionSuspense() {
                       </motion.p>
 
                       {/* CTA Buttons */}
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.8, duration: 0.6 }}
-                        className="flex flex-wrap items-center gap-4"
-                      >
-                        <Link href={'/about-us'}>
-                          <Button
-                            size="lg"
-                            variant="outline"
-                            className="group h-12 border-2 border-white bg-transparent px-8 text-base font-semibold text-white hover:bg-white hover:text-gray-900 lg:h-14 lg:px-10 lg:text-lg"
-                          >
-                            Learn More
-                          </Button>
-                        </Link>
-                      </motion.div>
+                      {data.link ? (
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.8, duration: 0.6 }}
+                          className="flex flex-wrap items-center gap-4"
+                        >
+                          <NavigationLink href={data.link}>
+                            <Button
+                              size="lg"
+                              variant="outline"
+                              className="group h-12 border-2 border-white bg-transparent px-8 text-base font-semibold text-white hover:bg-white hover:text-gray-900 lg:h-14 lg:px-10 lg:text-lg"
+                            >
+                              Learn More
+                            </Button>
+                          </NavigationLink>
+                        </motion.div>
+                      ) : null}
                     </div>
 
                     {/* Right Content - Floating Cards (Desktop Only) */}
@@ -170,7 +172,7 @@ function BannerSectionSuspense() {
                     repeatType: 'reverse',
                     repeatDelay: 0.5
                   }}
-                  className="absolute bottom-8 left-1/2 z-40 -translate-x-1/2"
+                  className="absolute bottom-8 left-1/2 z-40 hidden -translate-x-1/2 md:block"
                 >
                   <div className="flex flex-col items-center gap-2">
                     <span className="text-xs tracking-wider text-white/80 uppercase">

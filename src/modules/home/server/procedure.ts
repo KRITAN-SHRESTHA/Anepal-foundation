@@ -1,14 +1,15 @@
 import { client } from '@/sanity/lib/client';
 import {
-  Featured_projects,
   Home_events,
   Home_gallery,
   Home_partners,
   HomeBanner,
-  Org_helps_in_fields,
-  PartnersList
+  PartnersList,
+  What_make_us_unique,
+  What_we_do
 } from '@/sanity/types';
 import { createTRPCRouter, publicProcedure } from '@/trpc/init';
+import { PopulatedBlogsList } from '@/types/blogs-types';
 import { PopulatedHomeStats } from '@/types/org-types';
 import { PopulatedHomeTeamMember } from '@/types/team-member-types';
 import { PopulatedHomeTestimonials } from '@/types/testimonials-type';
@@ -17,8 +18,8 @@ const GET_BANNER_QUERY = `*[
   _type == "home-banner"
 ]|order(_createdAt desc)[0...5]`;
 
-const GET_ORG_HELPS_IN_FIELDS = `*[
-  _type == "org_helps_in_fields"
+const GET_WHAT_WE_DO_TO_HELP = `*[
+  _type == "what_we_do"
 ][0]`;
 
 const GET_HOME_STATS = `*[
@@ -28,8 +29,8 @@ const GET_HOME_STATS = `*[
   select_stats[]->
 }`;
 
-const GET_FEATURED_PROJECTS = `*[
-  _type == "featured_projects"
+const GET_WHAT_MAKES_US_UNIQUE = `*[
+  _type == "what_make_us_unique"
 ][0]`;
 
 const GET_HOME_EVENTS = `*[
@@ -40,7 +41,12 @@ const GET_HOME_TESTIMONIALS = `*[
   _type == "home_testimonial"
 ][0]{
   ...,
-  select_testimonials[]->
+  select_testimonials[]->{
+    ...,
+    role->{
+      name
+    }
+  }
 }`;
 
 const GET_HOME_TEAM_MEMBERS = `*[
@@ -67,6 +73,13 @@ const GET_HOME_GALLERY = `*[
   _type == "home_gallery"
 ][0]`;
 
+const GET_HOME_BLOGS_LIST = `*[
+  _type == "blogs"
+] | order(_createdAt desc)[0...3]{
+  ...,
+  tag->
+}`;
+
 // Enable ISR caching for home data (align with page revalidate)
 const options = { next: { revalidate: 300 } };
 
@@ -74,19 +87,15 @@ export const homeRouter = createTRPCRouter({
   getBanner: publicProcedure.query(async () => {
     return await client.fetch<HomeBanner[]>(GET_BANNER_QUERY, {}, options);
   }),
-  getOrgHelpsInFields: publicProcedure.query(async () => {
-    return await client.fetch<Org_helps_in_fields>(
-      GET_ORG_HELPS_IN_FIELDS,
-      {},
-      options
-    );
+  getWhatWeDoToHelp: publicProcedure.query(async () => {
+    return await client.fetch<What_we_do>(GET_WHAT_WE_DO_TO_HELP, {}, options);
   }),
   getHomeStats: publicProcedure.query(async () => {
     return await client.fetch<PopulatedHomeStats>(GET_HOME_STATS, {}, options);
   }),
-  getFeaturedProjects: publicProcedure.query(async () => {
-    return await client.fetch<Featured_projects>(
-      GET_FEATURED_PROJECTS,
+  getWhatMakesUsUnique: publicProcedure.query(async () => {
+    return await client.fetch<What_make_us_unique>(
+      GET_WHAT_MAKES_US_UNIQUE,
       {},
       options
     );
@@ -120,5 +129,12 @@ export const homeRouter = createTRPCRouter({
   }),
   getHomeGallery: publicProcedure.query(async () => {
     return await client.fetch<Home_gallery>(GET_HOME_GALLERY, {}, options);
+  }),
+  getHomeBlogsList: publicProcedure.query(async () => {
+    return await client.fetch<PopulatedBlogsList[]>(
+      GET_HOME_BLOGS_LIST,
+      {},
+      options
+    );
   })
 });

@@ -24,7 +24,10 @@ export default function CustomImage({
         <Image
           src={urlFor(src).quality(100).url()}
           alt={alt}
-          className={cn('h-full w-full object-cover', className)}
+          className={cn(
+            'h-full w-full object-cover mix-blend-multiply',
+            className
+          )}
           quality={100}
           {...props}
         />

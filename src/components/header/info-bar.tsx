@@ -21,7 +21,7 @@ function InfoBarSuspense() {
   if (!settingsData) return null;
 
   return (
-    <div className="hidden border-b border-gray-100 bg-gray-50 lg:block">
+    <div className="slaptop:block hidden border-b border-gray-100 bg-gray-50">
       <div className="mx-auto flex h-full max-w-[1440px] items-center gap-x-8 px-4 py-3 sm:px-6 lg:px-8">
         {/* phone number */}
         <ContactItem

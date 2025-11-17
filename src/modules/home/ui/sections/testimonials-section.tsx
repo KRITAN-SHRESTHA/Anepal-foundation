@@ -7,6 +7,7 @@ import { Suspense, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import EnhancedBadge from '@/components/enhanced-badge';
+import CustomImage from '@/components/custom-image';
 
 export default function TestimonialsSection() {
   return (
@@ -47,7 +48,10 @@ function TestimonialsSectionSuspense() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Badge */}
         <div className="mb-8 flex justify-center">
-          <EnhancedBadge text={'What people say'} variant="green" />
+          <EnhancedBadge
+            text={getLocalizedString(data.badge_text ?? [])}
+            variant="green"
+          />
         </div>
 
         {/* Main Testimonial Card */}
@@ -72,20 +76,20 @@ function TestimonialsSectionSuspense() {
                       transition={{ duration: 0.5 }}
                       className="h-full w-full"
                     >
-                      {/* {activeTestimonial.image ? (
+                      {activeTestimonial.image ? (
                         <CustomImage
                           src={activeTestimonial.image}
                           fill
                           alt={activeTestimonial.user_name || 'Testimonial'}
                           className="object-cover"
                         />
-                      ) : ( */}
-                      <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-gray-200 to-gray-300">
-                        <span className="text-6xl font-bold text-gray-400">
-                          {activeTestimonial.user_name?.charAt(0) || 'T'}
-                        </span>
-                      </div>
-                      {/* )} */}
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-gray-200 to-gray-300">
+                          <span className="text-6xl font-bold text-gray-400">
+                            {activeTestimonial.user_name?.charAt(0) || 'T'}
+                          </span>
+                        </div>
+                      )}
                     </motion.div>
                   </AnimatePresence>
                 </div>
@@ -132,7 +136,8 @@ function TestimonialsSectionSuspense() {
                         {activeTestimonial.user_name}
                       </h3>
                       <p className="mt-1 text-sm font-medium text-gray-600 sm:text-base">
-                        {activeTestimonial.role.name || 'Partner'}
+                        {/* {activeTestimonial.role.name || 'Partner'} */}
+                        {getLocalizedString(activeTestimonial.role.name ?? [])}
                       </p>
                     </div>
                   </motion.div>

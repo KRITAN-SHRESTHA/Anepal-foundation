@@ -27,8 +27,8 @@ function StatsSectionSuspense() {
 
   if (!data) return null;
 
-  const subtitle = getLocalizedString(data?.subtitle ?? []);
-  const highlightTitle = getLocalizedString(data?.highlightTitle ?? []);
+  const subtitle = getLocalizedString(data?.short_description ?? []);
+  // const highlightTitle = getLocalizedString(data?.highlightTitle ?? []);
   const title = getLocalizedString(data?.title ?? []);
 
   return (
@@ -62,9 +62,9 @@ function StatsSectionSuspense() {
             transition={{ delay: 0.1, duration: 0.5 }}
             className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl"
           >
-            {highlightTitle && (
+            {/* {highlightTitle && (
               <span className="text-accent-foreground">{highlightTitle} </span>
-            )}
+            )} */}
             {title}
           </motion.h2>
         </div>
