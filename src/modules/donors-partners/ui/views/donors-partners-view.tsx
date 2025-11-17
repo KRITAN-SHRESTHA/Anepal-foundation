@@ -29,11 +29,7 @@ function DonorsPartnersViewSuspense() {
 
   return (
     <div>
-      <HeroSectionThree
-        variant="blue"
-        link="/donors-partners"
-        title={data.heroSection?.title}
-      />
+      <HeroSectionThree variant="blue" title={data.heroSection?.title} />
 
       <WhoHelpUsSection />
 

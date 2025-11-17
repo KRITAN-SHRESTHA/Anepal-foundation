@@ -1,25 +1,32 @@
-import { ChevronRight } from 'lucide-react';
 import React from 'react';
-import NavigationLink from './navigation-link';
-import EnhancedTitle from './enhanced-title';
 import Image from 'next/image';
 import { cn, LocalisedDataType } from '@/lib/utils';
 import useGetLocale from '@/hooks/use-get-locale';
 import { motion } from 'motion/react';
+import NavigationLink from '@/components/navigation-link';
+import { ChevronRight } from 'lucide-react';
 
 interface Props {
   variant: 'blue' | 'green' | 'yellow' | 'pink';
   title?: LocalisedDataType[] | null;
   className?: string;
+  parentLink: string;
+  parentName: string;
 }
 
-export default function HeroSectionThree({ variant, title, className }: Props) {
+export default function BlogDetailsHeroSection({
+  variant,
+  title,
+  className,
+  parentLink,
+  parentName
+}: Props) {
   const { getLocalizedString } = useGetLocale();
   const convertedText = getLocalizedString(title ?? []);
   return (
     <div
       className={cn(
-        'relative h-[450px] w-full overflow-hidden bg-[#E9FEFC]/50',
+        'relative h-[350px] w-full overflow-hidden bg-[#E9FEFC]/50',
         {
           'bg-[#E9FEFC]/50': variant === 'blue',
           'bg-[#FFEDEF]/50': variant === 'pink'
@@ -47,7 +54,7 @@ export default function HeroSectionThree({ variant, title, className }: Props) {
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="absolute -bottom-[0px] -left-[0px] z-0"
+          className="absolute -bottom-[130px] left-0 z-0"
         >
           <Image
             src={'/assets/background/blog-bg-img.png'}
@@ -60,12 +67,6 @@ export default function HeroSectionThree({ variant, title, className }: Props) {
 
       <div className="relative z-5 flex h-full items-center justify-center">
         <div className="grid place-items-center">
-          {title ? (
-            <EnhancedTitle
-              text={title}
-              className="text-center text-6xl lg:text-7xl"
-            />
-          ) : null}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -77,6 +78,13 @@ export default function HeroSectionThree({ variant, title, className }: Props) {
               className="text-muted-foreground text-sm"
             >
               Home
+            </NavigationLink>
+            <ChevronRight className="text-muted-foreground size-3" />
+            <NavigationLink
+              href={parentLink}
+              className="text-muted-foreground text-sm"
+            >
+              {parentName}
             </NavigationLink>
             <ChevronRight className="text-muted-foreground size-3" />
             <p className="text-muted-foreground text-sm">{convertedText}</p>

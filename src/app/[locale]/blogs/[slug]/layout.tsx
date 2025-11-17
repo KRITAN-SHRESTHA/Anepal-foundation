@@ -21,8 +21,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = (await params).slug;
   const locale = (await params).locale;
 
+  const decodedSlug = slug ? decodeURIComponent(slug) : '';
+
   const post = await serverClient.blogs.getOneBlog({
-    slug
+    slug: decodedSlug
   });
 
   if (!post) {

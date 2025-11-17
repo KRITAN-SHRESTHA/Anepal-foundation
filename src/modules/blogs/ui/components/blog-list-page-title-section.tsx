@@ -1,10 +1,10 @@
 'use client';
 
-import HeroSectionTwo from '@/components/hero-section-2';
 import { trpc } from '@/trpc/client';
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import PageSkeleton from '@/components/page-skeleton';
+import HeroSectionThree from '@/components/hero-section-three';
 
 export default function BlogListPageTitleSection() {
   return (
@@ -22,12 +22,7 @@ function BlogListPageTitleSectionSuspense() {
 
   return (
     <>
-      {data?.heroSection?.backgroundImage && (
-        <HeroSectionTwo
-          image={data.heroSection?.backgroundImage}
-          title={data.heroSection.title ?? []}
-        />
-      )}
+      <HeroSectionThree variant="pink" title={data.heroSection?.title} />
     </>
   );
 }
