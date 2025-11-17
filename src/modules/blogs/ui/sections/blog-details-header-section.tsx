@@ -1,6 +1,10 @@
+import { motion } from 'motion/react';
 import CustomImage from '@/components/custom-image';
+import EnhancedTitle from '@/components/enhanced-title';
+import { Badge } from '@/components/ui/badge';
 import useGetLocale from '@/hooks/use-get-locale';
 import { PopulatedBlogDetails } from '@/types/blogs-types';
+import { format } from 'date-fns';
 
 export default function BlogDetailsHeaderSection({
   data
@@ -11,15 +15,32 @@ export default function BlogDetailsHeaderSection({
 
   return (
     <div>
-      <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
-        <h1 className="max-w-3xl text-[40px] font-semibold text-pretty md:text-6xl">
-          {data.title && getLocalizedString(data.title ?? [])}
-        </h1>
-        <h3 className="text-muted-foreground max-w-3xl text-lg md:text-xl">
-          {getLocalizedString(data.short_description ?? [])}
-        </h3>
+      <div className="mx-auto flex max-w-3xl flex-col gap-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+        >
+          <Badge
+            variant={'secondary'}
+            className="bg-[#f0dd87] text-sm text-black"
+          >
+            {getLocalizedString(data.tag.name ?? [])}
+          </Badge>
+          <span className="text-muted-foreground pl-4 text-right text-sm whitespace-nowrap">
+            {format(new Date(data._createdAt), 'MMM dd, yyyy')}
+          </span>
+        </motion.div>
+        <EnhancedTitle text={data.title} />
       </div>
-      <div className="relative my-12 aspect-video shrink-0">
+      <motion.div
+        className="relative my-12 h-[550px] w-full shrink-0"
+        initial={{ opacity: 0, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.2, duration: 0.6 }}
+      >
         {data.mainImage && (
           <CustomImage
             src={data.mainImage}
@@ -30,7 +51,7 @@ export default function BlogDetailsHeaderSection({
             quality={100}
           />
         )}
-      </div>
+      </motion.div>
     </div>
   );
 }

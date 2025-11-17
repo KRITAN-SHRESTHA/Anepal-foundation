@@ -27,54 +27,9 @@ export const blogListPageSchema = defineType({
                 );
               }
             )
-        },
-        {
-          name: 'backgroundImage',
-          title: 'Background Image',
-          type: 'image',
-          options: { hotspot: true },
-          validation: rule => rule.required().error('Image is required')
         }
       ]
-    },
-    {
-      name: 'title',
-      type: 'internationalizedArrayString',
-      validation: rule =>
-        rule.custom<{ value: string; _type: string; _key: string }[]>(value => {
-          return validationLang(value, 'Please add title in all languages');
-        })
-    },
-    {
-      name: 'subtitle',
-      type: 'internationalizedArrayText',
-      validation: rule =>
-        rule.custom<{ value: string; _type: string; _key: string }[]>(value => {
-          return validationLang(value, 'Please add subtitle in all languages');
-        })
     }
-    // {
-    //   name: 'highlightTitle',
-    //   title: 'Highlight Title',
-    //   type: 'internationalizedArrayString',
-    //   validation: rule =>
-    //     rule
-    //       .required()
-    //       .custom<{ value: string; _type: string; _key: string }[]>(value => {
-    //         return validationLang(
-    //           value,
-    //           'Please add highlight title in all languages'
-    //         );
-    //       })
-    // },
-    // {
-    //   name: 'short_description',
-    //   type: 'internationalizedArrayText',
-    //   validation: rule =>
-    //     rule.custom<{ value: string; _type: string; _key: string }[]>(value => {
-    //       return validationLang(value, 'Please add subtitle in all languages');
-    //     })
-    // }
   ],
   preview: {
     select: {
