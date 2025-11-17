@@ -4,8 +4,10 @@ import { Facebook, Instagram, Twitter } from 'lucide-react';
 import { PopulatedTeamMember } from '@/types/team-member-types';
 
 import CustomImage from './custom-image';
+import useGetLocale from '@/hooks/use-get-locale';
 
 export default function TeamMemberCard(member: PopulatedTeamMember) {
+  const { getLocalizedString } = useGetLocale();
   return (
     <div className="text-center">
       <CustomImage
@@ -16,7 +18,9 @@ export default function TeamMemberCard(member: PopulatedTeamMember) {
         height={160}
       />
       <h3 className="mt-4 text-lg font-semibold">{member.name}</h3>
-      <p className="text-muted-foreground">{member.role?.name}</p>
+      <p className="text-muted-foreground">
+        {getLocalizedString(member.role?.name ?? [])}
+      </p>
       <div className="mt-3 flex items-center justify-center gap-4">
         {member.socialMedia?.facebook && (
           <Link href={member.socialMedia?.facebook} target="_blank">
