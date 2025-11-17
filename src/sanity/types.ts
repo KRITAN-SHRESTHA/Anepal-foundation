@@ -227,29 +227,7 @@ export type BlogListPage = {
         _key: string;
       } & InternationalizedArrayStringValue
     >;
-    backgroundImage?: {
-      asset?: {
-        _ref: string;
-        _type: 'reference';
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: 'image';
-    };
   };
-  title?: Array<
-    {
-      _key: string;
-    } & InternationalizedArrayStringValue
-  >;
-  subtitle?: Array<
-    {
-      _key: string;
-    } & InternationalizedArrayTextValue
-  >;
 };
 
 export type Blogs = {
@@ -270,11 +248,6 @@ export type Blogs = {
     _weak?: boolean;
     [internalGroqTypeReferenceTo]?: 'blog_tag';
   };
-  short_description?: Array<
-    {
-      _key: string;
-    } & InternationalizedArrayTextValue
-  >;
   mainImage?: {
     asset?: {
       _ref: string;
