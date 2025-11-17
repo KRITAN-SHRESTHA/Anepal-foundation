@@ -8,7 +8,7 @@ import { trpc } from '@/trpc/client';
 
 import AboutUsTeamSection from '../sections/about-us-team-section';
 import WhoDoWeHelpSection from '../sections/who-do-we-help-section';
-import PartnersSection from '../sections/partners-sections';
+// import PartnersSection from '../sections/partners-sections';
 import AboutUsPageSkeleton from '../components/about-us-page-skeleton';
 import HeroSectionTwo from '@/components/hero-section-2';
 
@@ -55,7 +55,7 @@ function AboutViewSuspense() {
       <WhoDoWeHelpSection />
       <AboutUsTeamSection />
       {/* <Separator /> */}
-      {data?.partnersSection && (
+      {/* {data?.partnersSection && (
         <PartnersSection
           className="bg-transparent pb-[100px]"
           title={data.partnersSection.title}
@@ -63,7 +63,7 @@ function AboutViewSuspense() {
           partners={data.partnersSection.partner}
           highlightTitleText={data?.partnersSection?.highlightTitle}
         />
-      )}
+      )} */}
     </>
   );
 }
