@@ -21,9 +21,12 @@ export default function DonorsSection() {
           transition={{ duration: 0.6 }}
           className="mx-auto mb-8 max-w-4xl text-center"
         >
-          <EnhancedBadge variant="pink" text={'Our donors'} />
+          <EnhancedBadge
+            variant="pink"
+            text={data?.donors_section.badge_text}
+          />
           <EnhancedTitle
-            text={'Thank you to our generous supporters'}
+            text={data?.donors_section.title}
             className="text-balance"
           />
         </motion.div>
