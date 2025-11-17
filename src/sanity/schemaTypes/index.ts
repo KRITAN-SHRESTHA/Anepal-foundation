@@ -16,16 +16,13 @@ import { headerSchema } from './header-schema';
 import { aboutAnepalSchema } from './home/about-anepal-schema';
 import { bannerSchema } from './home/banner-schema';
 import { homeEventsSchema } from './home/events-section-schema';
-import { featuredProjetsSchema } from './home/featured-projects-schema';
 import { homeGallerySchema } from './home/gallery-section-schema';
 import { homeContentSchema } from './home/home-content-schema';
 import { homeStatsSchema } from './home/home-stats';
 import { homeTestimonialsSchema } from './home/home-testimonials-schema';
 import { homePageSchema } from './home/homepage-schema';
-import { orgHelpsInFieldsSchema } from './home/org-helps-in-fields-schema';
 import { homePartnersSchema } from './home/partners-section-schema';
 import { homeTeamMemberSchema } from './home/team-member-schema';
-import { whatmakesUsUniqueSchema } from './home/what-makes-us-unique-schema';
 import { organizationStatsSchema } from './organization-stats-schema';
 import { privacyPolicySchema } from './privacy-policy-schema';
 import { settingsSchema } from './settings-schema';
@@ -36,6 +33,8 @@ import { teamMembersPageSchema } from './team-members/team-members-page-schema';
 import { teamMembersRoleSchema } from './team-members/team-members-role-schema';
 import { termsAndConditionsSchema } from './terms-and-conditions-schema';
 import { createtestimonialsSchema } from './testimonials/create-testimonials-schema';
+import { whatWeDoSchema } from './home/what-we-do-schema';
+import { whatmakesUsUniqueSchema } from './home/what-makes-unique-schema';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -58,10 +57,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     storiesListSchema,
     storiesPageSchema,
     eventsPageSchema,
-    orgHelpsInFieldsSchema,
+    whatWeDoSchema,
     homePageSchema,
-    // orgHelpsInFieldsCopySchema,
-    featuredProjetsSchema,
     homeStatsSchema,
     createtestimonialsSchema,
     homeTestimonialsSchema,

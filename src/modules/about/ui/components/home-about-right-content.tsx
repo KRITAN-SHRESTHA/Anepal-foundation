@@ -3,6 +3,7 @@ import { Award, Heart } from 'lucide-react';
 import React from 'react';
 import { motion } from 'motion/react';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import { trpc } from '@/trpc/client';
 
 interface Props {
   imageUrl?: SanityImageSource;
@@ -10,6 +11,7 @@ interface Props {
 }
 
 export default function HomeAboutRightContent({ imageUrl, title }: Props) {
+  const { data } = trpc.aboutus.getHomeAboutUs.useQuery();
   return (
     <motion.div
       initial={{ opacity: 0, x: 50 }}
@@ -93,7 +95,7 @@ export default function HomeAboutRightContent({ imageUrl, title }: Props) {
             <div className="from-accent-foreground to-accent-foreground/80 relative flex size-16 items-center justify-center rounded-full bg-gradient-to-br shadow-2xl lg:size-20">
               <div className="text-center">
                 <div className="text-xl font-bold text-white lg:text-2xl">
-                  15+
+                  {data?.years_of_service}+
                 </div>
                 <div className="text-[8px] font-semibold text-white/90 uppercase lg:text-[10px]">
                   Years
@@ -124,7 +126,7 @@ export default function HomeAboutRightContent({ imageUrl, title }: Props) {
               {/* Text */}
               <div>
                 <div className="text-2xl font-bold text-gray-900 lg:text-3xl">
-                  50K+
+                  {data?.lives_impact}+
                 </div>
                 <div className="text-xs text-gray-600 lg:text-sm">
                   Lives Impacted

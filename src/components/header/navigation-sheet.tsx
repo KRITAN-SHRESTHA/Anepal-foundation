@@ -11,6 +11,7 @@ import Logo from './logo';
 import { useTranslations } from 'next-intl';
 import { ContactItem } from './info-bar-item';
 import { Mail, MapPin, PhoneCall } from 'lucide-react';
+import DonateBtn from './donate-btn';
 
 export default function NavigationSheet() {
   return (
@@ -60,9 +61,11 @@ const NavigationSheetSuspense = () => {
         />
       </div>
 
+      <DonateBtn className="w-full" />
+
       <div className="mt-5 space-y-3 text-base">
         {navData.map(nav => (
-          <div key={nav._id}>
+          <div key={nav._id} className="flex flex-col space-y-3">
             {nav.link ? (
               <SheetTrigger asChild>
                 <NavigationLink href={nav.link}>
@@ -88,9 +91,34 @@ const NavigationSheetSuspense = () => {
                 </NavigationLink>
               </SheetTrigger>
             ) : (
-              <div className="">{getLocalizedString(nav.name ?? [])}</div>
+              <>
+                {nav.subLinks?.map(sub => (
+                  <SheetTrigger asChild key={sub._key}>
+                    <NavigationLink
+                      href={sub.link!}
+                      className={cn(
+                        `hover:text-primary underline-offset-2 hover:underline ${(() => {
+                          const fullPath = `/${locale}${sub.link === '/' ? '' : sub.link}`;
+                          // For home route, use exact match
+                          if (sub.link === '/') {
+                            return pathname === fullPath
+                              ? 'text-primary font-bold!'
+                              : '';
+                          }
+                          // For other routes, check if pathname starts with the link path
+                          return pathname.startsWith(fullPath)
+                            ? 'text-primary font-bold!'
+                            : '';
+                        })()}`
+                      )}
+                    >
+                      {getLocalizedString(sub.name ?? [])}
+                    </NavigationLink>
+                  </SheetTrigger>
+                ))}
+              </>
             )}
-            {nav.subLinks && (
+            {/* {nav.subLinks && (
               <ul className="mt-2 ml-1 space-y-2 border-l pl-4">
                 {nav.subLinks.map(sub => (
                   <li key={sub._key}>
@@ -123,7 +151,7 @@ const NavigationSheetSuspense = () => {
                   </li>
                 ))}
               </ul>
-            )}
+            )} */}
           </div>
         ))}
       </div>

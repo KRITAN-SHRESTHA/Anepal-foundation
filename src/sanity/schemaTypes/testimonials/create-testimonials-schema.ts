@@ -29,6 +29,14 @@ export const createtestimonialsSchema = defineType({
       type: 'reference',
       to: [{ type: 'team_member_roles' }],
       validation: rule => rule.required().error('Role is required')
+    },
+    {
+      name: 'image',
+      title: 'Image',
+      type: 'image',
+      description: 'Recommended size: 350x350px',
+      options: { hotspot: true }
+      // validation: rule => rule.required().error('Image is required')
     }
   ]
 });

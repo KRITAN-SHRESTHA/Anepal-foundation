@@ -22,12 +22,13 @@ export default function WhatWeDoHeader() {
 }
 
 function WhatWeDoHeaderSuspense() {
-  const [data] = trpc.home.getOrgHelpsInFields.useSuspenseQuery();
+  const [data] = trpc.home.getWhatWeDoToHelp.useSuspenseQuery();
+  console.log('🚀 ~ WhatWeDoHeaderSuspense ~ data:', data);
   const { getLocalizedString } = useGetLocale();
 
   return (
     <div className="mb-12 lg:mb-16">
-      {data.badge_text && (
+      {data?.badge_text && (
         <EnhancedBadge
           text={getLocalizedString(data.badge_text ?? [])}
           variant="blue"
@@ -37,7 +38,7 @@ function WhatWeDoHeaderSuspense() {
       <div className="grid grid-cols-1 gap-8 align-top md:grid-cols-2">
         {/* Left - Badge and Title */}
         {/* Main Heading */}
-        {data.title && (
+        {data?.title && (
           <EnhancedTitle
             text={getLocalizedString(data.title ?? [])}
             // text="Give a Future Full of Choices"
@@ -54,13 +55,13 @@ function WhatWeDoHeaderSuspense() {
           className="max-w-md space-y-6"
         >
           <p className="text-sm leading-relaxed text-gray-700 lg:text-base">
-            {getLocalizedString(data.description ?? [])}
+            {getLocalizedString(data?.description ?? [])}
           </p>
 
           <Link href={'/our-team'}>
             <Button
               size="lg"
-              className="group from-accent-foreground to-accent-foreground/90 hover:shadow-accent-foreground/30 relative h-12 overflow-hidden bg-gradient-to-r px-8 text-sm font-bold shadow-xl transition-all duration-300 hover:shadow-2xl lg:h-14 lg:px-10"
+              className="group from-accent-foreground to-accent-foreground/90 hover:shadow-accent-foreground/30 relative h-14 overflow-hidden bg-gradient-to-r text-base font-bold transition-all duration-300 md:px-8 lg:text-lg"
             >
               <span className="relative flex items-center gap-2">
                 JOIN OUR TEAM

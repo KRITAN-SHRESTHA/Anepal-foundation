@@ -44,6 +44,18 @@ export const aboutAnepalSchema = defineType({
           })
     },
     {
+      name: 'lives_impact',
+      title: 'Lives impacted',
+      type: 'number',
+      validation: rule => rule.required()
+    },
+    {
+      name: 'years_of_service',
+      title: 'Years of service',
+      type: 'number',
+      validation: rule => rule.required()
+    },
+    {
       name: 'image',
       title: 'Image',
       type: 'image',

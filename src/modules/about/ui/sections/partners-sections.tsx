@@ -12,21 +12,21 @@ import ContainerLayout from '@/components/container-layout';
 interface PartnerSectionProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
   title?: LocalisedDataType[] | string | null;
-  subtitle?: LocalisedDataType[] | string | null;
+  badge_text?: LocalisedDataType[] | string | null;
   highlightTitleText?: LocalisedDataType[] | string | null;
   partners: PartnersList[];
 }
 
 export default function PartnersSection({
   className,
-  title,
+  badge_text,
   partners
 }: PartnerSectionProps) {
   return (
     <section className={cn('bg-background/50 px-6 py-12', className)}>
       <ContainerLayout>
         <div className="text-center">
-          <EnhancedBadge variant="yellow" text={title} />
+          <EnhancedBadge variant="yellow" text={badge_text} />
           {/* <EnhancedTitle text={title} /> */}
         </div>
 

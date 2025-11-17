@@ -28,8 +28,7 @@ function HomeTeamMembersSectionSuspense() {
 
   if (!teamMember) return null;
 
-  const subtitle = getLocalizedString(teamMember?.subtitle ?? []);
-  const highlightTitle = getLocalizedString(teamMember?.highlightTitle ?? []);
+  const badge_text = getLocalizedString(teamMember?.badge_text ?? []);
   const title = getLocalizedString(teamMember?.title ?? []);
 
   return (
@@ -42,9 +41,9 @@ function HomeTeamMembersSectionSuspense() {
         {/* Header */}
         <div className="mx-auto mb-16 max-w-3xl text-center lg:mb-20">
           {/* Badge */}
-          <EnhancedBadge text={subtitle} variant="pink" />
+          <EnhancedBadge text={badge_text} variant="pink" />
           {/* Title */}
-          <EnhancedTitle text={`${highlightTitle} ${title}`} />
+          <EnhancedTitle text={title} />
         </div>
 
         {/* Team Members Flex Layout */}
@@ -70,6 +69,7 @@ function TeamMemberCard({
   member: PopulatedTeamMember;
   index: number;
 }) {
+  const { getLocalizedString } = useGetLocale();
   // Social media icons
   const socialLinks = [
     {
@@ -149,7 +149,7 @@ function TeamMemberCard({
         {member.role?.name && (
           <div className="mt-4">
             <span className="inline-block rounded-md bg-white px-3 py-1.5 text-sm font-bold tracking-wide text-gray-900 capitalize">
-              {member.role.name}
+              {getLocalizedString(member.role.name ?? [])}
             </span>
           </div>
         )}

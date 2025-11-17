@@ -54,7 +54,7 @@ export default function WhatWeDoContent() {
 }
 
 function WhatWeDoContentSuspense() {
-  const [data] = trpc.home.getOrgHelpsInFields.useSuspenseQuery();
+  const [data] = trpc.home.getWhatWeDoToHelp.useSuspenseQuery();
   const [activeCategory, setActiveCategory] = useState<ContentType>();
   const { getLocalizedString } = useGetLocale();
 

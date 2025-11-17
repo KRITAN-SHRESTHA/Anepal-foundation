@@ -9,17 +9,35 @@ export const homeStatsSchema = defineType({
   icon: Info,
   fields: [
     {
-      name: 'title',
-      title: 'Title',
-      type: 'internationalizedArrayString'
-      // validation: rule =>
-      //   rule.custom<{ value: string; _type: string; _key: string }[]>(value => {
-      //     return validationLang(value, 'Please add name in all languages');
-      //   })
+      name: 'badge_text',
+      title: 'Badge text',
+      type: 'internationalizedArrayString',
+      validation: rule =>
+        rule.custom<{ value: string; _type: string; _key: string }[]>(value => {
+          return validationLang(
+            value,
+            'Please add badge text in all languages'
+          );
+        })
     },
     {
-      name: 'highlightTitle',
-      title: 'Highlight Title',
+      name: 'title',
+      title: 'Title',
+      type: 'internationalizedArrayString',
+      validation: rule =>
+        rule.custom<{ value: string; _type: string; _key: string }[]>(value => {
+          return validationLang(value, 'Please add name in all languages');
+        })
+    },
+    {
+      name: 'total_impacted_lives',
+      title: 'Total Lives impacted',
+      type: 'number',
+      validation: rule => rule.required()
+    },
+    {
+      name: 'short_description',
+      title: 'Short description',
       type: 'internationalizedArrayString',
       validation: rule =>
         rule
@@ -27,19 +45,11 @@ export const homeStatsSchema = defineType({
           .custom<{ value: string; _type: string; _key: string }[]>(value => {
             return validationLang(
               value,
-              'Please add highlight title in all languages'
+              'Please add short description in all languages'
             );
           })
     },
-    {
-      name: 'subtitle',
-      title: 'Subtitle',
-      type: 'internationalizedArrayString',
-      validation: rule =>
-        rule.custom<{ value: string; _type: string; _key: string }[]>(value => {
-          return validationLang(value, 'Please add subtitle in all languages');
-        })
-    },
+
     {
       name: 'select_stats',
       title: 'Select stats',
@@ -49,8 +59,8 @@ export const homeStatsSchema = defineType({
           // arr will gives the array of selected fields
           if (!arr) return 'Please select at least a stat';
 
-          if (arr.length > 4) {
-            return 'Select upto 4 stats only';
+          if (arr.length > 3) {
+            return 'Select upto 3 stats only';
           }
 
           const refs = arr.map(item => item._ref);

@@ -33,8 +33,8 @@ function GallerySectionSuspense() {
         {/* Header */}
         <div className="mx-auto mb-16 max-w-3xl text-center lg:mb-20">
           {/* Badge */}
-          <EnhancedBadge text={data.subtitle} variant="blue" />
-          <EnhancedTitle text={data.title} />
+          <EnhancedBadge text={data.badge_text} variant="blue" />
+          <EnhancedTitle text={data.title} className="text-balance" />
         </div>
 
         {/* Gallery Grid */}
@@ -76,7 +76,7 @@ function GalleryItem({
       </div>
 
       {/* Border effect on hover */}
-      <div className="border-accent-foreground absolute inset-0 rounded-lg border-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      {/* <div className="border-accent-foreground absolute inset-0 rounded-lg border-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100" /> */}
     </motion.div>
   );
 }
