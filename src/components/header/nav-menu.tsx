@@ -31,7 +31,7 @@ export const NavMenu = (props: NavigationMenuProps) => {
   return (
     <NavigationMenu viewport={false} {...props}>
       <NavigationMenuList
-        className={`text-secondary-foreground ${locale === 'en' ? 'gap-4' : 'gap-2'} space-x-0 text-sm`}
+        className={`text-secondary-foreground ${locale === 'en' ? 'gap-8' : 'gap-5'} space-x-0 text-sm`}
       >
         {navData.map(link => {
           return (
@@ -81,7 +81,7 @@ export const NavMenu = (props: NavigationMenuProps) => {
                     <NavigationLink
                       href={link.link}
                       className={cn(
-                        `group/navlink hover:text-accent-foreground relative px-3 py-2 text-[15px] font-medium text-gray-700 capitalize transition-colors ${(() => {
+                        `group/navlink hover:text-accent-foreground relative text-[15px] font-medium text-gray-700 capitalize transition-colors ${(() => {
                           const fullPath = `/${locale}${link.link === '/' ? '' : link.link}`;
                           // For home route, use exact match
                           if (link.link === '/') {
@@ -100,7 +100,7 @@ export const NavMenu = (props: NavigationMenuProps) => {
                       {/* Underline effect */}
                       <span
                         className={cn(
-                          'bg-accent-foreground absolute bottom-0 left-0 h-0.5 w-full origin-left scale-x-0 rounded-full transition-transform duration-300 group-hover/navlink:scale-x-100',
+                          'bg-accent-foreground absolute -bottom-1 left-0 h-0.5 w-full origin-left scale-x-0 rounded-full transition-transform duration-300 group-hover/navlink:scale-x-100',
                           (() => {
                             const fullPath = `/${locale}${link.link === '/' ? '' : link.link}`;
                             if (link.link === '/') {

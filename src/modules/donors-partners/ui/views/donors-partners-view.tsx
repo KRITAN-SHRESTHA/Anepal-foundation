@@ -4,12 +4,14 @@ import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import { trpc } from '@/trpc/client';
-import HeroSectionTwo from '@/components/hero-section-2';
+import HeroSectionThree from '@/components/hero-section-three';
+import ContainerLayout from '@/components/container-layout';
 
 import StatsSection from '../sections/stats-section';
 import ThankyouSection from '../sections/thankyou-section';
 import WhoHelpUsSection from '../sections/who-help-us-section';
 import DonorsPartnersPageSkeleton from '../components/donors-partners-page-skeleton';
+import DonorsSection from '../sections/donors-section';
 
 export default function DonorsPartnersView() {
   return (
@@ -27,24 +29,23 @@ function DonorsPartnersViewSuspense() {
 
   return (
     <div>
-      {data?.heroSection?.backgroundImage && (
-        <HeroSectionTwo
-          image={data.heroSection?.backgroundImage}
-          title={data.heroSection.title ?? []}
-        />
-      )}
+      <HeroSectionThree
+        variant="blue"
+        link="/donors-partners"
+        title={data.heroSection?.title}
+      />
 
-      <div className="m-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <WhoHelpUsSection />
-      </div>
-      <div className="bg-accent">
-        <div className="m-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <WhoHelpUsSection />
+
+      <div className="bg-white">
+        <ContainerLayout>
           <StatsSection />
-        </div>
+        </ContainerLayout>
       </div>
-      <div className="m-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <ThankyouSection />
-      </div>
+
+      <DonorsSection />
+
+      <ThankyouSection />
     </div>
   );
 }

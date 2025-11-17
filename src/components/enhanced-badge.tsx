@@ -5,10 +5,12 @@ import useGetLocale from '@/hooks/use-get-locale';
 
 export default function EnhancedBadge({
   text,
-  variant
+  variant,
+  className
 }: {
   text?: LocalisedDataType[] | string | null;
   variant: 'yellow' | 'green' | 'pink' | 'blue';
+  className?: string;
 }) {
   const { getLocalizedString } = useGetLocale();
   const convertedText =
@@ -20,7 +22,7 @@ export default function EnhancedBadge({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="mb-8 inline-block"
+      className={cn('mb-8 inline-block', className)}
     >
       <span
         className={cn(
