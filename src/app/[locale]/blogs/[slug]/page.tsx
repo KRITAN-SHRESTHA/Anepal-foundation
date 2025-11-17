@@ -44,8 +44,7 @@ export default async function BlogDetailsPage({
 
   if (post) {
     const title = getLocalizedString(post.title ?? [], locale) || 'Blog Post';
-    const description =
-      getLocalizedString(post.short_description ?? [], locale) || title;
+    const description = title;
     const imageUrl = post.mainImage
       ? urlFor(post.mainImage).quality(100).url()
       : '/assets/logo.jpeg';
