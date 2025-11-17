@@ -20,7 +20,9 @@ export default function TeamMemberCard(member: PopulatedTeamMember) {
         <AvatarFallback>{member.name}</AvatarFallback>
       </Avatar>
       <p className="font-medium">{member.name}</p>
-      <p className="text-muted-foreground">{member.role?.name}</p>
+      <p className="text-muted-foreground">
+        {getLocalizedString(member.role?.name ?? [])}
+      </p>
       <p className="text-muted-foreground py-3 text-center text-sm text-balance">
         {getLocalizedString(member.short_intro ?? [])}
       </p>
