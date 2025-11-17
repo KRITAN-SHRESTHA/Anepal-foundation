@@ -1,9 +1,13 @@
 'use client';
 
-import ContentTitle from '@/components/content-title';
 import useGetLocale from '@/hooks/use-get-locale';
 import { trpc } from '@/trpc/client';
 import CustomImage from '@/components/custom-image';
+import EnhancedBadge from '@/components/enhanced-badge';
+import EnhancedTitle from '@/components/enhanced-title';
+import { InfiniteSlider } from '@/components/ui/infinite-slider';
+import ContainerLayout from '@/components/container-layout';
+import { motion } from 'motion/react';
 
 export default function WhoHelpUsSection() {
   const { data } =
@@ -14,33 +18,58 @@ export default function WhoHelpUsSection() {
   const { getLocalizedString } = useGetLocale();
 
   return (
-    <div className="py-[60px] sm:py-[100px]">
-      {data?.whoHelpUsSection && (
-        <div className="grid justify-center">
-          <ContentTitle
-            title={data?.whoHelpUsSection?.title}
-            subtitle={data?.whoHelpUsSection?.subtitle}
-            highlightTitleText={data?.whoHelpUsSection.highlightTitle}
-            align="center"
-          />
-          <p className="text-muted-foreground max-w-[60ch] pt-6 text-center">
-            {getLocalizedString(data?.whoHelpUsSection?.description ?? [])}
-          </p>
-        </div>
-      )}
-
-      <div className="m-auto mt-14 flex max-w-5xl flex-wrap items-center justify-center gap-10">
-        {data?.whoHelpUsSection.partnersName.map(partner => (
-          <div className="relative h-[100px] w-[200px]" key={partner._id}>
-            <CustomImage
-              className="h-full w-full object-contain"
-              src={partner.partnersLogo}
-              alt="Nvidia Logo"
-              fill
+    <ContainerLayout>
+      <div className="py-[60px] sm:py-[100px]">
+        {data?.whoHelpUsSection && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="grid justify-center text-center"
+          >
+            <EnhancedBadge
+              variant="blue"
+              text={data.whoHelpUsSection.badge_text}
             />
-          </div>
-        ))}
+            <EnhancedTitle
+              text={data.whoHelpUsSection.title}
+              className="mb-0"
+            />
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="text-muted-foreground max-w-[60ch] pt-6 text-center"
+            >
+              {getLocalizedString(data?.whoHelpUsSection?.description ?? [])}
+            </motion.p>
+          </motion.div>
+        )}
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+          className="mt-14"
+        >
+          <InfiniteSlider gap={50}>
+            {data?.whoHelpUsSection.partnersName.map(partner => (
+              <div className="relative h-[100px] w-[200px]" key={partner._id}>
+                <CustomImage
+                  className="h-full w-full object-contain"
+                  src={partner.partnersLogo}
+                  alt={partner.partnersName ?? ''}
+                  fill
+                />
+              </div>
+            ))}
+          </InfiniteSlider>
+        </motion.div>
       </div>
-    </div>
+    </ContainerLayout>
   );
 }

@@ -888,31 +888,14 @@ export type DonorsAndPartnersPage = {
         _key: string;
       } & InternationalizedArrayStringValue
     >;
-    backgroundImage?: {
-      asset?: {
-        _ref: string;
-        _type: 'reference';
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: 'image';
-    };
   };
   whoHelpUsSection?: {
+    badge_text?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
     title?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
-    highlightTitle?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
-    subtitle?: Array<
       {
         _key: string;
       } & InternationalizedArrayStringValue
@@ -929,31 +912,19 @@ export type DonorsAndPartnersPage = {
       _key: string;
       [internalGroqTypeReferenceTo]?: 'partnersList';
     }>;
-    donorsNames?: Array<{
-      _ref: string;
-      _type: 'reference';
-      _weak?: boolean;
-      _key: string;
-      [internalGroqTypeReferenceTo]?: 'donorsList';
-    }>;
   };
   statisticsSection?: {
-    statsTitle?: Array<
+    badge_text?: Array<
       {
         _key: string;
       } & InternationalizedArrayStringValue
     >;
-    highlightTitle?: Array<
+    title?: Array<
       {
         _key: string;
       } & InternationalizedArrayStringValue
     >;
-    statsSubtitle?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
-    statsDescription?: Array<
+    description?: Array<
       {
         _key: string;
       } & InternationalizedArrayTextValue
@@ -964,6 +935,25 @@ export type DonorsAndPartnersPage = {
       _weak?: boolean;
       _key: string;
       [internalGroqTypeReferenceTo]?: 'organizationStats';
+    }>;
+  };
+  donors_section?: {
+    badge_text?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    donors_names?: Array<{
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: 'donorsList';
     }>;
   };
   thankYouSection?: {

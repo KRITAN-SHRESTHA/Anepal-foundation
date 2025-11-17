@@ -3,7 +3,7 @@
 import { motion } from 'motion/react';
 import dynamic from 'next/dynamic';
 
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense } from 'react';
 import NavigationLink from '../navigation-link';
 import DonateBtn from './donate-btn';
 import LocaleSwitcher from './locale-switcher';
@@ -15,25 +15,11 @@ const NavMenu = dynamic(() => import('./nav-menu').then(mod => mod.NavMenu), {
 });
 
 export default function HeaderClient() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/100 shadow-md backdrop-blur-xl'
-          : 'bg-white/100 shadow-sm backdrop-blur-md'
-      }`}
+      className={`sticky top-0 z-50 bg-white/100 transition-all duration-300`}
     >
-      <nav className="border-b border-gray-100">
+      <nav>
         <div className="mx-auto flex h-20 max-w-[1440px] items-center justify-between gap-8 px-4 sm:px-6 lg:h-24 lg:px-8">
           {/* Logo */}
           <motion.div
@@ -82,12 +68,12 @@ export default function HeaderClient() {
       </nav>
 
       {/* Decorative bottom line */}
-      <motion.div
+      {/* <motion.div
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ duration: 0.8, delay: 0.5 }}
         className="via-accent-foreground/30 h-0.5 w-full origin-center bg-gradient-to-r from-transparent to-transparent"
-      />
+      /> */}
     </header>
   );
 }

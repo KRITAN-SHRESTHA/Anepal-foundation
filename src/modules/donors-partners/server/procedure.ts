@@ -13,6 +13,10 @@ const GET_DONORS_PAGE_CONTENT = `*[_type == "donorsAndPartnersPage"][0]{
   statisticsSection{
     ...,
     statistics[]->
+  },
+  donors_section{
+    ...,
+    donors_names[]->
   }
 }`;
 const GET_ALL_PARTNERS_LIST = `*[_type == "partnersList"]`;

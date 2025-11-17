@@ -17,21 +17,30 @@ import {
 
 export type PopulatedDonorsAndPartnersPage = Omit<
   DonorsAndPartnersPage,
-  'whoHelpUsSection' | 'statisticsSection'
+  'whoHelpUsSection' | 'statisticsSection' | 'donors_section'
 > & {
   whoHelpUsSection: Omit<
     NonNullable<DonorsAndPartnersPage['whoHelpUsSection']>,
     'donorsNames' | 'partnersName'
   > & {
-    donorsNames: DonorsList[];
     partnersName: PartnersList[];
   };
 } & {
-  // statisticsSection: OrganizationStats[];
   statisticsSection: Omit<
     NonNullable<DonorsAndPartnersPage['statisticsSection']>,
     'statistics'
   > & {
     statistics: OrganizationStats[];
   };
+} & {
+  donors_section: Omit<
+    NonNullable<DonorsAndPartnersPage['donors_section']>,
+    'donors_names'
+  > & {
+    donors_names: DonorsList[];
+  };
 };
+
+// & donors_section: Omit<NonNullable<DonorsAndPartnersPage['donors_section']>, 'donors_names'> & {
+// statistics: OrganizationStats[];
+// };
