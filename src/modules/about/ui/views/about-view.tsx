@@ -62,7 +62,6 @@ function AboutViewSuspense() {
         />
       )} */}
       {/* <WhoDoWeHelpSection /> */}
-      {/* <AboutUsTeamSection /> */}
 
       {data?.partnersSection && (
         <PartnersSection
