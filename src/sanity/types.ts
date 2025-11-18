@@ -177,28 +177,11 @@ export type ContactPage = {
         _key: string;
       } & InternationalizedArrayStringValue
     >;
-    backgroundImage?: {
-      asset?: {
-        _ref: string;
-        _type: 'reference';
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: 'image';
-    };
   };
   title?: Array<
     {
       _key: string;
     } & InternationalizedArrayStringValue
-  >;
-  subtitle?: Array<
-    {
-      _key: string;
-    } & InternationalizedArrayTextValue
   >;
 };
 
@@ -993,48 +976,29 @@ export type Team_members_page = {
         _key: string;
       } & InternationalizedArrayStringValue
     >;
-    backgroundImage?: {
-      asset?: {
-        _ref: string;
-        _type: 'reference';
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: 'image';
-    };
   };
-  membersDetails?: {
-    title?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
-    highlightTitle?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
-    subtitle?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
-    description?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayTextValue
-    >;
-    membersList?: Array<{
-      _ref: string;
-      _type: 'reference';
-      _weak?: boolean;
+  badge_text?: Array<
+    {
       _key: string;
-      [internalGroqTypeReferenceTo]?: 'team_members';
-    }>;
-  };
+    } & InternationalizedArrayStringValue
+  >;
+  title?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  description?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayTextValue
+  >;
+  membersList?: Array<{
+    _ref: string;
+    _type: 'reference';
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: 'team_members';
+  }>;
 };
 
 export type Team_members = {
@@ -1424,6 +1388,7 @@ export type Settings = {
     address?: string;
     phone?: string;
     email?: string;
+    map_embedded_link?: string;
   };
   socialMedia?: {
     facebook?: string;

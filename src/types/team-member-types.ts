@@ -11,14 +11,9 @@ export type PopulatedTeamMember = Omit<Team_members, 'role'> & {
 
 export type PopulatedAboutTeamMember = Omit<
   Team_members_page,
-  'membersDetails'
+  'membersList'
 > & {
-  membersDetails: Omit<
-    NonNullable<Team_members_page['membersDetails']>,
-    'membersList'
-  > & {
-    membersList: PopulatedTeamMember[];
-  };
+  membersList: PopulatedTeamMember[];
 };
 
 export type PopulatedHomeTeamMember = Omit<Home_team_member, 'membersList'> & {

@@ -7,16 +7,6 @@ export const settingsSchema = defineType({
   type: 'document',
   icon: Settings,
   fields: [
-    // defineField({
-    //   name: 'logo',
-    //   title: 'Logo',
-    //   type: 'image',
-    //   description: 'logo (recommended size: 200x80px)',
-    //   options: {
-    //     accept: 'image/*'
-    //   },
-    //   validation: rule => rule.required().error('Logo is required')
-    // }),
     defineField({
       name: 'foundation_logo',
       title: 'Foundation Logo',
@@ -57,6 +47,13 @@ export const settingsSchema = defineType({
           type: 'string',
           validation: rule =>
             rule.required().email().error('Please enter a valid email address')
+        }),
+        defineField({
+          name: 'map_embedded_link',
+          title: 'Google map embedded link',
+          type: 'string',
+          description:
+            'eg: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d353....'
         })
       ]
     }),

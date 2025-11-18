@@ -21,12 +21,9 @@ const GET_ABOUT_TEAM_MEMBERS = `*[
   _type == "team_members_page"
 ][0]{
   ...,
-  membersDetails{
-    ...,
-    membersList[]->{
+  membersList[]->{
       ...,
       role->
-    }
   }
 }`;
 

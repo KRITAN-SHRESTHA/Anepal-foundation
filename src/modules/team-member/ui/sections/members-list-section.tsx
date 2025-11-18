@@ -15,15 +15,15 @@ export default function MembersListSection() {
   return (
     <section className="mx-auto max-w-[1280px] px-4 pt-[80px] pb-32 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-3xl text-center">
-        <EnhancedBadge text={data?.membersDetails.subtitle} variant="pink" />
-        <EnhancedTitle text={data?.membersDetails.title} />
+        <EnhancedBadge text={data?.badge_text} variant="pink" />
+        <EnhancedTitle text={data?.title} />
 
         <p className="text-muted-foreground mt-6 mb-8">
-          {getLocalizedString(data?.membersDetails.description ?? [])}
+          {getLocalizedString(data?.description ?? [])}
         </p>
       </div>
       <div className="mt-20 flex flex-wrap justify-center gap-8 gap-y-20">
-        {data?.membersDetails?.membersList?.map((member, index) => (
+        {data?.membersList?.map((member, index) => (
           <div
             key={member._id}
             className="w-full sm:w-[calc(50%-1rem)] md:w-[calc(30%-1.5rem)]"

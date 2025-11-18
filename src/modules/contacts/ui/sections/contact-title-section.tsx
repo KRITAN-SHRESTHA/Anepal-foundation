@@ -23,13 +23,7 @@ function ContactTitleSectionSuspense() {
 
   return (
     <>
-      <HeroSectionThree title={'Contact'} variant="gradient" />
-      {/* {data?.heroSection?.backgroundImage && (
-        <HeroSectionTwo
-          image={data.heroSection?.backgroundImage}
-          title={data.heroSection.title ?? []}
-        />
-      )} */}
+      <HeroSectionThree title={data.heroSection.title} variant="gradient" />
     </>
   );
 }

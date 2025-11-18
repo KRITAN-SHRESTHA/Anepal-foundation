@@ -22,18 +22,11 @@ export default function StoriesView() {
 }
 
 function StoriesViewSuspnse() {
-  trpc.stories.getStoriesPageContent.useSuspenseQuery();
-  // const [storiesData] = trpc.stories.getStoriesPageContent.useSuspenseQuery();
+  const [data] = trpc.stories.getStoriesPageContent.useSuspenseQuery();
 
   return (
     <div>
-      <HeroSectionThree title={'Stories'} variant="gradient" />
-      {/* {storiesData?.heroSection?.backgroundImage && (
-        <HeroSectionTwo
-          image={storiesData.heroSection?.backgroundImage}
-          title={storiesData.heroSection.title}
-        />
-      )} */}
+      <HeroSectionThree title={data.heroSection?.title} variant="gradient" />
 
       <div className="bg-white pb-20">
         <ContainerLayout>

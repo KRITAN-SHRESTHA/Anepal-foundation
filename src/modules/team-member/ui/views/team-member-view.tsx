@@ -7,7 +7,6 @@ import { trpc } from '@/trpc/client';
 
 import MembersListSection from '../sections/members-list-section';
 import TeamMemberPageSkeleton from '../components/team-member-page-skeleton';
-// import HeroSectionTwo from '@/components/hero-section-2';
 import HeroSectionThree from '@/components/hero-section-three';
 
 export default function TeamMemberView() {
@@ -21,13 +20,13 @@ export default function TeamMemberView() {
 }
 
 function TeamMemberViewSuspense() {
-  const [teamMembers] = trpc.teamMember.getAboutTeamMembers.useSuspenseQuery();
+  const [data] = trpc.teamMember.getAboutTeamMembers.useSuspenseQuery();
 
-  if (!teamMembers) return <div>There is no data added yet.</div>;
+  if (!data) return <div>There is no data added yet.</div>;
 
   return (
     <div>
-      <HeroSectionThree title={'Our team'} variant="skyblue" />
+      <HeroSectionThree title={data.heroSection?.title} variant="skyblue" />
 
       <MembersListSection />
     </div>
