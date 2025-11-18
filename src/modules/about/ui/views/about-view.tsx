@@ -27,13 +27,7 @@ function AboutViewSuspense() {
 
   return (
     <>
-      <HeroSectionThree title={'about us'} variant="skyblue" />
-      {/* {data?.heroSection?.backgroundImage && (
-        <HeroSectionTwo
-          image={data.heroSection?.backgroundImage}
-          title={data.heroSection?.title}
-        />
-      )} */}
+      <HeroSectionThree title={data.heroSection?.title} variant="skyblue" />
 
       <WhoWeAreSection />
 
@@ -43,45 +37,14 @@ function AboutViewSuspense() {
         <WhyChooseSection />
       </div>
 
-      {/* {data?.firstcontent && (
-        <ContentSection
-          description={data.firstcontent?.description}
-          subtitle={data.firstcontent?.subtitle}
-          highlightTitleText={data.firstcontent?.title}
-          orientation="rtl"
-          image={data.firstcontent?.image}
-        />
-      )}
-      {data?.secondcontent && (
-        <ContentSection
-          description={data.secondcontent?.description}
-          subtitle={data.secondcontent?.title}
-          subtitleClassname="text-[24px] text-primary"
-          className="pt-[0px]"
-          image={data.secondcontent?.image}
-        />
-      )} */}
-      {/* <WhoDoWeHelpSection /> */}
-
       {data?.partnersSection && (
         <PartnersSection
           className="bg-transparent pb-[100px]"
-          badge_text={'Partners'}
-          title={'Trusted by 1900+ founders & organization'}
+          badge_text={data.partnersSection.badge_text}
+          title={data.partnersSection.title}
           partners={data.partnersSection.partner}
-          highlightTitleText={data?.partnersSection?.highlightTitle}
         />
       )}
-      {/* <Separator /> */}
-      {/* {data?.partnersSection && (
-        <PartnersSection
-          className="bg-transparent pb-[100px]"
-          title={data.partnersSection.title}
-          subtitle={data.partnersSection.subtitle}
-          partners={data.partnersSection.partner}
-          highlightTitleText={data?.partnersSection?.highlightTitle}
-        />
-      )} */}
     </>
   );
 }

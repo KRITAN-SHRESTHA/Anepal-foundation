@@ -13,8 +13,6 @@ export default function WhoHelpUsSection() {
   const { data } =
     trpc.donorsPartners.getContentOfDonorsPartnersPage.useQuery();
 
-  console.log('data', data);
-
   const { getLocalizedString } = useGetLocale();
 
   return (

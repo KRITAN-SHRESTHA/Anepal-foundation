@@ -9,17 +9,10 @@ const GET_ABOUT_US = `*[_type == "aboutus"][0]{
     ...,
     partner[]->,
   },
-  statisticsSection{
+  mapSection{
     ...,
-    statistics[]->,
+    select_stats[]->,
   },
-  teamsSection{
-    ...,
-    teamMembers[]->{
-      ...,
-      "role": role->
-    }
-  }
 }`;
 
 // will revalidate after every 30 seconds

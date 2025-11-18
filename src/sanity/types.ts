@@ -718,29 +718,7 @@ export type EventsPage = {
         _key: string;
       } & InternationalizedArrayStringValue
     >;
-    backgroundImage?: {
-      asset?: {
-        _ref: string;
-        _type: 'reference';
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: 'image';
-    };
   };
-  title?: Array<
-    {
-      _key: string;
-    } & InternationalizedArrayStringValue
-  >;
-  subtitle?: Array<
-    {
-      _key: string;
-    } & InternationalizedArrayTextValue
-  >;
 };
 
 export type StoriesPageContent = {
@@ -1121,62 +1099,13 @@ export type Aboutus = {
         _key: string;
       } & InternationalizedArrayStringValue
     >;
-    backgroundImage?: {
-      asset?: {
-        _ref: string;
-        _type: 'reference';
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: 'image';
-    };
   };
-  firstcontent?: {
-    image?: {
-      asset?: {
-        _ref: string;
-        _type: 'reference';
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      alt?: string;
-      _type: 'image';
-    };
-    title?: Array<
+  whoWeAre?: {
+    badge_text?: Array<
       {
         _key: string;
       } & InternationalizedArrayStringValue
     >;
-    subtitle?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
-    description?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayTextValue
-    >;
-  };
-  secondcontent?: {
-    image?: {
-      asset?: {
-        _ref: string;
-        _type: 'reference';
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: 'image';
-    };
     title?: Array<
       {
         _key: string;
@@ -1187,24 +1116,30 @@ export type Aboutus = {
         _key: string;
       } & InternationalizedArrayTextValue
     >;
+    images?: Array<{
+      asset?: {
+        _ref: string;
+        _type: 'reference';
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: 'image';
+      _key: string;
+    }>;
   };
-  statisticsSection?: {
-    statsTitle?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
-    highlightTitle?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
-    statsSubtitle?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
-    statistics?: Array<{
+  mapSection?: {
+    description?: {
+      label?: Array<
+        {
+          _key: string;
+        } & InternationalizedArrayStringValue
+      >;
+      value?: number;
+    };
+    select_stats?: Array<{
       _ref: string;
       _type: 'reference';
       _weak?: boolean;
@@ -1212,42 +1147,55 @@ export type Aboutus = {
       [internalGroqTypeReferenceTo]?: 'organizationStats';
     }>;
   };
-  teamsSection?: {
+  whyChooseSection?: {
+    badge_text?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
     title?: Array<
       {
         _key: string;
       } & InternationalizedArrayStringValue
     >;
-    highlightTitle?: Array<
+    description?: Array<
       {
         _key: string;
       } & InternationalizedArrayStringValue
     >;
-    subtitle?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
-    teamMembers?: Array<{
-      _ref: string;
-      _type: 'reference';
-      _weak?: boolean;
+    items?: Array<{
+      title?: Array<
+        {
+          _key: string;
+        } & InternationalizedArrayStringValue
+      >;
+      description?: Array<
+        {
+          _key: string;
+        } & InternationalizedArrayTextValue
+      >;
+      icon?: {
+        asset?: {
+          _ref: string;
+          _type: 'reference';
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: 'image';
+      };
       _key: string;
-      [internalGroqTypeReferenceTo]?: 'team_members';
     }>;
   };
   partnersSection?: {
+    badge_text?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
     title?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
-    highlightTitle?: Array<
-      {
-        _key: string;
-      } & InternationalizedArrayStringValue
-    >;
-    subtitle?: Array<
       {
         _key: string;
       } & InternationalizedArrayStringValue

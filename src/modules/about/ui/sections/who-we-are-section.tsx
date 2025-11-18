@@ -1,10 +1,26 @@
 import ContainerLayout from '@/components/container-layout';
+import CustomImage from '@/components/custom-image';
 import EnhancedBadge from '@/components/enhanced-badge';
 import EnhancedTitle from '@/components/enhanced-title';
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger
+} from '@/components/ui/dialog';
+import useGetLocale from '@/hooks/use-get-locale';
+import { trpc } from '@/trpc/client';
 import Image from 'next/image';
 import React from 'react';
 
 export default function WhoWeAreSection() {
+  const { data } = trpc.aboutus.getAboutUs.useQuery();
+
+  const { getLocalizedString } = useGetLocale();
+
+  const description = getLocalizedString(data?.whoWeAre?.description ?? []);
+  const title = getLocalizedString(data?.whoWeAre?.title ?? []);
+
   return (
     <ContainerLayout className="bg-white/10 py-15 md:py-25">
       <div className="grid items-center gap-10 md:grid-cols-12">
@@ -22,39 +38,60 @@ export default function WhoWeAreSection() {
           {/* actual image */}
           <div className="absolute top-14">
             <div className="relative -left-10 h-[400px] w-[350px] -rotate-12 rounded-md border-[10px] border-white shadow-xl">
-              <Image
-                src={'/assets/story/kritan_shrestha.jpg'}
-                className="object-cover"
-                alt=""
-                fill
-              />
+              {data?.whoWeAre?.images && (
+                <CustomImage
+                  src={data?.whoWeAre?.images[0]}
+                  className="object-cover"
+                  alt=""
+                  fill
+                />
+              )}
             </div>
             <div className="relative -top-50 -right-10 h-[400px] w-[350px] rotate-12 rounded-md border-[10px] border-white shadow-xl lg:-right-25">
-              <Image
-                src={'/assets/story/dharmajit_budha.jpg'}
-                className="object-cover"
-                alt=""
-                fill
-              />
+              {data?.whoWeAre?.images && (
+                <CustomImage
+                  src={data?.whoWeAre?.images[1]}
+                  className="object-cover"
+                  alt=""
+                  fill
+                />
+              )}
             </div>
           </div>
         </div>
         {/* content section */}
         <div className="md:col-span-5">
-          <EnhancedBadge text={'Who we are'} variant="pink" className="mb-3" />
-          <EnhancedTitle text={'We’re worldwide non-profit charity'} />
+          <EnhancedBadge
+            text={data?.whoWeAre?.badge_text}
+            variant="pink"
+            className="mb-3"
+          />
+          <EnhancedTitle text={title} />
 
-          <p className="text-xl">
-            Since 1994, we have supported more than 1,000 local partners to
-            reach more than 15 million children, and we’re working with new
-            organizations all the time.
+          <p className="relative text-xl leading-relaxed">
+            {description?.slice(0, 350)}
+            {description && description.length > 350 && (
+              <span className="font-semibold">
+                ... &nbsp;
+                <Dialog>
+                  <DialogTrigger>
+                    <span className="cursor-pointer font-medium underline-offset-1 hover:underline">
+                      see more
+                    </span>
+                  </DialogTrigger>
+                  <DialogContent className="max-h-[90vh] w-full max-w-[800px]! overflow-y-auto px-[25px] py-[50px] sm:p-[50px]">
+                    <DialogTitle className="text-3xl text-gray-800">
+                      <b>{title}</b>
+                    </DialogTitle>
+                    <p className="text-muted-foreground whitespace-pre-line">
+                      {description}
+                    </p>
+                  </DialogContent>
+                </Dialog>
+              </span>
+            )}
           </p>
           <br />
-          <span className="text-muted-foreground">
-            We work with babies, children and young people in their families,
-            schools and communities to ensure they grow up to be healthy and
-            happy.
-          </span>
         </div>
       </div>
     </ContainerLayout>

@@ -1,22 +1,14 @@
 import { Aboutus, OrganizationStats, PartnersList } from '@/sanity/types';
-import { PopulatedTeamMember } from './team-member-types';
 
 export type PopulatedAboutUsPage = Omit<
   Aboutus,
-  'partnersSection' | 'statisticsSection' | 'teamsSection'
+  'partnersSection' | 'mapSection'
 > & {
   partnersSection: Omit<NonNullable<Aboutus['partnersSection']>, 'partner'> & {
     partner: PartnersList[];
   };
 } & {
-  statisticsSection: Omit<
-    NonNullable<Aboutus['statisticsSection']>,
-    'statistics'
-  > & {
-    statistics: OrganizationStats[];
-  };
-} & {
-  teamsSection: Omit<NonNullable<Aboutus['teamsSection']>, 'teamMembers'> & {
-    teamMembers: PopulatedTeamMember[];
+  mapSection: Omit<NonNullable<Aboutus['mapSection']>, 'select_stats'> & {
+    select_stats: OrganizationStats[];
   };
 };
