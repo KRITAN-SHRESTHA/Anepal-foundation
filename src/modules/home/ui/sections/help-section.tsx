@@ -72,11 +72,11 @@ const data = [
   },
   {
     id: 2,
-    name: 'Partner With Us',
+    name: 'Join our events',
     content:
       'Collaborate with us to amplify our impact. Together we can create sustainable programs that empower communities and change lives for generations to come.',
     btnText: 'Become a Partner',
-    link: '/get-involved/partner',
+    link: '/events',
     imageUrl:
       'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=400&h=400&fit=crop'
   }

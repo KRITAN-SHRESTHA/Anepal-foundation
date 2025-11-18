@@ -7,6 +7,8 @@ import React, { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import PrivacyLoading from '../components/privacy-loading';
 import { useTranslations } from 'next-intl';
+import EnhancedTitle from '@/components/enhanced-title';
+import HeroSectionThree from '@/components/hero-section-three';
 
 export default function TermsAndConditionsView() {
   return (
@@ -25,11 +27,11 @@ function TermsAndConditionsViewSuspense() {
   const t = useTranslations('Default');
 
   return (
-    <section className="py-12">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-16 px-4 sm:px-6 lg:px-16">
-        <h1 className="max-w-3xl text-[40px] font-semibold text-pretty md:text-6xl">
-          {t('Terms_and_Conditions')}
-        </h1>
+    <section className="bg-white">
+      <HeroSectionThree variant="skyblue" title={t('Terms_and_Conditions')} />
+
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-16 px-4 py-12 sm:px-6 lg:px-16">
+        <EnhancedTitle text={t('Terms_and_Conditions')} />
         <div>
           {locale === 'en' && data?.content?.content_en && (
             <EditorPortableText value={data.content.content_en} />

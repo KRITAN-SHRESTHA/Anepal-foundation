@@ -8,7 +8,7 @@ export default function BlogView() {
   return (
     <main>
       <BlogListPageTitleSection />
-      <section className="py-20 md:py-32">
+      <section className="bg-white py-20 md:py-32">
         <ContainerLayout>
           <OurBlogsListSection />
           <BlogsPagination />

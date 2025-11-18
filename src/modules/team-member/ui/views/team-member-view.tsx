@@ -28,12 +28,6 @@ function TeamMemberViewSuspense() {
   return (
     <div>
       <HeroSectionThree title={'Our team'} variant="skyblue" />
-      {/* {teamMembers.heroSection?.backgroundImage && (
-        <HeroSectionTwo
-          image={teamMembers.heroSection?.backgroundImage}
-          title={teamMembers.heroSection.title}
-        />
-      )} */}
 
       <MembersListSection />
     </div>

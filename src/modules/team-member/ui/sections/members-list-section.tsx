@@ -22,7 +22,7 @@ export default function MembersListSection() {
           {getLocalizedString(data?.membersDetails.description ?? [])}
         </p>
       </div>
-      <div className="mt-20 flex flex-wrap justify-center gap-8 gap-y-12">
+      <div className="mt-20 flex flex-wrap justify-center gap-8 gap-y-20">
         {data?.membersDetails?.membersList?.map((member, index) => (
           <div
             key={member._id}

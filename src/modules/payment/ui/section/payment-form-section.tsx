@@ -87,7 +87,7 @@ export default function PaymentFormSection() {
       {/* amount selector */}
       <SelectAmountSection />
 
-      <div className="px-1.5">
+      <div className="relative z-10 px-1.5">
         <PayPalButtons
           fundingSource={'paypal'}
           style={{ layout: 'vertical', label: 'donate' }}

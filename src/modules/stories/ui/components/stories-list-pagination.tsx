@@ -24,7 +24,7 @@ function StoriesListPaginationSuspense() {
   if (stories.length === 0) return null;
 
   return (
-    <div className="mt-10 mb-20">
+    <div className="mt-10">
       <PaginationComponent
         currentPage={currentPage}
         total={total}

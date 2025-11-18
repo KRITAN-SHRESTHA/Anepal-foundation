@@ -120,8 +120,7 @@ const SubmitPayment = () => {
   return (
     <div className="p-1.5">
       <Button
-        // variant={'outline'}
-        className="group mt-3 h-[50px] w-full text-base"
+        className="from-accent-foreground to-accent-foreground/90 hover:shadow-accent-foreground/20 relative h-11 w-full overflow-hidden rounded-xs bg-gradient-to-r px-6 font-semibold shadow-lg transition-all duration-300 hover:shadow-xl lg:h-12 lg:px-8"
         onClick={handleClick}
         disabled={isPaying}
       >

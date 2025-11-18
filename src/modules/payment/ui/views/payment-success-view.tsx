@@ -26,7 +26,7 @@ export default function PaymentSuccessView() {
   }, []);
 
   return (
-    <div className="relative w-full pt-[50px] pb-[100px]">
+    <div className="relative w-full bg-white pt-[50px] pb-[100px]">
       <ReactConfetti width={dimensions.width} height={dimensions.height} />
       <div className="mx-auto max-w-2xl">
         <SuccessLogo />

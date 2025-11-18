@@ -42,7 +42,7 @@ function OurEventsListSectionSuspense() {
         {events.map(event => (
           <Card
             key={event._id}
-            className="order-last border-0 bg-transparent py-5 shadow-none sm:order-first sm:col-span-12 md:py-10 lg:col-span-10 lg:col-start-2"
+            className="order-last border-0 bg-transparent p-0! shadow-none sm:order-first sm:col-span-12 lg:col-span-10 lg:col-start-2"
           >
             <div className="grid gap-y-6 sm:grid-cols-10 sm:gap-x-5 sm:gap-y-0 md:items-center md:gap-x-8 lg:gap-x-12">
               <div className="sm:col-span-5">
@@ -50,7 +50,7 @@ function OurEventsListSectionSuspense() {
                   href={`/events/${event.slug?.current}`}
                   className="hover:underline"
                 >
-                  <h3 className="text-primary text-xl font-semibold md:text-2xl lg:text-3xl">
+                  <h3 className="text-xl font-semibold text-gray-900 capitalize md:text-2xl lg:text-3xl">
                     {getLocalizedString(event.title ?? [])}
                   </h3>
                 </NavigationLink>
