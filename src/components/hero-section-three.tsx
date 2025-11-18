@@ -8,14 +8,15 @@ import useGetLocale from '@/hooks/use-get-locale';
 import { motion } from 'motion/react';
 
 interface Props {
-  variant: 'blue' | 'green' | 'yellow' | 'pink';
-  title?: LocalisedDataType[] | null;
+  variant: 'blue' | 'green' | 'yellow' | 'pink' | 'skyblue';
+  title?: LocalisedDataType[] | null | string;
   className?: string;
 }
 
 export default function HeroSectionThree({ variant, title, className }: Props) {
   const { getLocalizedString } = useGetLocale();
-  const convertedText = getLocalizedString(title ?? []);
+  const convertedText =
+    typeof title === 'string' ? title : getLocalizedString(title ?? []);
   return (
     <div
       className={cn(
@@ -36,6 +37,21 @@ export default function HeroSectionThree({ variant, title, className }: Props) {
         >
           <Image
             src={'/assets/background/donor-bg-img.png'}
+            alt=""
+            width={600}
+            height={400}
+          />
+        </motion.div>
+      )}
+      {variant === 'skyblue' && (
+        <motion.div
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="absolute -right-[170px] -bottom-[160px] z-0"
+        >
+          <Image
+            src={'/assets/background/about-bg-img.png'}
             alt=""
             width={600}
             height={400}
@@ -63,7 +79,7 @@ export default function HeroSectionThree({ variant, title, className }: Props) {
           {title ? (
             <EnhancedTitle
               text={title}
-              className="text-center text-6xl lg:text-7xl"
+              className="text-center text-6xl uppercase lg:text-7xl"
             />
           ) : null}
           <motion.div
@@ -79,7 +95,9 @@ export default function HeroSectionThree({ variant, title, className }: Props) {
               Home
             </NavigationLink>
             <ChevronRight className="text-muted-foreground size-3" />
-            <p className="text-muted-foreground text-sm">{convertedText}</p>
+            <p className="text-muted-foreground text-sm capitalize">
+              {convertedText}
+            </p>
           </motion.div>
         </div>
       </div>

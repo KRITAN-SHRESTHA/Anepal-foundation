@@ -1,19 +1,18 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
 import { FiFacebook, FiInstagram } from 'react-icons/fi';
 import { BsTwitterX } from 'react-icons/bs';
 import { usePathname } from 'next/navigation';
 
 import { trpc } from '@/trpc/client';
+import useGetLocale from '@/hooks/use-get-locale';
 
 import Logo from '../header/logo';
-import { Button } from '../ui/button';
 import { bottomLinks } from './footer-config';
 import { useTranslations } from 'next-intl';
-import useGetLocale from '@/hooks/use-get-locale';
 import NavigationLink from '../navigation-link';
+import DonateBtn from '../header/donate-btn';
 
 export default function FooterContent() {
   const pathname = usePathname();
@@ -128,11 +127,12 @@ export default function FooterContent() {
                   <p className="font-medium">
                     {t('Help_Us_Change_the_Lives_of_Children_in_World')}
                   </p>
-                  <NavigationLink href={'/payment'}>
+                  <DonateBtn />
+                  {/* <NavigationLink href={'/payment'}>
                     <Button className="hover:bg-accent-foreground h-[50px] w-[150px] rounded-full text-base">
                       {t('Donate_us')} <ArrowUpRight />
                     </Button>
-                  </NavigationLink>
+                  </NavigationLink> */}
                 </div>
               </div>
             </div>

@@ -34,7 +34,7 @@ function ImpactSectionSuspense() {
     <section className="relative overflow-hidden bg-[#eaae88] py-20 mix-blend-multiply lg:py-32">
       {/* World Map Background Image */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <div className="relative h-[600px] w-[1000px]">
+        <div className="relative h-[600px] w-screen lg:w-[1200px]">
           <Image
             src={'/assets/world-map-white.png'}
             fill
