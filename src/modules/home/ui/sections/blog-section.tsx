@@ -25,8 +25,8 @@ function BlogSectionSuspense() {
   if (data.length === 0) return null;
 
   return (
-    <section className="bg-white py-14">
-      <ContainerLayout className="space-y-10">
+    <section className="bg-white py-20 md:py-30">
+      <ContainerLayout className="space-y-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

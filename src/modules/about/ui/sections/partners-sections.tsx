@@ -8,6 +8,7 @@ import { PartnersList } from '@/sanity/types';
 import EnhancedBadge from '@/components/enhanced-badge';
 import { InfiniteSlider } from '@/components/ui/infinite-slider';
 import ContainerLayout from '@/components/container-layout';
+import EnhancedTitle from '@/components/enhanced-title';
 
 interface PartnerSectionProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
@@ -20,14 +21,15 @@ interface PartnerSectionProps
 export default function PartnersSection({
   className,
   badge_text,
-  partners
+  partners,
+  title
 }: PartnerSectionProps) {
   return (
-    <section className={cn('bg-background/50 px-6 py-12', className)}>
+    <section className={cn('bg-background/50 px-6 py-20 md:py-30', className)}>
       <ContainerLayout>
-        <div className="text-center">
+        <div className="mx-auto mb-10 max-w-[800px] text-center text-balance">
           <EnhancedBadge variant="yellow" text={badge_text} />
-          {/* <EnhancedTitle text={title} /> */}
+          {title && <EnhancedTitle text={title} />}
         </div>
 
         <InfiniteSlider gap={50} reverse>

@@ -22,7 +22,7 @@ export default function EnhancedBadge({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className={cn('mb-8 inline-block', className)}
+      className={cn('mb-4 inline-block', className)}
     >
       <span
         className={cn(

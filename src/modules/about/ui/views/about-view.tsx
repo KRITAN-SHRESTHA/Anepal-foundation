@@ -3,14 +3,14 @@
 import { ErrorBoundary } from 'react-error-boundary';
 import { Suspense } from 'react';
 
-import ContentSection from '@/components/content-section';
 import { trpc } from '@/trpc/client';
 
-import AboutUsTeamSection from '../sections/about-us-team-section';
-import WhoDoWeHelpSection from '../sections/who-do-we-help-section';
-// import PartnersSection from '../sections/partners-sections';
 import AboutUsPageSkeleton from '../components/about-us-page-skeleton';
-import HeroSectionTwo from '@/components/hero-section-2';
+import HeroSectionThree from '@/components/hero-section-three';
+import WhoWeAreSection from '../sections/who-we-are-section';
+import MapSection from '../sections/map-section';
+import WhyChooseSection from '../sections/why-choose-section';
+import PartnersSection from '../sections/partners-sections';
 
 export default function AboutView() {
   return (
@@ -27,14 +27,23 @@ function AboutViewSuspense() {
 
   return (
     <>
-      {data?.heroSection?.backgroundImage && (
+      <HeroSectionThree title={'about us'} variant="blue" />
+      {/* {data?.heroSection?.backgroundImage && (
         <HeroSectionTwo
           image={data.heroSection?.backgroundImage}
           title={data.heroSection?.title}
         />
-      )}
+      )} */}
 
-      {data?.firstcontent && (
+      <WhoWeAreSection />
+
+      <MapSection />
+
+      <div className="bg-white">
+        <WhyChooseSection />
+      </div>
+
+      {/* {data?.firstcontent && (
         <ContentSection
           description={data.firstcontent?.description}
           subtitle={data.firstcontent?.subtitle}
@@ -51,9 +60,19 @@ function AboutViewSuspense() {
           className="pt-[0px]"
           image={data.secondcontent?.image}
         />
+      )} */}
+      {/* <WhoDoWeHelpSection /> */}
+      {/* <AboutUsTeamSection /> */}
+
+      {data?.partnersSection && (
+        <PartnersSection
+          className="bg-transparent pb-[100px]"
+          badge_text={'Partners'}
+          title={'Trusted by 1900+ founders & organization'}
+          partners={data.partnersSection.partner}
+          highlightTitleText={data?.partnersSection?.highlightTitle}
+        />
       )}
-      <WhoDoWeHelpSection />
-      <AboutUsTeamSection />
       {/* <Separator /> */}
       {/* {data?.partnersSection && (
         <PartnersSection
