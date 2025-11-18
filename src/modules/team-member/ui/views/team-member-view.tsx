@@ -7,7 +7,8 @@ import { trpc } from '@/trpc/client';
 
 import MembersListSection from '../sections/members-list-section';
 import TeamMemberPageSkeleton from '../components/team-member-page-skeleton';
-import HeroSectionTwo from '@/components/hero-section-2';
+// import HeroSectionTwo from '@/components/hero-section-2';
+import HeroSectionThree from '@/components/hero-section-three';
 
 export default function TeamMemberView() {
   return (
@@ -26,12 +27,13 @@ function TeamMemberViewSuspense() {
 
   return (
     <div>
-      {teamMembers.heroSection?.backgroundImage && (
+      <HeroSectionThree title={'Our team'} variant="skyblue" />
+      {/* {teamMembers.heroSection?.backgroundImage && (
         <HeroSectionTwo
           image={teamMembers.heroSection?.backgroundImage}
           title={teamMembers.heroSection.title}
         />
-      )}
+      )} */}
 
       <MembersListSection />
     </div>

@@ -38,8 +38,8 @@ export default function HeroSectionThree({ variant, title, className }: Props) {
           <Image
             src={'/assets/background/donor-bg-img.png'}
             alt=""
-            width={600}
-            height={400}
+            width={700}
+            height={500}
           />
         </motion.div>
       )}
@@ -48,13 +48,13 @@ export default function HeroSectionThree({ variant, title, className }: Props) {
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="absolute -right-[170px] -bottom-[160px] z-0"
+          className="absolute right-0 bottom-0 z-0"
         >
           <Image
             src={'/assets/background/about-bg-img.png'}
             alt=""
-            width={600}
-            height={400}
+            width={700}
+            height={500}
           />
         </motion.div>
       )}
