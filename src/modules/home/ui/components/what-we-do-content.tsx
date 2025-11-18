@@ -113,7 +113,13 @@ function WhatWeDoContentSuspense() {
 
       {/* Middle - Dynamic Content Card */}
       <div className="relative z-1 flex md:h-[380px] lg:col-start-6 lg:col-end-10">
-        <div className="relative h-full w-full rounded-xl bg-white p-6 md:p-12">
+        <motion.div
+          className="relative h-full w-full rounded-xl bg-white p-6 md:p-12"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={activeCategory?._key}
@@ -167,7 +173,7 @@ function WhatWeDoContentSuspense() {
               </motion.p>
             </motion.div>
           </AnimatePresence>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

@@ -1,49 +1,30 @@
 import ContainerLayout from '@/components/container-layout';
+import CustomImage from '@/components/custom-image';
 import EnhancedBadge from '@/components/enhanced-badge';
 import EnhancedTitle from '@/components/enhanced-title';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import Image from 'next/image';
+import useGetLocale from '@/hooks/use-get-locale';
+import { trpc } from '@/trpc/client';
 import React from 'react';
 
-const data = [
-  {
-    id: 0,
-    title: 'Sharing',
-    description:
-      'Share feelings and spiritual to the poor, children around the world, helping them to integrate into the community.',
-    icon: '/assets/icons/people-holding-hands.png'
-  },
-  {
-    id: 1,
-    title: 'Community',
-    description:
-      'We help local nonprofits access the funding, tools, training, and support they need to become more.',
-    icon: '/assets/icons/community.png'
-  },
-  {
-    id: 2,
-    title: 'Responsibilities',
-    description:
-      'Share feelings and spiritual to the poor, children around the world, helping them to integrate into the community.',
-    icon: '/assets/icons/responsibility.png'
-  },
-  {
-    id: 3,
-    title: 'Collaboration',
-    description:
-      'Partnerships across every sector make all of our work for children and young people possible.',
-    icon: '/assets/icons/collaboration.png'
-  }
-];
-
 export default function WhyChooseSection() {
+  const { data } = trpc.aboutus.getAboutUs.useQuery();
+
+  const { getLocalizedString } = useGetLocale();
+
   return (
     <ContainerLayout className="py-20 md:py-30">
       <div className="grid grid-cols-1 items-end gap-5 md:grid-cols-2">
         {/* left content */}
         <div>
-          <EnhancedBadge text={'Why choose us'} variant="green" />
-          <EnhancedTitle text={'What makes us different'} className="mb-0" />
+          <EnhancedBadge
+            text={data?.whyChooseSection?.badge_text}
+            variant="green"
+          />
+          <EnhancedTitle
+            text={data?.whyChooseSection?.title}
+            className="mb-0"
+          />
         </div>
         {/* right content */}
         <div>
@@ -55,22 +36,26 @@ export default function WhyChooseSection() {
       </div>
 
       <div className="mt-20 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
-        {data.map(d => (
-          <Card key={d.id} className="border-0 bg-white px-8 py-10 shadow-xl">
+        {data?.whyChooseSection?.items?.map(d => (
+          <Card
+            key={getLocalizedString(d.title || [])}
+            className="border-0 bg-white px-8 py-10 shadow-xl"
+          >
             <CardHeader className="px-0">
-              <Image
+              <CustomImage
                 src={d.icon}
                 width={70}
                 height={70}
-                alt={d.title}
+                alt={getLocalizedString(d.title || []) ?? ''}
                 quality={100}
+                className="h-[60px] w-[60px]"
               />
               <h3 className="pt-5 text-2xl font-semibold sm:text-2xl">
-                {d.title}
+                {getLocalizedString(d.title || [])}
               </h3>
             </CardHeader>
             <CardContent className="text-muted-foreground px-0 text-base">
-              {d.description}
+              {getLocalizedString(d.description || [])}
             </CardContent>
           </Card>
         ))}

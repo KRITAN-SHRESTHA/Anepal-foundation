@@ -26,13 +26,6 @@ export const storiesPageSchema = defineType({
                 );
               }
             )
-        },
-        {
-          name: 'backgroundImage',
-          title: 'Background Image',
-          type: 'image',
-          options: { hotspot: true },
-          validation: rule => rule.required().error('Image is required')
         }
       ]
     }

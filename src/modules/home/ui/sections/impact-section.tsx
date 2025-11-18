@@ -53,8 +53,6 @@ function ImpactSectionSuspense() {
 
           {/* Main Heading with gradient */}
           <EnhancedTitle text={title} className="mb-0 text-balance" />
-          {/* <EnhancedTitle text="Children Are Safe, Strong," className="mb-0" />
-          <EnhancedTitle text="And Valued" /> */}
 
           {/* Large Impact Number with better gradient */}
           <motion.div

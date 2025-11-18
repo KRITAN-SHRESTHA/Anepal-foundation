@@ -1,7 +1,12 @@
+import useGetLocale from '@/hooks/use-get-locale';
+import { trpc } from '@/trpc/client';
 import { motion } from 'motion/react';
 import Image from 'next/image';
 
 export default function MapSection() {
+  const { data } = trpc.aboutus.getAboutUs.useQuery();
+  const { getLocalizedString } = useGetLocale();
+
   return (
     <section className="relative overflow-hidden bg-white/10 py-20 lg:py-32">
       {/* World Map Background Image */}
@@ -31,7 +36,7 @@ export default function MapSection() {
             <div className="relative inline-block">
               <h3 className="bg-clip-text text-7xl font-extrabold text-[#f0dd8f] sm:text-8xl lg:text-9xl">
                 {/* {data.total_impacted_lives}+ */}
-                14,059,825 +
+                {data?.mapSection?.description?.value}+
               </h3>
             </div>
           </motion.div>
@@ -45,37 +50,36 @@ export default function MapSection() {
             className="mb-16 lg:mb-20"
           >
             <p className="inline-flex items-center gap-2 text-base font-bold tracking-wide text-gray-700 uppercase sm:text-lg">
-              children & families support all over the world
-              {/* {short_description} */}
+              {getLocalizedString(data?.mapSection?.description?.label ?? [])}
             </p>
           </motion.div>
 
           {/* Stats Grid with enhanced cards */}
           <div className="flex flex-col items-center justify-center gap-7 md:gap-17 lg:flex-row">
             {/* Stats */}
-            {/* {data.select_stats.map(stat => (
-              <> */}
-            <motion.div
-              // key={stat._id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.7, duration: 0.5 }}
-              className="group relative flex"
-            >
-              <div className="relative grid gap-6 text-center">
-                <span className="bg-clip-text text-5xl font-bold text-black md:text-6xl lg:text-7xl">
-                  {/* {stat.value} */}
-                  24
-                </span>
-                <p className="text-xl font-semibold text-gray-900">
-                  Countries with our programs
-                  {/* {getLocalizedString(stat.label || [])} */}
-                </p>
-              </div>
-            </motion.div>
+            {data?.mapSection?.select_stats?.map(stat => (
+              <motion.div
+                key={stat._id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.7, duration: 0.5 }}
+                className="group relative flex"
+              >
+                <div className="relative grid gap-6 text-center">
+                  <span className="bg-clip-text text-5xl font-bold text-black md:text-6xl lg:text-7xl">
+                    {stat.value}
+                    {/* 24 */}
+                  </span>
+                  <p className="text-xl font-semibold text-gray-900">
+                    {/* Countries with our programs */}
+                    {getLocalizedString(stat.label || [])}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
 
-            <motion.div
+            {/* <motion.div
               // key={stat._id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -85,17 +89,15 @@ export default function MapSection() {
             >
               <div className="relative grid gap-6 text-center">
                 <span className="bg-clip-text text-5xl font-bold text-black md:text-6xl lg:text-7xl">
-                  {/* {stat.value} */}
                   35
                 </span>
                 <p className="text-xl font-semibold text-gray-900">
                   Years helping children thrive
-                  {/* {getLocalizedString(stat.label || [])} */}
                 </p>
               </div>
-            </motion.div>
+            </motion.div> */}
 
-            <motion.div
+            {/* <motion.div
               // key={stat._id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -105,15 +107,13 @@ export default function MapSection() {
             >
               <div className="relative grid gap-6 text-center">
                 <span className="bg-clip-text text-5xl font-bold text-black md:text-6xl lg:text-7xl">
-                  {/* {stat.value} */}
                   150
                 </span>
                 <p className="text-xl font-semibold text-gray-900">
                   Local partner organizations
-                  {/* {getLocalizedString(stat.label || [])} */}
                 </p>
               </div>
-            </motion.div>
+            </motion.div> */}
           </div>
         </div>
       </div>

@@ -19,14 +19,13 @@ export default function ContactDetailsSection() {
 
 function ContactDetailsSectionSuspense() {
   const [settingsData] = trpc.settings.getSettings.useSuspenseQuery();
-  // const [data] = trpc.contact.getContactPage.useSuspenseQuery();
-  // const { getLocalizedString } = useGetLocale();
+  const [data] = trpc.contact.getContactPage.useSuspenseQuery();
   const t = useTranslations('ContactPage');
 
   return (
     <ContainerLayout className="mx-auto max-w-5xl py-20">
       <EnhancedTitle
-        text={'Contact info'}
+        text={data.title}
         className="text-center text-3xl font-bold uppercase md:text-4xl lg:text-5xl"
       />
 

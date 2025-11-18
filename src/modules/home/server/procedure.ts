@@ -2,6 +2,7 @@ import { client } from '@/sanity/lib/client';
 import {
   Home_events,
   Home_gallery,
+  Home_help_section,
   Home_partners,
   HomeBanner,
   PartnersList,
@@ -80,6 +81,10 @@ const GET_HOME_BLOGS_LIST = `*[
   tag->
 }`;
 
+const GET_HOME_HELP_SECTION = `*[
+  _type == "home_help_section"
+][0]`;
+
 // Enable ISR caching for home data (align with page revalidate)
 const options = { next: { revalidate: 300 } };
 
@@ -133,6 +138,13 @@ export const homeRouter = createTRPCRouter({
   getHomeBlogsList: publicProcedure.query(async () => {
     return await client.fetch<PopulatedBlogsList[]>(
       GET_HOME_BLOGS_LIST,
+      {},
+      options
+    );
+  }),
+  getHomeHelpSection: publicProcedure.query(async () => {
+    return await client.fetch<Home_help_section>(
+      GET_HOME_HELP_SECTION,
       {},
       options
     );

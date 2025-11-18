@@ -26,35 +26,27 @@ export const aboutUsSchema = defineType({
                 );
               }
             )
-        },
-        {
-          name: 'backgroundImage',
-          title: 'Background Image',
-          type: 'image',
-          options: { hotspot: true },
-          validation: rule => rule.required().error('Image is required')
         }
       ]
     },
     defineField({
-      name: 'firstcontent',
-      title: 'First content Section',
+      name: 'whoWeAre',
+      title: 'Who We Are Section',
       type: 'object',
       fields: [
         defineField({
-          name: 'image',
-          title: 'Image',
-          type: 'image',
-          description: 'Image (recommended size: 400 × 400px)',
-          validation: rule => rule.required().error('Image is required'),
-          fields: [
-            defineField({
-              name: 'alt',
-              type: 'string',
-              title: 'Alternative Text (about image)',
-              validation: rule => rule.required().error('Image alt is required')
-            })
-          ]
+          name: 'badge_text',
+          title: 'Badge text',
+          type: 'internationalizedArrayString',
+          validation: rule =>
+            rule.custom<{ value: string; _type: string; _key: string }[]>(
+              value => {
+                return validationLang(
+                  value,
+                  'Please add badge text in all languages'
+                );
+              }
+            )
         }),
         defineField({
           name: 'title',
@@ -70,168 +62,88 @@ export const aboutUsSchema = defineType({
               }
             )
         }),
-        // {
-        //   name: 'highlightTitle',
-        //   title: 'Highlight Title',
-        //   type: 'internationalizedArrayString',
-        //   validation: rule =>
-        //     rule
-        //       .required()
-        //       .custom<
-        //         { value: string; _type: string; _key: string }[]
-        //       >(value => {
-        //         return validationLang(
-        //           value,
-        //           'Please add highlight title in all languages'
-        //         );
-        //       })
-        // },
-        {
-          name: 'subtitle',
-          title: 'Subtitle',
-          type: 'internationalizedArrayString',
-          validation: rule =>
-            rule.custom<{ value: string; _type: string; _key: string }[]>(
-              value => {
-                return validationLang(
-                  value,
-                  'Please add subtitle in all languages'
-                );
-              }
-            )
-        },
         defineField({
           name: 'description',
           title: 'Description',
           type: 'internationalizedArrayText',
           validation: rule =>
-            rule
-              .required()
-              .custom<
-                { value: string; _type: string; _key: string }[]
-              >(value => {
+            rule.custom<{ value: string; _type: string; _key: string }[]>(
+              value => {
                 return validationLang(
                   value,
                   'Please add description in all languages'
                 );
-              })
+              }
+            )
+        }),
+        defineField({
+          name: 'images',
+          title: 'Images',
+          type: 'array',
+          of: [
+            defineArrayMember({
+              type: 'image',
+              options: { hotspot: true }
+            })
+          ],
+          description:
+            'Images for Who We Are (recommended: 800x600). Provide 1–2 images.',
+          validation: rule =>
+            rule
+              .required()
+              .min(2)
+              .max(2)
+              .error(
+                'Please provide between 1 and 2 images for the Who We Are section'
+              )
         })
       ]
     }),
     defineField({
-      name: 'secondcontent',
-      title: 'Second content',
+      name: 'mapSection',
+      title: 'Map Section',
       type: 'object',
       fields: [
-        defineField({
-          name: 'image',
-          title: 'Image',
-          type: 'image',
-          description: 'Image (recommended size: 400 × 400px)',
-          validation: rule => rule.required().error('Image is required')
-          // fields: [
-          //   defineField({
-          //     name: 'alt',
-          //     type: 'string',
-          //     title: 'Alternative Text (about image)',
-          //     validation: rule => rule.required().error('Image alt is required')
-          //   })
-          // ]
-        }),
-        defineField({
-          name: 'title',
-          title: 'Title',
-          type: 'internationalizedArrayString',
-          validation: rule =>
-            rule.custom<{ value: string; _type: string; _key: string }[]>(
-              value => {
-                return validationLang(
-                  value,
-                  'Please add title in all languages'
-                );
-              }
-            )
-        }),
         defineField({
           name: 'description',
-          title: 'Description',
-          type: 'internationalizedArrayText',
-          validation: rule =>
-            rule
-              .required()
-              .custom<
-                { value: string; _type: string; _key: string }[]
-              >(value => {
-                return validationLang(
-                  value,
-                  'Please add description in all languages'
-                );
-              })
-        })
-      ]
-    }),
-    {
-      name: 'statisticsSection',
-      title: 'Statistics section',
-      type: 'object',
-      fields: [
+          title: 'Map Description',
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'label',
+              title: 'Label',
+              type: 'internationalizedArrayString',
+              validation: rule =>
+                rule.custom<{ value: string; _type: string; _key: string }[]>(
+                  value => {
+                    return validationLang(
+                      value,
+                      'Please add label in all languages'
+                    );
+                  }
+                )
+            }),
+            defineField({
+              name: 'value',
+              title: 'Value',
+              type: 'number',
+              validation: rule => rule.required().error('Value is required')
+            })
+          ]
+        }),
         {
-          name: 'statsTitle',
-          title: 'Statistics Title',
-          type: 'internationalizedArrayString',
-          validation: rule =>
-            rule.custom<{ value: string; _type: string; _key: string }[]>(
-              value => {
-                return validationLang(
-                  value,
-                  'Please add title in all languages'
-                );
-              }
-            )
-        },
-        {
-          name: 'highlightTitle',
-          title: 'Highlight Title',
-          type: 'internationalizedArrayString',
-          validation: rule =>
-            rule
-              .required()
-              .custom<
-                { value: string; _type: string; _key: string }[]
-              >(value => {
-                return validationLang(
-                  value,
-                  'Please add highlight title in all languages'
-                );
-              })
-        },
-        {
-          name: 'statsSubtitle',
-          title: 'Statistics Subtitle',
-          type: 'internationalizedArrayString',
-          validation: rule =>
-            rule.custom<{ value: string; _type: string; _key: string }[]>(
-              value => {
-                return validationLang(
-                  value,
-                  'Please add susbtitle in all languages'
-                );
-              }
-            )
-        },
-        {
-          name: 'statistics',
-          title: 'Select Statistics',
+          name: 'select_stats',
+          title: 'Select stats',
           type: 'array',
-          description: 'Select upto 4 field only',
           validation: rule =>
             rule.custom((arr: Reference[]) => {
               // arr will gives the array of selected fields
-              if (!arr) return 'Please select at least a field';
+              if (!arr) return 'Please select at least a stat';
 
-              if (arr.length > 4) {
-                return 'You can select up to 4 fields only';
+              if (arr.length > 3) {
+                return 'Select upto 3 stats only';
               }
+
               const refs = arr.map(item => item._ref);
               const hasDuplicates = refs.length !== new Set(refs).size;
               return hasDuplicates ? 'No duplicate selections allowed' : true;
@@ -244,13 +156,27 @@ export const aboutUsSchema = defineType({
           ]
         }
       ]
-    },
-    {
-      name: 'teamsSection',
-      title: 'Team section',
+    }),
+    defineField({
+      name: 'whyChooseSection',
+      title: 'Why Choose Section',
       type: 'object',
       fields: [
-        {
+        defineField({
+          name: 'badge_text',
+          title: 'Badge text',
+          type: 'internationalizedArrayString',
+          validation: rule =>
+            rule.custom<{ value: string; _type: string; _key: string }[]>(
+              value => {
+                return validationLang(
+                  value,
+                  'Please add badge text in all languages'
+                );
+              }
+            )
+        }),
+        defineField({
           name: 'title',
           title: 'Title',
           type: 'internationalizedArrayString',
@@ -263,66 +189,90 @@ export const aboutUsSchema = defineType({
                 );
               }
             )
-        },
-        {
-          name: 'highlightTitle',
-          title: 'Highlight Title',
-          type: 'internationalizedArrayString',
-          validation: rule =>
-            rule
-              .required()
-              .custom<
-                { value: string; _type: string; _key: string }[]
-              >(value => {
-                return validationLang(
-                  value,
-                  'Please add highlight title in all languages'
-                );
-              })
-        },
-        {
-          name: 'subtitle',
-          title: 'Subtitle',
+        }),
+        defineField({
+          name: 'description',
+          title: 'Description',
           type: 'internationalizedArrayString',
           validation: rule =>
             rule.custom<{ value: string; _type: string; _key: string }[]>(
               value => {
                 return validationLang(
                   value,
-                  'Please add susbtitle in all languages'
+                  'Please add description in all languages'
                 );
               }
             )
-        },
-        {
-          name: 'teamMembers',
-          title: 'Select Teams',
+        }),
+        defineField({
+          name: 'items',
+          title: 'Items',
           type: 'array',
-          // description: 'Select upto 4 field only',
-          validation: rule =>
-            rule.custom((arr: Reference[]) => {
-              // arr will gives the array of selected fields
-              if (!arr) return 'Please select at least a team member';
-
-              const refs = arr.map(item => item._ref);
-              const hasDuplicates = refs.length !== new Set(refs).size;
-              return hasDuplicates ? 'No duplicate selections allowed' : true;
-            }),
           of: [
             defineArrayMember({
-              type: 'reference',
-              to: { type: 'team_members' }
+              type: 'object',
+              fields: [
+                defineField({
+                  name: 'title',
+                  title: 'Item Title',
+                  type: 'internationalizedArrayString',
+                  validation: rule =>
+                    rule.custom<
+                      { value: string; _type: string; _key: string }[]
+                    >(value => {
+                      return validationLang(
+                        value,
+                        'Please add title in all languages'
+                      );
+                    })
+                }),
+                defineField({
+                  name: 'description',
+                  title: 'Item Description',
+                  type: 'internationalizedArrayText',
+                  validation: rule =>
+                    rule.custom<
+                      { value: string; _type: string; _key: string }[]
+                    >(value => {
+                      return validationLang(
+                        value,
+                        'Please add title in all languages'
+                      );
+                    })
+                }),
+                defineField({
+                  name: 'icon',
+                  title: 'Icon (optional)',
+                  type: 'image',
+                  options: { hotspot: true },
+                  validation: rule => rule.required().error('Image is required')
+                })
+              ]
             })
           ]
-        }
+        })
       ]
-    },
-    {
+    }),
+    defineField({
       name: 'partnersSection',
-      title: 'Partners section',
+      title: 'Partners Section',
       type: 'object',
       fields: [
-        {
+        defineField({
+          name: 'badge_text',
+          title: 'Badge Text',
+          type: 'internationalizedArrayString',
+          validation: rule =>
+            rule.custom<{ value: string; _type: string; _key: string }[]>(
+              value => {
+                return validationLang(
+                  value,
+                  'Please add title in all languages'
+                );
+              }
+            )
+        }),
+        defineField({
           name: 'title',
           title: 'Title',
           type: 'internationalizedArrayString',
@@ -335,60 +285,27 @@ export const aboutUsSchema = defineType({
                 );
               }
             )
-        },
-        {
-          name: 'highlightTitle',
-          title: 'Highlight Title',
-          type: 'internationalizedArrayString',
-          validation: rule =>
-            rule
-              .required()
-              .custom<
-                { value: string; _type: string; _key: string }[]
-              >(value => {
-                return validationLang(
-                  value,
-                  'Please add highlight title in all languages'
-                );
-              })
-        },
-        {
-          name: 'subtitle',
-          title: 'Subtitle',
-          type: 'internationalizedArrayString',
-          validation: rule =>
-            rule.custom<{ value: string; _type: string; _key: string }[]>(
-              value => {
-                return validationLang(
-                  value,
-                  'Please add subtitle in all languages'
-                );
-              }
-            )
-        },
-        {
+        }),
+        defineField({
           name: 'partner',
           title: 'Select Partners',
           type: 'array',
-          // description: 'Select upto 4 field only',
-          validation: rule =>
-            rule.custom((arr: Reference[]) => {
-              // arr will gives the array of selected fields
-              if (!arr) return 'Please select partners';
-
-              const refs = arr.map(item => item._ref);
-              const hasDuplicates = refs.length !== new Set(refs).size;
-              return hasDuplicates ? 'No duplicate selections allowed' : true;
-            }),
           of: [
             defineArrayMember({
               type: 'reference',
-              to: { type: 'partnersList' }
+              to: [{ type: 'partnersList' }]
             })
-          ]
-        }
+          ],
+          validation: rule =>
+            rule.custom((arr: Reference[] | undefined) => {
+              if (!arr) return true;
+              const refs = arr.map(item => item._ref);
+              const hasDuplicates = refs.length !== new Set(refs).size;
+              return hasDuplicates ? 'No duplicate selections allowed' : true;
+            })
+        })
       ]
-    }
+    })
   ],
   preview: {
     prepare() {
