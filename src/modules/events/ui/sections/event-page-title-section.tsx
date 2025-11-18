@@ -4,7 +4,7 @@ import React, { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { trpc } from '@/trpc/client';
 import EventsPageTitleSkeleton from '../components/events-page-title-skeleton';
-import HeroSectionTwo from '@/components/hero-section-2';
+import HeroSectionThree from '@/components/hero-section-three';
 
 export default function EventPageTitleSection() {
   return (
@@ -23,23 +23,7 @@ function EventPageTitleSectionSuspense() {
 
   return (
     <>
-      {data?.heroSection?.backgroundImage && (
-        <HeroSectionTwo
-          image={data.heroSection?.backgroundImage}
-          title={data.heroSection.title ?? []}
-        />
-      )}
+      <HeroSectionThree variant="skyblue" title={data.heroSection?.title} />
     </>
   );
-
-  // return (
-  //   <div className="text-center">
-  //     <h2 className="mx-auto mb-6 text-3xl font-semibold text-pretty md:text-4xl lg:max-w-3xl">
-  //       {getLocalizedString(data.title ?? [])}
-  //     </h2>
-  //     <p className="text-muted-foreground mx-auto max-w-3xl md:text-lg">
-  //       {getLocalizedString(data.subtitle ?? [])}
-  //     </p>
-  //   </div>
-  // );
 }

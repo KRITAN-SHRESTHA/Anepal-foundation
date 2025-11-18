@@ -1,6 +1,6 @@
 'use client';
 
-import HeroSectionTwo from '@/components/hero-section-2';
+import HeroSectionThree from '@/components/hero-section-three';
 import PageSkeleton from '@/components/page-skeleton';
 import { trpc } from '@/trpc/client';
 import { Suspense } from 'react';
@@ -23,12 +23,13 @@ function ContactTitleSectionSuspense() {
 
   return (
     <>
-      {data?.heroSection?.backgroundImage && (
+      <HeroSectionThree title={'Contact'} variant="gradient" />
+      {/* {data?.heroSection?.backgroundImage && (
         <HeroSectionTwo
           image={data.heroSection?.backgroundImage}
           title={data.heroSection.title ?? []}
         />
-      )}
+      )} */}
     </>
   );
 }

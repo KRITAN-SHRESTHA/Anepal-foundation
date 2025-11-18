@@ -27,7 +27,7 @@ function AboutViewSuspense() {
 
   return (
     <>
-      <HeroSectionThree title={'about us'} variant="blue" />
+      <HeroSectionThree title={'about us'} variant="skyblue" />
       {/* {data?.heroSection?.backgroundImage && (
         <HeroSectionTwo
           image={data.heroSection?.backgroundImage}
@@ -62,7 +62,6 @@ function AboutViewSuspense() {
         />
       )} */}
       {/* <WhoDoWeHelpSection /> */}
-      {/* <AboutUsTeamSection /> */}
 
       {data?.partnersSection && (
         <PartnersSection

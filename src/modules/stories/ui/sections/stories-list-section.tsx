@@ -38,7 +38,7 @@ export default function StoriesListSection() {
           <div
             key={story._id}
             className={
-              'tablet:grid-cols-2 mx-auto grid w-full max-w-screen-xl items-center gap-x-12 gap-y-8 px-4 py-[20px] sm:px-6 lg:px-8'
+              'tablet:grid-cols-2 grid w-full items-center gap-x-12 gap-y-8 py-[20px]'
             }
           >
             <div
@@ -53,7 +53,7 @@ export default function StoriesListSection() {
                 fill
                 alt=""
               />
-              <div className="relative aspect-square w-full">
+              <div className="relative z-10 aspect-square w-full overflow-hidden">
                 <CustomImage
                   className="laptop:p-[80px] tablet:p-[60px] xs:p-[60px] h-full w-full object-cover p-[40px] sm:p-[80px]"
                   src={story.image}
@@ -70,17 +70,17 @@ export default function StoriesListSection() {
               })}
             >
               {/* <strong className="text-muted-foreground/60"> */}
-              <strong className="text-secondary-foreground">
+              <strong className="text-muted-foreground">
                 {pagination.page == 1
                   ? numbering == 10
                     ? numbering
                     : `0${numbering}`
                   : numbering}
               </strong>
-              <h4 className="text-primary text-[32px] md:text-[50px]">
+              <div className="text-[32px] text-gray-900 md:text-[50px]">
                 <b>{firstName}</b>&nbsp;
-                {lastname}
-              </h4>
+                <b>{lastname}</b>
+              </div>
 
               {description ? (
                 <p className="text-muted-foreground pt-7 text-lg leading-[135%]">
@@ -97,7 +97,7 @@ export default function StoriesListSection() {
                           </button>
                         </DialogTrigger>
                         <DialogContent className="max-h-[90vh] w-full max-w-[800px]! overflow-y-auto px-[25px] py-[50px] sm:p-[50px]">
-                          <DialogTitle className="text-primary text-[30px]">
+                          <DialogTitle className="text-[30px] text-gray-900">
                             <b>
                               {firstName}&nbsp;
                               {lastname}

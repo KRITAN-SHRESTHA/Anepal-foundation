@@ -9,6 +9,7 @@ export default function useGetAllEvents() {
 
   const [data] = trpc.events.getAllEvents.useSuspenseQuery({
     page: page ? Number(page) : 1
+    // pageSize: 1
   });
 
   return {

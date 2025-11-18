@@ -8,7 +8,7 @@ import useGetLocale from '@/hooks/use-get-locale';
 import { motion } from 'motion/react';
 
 interface Props {
-  variant: 'blue' | 'green' | 'yellow' | 'pink' | 'skyblue';
+  variant: 'blue' | 'pink' | 'skyblue' | 'gradient';
   title?: LocalisedDataType[] | null | string;
   className?: string;
 }
@@ -20,10 +20,12 @@ export default function HeroSectionThree({ variant, title, className }: Props) {
   return (
     <div
       className={cn(
-        'relative h-[450px] w-full overflow-hidden bg-[#E9FEFC]/50',
+        'relative h-[450px] w-full overflow-hidden',
         {
           'bg-[#E9FEFC]/50': variant === 'blue',
-          'bg-[#FFEDEF]/50': variant === 'pink'
+          'bg-[#FFEDEF]/50': variant === 'pink',
+          'bg-[#F0DD8F]/50': variant === 'gradient',
+          'bg-[#EBF7FF]/50': variant === 'skyblue'
         },
         className
       )}
@@ -38,8 +40,23 @@ export default function HeroSectionThree({ variant, title, className }: Props) {
           <Image
             src={'/assets/background/donor-bg-img.png'}
             alt=""
-            width={600}
-            height={400}
+            width={700}
+            height={500}
+          />
+        </motion.div>
+      )}
+      {variant === 'gradient' && (
+        <motion.div
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="absolute right-0 bottom-0 z-0"
+        >
+          <Image
+            src={'/assets/background/contact-bg-img.png'}
+            alt=""
+            width={700}
+            height={500}
           />
         </motion.div>
       )}
@@ -48,13 +65,13 @@ export default function HeroSectionThree({ variant, title, className }: Props) {
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="absolute -right-[170px] -bottom-[160px] z-0"
+          className="absolute right-0 bottom-0 z-0"
         >
           <Image
             src={'/assets/background/about-bg-img.png'}
             alt=""
-            width={600}
-            height={400}
+            width={700}
+            height={500}
           />
         </motion.div>
       )}
