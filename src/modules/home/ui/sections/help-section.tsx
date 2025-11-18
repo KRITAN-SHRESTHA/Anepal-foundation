@@ -1,13 +1,16 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { ArrowRight, Heart, Award } from 'lucide-react';
-import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'motion/react';
-import { useRef } from 'react';
-import { cn } from '@/lib/utils';
+import CustomImage from '@/components/custom-image';
 import EnhancedBadge from '@/components/enhanced-badge';
 import EnhancedTitle from '@/components/enhanced-title';
+import NavigationLink from '@/components/navigation-link';
+import { Button } from '@/components/ui/button';
+import useGetLocale from '@/hooks/use-get-locale';
+import { cn } from '@/lib/utils';
+import { trpc } from '@/trpc/client';
+import { ArrowRight, Award, Heart } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'motion/react';
+import { useRef } from 'react';
 
 const OverlappingCard = ({
   children,
@@ -49,41 +52,46 @@ const OverlappingCard = ({
   );
 };
 
-const data = [
-  {
-    id: 0,
-    name: 'Become a Volunteer',
-    content:
-      'Join our mission to transform lives. Share your skills, time, and passion to make a lasting impact on children and families in need across Nepal.',
-    btnText: 'Join as Volunteer',
-    link: '/volunteer',
-    imageUrl:
-      'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=400&fit=crop'
-  },
-  {
-    id: 1,
-    name: 'Make a Donation',
-    content:
-      'Your generous contribution provides essential medical care, education, food, and emergency relief to vulnerable children and families throughout Nepal.',
-    btnText: 'Donate Now',
-    link: '/donate',
-    imageUrl:
-      'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=400&h=400&fit=crop'
-  },
-  {
-    id: 2,
-    name: 'Join our events',
-    content:
-      'Collaborate with us to amplify our impact. Together we can create sustainable programs that empower communities and change lives for generations to come.',
-    btnText: 'Become a Partner',
-    link: '/events',
-    imageUrl:
-      'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=400&h=400&fit=crop'
-  }
-];
+// const data = [
+//   {
+//     id: 0,
+//     name: 'Become a Volunteer',
+//     content:
+//       'Join our mission to transform lives across Nepal. Share your skills, time, and passion to make a lasting impact on children and families in need. Together, we create sustainable change in communities.',
+//     btnText: 'Join as Volunteer',
+//     link: '/volunteer',
+//     imageUrl:
+//       'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=400&fit=crop'
+//   },
+//   {
+//     id: 1,
+//     name: 'Make a Donation',
+//     content:
+//       'Your generous contribution provides essential medical care, quality education, nutritious meals, and emergency relief to vulnerable children and families throughout Nepal.',
+//     btnText: 'Donate Now',
+//     link: '/payment',
+//     imageUrl:
+//       'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=400&h=400&fit=crop'
+//   },
+//   {
+//     id: 2,
+//     name: 'Partner With Us',
+//     content:
+//       'Collaborate with Anepal Foundation to amplify impact. Together we create sustainable programs that empower communities and change lives for generations to come.',
+//     btnText: 'Learn More',
+//     link: '/donors-partners',
+//     imageUrl:
+//       'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=400&h=400&fit=crop'
+//   }
+// ];
 
 export default function HelpSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [data] = trpc.home.getHomeHelpSection.useSuspenseQuery();
+  const { getLocalizedString } = useGetLocale();
+  // const t = useTranslations('DEFAULT')
+
+  if (!data) return null;
 
   return (
     <div className="relative min-h-[150vh] bg-white py-20">
@@ -91,24 +99,10 @@ export default function HelpSection() {
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Left Content - Enhanced */}
           <div className="relative flex flex-col justify-center lg:sticky lg:top-32 lg:h-fit">
-            {/* Decorative Background Element */}
-            {/* <motion.div
-              animate={{
-                scale: [1, 1.2, 1],
-                rotate: [0, 90, 0]
-              }}
-              transition={{
-                duration: 15,
-                repeat: Infinity,
-                ease: 'easeInOut'
-              }}
-              className="from-accent-foreground/10 absolute top-0 -left-20 size-40 rounded-full bg-gradient-to-br to-purple-500/10 blur-3xl lg:-left-32 lg:size-64"
-            /> */}
-
             {/* Section Badge */}
-            <EnhancedBadge variant="pink" text={'HOW YOU CAN HELP'} />
+            <EnhancedBadge variant="pink" text={data.badge_text} />
             {/* Title */}
-            <EnhancedTitle text={'Give a helping hand for needy people'} />
+            <EnhancedTitle text={data.title} />
 
             {/* Description - Enhanced */}
             <motion.div
@@ -124,13 +118,11 @@ export default function HelpSection() {
               </div>
 
               <p className="relative text-base leading-relaxed text-gray-700 lg:text-lg lg:leading-relaxed">
-                Save the Children is right now on the ground, in the U.S and
-                around the world, delivering essential humanitarian aid. Your
-                donation today helps this life-saving work.
+                {getLocalizedString(data.description ?? [])}
               </p>
             </motion.div>
 
-            {/* CTA Button - Enhanced */}
+            {/* CTA Button  */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -138,26 +130,28 @@ export default function HelpSection() {
               transition={{ delay: 0.6, duration: 0.6 }}
               className="relative mb-12"
             >
-              <Button
-                size="lg"
-                className="group from-accent-foreground to-accent-foreground/90 hover:shadow-accent-foreground/30 relative h-14 overflow-hidden bg-gradient-to-r text-base font-bold transition-all duration-300 md:px-8 lg:text-lg"
-              >
-                <span className="relative flex items-center gap-3">
-                  CONTACT US
-                  <motion.div
-                    animate={{
-                      x: [0, 5, 0]
-                    }}
-                    transition={{
-                      duration: 1.5,
-                      repeat: Infinity,
-                      ease: 'easeInOut'
-                    }}
-                  >
-                    <ArrowRight className="size-5 lg:size-6" />
-                  </motion.div>
-                </span>
-              </Button>
+              <NavigationLink href={'/contacts'}>
+                <Button
+                  size="lg"
+                  className="group from-accent-foreground to-accent-foreground/90 hover:shadow-accent-foreground/30 relative h-14 overflow-hidden bg-gradient-to-r text-base font-bold transition-all duration-300 md:px-8 lg:text-lg"
+                >
+                  <span className="relative flex items-center gap-3">
+                    CONTACT US
+                    <motion.div
+                      animate={{
+                        x: [0, 5, 0]
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        ease: 'easeInOut'
+                      }}
+                    >
+                      <ArrowRight className="size-5 lg:size-6" />
+                    </motion.div>
+                  </span>
+                </Button>
+              </NavigationLink>
 
               {/* Button glow effect */}
               <div className="from-accent-foreground/50 absolute -inset-1 -z-10 rounded-lg bg-gradient-to-r to-purple-500/50 opacity-0 blur-lg transition-opacity duration-300 group-hover:opacity-100" />
@@ -201,10 +195,9 @@ export default function HelpSection() {
           </div>
 
           {/* Right Content - Overlapping Cards */}
-
           <div ref={containerRef} className="relative">
-            {data.map((d, idx) => (
-              <OverlappingCard index={0} key={d.id}>
+            {data.help_items?.map((d, idx) => (
+              <OverlappingCard index={0} key={getLocalizedString(d.name ?? [])}>
                 <motion.div
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3 }}
@@ -225,9 +218,9 @@ export default function HelpSection() {
 
                   {/* Image */}
                   <div className="relative h-[300px] w-[110px] shrink-0 shadow-lg md:w-[200px]">
-                    <Image
+                    <CustomImage
                       src={d.imageUrl}
-                      alt={d.name}
+                      alt={getLocalizedString(d.name ?? []) ?? ''}
                       fill
                       className="object-cover transition-transform duration-500"
                     />
@@ -236,18 +229,20 @@ export default function HelpSection() {
                   {/* Content */}
                   <div className="relative z-10 pr-5">
                     <h3 className="mb-4 text-xl font-bold tracking-tight text-gray-900 uppercase lg:text-3xl">
-                      {d.name}
+                      {getLocalizedString(d.name ?? [])}
                     </h3>
                     <p className="mb-6 text-sm leading-relaxed text-gray-800">
-                      {d.content}
+                      {getLocalizedString(d.content ?? [])}
                     </p>
-                    <Button
-                      variant="outline"
-                      className="group/btn border-2 border-gray-900 bg-transparent font-bold text-gray-900 uppercase hover:bg-gray-900 hover:text-white"
-                    >
-                      {d.btnText}
-                      <ArrowRight className="ml-2 size-4 transition-transform group-hover/btn:translate-x-1" />
-                    </Button>
+                    <NavigationLink href={d.link!}>
+                      <Button
+                        variant="outline"
+                        className="group/btn border-2 border-gray-900 bg-transparent font-bold text-gray-900 uppercase hover:bg-gray-900 hover:text-white"
+                      >
+                        {getLocalizedString(d.btnText ?? [])}
+                        <ArrowRight className="ml-2 size-4 transition-transform group-hover/btn:translate-x-1" />
+                      </Button>
+                    </NavigationLink>
                   </div>
 
                   {/* Decorative Number */}

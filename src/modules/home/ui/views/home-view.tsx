@@ -4,7 +4,7 @@ import HomeAboutUsSection from '@/modules/about/ui/sections/home-about-us-sectio
 import HomeTeamMembersSection from '@/modules/team-member/ui/sections/home-team-members-section';
 import BannerSection from '../sections/banner-section';
 import BlogSection from '../sections/blog-section';
-import EventsSection from '../sections/events-section';
+// import EventsSection from '../sections/events-section';
 import GallerySection from '../sections/gallery-section';
 import HelpSection from '../sections/help-section';
 import HomePartnersSection from '../sections/home-partners-sections';
@@ -22,9 +22,7 @@ export default function HomeView() {
       <WhatWeDoSection />
       <HelpSection />
       <WhatMakesUsUnique />
-      {/* <StatsSection /> */}
-      {/* <WorkHistorySection /> */}
-      <EventsSection />
+      {/* <EventsSection /> */}
       {/* <VolunteerSection /> */}
       <HomeTeamMembersSection />
       <TestimonialsSection />

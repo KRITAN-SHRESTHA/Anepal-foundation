@@ -343,6 +343,66 @@ export type Blog_tag = {
   >;
 };
 
+export type Help_section_item = {
+  _type: 'help_section_item';
+  name?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  content?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayTextValue
+  >;
+  btnText?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  link?: string;
+  imageUrl?: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+};
+
+export type Home_help_section = {
+  _id: string;
+  _type: 'home_help_section';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  badge_text?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  title?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
+  description?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayTextValue
+  >;
+  help_items?: Array<
+    {
+      _key: string;
+    } & Help_section_item
+  >;
+};
+
 export type Home_gallery = {
   _id: string;
   _type: 'home_gallery';
@@ -1629,6 +1689,8 @@ export type AllSanitySchemaTypes =
   | BlogListPage
   | Blogs
   | Blog_tag
+  | Help_section_item
+  | Home_help_section
   | Home_gallery
   | Home_events
   | Home_team_member

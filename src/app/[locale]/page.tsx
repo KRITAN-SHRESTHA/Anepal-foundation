@@ -86,7 +86,8 @@ export default async function Home({ params }: Props) {
     trpc.settings.getSettings.prefetch(),
     trpc.events.getFeaturedHomeEvents.prefetch(),
     trpc.teamMember.getAboutTeamMembers.prefetch(),
-    trpc.home.getHomeBlogsList.prefetch()
+    trpc.home.getHomeBlogsList.prefetch(),
+    trpc.home.getHomeHelpSection.prefetch()
   ]);
 
   const baseUrl = getClientUrl();

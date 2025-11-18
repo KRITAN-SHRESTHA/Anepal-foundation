@@ -15,6 +15,8 @@ import { eventsSchema } from './events/events-schema';
 import { headerSchema } from './header-schema';
 import { aboutAnepalSchema } from './home/about-anepal-schema';
 import { bannerSchema } from './home/banner-schema';
+import { helpSectionSchema } from './home/help-section-schema';
+import { helpSectionItemSchema } from './home/help-section-item-schema';
 import { homeEventsSchema } from './home/events-section-schema';
 import { homeGallerySchema } from './home/gallery-section-schema';
 import { homeContentSchema } from './home/home-content-schema';
@@ -66,6 +68,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     homeTeamMemberSchema,
     homeEventsSchema,
     homeGallerySchema,
+    helpSectionSchema,
+    helpSectionItemSchema,
     blogsSchema,
     blogTagSchema,
     blogListPageSchema,

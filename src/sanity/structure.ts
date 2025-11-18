@@ -43,16 +43,14 @@ export const structure: StructureResolver = (S, context) =>
                 .child(
                   S.document().schemaType('what_we_do').documentId('what_we_do')
                 ),
-              // S.listItem()
-              //   .title('Featured projects')
-              //   .icon(InfoIcon)
-              //   .child(
-              //     S.document()
-              //       .schemaType('featured_projects')
-              //       .documentId('featured_projects')
-              //   ),
-
-              // S.documentTypeListItem('what_makes_us_unique'),
+              S.listItem()
+                .title('Home help section')
+                .icon(InfoIcon)
+                .child(
+                  S.document()
+                    .schemaType('home_help_section')
+                    .documentId('home_help_section')
+                ),
               S.listItem()
                 .title('What makes us unique')
                 .icon(InfoIcon)
