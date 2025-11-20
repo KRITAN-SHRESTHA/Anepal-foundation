@@ -355,7 +355,6 @@ export type Volunteer_view = {
         _key: string;
       } & InternationalizedArrayStringValue
     >;
-    variant?: string;
   };
   opportunitiesSection?: {
     badge_text?: Array<
