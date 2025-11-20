@@ -4,7 +4,6 @@ import { z } from 'zod';
 export const env = createEnv({
   server: {
     PAYPAL_CLIENT_ID: z.string(),
-    SANITY_API_WRITE_TOKEN: z.string(),
     PAYPAL_SECRET: z.string(),
     GMAIL_USER: z.string().email(),
     GMAIL_PASS: z.string().min(1)
