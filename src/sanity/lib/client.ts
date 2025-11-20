@@ -7,7 +7,7 @@ export const client = createClient({
   dataset,
   apiVersion,
   useCdn: false, // Set to false if statically generating pages, using ISR or tag-based revalidation
-  token: process.env.SANITY_API_WRITE_TOKEN // Only needed if you want to update content with the client
+  token: process.env.NEXT_PUBLIC_SANITY_API_WRITE_TOKEN // Only needed if you want to update content with the client
 });
 
 // Create a write client with anonymous write permissions

@@ -37,6 +37,9 @@ import { termsAndConditionsSchema } from './terms-and-conditions-schema';
 import { createtestimonialsSchema } from './testimonials/create-testimonials-schema';
 import { whatWeDoSchema } from './home/what-we-do-schema';
 import { whatmakesUsUniqueSchema } from './home/what-makes-unique-schema';
+import { volunteerViewSchema } from './volunteer/volunteer-view-schema';
+import { volunteerApplicationSchema } from './volunteer/volunteer-application-schema';
+import { volunteerBenefitsSchema } from './volunteer/volunteer-benefits-schema';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -55,6 +58,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     donorsPartnersPageSchema,
     donorsListSchema,
     partnersListSchema,
+    volunteerBenefitsSchema,
     organizationStatsSchema,
     storiesListSchema,
     storiesPageSchema,
@@ -70,6 +74,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     homeGallerySchema,
     helpSectionSchema,
     helpSectionItemSchema,
+    volunteerViewSchema,
+    volunteerApplicationSchema,
     blogsSchema,
     blogTagSchema,
     blogListPageSchema,

@@ -1,3 +1,4 @@
+import { env } from '@/env';
 import { createTRPCRouter, publicProcedure } from '@/trpc/init';
 import { CreateOrderRequestBody, OrderResponseBody } from '@paypal/paypal-js';
 import { TRPCError } from '@trpc/server';
@@ -12,7 +13,7 @@ interface PaypalOauthToken {
 }
 
 const authToken = Buffer.from(
-  `${process.env.PAYPAL_CLIENT_ID}:${process.env.PAYPAL_SECRET}`
+  `${env.PAYPAL_CLIENT_ID}:${env.PAYPAL_SECRET}`
 ).toString('base64');
 
 const getAccessToken = async () => {
@@ -103,8 +104,8 @@ export const paymentRoute = createTRPCRouter({
                     landing_page: 'GUEST_CHECKOUT', // GUEST_CHECKOUT | LOGIN | NO_PREFERENCE
                     shipping_preference: 'NO_SHIPPING', // GET_FROM_FILE | NO_SHIPPING | SET_PROVIDED_ADDRESS
                     user_action: 'PAY_NOW',
-                    return_url: `${process.env.NEXT_PUBLIC_SITE_URL}/payment/success`,
-                    cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/payment/cancel`
+                    return_url: `${env.NEXT_PUBLIC_SITE_URL}/payment/success`,
+                    cancel_url: `${env.NEXT_PUBLIC_SITE_URL}/payment/cancel`
                   }
                 }
               }
@@ -203,36 +204,3 @@ export const paymentRoute = createTRPCRouter({
       }
     })
 });
-
-// const transporter = nodemailer.createTransport({
-//   host: 'smtp.gmail.com',
-//   port: 465,
-//   secure: true,
-//   auth: {
-//     user: process.env.GMAIL_USER,
-//     pass: process.env.GMAIL_PASS
-//   }
-// });
-
-//  const emailHtml = await render(
-//    ContactEmail({
-//      firstName,
-//      lastName,
-//      email,
-//      phone,
-//      qualification,
-//      weight,
-//      age,
-//      height
-//    })
-//  );
-
-//   const options = {
-//     // from: `"${firstName} ${lastName}" <${email}>`,
-//     from: 'noreply@anepalfoundation.com',
-//     to: process.env.RECEIVER_EMAIL,
-//     subject: `New Training Application from ${firstName} ${lastName}`,
-//     html: emailHtml
-//   };
-
-//   await transporter.sendMail(options);

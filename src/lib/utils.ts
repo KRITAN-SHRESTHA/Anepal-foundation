@@ -1,3 +1,4 @@
+import { env } from '@/env';
 import {
   InternationalizedArrayStringValue,
   InternationalizedArrayTextValue
@@ -24,8 +25,8 @@ export function getLocalizedString(data: LocalisedDataType[], lang: string) {
 }
 
 export const getClientUrl = () => {
-  if (process.env.NEXT_PUBLIC_SITE_URL) {
-    return process.env.NEXT_PUBLIC_SITE_URL;
+  if (env.NEXT_PUBLIC_SITE_URL) {
+    return env.NEXT_PUBLIC_SITE_URL;
   }
   return 'https://anepalfoundation.org';
 };

@@ -210,6 +210,25 @@ export const structure: StructureResolver = (S, context) =>
                 )
             ])
         ),
+      S.listItem()
+        .title('Volunteer')
+        .child(
+          S.list()
+            .title('Volunteer section')
+            .items([
+              S.listItem()
+                .title('Volunteer Page')
+                .icon(BinaryDocumentIcon)
+                .child(
+                  S.document()
+                    .schemaType('volunteer_view')
+                    .documentId('volunteer_view')
+                ),
+              S.documentTypeListItem('volunteer_application').title(
+                'Volunteers applications'
+              )
+            ])
+        ),
 
       S.divider(),
 

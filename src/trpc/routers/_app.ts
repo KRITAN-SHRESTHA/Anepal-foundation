@@ -7,6 +7,7 @@ import { homeRouter } from '@/modules/home/server/procedure';
 import { paymentRoute } from '@/modules/payment/server/procedure';
 import { storiesRouter } from '@/modules/stories/server/procedure';
 import { teamMemberRouter } from '@/modules/team-member/server/procedure';
+import { volunteerRouter } from '@/modules/volunteer/server/procedure';
 import { createTRPCRouter } from '../init';
 import { headerRouter } from '../server/header-procedure';
 import { settingsRouter } from '../server/settings-procedure';
@@ -24,7 +25,8 @@ export const appRouter = createTRPCRouter({
   stories: storiesRouter,
   blogs: blogsRouter,
   contact: contactRouter,
-  policies: policiesRouter
+  policies: policiesRouter,
+  volunteer: volunteerRouter
 });
 // export type definition of API
 export type AppRouter = typeof appRouter;
