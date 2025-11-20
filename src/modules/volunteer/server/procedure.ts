@@ -4,6 +4,7 @@ import { createTRPCRouter, publicProcedure } from '@/trpc/init';
 import { PopulatedVolunteerPage } from '@/types/volunteer-types';
 import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
+import { env } from '@/env';
 
 const volunteerFormSchema = z.object({
   name: z.string().min(1, 'Full name is required'),
@@ -28,9 +29,9 @@ async function sendEmail({
 }): Promise<boolean> {
   try {
     await emailTransporter.sendMail({
-      from: process.env.GMAIL_USER,
+      from: env.GMAIL_USER,
       to,
-      replyTo: replyTo || process.env.GMAIL_USER,
+      replyTo: replyTo || env.GMAIL_USER,
       subject,
       html
     });
