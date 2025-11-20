@@ -2,7 +2,7 @@
 
 import Autoplay from 'embla-carousel-autoplay';
 import Fade from 'embla-carousel-fade';
-import { ChevronDown, Heart } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Suspense, useState, useEffect } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
@@ -95,7 +95,7 @@ function BannerSectionSuspense() {
                       {/* Left Content */}
                       <div className="flex flex-col justify-center space-y-6 lg:space-y-8">
                         {/* Badge */}
-                        <motion.div
+                        {/* <motion.div
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: 0.2, duration: 0.6 }}
@@ -104,7 +104,7 @@ function BannerSectionSuspense() {
                             <Heart className="size-4 animate-pulse" />
                             Making a Difference
                           </span>
-                        </motion.div>
+                        </motion.div> */}
 
                         {/* Main Heading with Stagger Animation */}
                         <div className="space-y-4">
@@ -122,12 +122,12 @@ function BannerSectionSuspense() {
                           </motion.h1>
 
                           {/* Decorative Line */}
-                          <motion.div
+                          {/* <motion.div
                             initial={{ width: 0 }}
                             animate={{ width: '100px' }}
                             transition={{ delay: 0.8, duration: 0.6 }}
                             className="from-accent-foreground h-1.5 bg-gradient-to-r to-transparent"
-                          />
+                          /> */}
                         </div>
 
                         {/* Description */}

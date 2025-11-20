@@ -326,6 +326,135 @@ export type Blog_tag = {
   >;
 };
 
+export type Volunteer_application = {
+  _id: string;
+  _type: 'volunteer_application';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  email?: string;
+  phone?: string;
+  dob?: string;
+  address?: string;
+  occupation?: string;
+  submittedAt?: string;
+  notes?: string;
+  status?: 'new' | 'reviewed' | 'approved' | 'rejected';
+};
+
+export type Volunteer_view = {
+  _id: string;
+  _type: 'volunteer_view';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  heroSection?: {
+    title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    variant?: string;
+  };
+  opportunitiesSection?: {
+    badge_text?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    opportunities?: Array<{
+      title?: Array<
+        {
+          _key: string;
+        } & InternationalizedArrayStringValue
+      >;
+      description?: Array<
+        {
+          _key: string;
+        } & InternationalizedArrayTextValue
+      >;
+      image?: {
+        asset?: {
+          _ref: string;
+          _type: 'reference';
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: 'image';
+      };
+      _key: string;
+    }>;
+  };
+  whyVolunteerSection?: {
+    badge_text?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    description?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayTextValue
+    >;
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: 'reference';
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: 'image';
+    };
+    stats?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'organizationStats';
+    };
+    benefits?: Array<{
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: 'volunteer_benefits';
+    }>;
+  };
+  formSection?: {
+    badge_text?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    title?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayStringValue
+    >;
+    description?: Array<
+      {
+        _key: string;
+      } & InternationalizedArrayTextValue
+    >;
+  };
+};
+
 export type Help_section_item = {
   _type: 'help_section_item';
   name?: Array<
@@ -716,18 +845,6 @@ export type StoriesPageContent = {
         _key: string;
       } & InternationalizedArrayStringValue
     >;
-    backgroundImage?: {
-      asset?: {
-        _ref: string;
-        _type: 'reference';
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: 'image';
-    };
   };
 };
 
@@ -838,6 +955,19 @@ export type OrganizationStats = {
     } & InternationalizedArrayStringValue
   >;
   value?: string;
+};
+
+export type Volunteer_benefits = {
+  _id: string;
+  _type: 'volunteer_benefits';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: Array<
+    {
+      _key: string;
+    } & InternationalizedArrayStringValue
+  >;
 };
 
 export type PartnersList = {
@@ -1602,6 +1732,8 @@ export type AllSanitySchemaTypes =
   | BlogListPage
   | Blogs
   | Blog_tag
+  | Volunteer_application
+  | Volunteer_view
   | Help_section_item
   | Home_help_section
   | Home_gallery
@@ -1617,6 +1749,7 @@ export type AllSanitySchemaTypes =
   | StoriesPageContent
   | StoriesList
   | OrganizationStats
+  | Volunteer_benefits
   | PartnersList
   | DonorsList
   | DonorsAndPartnersPage

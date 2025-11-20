@@ -258,6 +258,7 @@ export default async function RootLayout({ children, params }: Props) {
   return (
     <html lang={locale}>
       <head>
+        {/* <script src="https://unpkg.com/react-scan/dist/auto.global.js" /> */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
