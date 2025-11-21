@@ -9,7 +9,9 @@
     "Message": "Message",
     "Send_Message": "Send Message",
     "Sending": "Sending...",
-    "Type_your_message_here": "Type your message here."
+    "Type_your_message_here": "Type your message here.",
+    "Leave_a_message": "Leave a message",
+    "We_would_love_to_hear_from_you": "We would love to hear from you! Please fill out the form below to get in touch"
   },
   "Default": {
     "Donate_us": "Donate us",
@@ -33,6 +35,34 @@
     "Enter_amount": "Enter amount",
     "Read_more": "Read more",
     "View_all_events": "View all events",
-    "Home": "Home"
+    "Home": "Home",
+    "See_more": "see more",
+    "No_stories_found": "No stories found",
+    "Loading": "Loading....",
+    "Something_went_wrong": "Something went wrong",
+    "Details": "Details",
+    "Start": "Start",
+    "Finish": "Finish",
+    "Organizer": "Organizer",
+    "Venue": "Venue",
+    "Location": "Location",
+    "JOIN_OUR_TEAM":"JOIN OUR TEAM",
+    "Learn_More":"Learn More",
+    "Learn_More_About_Us":"Learn More About Us",
+    "Scroll_to_explore":"Scroll to explore",
+    "Committed":"Committed",
+    "Trusted":"Trusted",
+    "Organization":"Organization",
+    "see more":"see more",
+
+    "Years": "Years",
+    "Lives_Impacted":"Lives Impacted",
+
+    "CONTACT_US":"CONTACT US",
+    "Dedicated":"Dedicated",
+    "Mission":"Mission"
+
+
+
   }
 }

@@ -111,19 +111,40 @@ export default function VolunteerFormSection() {
         <div className="relative mx-auto max-w-4xl">
           {/* Header */}
           <div className="mb-16 text-center lg:mb-20">
-            <EnhancedBadge
-              text={getLocalizedString(badge_text ?? []) || 'Join Us Today'}
-              variant="yellow"
-            />
-            <EnhancedTitle
-              text={
-                getLocalizedString(title ?? []) || 'Volunteer Application Form'
-              }
-            />
-            <p className="mx-auto mt-4 max-w-2xl text-base text-gray-600 lg:text-lg">
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <EnhancedBadge
+                text={getLocalizedString(badge_text ?? []) || 'Join Us Today'}
+                variant="yellow"
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <EnhancedTitle
+                text={
+                  getLocalizedString(title ?? []) ||
+                  'Volunteer Application Form'
+                }
+              />
+            </motion.div>
+            <motion.p
+              className="mx-auto mt-4 max-w-2xl text-base text-gray-600 lg:text-lg"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
               {getLocalizedString(description ?? []) ||
                 "Fill out the form below to start your journey as a volunteer. We'll get in touch with you shortly."}
-            </p>
+            </motion.p>
           </div>
 
           {/* Form Card */}
@@ -163,7 +184,13 @@ export default function VolunteerFormSection() {
               )}
 
               {/* Name */}
-              <div className="space-y-2">
+              <motion.div
+                className="space-y-2"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
                 <Label htmlFor="name" className="text-base font-semibold">
                   Your Name <span className="text-red-500">*</span>
                 </Label>
@@ -177,10 +204,16 @@ export default function VolunteerFormSection() {
                   className="focus:border-accent-foreground focus:ring-accent-foreground h-12 border-gray-300 text-base"
                   disabled={submitVolunteerMutation.isPending}
                 />
-              </div>
+              </motion.div>
 
               {/* Email & Phone */}
-              <div className="grid gap-6 sm:grid-cols-2">
+              <motion.div
+                className="grid gap-6 sm:grid-cols-2"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
                 <div className="space-y-2">
                   <Label htmlFor="email" className="text-base font-semibold">
                     Email <span className="text-red-500">*</span>
@@ -212,10 +245,16 @@ export default function VolunteerFormSection() {
                     disabled={submitVolunteerMutation.isPending}
                   />
                 </div>
-              </div>
+              </motion.div>
 
               {/* DOB & Occupation */}
-              <div className="grid gap-6 sm:grid-cols-2">
+              <motion.div
+                className="grid gap-6 sm:grid-cols-2"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
                 <div className="space-y-2">
                   <Label htmlFor="dob" className="text-base font-semibold">
                     Date of Birth <span className="text-red-500">*</span>
@@ -259,10 +298,16 @@ export default function VolunteerFormSection() {
                     </SelectContent>
                   </Select>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Address */}
-              <div className="space-y-2">
+              <motion.div
+                className="space-y-2"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
                 <Label htmlFor="address" className="text-base font-semibold">
                   Address <span className="text-red-500">*</span>
                 </Label>
@@ -276,33 +321,42 @@ export default function VolunteerFormSection() {
                   className="focus:border-accent-foreground focus:ring-accent-foreground h-12 border-gray-300 text-base"
                   disabled={submitVolunteerMutation.isPending}
                 />
-              </div>
+              </motion.div>
 
               {/* Submit Button */}
-              <Button
-                type="submit"
-                disabled={submitVolunteerMutation.isPending}
-                size="lg"
-                className="group from-accent-foreground to-accent-foreground/90 h-14 w-[300px] bg-gradient-to-r text-base font-bold uppercase shadow-xl transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50"
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
               >
-                <span className="flex items-center gap-3">
-                  {submitVolunteerMutation.isPending
-                    ? 'Submitting...'
-                    : 'Submit Application'}
-                  <motion.div
-                    animate={{
-                      x: submitVolunteerMutation.isPending ? 0 : [0, 5, 0]
-                    }}
-                    transition={{
-                      duration: 1.5,
-                      repeat: submitVolunteerMutation.isPending ? 0 : Infinity,
-                      ease: 'easeInOut'
-                    }}
-                  >
-                    <Send className="size-5" />
-                  </motion.div>
-                </span>
-              </Button>
+                <Button
+                  type="submit"
+                  disabled={submitVolunteerMutation.isPending}
+                  size="lg"
+                  className="group from-accent-foreground to-accent-foreground/90 h-14 w-[300px] bg-gradient-to-r text-base font-bold uppercase shadow-xl transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  <span className="flex items-center gap-3">
+                    {submitVolunteerMutation.isPending
+                      ? 'Submitting...'
+                      : 'Submit Application'}
+                    <motion.div
+                      animate={{
+                        x: submitVolunteerMutation.isPending ? 0 : [0, 5, 0]
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: submitVolunteerMutation.isPending
+                          ? 0
+                          : Infinity,
+                        ease: 'easeInOut'
+                      }}
+                    >
+                      <Send className="size-5" />
+                    </motion.div>
+                  </span>
+                </Button>
+              </motion.div>
             </form>
 
             {/* Trust indicators */}

@@ -22,8 +22,6 @@ export default function HomeView() {
       <WhatWeDoSection />
       <HelpSection />
       <WhatMakesUsUnique />
-      {/* <EventsSection /> */}
-      {/* <VolunteerSection /> */}
       <HomeTeamMembersSection />
       <TestimonialsSection />
       <HomePartnersSection />

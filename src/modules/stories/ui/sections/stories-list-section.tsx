@@ -9,15 +9,18 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog';
+import { motion } from 'motion/react';
+import { useTranslations } from 'next-intl';
 
 import useGetAllStories from '../hooks/use-get-all-stories';
 
 export default function StoriesListSection() {
   const { getLocalizedString } = useGetLocale();
   const { stories, pagination } = useGetAllStories();
+  const t = useTranslations('Default');
 
   if (stories.length === 0) {
-    return <h1 className="py-10 text-center">No stories found</h1>;
+    return <h1 className="py-10 text-center">{t('No_stories_found')}</h1>;
   }
 
   const convertedDescription = (text: LocalisedDataType[]) =>
@@ -35,17 +38,33 @@ export default function StoriesListSection() {
         const description = convertedDescription(story.description!);
 
         return (
-          <div
+          <motion.div
             key={story._id}
             className={
               'tablet:grid-cols-2 grid w-full items-center gap-x-12 gap-y-8 py-[20px]'
             }
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, delay: idx * 0.1, ease: 'easeOut' }}
           >
-            <div
+            <motion.div
               className={cn('relative order-2 overflow-hidden p-2', {
                 'tablet:order-1 order-2': (idx + 1) % 2 === 0, // even
                 'order-2': (idx + 1) % 2 !== 0 // odd
               })}
+              initial={{
+                opacity: 0,
+                scale: 0.9,
+                x: (idx + 1) % 2 === 0 ? 30 : -30
+              }}
+              whileInView={{ opacity: 1, scale: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.8,
+                delay: idx * 0.1 + 0.2,
+                ease: 'easeOut'
+              }}
             >
               <Image
                 className="mix-blend-multiply"
@@ -62,28 +81,54 @@ export default function StoriesListSection() {
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
-            </div>
-            <div
+            </motion.div>
+            <motion.div
               className={cn('', {
                 'tablet:order-2 order-1': (idx + 1) % 2 === 0, // even
                 'order-1': (idx + 1) % 2 !== 0 // odd
               })}
+              initial={{ opacity: 0, x: (idx + 1) % 2 === 0 ? -30 : 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.7,
+                delay: idx * 0.1 + 0.3,
+                ease: 'easeOut'
+              }}
             >
               {/* <strong className="text-muted-foreground/60"> */}
-              <strong className="text-muted-foreground">
+              <motion.strong
+                className="text-muted-foreground"
+                initial={{ opacity: 0, y: -10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 + 0.4 }}
+              >
                 {pagination.page == 1
                   ? numbering == 10
                     ? numbering
                     : `0${numbering}`
                   : numbering}
-              </strong>
-              <div className="text-[32px] text-gray-900 md:text-[50px]">
+              </motion.strong>
+              <motion.div
+                className="text-[32px] text-gray-900 md:text-[50px]"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: idx * 0.1 + 0.5 }}
+              >
                 <b>{firstName}</b>&nbsp;
                 <b>{lastname}</b>
-              </div>
+              </motion.div>
 
               {description ? (
-                <p className="text-muted-foreground pt-7 text-lg leading-[135%]">
+                <motion.p
+                  className="text-muted-foreground pt-7 text-lg leading-[135%]"
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: idx * 0.1 + 0.6 }}
+                >
                   <span className="whitespace-pre-line">
                     {description?.slice(0, 300)}
                   </span>
@@ -93,7 +138,7 @@ export default function StoriesListSection() {
                       <Dialog>
                         <DialogTrigger>
                           <button className="cursor-pointer font-medium underline-offset-1 hover:underline">
-                            see more
+                            {t('See_more')}
                           </button>
                         </DialogTrigger>
                         <DialogContent className="max-h-[90vh] w-full max-w-[800px]! overflow-y-auto px-[25px] py-[50px] sm:p-[50px]">
@@ -114,7 +159,7 @@ export default function StoriesListSection() {
                       </Dialog>
                     </>
                   )}
-                </p>
+                </motion.p>
               ) : null}
 
               {/* <div className="tablet:mt-12 mt-6 flex items-center gap-4">
@@ -128,8 +173,8 @@ export default function StoriesListSection() {
                   </Button>
                 </NavigationLink>
               </div> */}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         );
       })}
     </div>

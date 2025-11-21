@@ -10,6 +10,7 @@ import { ArrowRight } from 'lucide-react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { trpc } from '@/trpc/client';
 import useGetLocale from '@/hooks/use-get-locale';
+import { useTranslations } from 'next-intl';
 
 export default function WhatWeDoHeader() {
   return (
@@ -25,6 +26,7 @@ function WhatWeDoHeaderSuspense() {
   const [data] = trpc.home.getWhatWeDoToHelp.useSuspenseQuery();
   console.log('🚀 ~ WhatWeDoHeaderSuspense ~ data:', data);
   const { getLocalizedString } = useGetLocale();
+  const t = useTranslations('Default');
 
   return (
     <div className="mb-12 lg:mb-16">
@@ -64,7 +66,7 @@ function WhatWeDoHeaderSuspense() {
               className="group from-accent-foreground to-accent-foreground/90 hover:shadow-accent-foreground/30 relative h-14 overflow-hidden bg-gradient-to-r text-base font-bold transition-all duration-300 md:px-8 lg:text-lg"
             >
               <span className="relative flex items-center gap-2">
-                JOIN OUR TEAM
+                {t('JOIN_OUR_TEAM')}
                 <motion.div
                   animate={{ x: [0, 5, 0] }}
                   transition={{

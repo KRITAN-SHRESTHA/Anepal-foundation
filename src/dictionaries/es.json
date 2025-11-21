@@ -9,7 +9,9 @@
     "Message": "Mensaje",
     "Send_Message": "Enviar mensaje",
     "Sending": "Envío...",
-    "Type_your_message_here": "Escriba su mensaje aquí."
+    "Type_your_message_here": "Escriba su mensaje aquí.",
+    "Leave_a_message": "Dejar un mensaje",
+    "We_would_love_to_hear_from_you": "Nos encantaría saber de usted! Por favor complete el formulario a continuación para ponerse en contacto"
   },
   "Default": {
     "Donate_us": "Donanos",
@@ -33,6 +35,33 @@
     "Enter_amount": "Ingrese la cantidad",
     "Read_more": "leer más",
     "View_all_events": "Ver todos los eventos",
-    "Home": "Hogar"
+    "Home": "Hogar",
+    "See_more": "ver más",
+    "No_stories_found": "No se encontraron historias",
+    "Loading": "Cargando....",
+    "Something_went_wrong": "Algo salió mal",
+    "Details": "Detalles",
+    "Start": "Inicio",
+    "Finish": "Finalizar",
+    "Organizer": "Organizador",
+    "Venue": "Lugar",
+    "Location": "Ubicación",
+    "JOIN_OUR_TEAM":"ÚNETE A NUESTRO EQUIPO",
+    "Learn_More":"Más información",
+    "Scroll_to_explore":"Desplázate para explorar",
+    "Learn_More_About_Us":"Más información sobre nosotros",
+    "Committed":"Comprometido",
+    "Trusted":"Confiable",
+    "Organization":"Organización",
+    "see more":"ver más",
+    "Years": "Años",
+    "Lives_Impacted":"Vidas impactadas",
+    "CONTACT_US":"CONTÁCTANOS",
+    "Dedicated":"Dedicado",
+    "Mission":"Misión"
+
+
+
+
   }
 }

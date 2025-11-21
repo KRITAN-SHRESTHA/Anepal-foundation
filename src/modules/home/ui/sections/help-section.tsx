@@ -10,6 +10,7 @@ import { cn } from '@/lib/utils';
 import { trpc } from '@/trpc/client';
 import { ArrowRight, Award, Heart } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'motion/react';
+import { useTranslations } from 'next-intl';
 import { useRef } from 'react';
 
 const OverlappingCard = ({
@@ -30,7 +31,6 @@ const OverlappingCard = ({
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 0.9, 1]);
 
   const y = useTransform(scrollYProgress, [0, 1], [150, 0]);
-  // const y = useTransform(scrollYProgress, [0, 1], [150, 0]);
 
   return (
     <motion.div
@@ -52,44 +52,11 @@ const OverlappingCard = ({
   );
 };
 
-// const data = [
-//   {
-//     id: 0,
-//     name: 'Become a Volunteer',
-//     content:
-//       'Join our mission to transform lives across Nepal. Share your skills, time, and passion to make a lasting impact on children and families in need. Together, we create sustainable change in communities.',
-//     btnText: 'Join as Volunteer',
-//     link: '/volunteer',
-//     imageUrl:
-//       'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=400&fit=crop'
-//   },
-//   {
-//     id: 1,
-//     name: 'Make a Donation',
-//     content:
-//       'Your generous contribution provides essential medical care, quality education, nutritious meals, and emergency relief to vulnerable children and families throughout Nepal.',
-//     btnText: 'Donate Now',
-//     link: '/payment',
-//     imageUrl:
-//       'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=400&h=400&fit=crop'
-//   },
-//   {
-//     id: 2,
-//     name: 'Partner With Us',
-//     content:
-//       'Collaborate with Anepal Foundation to amplify impact. Together we create sustainable programs that empower communities and change lives for generations to come.',
-//     btnText: 'Learn More',
-//     link: '/donors-partners',
-//     imageUrl:
-//       'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=400&h=400&fit=crop'
-//   }
-// ];
-
 export default function HelpSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [data] = trpc.home.getHomeHelpSection.useSuspenseQuery();
   const { getLocalizedString } = useGetLocale();
-  // const t = useTranslations('DEFAULT')
+  const t = useTranslations('DEFAULT');
 
   if (!data) return null;
 
@@ -136,7 +103,7 @@ export default function HelpSection() {
                   className="group from-accent-foreground to-accent-foreground/90 hover:shadow-accent-foreground/30 relative h-14 overflow-hidden bg-gradient-to-r text-base font-bold transition-all duration-300 md:px-8 lg:text-lg"
                 >
                   <span className="relative flex items-center gap-3">
-                    CONTACT US
+                    {t('CONTACT_US')}
                     <motion.div
                       animate={{
                         x: [0, 5, 0]
@@ -172,7 +139,7 @@ export default function HelpSection() {
                 </div>
                 <div>
                   <div className="text-2xl font-bold text-gray-900">100%</div>
-                  <div className="text-xs text-gray-600">Dedicated</div>
+                  <div className="text-xs text-gray-600">{t('Dedicated')}</div>
                 </div>
               </div>
 
@@ -188,7 +155,7 @@ export default function HelpSection() {
                   <div className="text-2xl font-bold text-gray-900">
                     Impactful
                   </div>
-                  <div className="text-xs text-gray-600">Mission</div>
+                  <div className="text-xs text-gray-600">{t('Mission')}</div>
                 </div>
               </div>
             </motion.div>

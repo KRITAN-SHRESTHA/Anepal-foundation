@@ -23,6 +23,7 @@ import NavigationLink from '@/components/navigation-link';
 import BannerImg from './banner-img';
 import BannerSkeletion from './banner-skeletion';
 import VideoSection from './video-section';
+import { useTranslations } from 'next-intl';
 
 export default function BannerSection() {
   return (
@@ -39,6 +40,7 @@ function BannerSectionSuspense() {
   const { getLocalizedString } = useGetLocale();
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
+  const t = useTranslations('Default');
 
   useEffect(() => {
     if (!api) return;
@@ -154,7 +156,7 @@ function BannerSectionSuspense() {
                                 variant="outline"
                                 className="group h-12 border-2 border-white bg-transparent px-8 text-base font-semibold text-white hover:bg-white hover:text-gray-900 lg:h-14 lg:px-10 lg:text-lg"
                               >
-                                Learn More
+                                {t('Learn_More')}
                               </Button>
                             </NavigationLink>
                           </motion.div>
@@ -196,7 +198,7 @@ function BannerSectionSuspense() {
                 >
                   <div className="flex flex-col items-center gap-2">
                     <span className="text-xs tracking-wider text-white/80 uppercase">
-                      Scroll to explore
+                      {t('Scroll_to_explore')}
                     </span>
                     <ChevronDown className="size-6 text-white/80" />
                   </div>

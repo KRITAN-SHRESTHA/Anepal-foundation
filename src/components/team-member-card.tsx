@@ -49,7 +49,7 @@ export function TeamMemberCard({
       initial={{ opacity: 0, y: 100 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: index * 0.3, duration: 1 }}
+      transition={{ delay: index * 0.2, duration: 0.6 }}
       className="group relative"
     >
       <div className="relative overflow-hidden rounded-xl transition-all duration-300">

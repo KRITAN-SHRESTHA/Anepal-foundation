@@ -82,12 +82,14 @@ export default function BlogDetailsHeroSection({
             <ChevronRight className="text-muted-foreground size-3" />
             <NavigationLink
               href={parentLink}
-              className="text-muted-foreground text-sm"
+              className="text-muted-foreground text-sm capitalize"
             >
               {parentName}
             </NavigationLink>
             <ChevronRight className="text-muted-foreground size-3" />
-            <p className="text-muted-foreground text-sm">{convertedText}</p>
+            <p className="text-muted-foreground text-sm capitalize">
+              {convertedText}
+            </p>
           </motion.div>
         </div>
       </div>
