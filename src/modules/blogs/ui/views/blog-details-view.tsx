@@ -8,15 +8,15 @@ import EditorPortableText from '@/components/EditorPortableText';
 import useGetLocale from '@/hooks/use-get-locale';
 import { trpc } from '@/trpc/client';
 
-import BlogDetailsSkeleton from '../components/blogs-details-skeleton';
 import BlogDetailsHeaderSection from '../sections/blog-details-header-section';
 import BlogDetailsHeroSection from '../sections/blog-details-hero-section';
 import { useTranslations } from 'next-intl';
+import PageSkeleton from '@/components/page-skeleton';
 
 export default function BlogsDetailsView() {
   return (
     <ErrorBoundary fallback={<div>Something went wrong</div>}>
-      <Suspense fallback={<BlogDetailsSkeleton />}>
+      <Suspense fallback={<PageSkeleton variant="pink" />}>
         <BlogsDetailsViewSuspense />
       </Suspense>
     </ErrorBoundary>
