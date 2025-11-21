@@ -9,7 +9,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 export default function ContactTitleSection() {
   return (
     <ErrorBoundary fallback={<div>Something went wrong</div>}>
-      <Suspense fallback={<PageSkeleton />}>
+      <Suspense fallback={<PageSkeleton variant="gradient" />}>
         <ContactTitleSectionSuspense />
       </Suspense>
     </ErrorBoundary>

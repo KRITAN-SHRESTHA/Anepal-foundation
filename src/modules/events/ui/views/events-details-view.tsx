@@ -9,11 +9,11 @@ import { trpc } from '@/trpc/client';
 import EditorPortableText from '@/components/EditorPortableText';
 
 import EventDetailsHeaderSection from '../sections/event-details-header-section';
-import EventsDetailsSkeleton from '../components/events-details-skeleton';
 import EventsDetailsFooterSection from '../sections/events-details-footer-section';
 import BlogDetailsHeroSection from '@/modules/blogs/ui/sections/blog-details-hero-section';
 import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
+import PageSkeleton from '@/components/page-skeleton';
 
 function ErrorFallback() {
   const t = useTranslations('Default');
@@ -23,7 +23,7 @@ function ErrorFallback() {
 export default function EventsDetailsView() {
   return (
     <ErrorBoundary fallback={<ErrorFallback />}>
-      <Suspense fallback={<EventsDetailsSkeleton />}>
+      <Suspense fallback={<PageSkeleton variant="pink" />}>
         <EventsDetailsViewSuspense />
       </Suspense>
     </ErrorBoundary>

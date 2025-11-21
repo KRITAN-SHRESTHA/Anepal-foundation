@@ -3,13 +3,13 @@
 import React, { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { trpc } from '@/trpc/client';
-import EventsPageTitleSkeleton from '../components/events-page-title-skeleton';
 import HeroSectionThree from '@/components/hero-section-three';
+import PageSkeleton from '@/components/page-skeleton';
 
 export default function EventPageTitleSection() {
   return (
     <ErrorBoundary fallback={<div>Something went wrong</div>}>
-      <Suspense fallback={<EventsPageTitleSkeleton />}>
+      <Suspense fallback={<PageSkeleton variant="skyblue" />}>
         <EventPageTitleSectionSuspense />
       </Suspense>
     </ErrorBoundary>

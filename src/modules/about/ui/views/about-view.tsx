@@ -5,17 +5,17 @@ import { Suspense } from 'react';
 
 import { trpc } from '@/trpc/client';
 
-import AboutUsPageSkeleton from '../components/about-us-page-skeleton';
 import HeroSectionThree from '@/components/hero-section-three';
 import WhoWeAreSection from '../sections/who-we-are-section';
 import MapSection from '../sections/map-section';
 import WhyChooseSection from '../sections/why-choose-section';
 import PartnersSection from '../sections/partners-sections';
+import PageSkeleton from '@/components/page-skeleton';
 
 export default function AboutView() {
   return (
     <ErrorBoundary fallback="Something went wrong">
-      <Suspense fallback={<AboutUsPageSkeleton />}>
+      <Suspense fallback={<PageSkeleton variant="skyblue" />}>
         <AboutViewSuspense />
       </Suspense>
     </ErrorBoundary>

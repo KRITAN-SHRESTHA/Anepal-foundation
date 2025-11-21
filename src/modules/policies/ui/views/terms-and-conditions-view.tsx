@@ -5,11 +5,11 @@ import useGetLocale from '@/hooks/use-get-locale';
 import { trpc } from '@/trpc/client';
 import React, { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import PrivacyLoading from '../components/privacy-loading';
 import { useTranslations } from 'next-intl';
 import EnhancedTitle from '@/components/enhanced-title';
 import HeroSectionThree from '@/components/hero-section-three';
 import { motion } from 'motion/react';
+import PageSkeleton from '@/components/page-skeleton';
 
 function ErrorFallback() {
   const t = useTranslations('Default');
@@ -19,7 +19,7 @@ function ErrorFallback() {
 export default function TermsAndConditionsView() {
   return (
     <ErrorBoundary fallback={<ErrorFallback />}>
-      <Suspense fallback={<PrivacyLoading />}>
+      <Suspense fallback={<PageSkeleton variant="skyblue" />}>
         <TermsAndConditionsViewSuspense />
       </Suspense>
     </ErrorBoundary>

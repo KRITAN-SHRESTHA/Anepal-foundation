@@ -9,7 +9,7 @@ import HeroSectionThree from '@/components/hero-section-three';
 export default function BlogListPageTitleSection() {
   return (
     <ErrorBoundary fallback={<div>Something went wrong</div>}>
-      <Suspense fallback={<PageSkeleton />}>
+      <Suspense fallback={<PageSkeleton variant="pink" />}>
         <BlogListPageTitleSectionSuspense />
       </Suspense>
     </ErrorBoundary>
