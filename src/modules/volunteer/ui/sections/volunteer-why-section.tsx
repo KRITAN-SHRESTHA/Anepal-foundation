@@ -9,10 +9,12 @@ import ContainerLayout from '@/components/container-layout';
 import { trpc } from '@/trpc/client';
 import useGetLocale from '@/hooks/use-get-locale';
 import { urlFor } from '@/sanity/lib/image';
+import { useTranslations } from 'next-intl';
 
 export default function VolunteerWhySection() {
   const [data] = trpc.volunteer.getVolunteerView.useSuspenseQuery();
   const { getLocalizedString } = useGetLocale();
+  const t = useTranslations('Default');
 
   if (!data?.whyVolunteerSection) return null;
 
@@ -64,7 +66,7 @@ export default function VolunteerWhySection() {
                   5000+
                 </p>
                 <p className="text-sm font-semibold text-gray-600">
-                  Lives Touched
+                  {t('Lives_Touched')}
                 </p>
               </div>
             </motion.div>

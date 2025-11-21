@@ -5,6 +5,7 @@ import useGetLocale from '@/hooks/use-get-locale';
 import { motion } from 'motion/react';
 import NavigationLink from '@/components/navigation-link';
 import { ChevronRight } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 interface Props {
   variant: 'blue' | 'green' | 'yellow' | 'pink';
@@ -23,6 +24,7 @@ export default function BlogDetailsHeroSection({
 }: Props) {
   const { getLocalizedString } = useGetLocale();
   const convertedText = getLocalizedString(title ?? []);
+  const t = useTranslations('Default');
   return (
     <div
       className={cn(
@@ -77,7 +79,7 @@ export default function BlogDetailsHeroSection({
               href={'/'}
               className="text-muted-foreground text-sm"
             >
-              Home
+              {t('Home')}
             </NavigationLink>
             <ChevronRight className="text-muted-foreground size-3" />
             <NavigationLink

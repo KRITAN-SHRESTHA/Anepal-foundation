@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { cn, LocalisedDataType } from '@/lib/utils';
 import useGetLocale from '@/hooks/use-get-locale';
 import { motion } from 'motion/react';
+import { useTranslations } from 'next-intl';
 
 interface Props {
   variant: 'blue' | 'pink' | 'skyblue' | 'gradient';
@@ -19,6 +20,8 @@ export default function HeroSectionThree({ variant, title, className }: Props) {
   const { getLocalizedString } = useGetLocale();
   const convertedText =
     typeof title === 'string' ? title : getLocalizedString(title ?? []);
+  const t = useTranslations('Default');
+
   return (
     <div
       className={cn(
@@ -111,7 +114,7 @@ export default function HeroSectionThree({ variant, title, className }: Props) {
               href={'/'}
               className="text-muted-foreground text-sm"
             >
-              Home
+              {t('Home')}
             </NavigationLink>
             <ChevronRight className="text-muted-foreground size-3" />
             <p className="text-muted-foreground text-sm capitalize">

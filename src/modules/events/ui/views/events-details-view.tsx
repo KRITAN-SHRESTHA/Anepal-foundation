@@ -33,6 +33,7 @@ export default function EventsDetailsView() {
 function EventsDetailsViewSuspense() {
   const params = useParams();
   const { locale } = useGetLocale();
+  const t = useTranslations('Default');
 
   const [data] = trpc.events.getOneEvent.useSuspenseQuery({
     slug: decodeURIComponent(params.slug as string)
@@ -46,7 +47,7 @@ function EventsDetailsViewSuspense() {
         variant="pink"
         title={data.title}
         parentLink="/events"
-        parentName="Our Events"
+        parentName={t('Events')}
       />
 
       <div className="m-auto max-w-6xl px-4 pt-[50px] pb-32 sm:px-6 lg:px-8">
