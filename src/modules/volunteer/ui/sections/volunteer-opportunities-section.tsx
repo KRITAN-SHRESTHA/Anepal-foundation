@@ -31,19 +31,34 @@ export default function VolunteerOpportunitiesSection() {
         <div className="relative">
           {/* Header */}
           <div className="mx-auto mb-16 max-w-3xl text-center lg:mb-20">
-            <EnhancedBadge
-              text={
-                getLocalizedString(badge_text ?? []) ||
-                'Volunteer Opportunities'
-              }
-              variant="pink"
-            />
-            <EnhancedTitle
-              text={
-                getLocalizedString(title ?? []) || 'Choose How You Want to Help'
-              }
-              className="text-balance"
-            />
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <EnhancedBadge
+                text={
+                  getLocalizedString(badge_text ?? []) ||
+                  'Volunteer Opportunities'
+                }
+                variant="pink"
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <EnhancedTitle
+                text={
+                  getLocalizedString(title ?? []) ||
+                  'Choose How You Want to Help'
+                }
+                className="text-balance"
+              />
+            </motion.div>
           </div>
 
           {/* Opportunities Grid */}

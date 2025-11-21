@@ -11,6 +11,7 @@ import EnhancedTitle from '@/components/enhanced-title';
 import ContainerLayout from '@/components/container-layout';
 import PaymentFormSection from '../section/payment-form-section';
 import HeroSectionThree from '@/components/hero-section-three';
+import { motion } from 'motion/react';
 
 export default function PaymentView() {
   const t = useTranslations('Default');
@@ -32,14 +33,34 @@ export default function PaymentView() {
         <ContainerLayout className="max-w-xl py-20">
           <div>
             <div className="mb-10 text-center">
-              <EnhancedBadge
-                text={t('Make_a_difference_today')}
-                variant="pink"
-              />
-              <EnhancedTitle text={t('Donate_us')} />
-              <p className="text-muted-foreground text-center text-sm">
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
+              >
+                <EnhancedBadge
+                  text={t('Make_a_difference_today')}
+                  variant="pink"
+                />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
+              >
+                <EnhancedTitle text={t('Donate_us')} />
+              </motion.div>
+              <motion.p
+                className="text-muted-foreground text-center text-sm"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+              >
                 {t('Your_generosity_changes_lives_of_other_children')}
-              </p>
+              </motion.p>
             </div>
 
             <PaymentFormSection />

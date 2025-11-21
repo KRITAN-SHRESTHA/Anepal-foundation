@@ -10,6 +10,7 @@ import { usePaymentAmountStore } from '../store/payment-amount-store';
 import PaymentSkeleton from '../components/payment-skeleton';
 import SelectAmountSection from './select-amount-section';
 import { useTranslations } from 'next-intl';
+import { motion } from 'motion/react';
 
 export default function PaymentFormSection() {
   const router = useRouter();
@@ -85,9 +86,22 @@ export default function PaymentFormSection() {
   return (
     <>
       {/* amount selector */}
-      <SelectAmountSection />
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
+      >
+        <SelectAmountSection />
+      </motion.div>
 
-      <div className="relative z-10 px-1.5">
+      <motion.div
+        className="relative z-10 px-1.5"
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
+      >
         <PayPalButtons
           fundingSource={'paypal'}
           style={{ layout: 'vertical', label: 'donate' }}
@@ -106,20 +120,33 @@ export default function PaymentFormSection() {
             setIsPaying(false);
           }}
         />
-      </div>
+      </motion.div>
 
-      <div className="my-6 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
+      <motion.div
+        className="my-6 grid grid-cols-[1fr_auto_1fr] items-center gap-3"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.5 }}
+      >
         <hr className="border-dashed" />
         <span className="text-muted-foreground text-xs">
           {t('Or_donate_with_Credit_Debit_Card')}
         </span>
         <hr className="border-dashed" />
-      </div>
+      </motion.div>
 
-      <CardFormSection
-        onApproveOrder={onApproveOrder}
-        onCreateOrder={onCreateOrder}
-      />
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.6, ease: 'easeOut' }}
+      >
+        <CardFormSection
+          onApproveOrder={onApproveOrder}
+          onCreateOrder={onCreateOrder}
+        />
+      </motion.div>
     </>
   );
 }

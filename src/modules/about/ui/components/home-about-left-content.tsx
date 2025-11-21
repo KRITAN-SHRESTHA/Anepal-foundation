@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/dialog';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { useTranslations } from 'next-intl';
 
 interface Props {
   badgeText?: string | null;
@@ -23,6 +24,7 @@ export default function HomeAboutLeftContent({
   title,
   description
 }: Props) {
+  const t = useTranslations('Default');
   return (
     <div className="relative flex flex-col justify-center">
       {/* Decorative Background Element */}
@@ -63,7 +65,7 @@ export default function HomeAboutLeftContent({
               <Dialog>
                 <DialogTrigger>
                   <span className="cursor-pointer font-medium underline-offset-1 hover:underline">
-                    see more
+                    {t('see more')}
                   </span>
                 </DialogTrigger>
                 <DialogContent className="max-h-[90vh] w-full max-w-[800px]! overflow-y-auto px-[25px] py-[50px] sm:p-[50px]">
@@ -93,7 +95,7 @@ export default function HomeAboutLeftContent({
             className="group from-accent-foreground to-accent-foreground/90 hover:shadow-accent-foreground/30 relative h-14 overflow-hidden bg-gradient-to-r text-base font-bold shadow-xl transition-all duration-300 hover:shadow-2xl md:px-8 lg:text-lg"
           >
             <span className="relative flex items-center gap-3 uppercase">
-              Learn More About Us
+              {t('Learn_More_About_Us')}
               <motion.div
                 animate={{
                   x: [0, 5, 0]
@@ -126,7 +128,7 @@ export default function HomeAboutLeftContent({
           </div>
           <div>
             <div className="text-2xl font-bold text-gray-900">100%</div>
-            <div className="text-xs text-gray-600">Committed</div>
+            <div className="text-xs text-gray-600">{t('Committed')}</div>
           </div>
         </div>
 
@@ -139,8 +141,10 @@ export default function HomeAboutLeftContent({
             <Award className="size-6 text-purple-600 transition-colors duration-300 group-hover:text-white" />
           </div>
           <div>
-            <div className="text-2xl font-bold text-gray-900">Trusted</div>
-            <div className="text-xs text-gray-600">Organization</div>
+            <div className="text-2xl font-bold text-gray-900">
+              {t('Trusted')}
+            </div>
+            <div className="text-xs text-gray-600">{t('Organization')}</div>
           </div>
         </div>
       </motion.div>

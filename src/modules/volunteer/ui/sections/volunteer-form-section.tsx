@@ -18,27 +18,30 @@ import {
 } from '@/components/ui/select';
 import { trpc } from '@/trpc/client';
 import useGetLocale from '@/hooks/use-get-locale';
-
-// Manual occupations data
-const occupationsList = [
-  'Student',
-  'Teacher/Educator',
-  'Healthcare Professional',
-  'Engineer',
-  'Business Professional',
-  'Social Worker',
-  'Artist/Creative',
-  'Farmer/Agriculture',
-  'Entrepreneur',
-  'IT Professional',
-  'Retired',
-  'Homemaker',
-  'Other'
-];
+import { useTranslations } from 'next-intl';
 
 export default function VolunteerFormSection() {
   const [data] = trpc.volunteer.getVolunteerView.useSuspenseQuery();
   const { getLocalizedString } = useGetLocale();
+  const t = useTranslations('VolunteerPage');
+  const tEmail = useTranslations('ContactPage');
+
+  // Translated occupations list
+  const occupationsList = [
+    { key: 'Student', label: t('Student') },
+    { key: 'Teacher_Educator', label: t('Teacher_Educator') },
+    { key: 'Healthcare_Professional', label: t('Healthcare_Professional') },
+    { key: 'Engineer', label: t('Engineer') },
+    { key: 'Business_Professional', label: t('Business_Professional') },
+    { key: 'Social_Worker', label: t('Social_Worker') },
+    { key: 'Artist_Creative', label: t('Artist_Creative') },
+    { key: 'Farmer_Agriculture', label: t('Farmer_Agriculture') },
+    { key: 'Entrepreneur', label: t('Entrepreneur') },
+    { key: 'IT_Professional', label: t('IT_Professional') },
+    { key: 'Retired', label: t('Retired') },
+    { key: 'Homemaker', label: t('Homemaker') },
+    { key: 'Other', label: t('Other') }
+  ];
 
   const [formData, setFormData] = useState({
     name: '',
@@ -59,9 +62,7 @@ export default function VolunteerFormSection() {
   // Use tRPC mutation
   const submitVolunteerMutation = trpc.volunteer.submitApplication.useMutation({
     onSuccess: () => {
-      setSuccessMsg(
-        'Thank you for your application! We will contact you soon.'
-      );
+      setSuccessMsg(t('Thank_you_application'));
       setFormData({
         name: '',
         email: '',
@@ -73,9 +74,7 @@ export default function VolunteerFormSection() {
       setTimeout(() => setSuccessMsg(''), 5000);
     },
     onError: error => {
-      setErrorMsg(
-        error.message || 'Failed to submit application. Please try again.'
-      );
+      setErrorMsg(error.message || t('Failed_submit_application'));
     }
   });
 
@@ -111,19 +110,42 @@ export default function VolunteerFormSection() {
         <div className="relative mx-auto max-w-4xl">
           {/* Header */}
           <div className="mb-16 text-center lg:mb-20">
-            <EnhancedBadge
-              text={getLocalizedString(badge_text ?? []) || 'Join Us Today'}
-              variant="yellow"
-            />
-            <EnhancedTitle
-              text={
-                getLocalizedString(title ?? []) || 'Volunteer Application Form'
-              }
-            />
-            <p className="mx-auto mt-4 max-w-2xl text-base text-gray-600 lg:text-lg">
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <EnhancedBadge
+                text={
+                  getLocalizedString(badge_text ?? []) || t('Join_Us_Today')
+                }
+                variant="yellow"
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <EnhancedTitle
+                text={
+                  getLocalizedString(title ?? []) ||
+                  t('Volunteer_Application_Form')
+                }
+              />
+            </motion.div>
+            <motion.p
+              className="mx-auto mt-4 max-w-2xl text-base text-gray-600 lg:text-lg"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
               {getLocalizedString(description ?? []) ||
-                "Fill out the form below to start your journey as a volunteer. We'll get in touch with you shortly."}
-            </p>
+                t('Fill_out_form_description')}
+            </motion.p>
           </div>
 
           {/* Form Card */}
@@ -163,27 +185,39 @@ export default function VolunteerFormSection() {
               )}
 
               {/* Name */}
-              <div className="space-y-2">
+              <motion.div
+                className="space-y-2"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
                 <Label htmlFor="name" className="text-base font-semibold">
-                  Your Name <span className="text-red-500">*</span>
+                  {t('Your_Name')} <span className="text-red-500">*</span>
                 </Label>
                 <Input
                   id="name"
                   type="text"
                   required
-                  placeholder="Enter your full name"
+                  placeholder={t('Enter_your_full_name')}
                   value={formData.name}
                   onChange={e => handleChange('name', e.target.value)}
                   className="focus:border-accent-foreground focus:ring-accent-foreground h-12 border-gray-300 text-base"
                   disabled={submitVolunteerMutation.isPending}
                 />
-              </div>
+              </motion.div>
 
               {/* Email & Phone */}
-              <div className="grid gap-6 sm:grid-cols-2">
+              <motion.div
+                className="grid gap-6 sm:grid-cols-2"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
                 <div className="space-y-2">
                   <Label htmlFor="email" className="text-base font-semibold">
-                    Email <span className="text-red-500">*</span>
+                    {tEmail('Email')} <span className="text-red-500">*</span>
                   </Label>
                   <Input
                     id="email"
@@ -199,7 +233,7 @@ export default function VolunteerFormSection() {
 
                 <div className="space-y-2">
                   <Label htmlFor="phone" className="text-base font-semibold">
-                    Phone Number <span className="text-red-500">*</span>
+                    {t('Phone_Number')} <span className="text-red-500">*</span>
                   </Label>
                   <Input
                     id="phone"
@@ -212,13 +246,19 @@ export default function VolunteerFormSection() {
                     disabled={submitVolunteerMutation.isPending}
                   />
                 </div>
-              </div>
+              </motion.div>
 
               {/* DOB & Occupation */}
-              <div className="grid gap-6 sm:grid-cols-2">
+              <motion.div
+                className="grid gap-6 sm:grid-cols-2"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
                 <div className="space-y-2">
                   <Label htmlFor="dob" className="text-base font-semibold">
-                    Date of Birth <span className="text-red-500">*</span>
+                    {t('Date_of_Birth')} <span className="text-red-500">*</span>
                   </Label>
                   <Input
                     id="dob"
@@ -236,7 +276,7 @@ export default function VolunteerFormSection() {
                     htmlFor="occupation"
                     className="text-base font-semibold"
                   >
-                    Occupation <span className="text-red-500">*</span>
+                    {t('Occupation')} <span className="text-red-500">*</span>
                   </Label>
                   <Select
                     value={formData.occupation}
@@ -246,63 +286,81 @@ export default function VolunteerFormSection() {
                   >
                     <SelectTrigger className="focus:border-accent-foreground focus:ring-accent-foreground h-12! w-full border-gray-300">
                       <SelectValue
-                        placeholder="Select your occupation"
+                        placeholder={t('Select_your_occupation')}
                         className="text-sm"
                       />
                     </SelectTrigger>
                     <SelectContent>
                       {occupationsList.map(occupation => (
-                        <SelectItem key={occupation} value={occupation}>
-                          {occupation}
+                        <SelectItem
+                          key={occupation.key}
+                          value={occupation.label}
+                        >
+                          {occupation.label}
                         </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Address */}
-              <div className="space-y-2">
+              <motion.div
+                className="space-y-2"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
                 <Label htmlFor="address" className="text-base font-semibold">
-                  Address <span className="text-red-500">*</span>
+                  {t('Address')} <span className="text-red-500">*</span>
                 </Label>
                 <Input
                   id="address"
                   type="text"
                   required
-                  placeholder="Enter your full address"
+                  placeholder={t('Enter_your_full_address')}
                   value={formData.address}
                   onChange={e => handleChange('address', e.target.value)}
                   className="focus:border-accent-foreground focus:ring-accent-foreground h-12 border-gray-300 text-base"
                   disabled={submitVolunteerMutation.isPending}
                 />
-              </div>
+              </motion.div>
 
               {/* Submit Button */}
-              <Button
-                type="submit"
-                disabled={submitVolunteerMutation.isPending}
-                size="lg"
-                className="group from-accent-foreground to-accent-foreground/90 h-14 w-[300px] bg-gradient-to-r text-base font-bold uppercase shadow-xl transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50"
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
               >
-                <span className="flex items-center gap-3">
-                  {submitVolunteerMutation.isPending
-                    ? 'Submitting...'
-                    : 'Submit Application'}
-                  <motion.div
-                    animate={{
-                      x: submitVolunteerMutation.isPending ? 0 : [0, 5, 0]
-                    }}
-                    transition={{
-                      duration: 1.5,
-                      repeat: submitVolunteerMutation.isPending ? 0 : Infinity,
-                      ease: 'easeInOut'
-                    }}
-                  >
-                    <Send className="size-5" />
-                  </motion.div>
-                </span>
-              </Button>
+                <Button
+                  type="submit"
+                  disabled={submitVolunteerMutation.isPending}
+                  size="lg"
+                  className="group from-accent-foreground to-accent-foreground/90 h-14 w-[300px] bg-gradient-to-r text-base font-bold uppercase shadow-xl transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  <span className="flex items-center gap-3">
+                    {submitVolunteerMutation.isPending
+                      ? t('Submitting')
+                      : t('Submit_Application')}
+                    <motion.div
+                      animate={{
+                        x: submitVolunteerMutation.isPending ? 0 : [0, 5, 0]
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: submitVolunteerMutation.isPending
+                          ? 0
+                          : Infinity,
+                        ease: 'easeInOut'
+                      }}
+                    >
+                      <Send className="size-5" />
+                    </motion.div>
+                  </span>
+                </Button>
+              </motion.div>
             </form>
 
             {/* Trust indicators */}

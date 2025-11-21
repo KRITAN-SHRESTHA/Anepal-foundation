@@ -11,6 +11,7 @@ import { trpc } from '@/trpc/client';
 import BlogDetailsSkeleton from '../components/blogs-details-skeleton';
 import BlogDetailsHeaderSection from '../sections/blog-details-header-section';
 import BlogDetailsHeroSection from '../sections/blog-details-hero-section';
+import { useTranslations } from 'next-intl';
 
 export default function BlogsDetailsView() {
   return (
@@ -25,11 +26,11 @@ export default function BlogsDetailsView() {
 function BlogsDetailsViewSuspense() {
   const params = useParams();
   const { locale } = useGetLocale();
+  const t = useTranslations('Default');
 
   const [data] = trpc.blogs.getOneBlog.useSuspenseQuery({
     slug: decodeURIComponent(params.slug as string)
   });
-  console.log('🚀 ~ BlogsDetailsViewSuspense ~ data:', data);
 
   if (!data) return notFound();
 
@@ -39,7 +40,7 @@ function BlogsDetailsViewSuspense() {
         variant="pink"
         title={data.title}
         parentLink="/blogs"
-        parentName="Our blogs"
+        parentName={t('Blogs')}
       />
       <div className="m-auto max-w-[1340px] px-4 pt-[50px] pb-32 sm:px-6 lg:px-8">
         <BlogDetailsHeaderSection data={data} />
