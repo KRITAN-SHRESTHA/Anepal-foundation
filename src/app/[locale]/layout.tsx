@@ -4,7 +4,8 @@ import { setRequestLocale } from 'next-intl/server';
 import { Exo_2 } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import NextTopLoader from 'nextjs-toploader';
-
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import Footer from '@/components/footer';
 import Header from '@/components/header';
 import { Toaster } from '@/components/ui/sonner';
@@ -274,6 +275,8 @@ export default async function RootLayout({ children, params }: Props) {
             {children}
             <Footer />
             <Toaster />
+            <Analytics />
+            <SpeedInsights />
           </TRPCProvider>
         </NextIntlClientProvider>
       </body>
